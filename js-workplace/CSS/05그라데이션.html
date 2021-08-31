@@ -79,9 +79,14 @@
 		<div id="gra10" class="circle"></div>
 		<h3>4. 사이즈 지정 </h3>
 		<div id="gra11" class="circle"></div><br>
-		<div id="gra12" class="circle"></div>
+		<div id="gra12" class="circle"></div><br>
 		<div id="gra13" class="circle"></div><br>
 		<div id="gra14" class="circle"></div>
+		<h3>5. 원형 그라데이션 반복 </h3>
+		<div id="gra15" class="circle"></div>
+        <h3>6. 그라데이션 반복(색구분 명확)</h3>
+		<div id="gra16" class="circle"></div>
+
 
 		<style>
 			.circle {
@@ -112,6 +117,12 @@
 			}
 			#gra14 {
 				background: -webkit-radial-gradient(30% 40%, circle farthest-corner, white, blue, red);
+			}
+			#gra15 {
+				background: -webkit-repeating-radial-gradient(white, blue, red 20%);
+			}
+			#gra16 {
+				background: -webkit-repeating-radial-gradient(white, white 10%, blue 10%, blue 20%, red 20%, red 30%);
 			}
 		</style>
 	</body>
