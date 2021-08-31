@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>목록관련 스타일</h1>
+		<hr />
+		<h3>list-style=type : 목록 기호의 스타일 지정</h3>
+		<pre>
+ul : selector {list-style-type : disc | circle | square | none }
+ol : selector {list-style-type : decimal  decimal-leading-zero | lower-roman | upper-roman | lower-alpha | upper-alpha}
+    </pre>
+		<ul id="lst1">
+			<li>TEST1</li>
+			<li>TEST2</li>
+			<li>TEST3</li>
+		</ul>
+		<ul id="lst2">
+			<li>TEST1</li>
+			<li>TEST2</li>
+			<li>TEST3</li>
+		</ul>
+		<ul id="lst3">
+			<li>TEST1</li>
+			<li>TEST2</li>
+			<li>TEST3</li>
+		</ul>
+
+		<style>
+			#lst1 {
+				list-style-type: none;
+			}
+			#lst2 {
+				list-style-type: square;
+			}
+			#lst3 {
+				list-style-type: disc;
+			}
+		</style>
+
+		<hr />
+		<h3>list-style-image : 기호대신 이미지 사용</h3>
+		<pre>selector {list-style-image : url(link)}</pre>
+		<ul id="lsi1">
+			<li>TEST1</li>
+			<li>TEST2</li>
+			<li>TEST3</li>
+		</ul>
+		<style>
+			#lsi1 {
+				list-style-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg');
+				/* list-style-image: url("http://www.foodnmed.com/news/photo/201903/18296_3834_4319.jpg") */
+			}
+		</style>
+
+		<hr />
+		<h3>list-style-position : 목록 기호 들여쓰기 여부</h3>
+		<pre>selector {list-style-position : inside | outside}</pre>
+		<ul id="lsp1">
+			<li>TEST1</li>
+			<li>TEST2</li>
+			<li>TEST3</li>
+		</ul>
+		<ul id="lsp2">
+			<li>TEST1</li>
+			<li>TEST2</li>
+			<li>TEST3</li>
+		</ul>
+		<p>
+			/* 들여쓰기 여부는 inspect하고 클릭했을때 ul 안에 o o o 이 들어가있냐 없나
+			*/
+		</p>
+
+		<style>
+			#lsp1 {
+				list-style-position: inside;
+			}
+			#lsp2 {
+				list-style-position: outside;
+			}
+		</style>
+
+		<hr />
+		<h3>list-style : 목록스타일 한번에 지정</h3>
+		<pre>
+selctor {list-style : list-style-type list-style-position list-style-image}</pre
+		>
+		<ul id="ls">
+			<li>TEST1</li>
+			<li>TEST2</li>
+			<li>TEST3</li>
+		</ul>
+		<style>
+			#ls {
+				list-style: square inside
+					url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg');
+			}
+		</style>
+	</body>
+</html>

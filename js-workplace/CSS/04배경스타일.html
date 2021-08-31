@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<img>
+		<h1>배경과 배경 이미지</h1>
+		<hr />
+		<div id="d1">글씨</div>
+		<style>
+			body {
+				background-color: skyblue;
+			}
+			#d1 {
+				background-color: red;
+			}
+		</style>
+
+		<hr />
+		<h3>background-color : 요소의 배경색을 지정</h3>
+		<pre>selector {background-color : colorName | hexidecimal | rgb | rgba}</pre
+		>
+		<div id="div1">Test RGBA 0</div>
+		<div id="div2">Test RGBA 0.5</div>
+		<div id="div3">Test RGBA 1</div>
+		<div id="div4">Test RGB</div>
+		<style>
+			#div1 {
+				background-color: rgba(160, 20, 150, 0);
+			}
+			#div2 {
+				background-color: rgba(160, 20, 150, 0.5);
+			}
+			#div3 {
+				background-color: rgba(160, 20, 150, 1);
+			}
+			#div4 {
+				background-color: rgba(160, 20, 150);
+			}
+		</style>
+
+		<hr />
+		<h3>background-clip : 요소의 배경색을 지정하는 속성</h3>
+		<pre>selector {backgorund-clip : border-box | padding-box | content-box}</pre
+		>
+		<div class="div-test" id="bc1"
+			>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
+			exercitationem neque facere libero inventore repudiandae laboriosam
+			architecto, sed ducimus explicabo debitis nam officia voluptatibus. Sint
+			obcaecati molestias alias, corrupti repellendus aspernatur labore
+			molestiae ducimus dignissimos! Laudantium, reiciendis sapiente vero
+			pariatur quisquam ipsam, at laborum dolor error eaque repudiandae, cumque
+			expedita.</div
+		>
+		<div class="div-test" id="bc2"
+			>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam
+			dolorem a maxime, adipisci similique, error consequuntur doloribus ipsa
+			cum suscipit sed reiciendis corrupti? Autem esse, in optio quasi
+			laboriosam iste at, incidunt reprehenderit labore voluptates vero quia?
+			Inventore deleniti ullam suscipit odit nemo ad animi aperiam ex delectus
+			molestiae!</div
+		>
+		<div class="div-test" id="bc3"
+			>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda
+			tempore neque repellat ratione inventore, quaerat tempora veritatis,
+			reiciendis, recusandae unde eum ex! Expedita unde vel autem commodi
+			dolores beatae, deserunt dignissimos? Sequi quas quisquam fuga voluptas
+			perspiciatis eum blanditiis. Quis eius recusandae eligendi ad asperiores
+			impedit tempora consequuntur veniam deserunt!</div
+		>
+		<style>
+			.div-test {
+				background-color: white;
+				margin: 30px;
+				padding: 20px;
+				width: 300px;
+				border: 5px dashed black;
+				float: left;
+			}
+			#bc1 {
+				background-clip: border-box;
+			}
+			#bc2 {
+				background-clip: padding-box;
+			}
+			#bc3 {
+				background-clip: content-box;
+			}
+		</style>
+
+		<hr style="clear: left"/>
+		<h3 >background-img : 요소의 배경을 이미지로 지정</h3>
+        <pre>selector {background-image " url()"}</pre>
+		<div id="bg-img1">이미지 원본크기 반복 
+            <br>
+            콘텐츠 콘텐츠 콘텐츠
+        </div>
+        
+        <p>
+            백그라운드 이미지는 정말 배경의 역할!! 이미지위에 추가적인 콘텐츠
+            img는 콘텐츠 그자체로 이미지위에 추가적으로 올리지않을때!
+        </p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg" alt=""></img>
+		<style>
+			#bg-img1 {
+				width: 500px;
+				height: 500px;
+				background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg');
+			}
+		</style>
+
+        <hr>
+        <h3>background-repeat : 배경이미지 반복</h3>
+        <pre> selector {background-repeat : repeat | repeat-x | repeat-y | no-repeat}</pre>
+        <!-- <div class="repeat"> -->
+            <div id="br-img1"><br>콘텐츠 콘텐츠 콘텐츠<br>no repeat</div>
+            <div id="br-img2"><br>콘텐츠 콘텐츠 콘텐츠<br>repeat-x</div>
+            <div id="br-img3"><br>콘텐츠 콘텐츠 콘텐츠<br>repeat-y</div>
+            <div id="br-img4"><br>콘텐츠 콘텐츠 콘텐츠<br>repeat</div>
+            <!-- </div> -->
+            <style>
+                div[id^="br-img"]{
+                    width: 250px;
+                    height: 250px;
+                    margin: 20px;
+                background-color: white;
+                border: 5px dotted black;
+                background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg');
+                float: left;
+            }
+			#br-img1 {
+                background-repeat: no-repeat;
+			}
+			#br-img2 {
+                background-repeat: repeat-x;
+			}
+			#br-img3 {
+                background-repeat: repeat-y;
+			}
+			#br-img4 {
+                background-repeat: repeat;
+			}
+            </style>
+        <hr style="clear:left">
+        <h3>backgorund-position : 배경이미지 위치조정</h3>
+        <pre>selector {background-position : 수평위치 수직위치}</pre>
+        <div class="repeat">
+            <div id="bp1" class="div-test1">test1</div>
+            <div id="bp2" class="div-test2">test2</div>
+            <div id="bp3" class="div-test3">test3</div>
+            <div id="bp4" class="div-test4">test4</div>
+        </div>
+        
+        <style>
+            div[id^="bp"]{
+                width: 250px;
+                height: 250px;
+                background-color: white;
+                border: black solid ;
+                margin: 20px;
+                background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg');
+                overflow: hidden;
+                
+                float: left;
+                background-repeat: no-repeat;
+            }
+            #bp1{
+                background-position: center;
+            }
+            #bp2{
+                background-position: left;
+            }
+            #bp3{
+                background-position: right;
+            }
+            #bp4{
+                background-position: 30% 70%;
+            }
+        </style>
+        <hr style="clear: left;">
+        <h3>background-size : 배경이미지 크기 조절</h3>
+        <pre>selector {backgorund-size : auto | contain | cover | 크기지정</pre>
+        <div id="bs1">auto</div>
+        <div id="bs2">contain</div>
+        <div id="bs3">cover</div>
+        <div id="bs4">Test4</div>
+
+        <style>
+            div[id^="bs"]{
+                width: 250px;
+                height: 350px;
+                background-color: white;
+                border: black solid ;
+                margin: 20px;
+                background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg');
+                overflow: hidden;
+                float: left;
+                background-repeat: no-repeat;
+            }
+            #bs1{
+                background-size: auto;
+            }
+            #bs2{
+                background-size: contain;
+            }
+            #bs3{
+                background-size: cover;
+            }
+            #bs4{
+                background-size: 30em;
+            }
+
+        </style>
+        <hr style="clear: left;">
+        <h3>background-attachment : 배경이미지 크기 조절</h3>
+        <pre>selector {backgorund-attachment : auto | contain | cover | 크기지정</pre>
+        <div id="ba1">fixed</div>
+        <div id="ba2">scroll</div>
+        <style>
+            div[id^="ba"]{
+                width: 500px;
+                height: 400px;
+                margin: 20px;
+                background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg');
+                float: left;
+                background-color: white;
+            }
+            #ba1{
+                background-attachment: fixed;
+            }
+            #ba2{
+                background-attachment: scroll;
+            }
+        </style>
+
+        <hr style="clear: left">
+        <h3>backgorund-origin</h3>
+        <pre> selector {background-origin : border-box | content-box | padding-box}</pre>
+        <div id="bo1">border-box</div>
+        <div id="bo2">content-box</div>
+        <div id="bo3">padding-box</div>
+        <style>
+            div[id^="bo"]{
+                width: 150px;
+                height: 150px;
+                background-color: white;
+                margin: 20px;
+                padding: 30px;
+                border: black dotted 15px;
+                background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg');
+                float: left;
+                background-repeat: no-repeat;
+            }
+            #bo1{
+                background-origin: border-box;
+            }
+            #bo2{
+                background-clip: content-box;
+                background-origin: content-box;
+            }
+            #bo3{
+                background-clip: padding-box;
+                background-origin:padding-box;
+            }
+        </style>
+</body>
+</html>

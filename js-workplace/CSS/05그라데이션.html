@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>그라데이션</h1>
+		<hr />
+		<h2>선형 그라데이션</h2>
+		<p>색상이 수직 수평 대각선으로 일정하게 변화</p>
+		<h3>1. 색만 지정</h3>
+		<div id="gra1" class="linear"></div>
+		<h3>2. 각도를 지정</h3>
+		<div id="gra2" class="linear"></div><br />
+		<div id="gra3" class="linear"></div>
+		<h3>3. 중간색 지정</h3>
+		<div id="gra4" class="linear"></div><br />
+		<div id="gra5" class="linear"></div>
+		<h3>4. 그라데이션 반복</h3>
+		<div id="gra6" class="linear"></div>
+		<h3>5. 그라데이션 반복(색구분 명확)</h3>
+		<div id="gra7" class="linear"></div>
+		<style>
+			.linear {
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+			}
+			#gra1 {
+				background: linear-gradient(to right, blue, white);
+			}
+			#gra2 {
+				background: linear-gradient(45deg, blue, white);
+			}
+			#gra3 {
+				background: linear-gradient(-45deg, blue, white);
+			}
+			#gra4 {
+				background: linear-gradient(to right, blue, white 50%, red);
+			}
+			#gra5 {
+				background: linear-gradient(
+					to right,
+					red,
+					orange,
+					yellow 50%,
+					green,
+					blue,
+					navy,
+					purple
+				);
+			}
+			#gra6 {
+				background: repeating-linear-gradient(225deg, blue, white 20%);
+			}
+			#gra7 {
+				background: repeating-linear-gradient(
+					to bottom,
+					blue,
+					blue 5%,
+					orange 5%,
+					orange 10%,
+					yellow 10%,
+					yellow 15%
+				);
+			}
+		</style>
+		<hr />
+		<h2> 원형 그라데이션</h2>
+		<p>색상이 수직, 수평, 대각선으로 일정하게 변함</p>
+		<h3>1. 색상만 지정 (기본 타원)</h3>
+		<div id="gra8" class="circle"></div>
+		<h3>2. 모양 지정 (circle로 모양 변경)</h3>
+		<div id="gra9" class="circle"></div>
+		<h3>3. 시작점 지정 </h3>
+		<div id="gra10" class="circle"></div>
+		<h3>4. 사이즈 지정 </h3>
+		<div id="gra11" class="circle"></div><br>
+		<div id="gra12" class="circle"></div>
+		<div id="gra13" class="circle"></div><br>
+		<div id="gra14" class="circle"></div>
+
+		<style>
+			.circle {
+				width: 300px;
+				height: 200px;
+				border: black 1px solid;
+			}
+			#gra8 {
+				background: radial-gradient(white, blue, red);
+			}
+			#gra9 {
+				background: radial-gradient(circle, white, blue, red);
+			}
+			/* #gra10 { */
+				/* background: radial-gradient(30% 40%, white, blue, red); */
+			/* } */
+			#gra10 {
+				background: -webkit-radial-gradient(30% 40%, circle, white, blue, red);
+			}
+			#gra11 {
+				background: -webkit-radial-gradient(30% 40%, circle closest-side, white, blue, red);
+			}
+			#gra12 {
+				background: -webkit-radial-gradient(30% 40%, circle closest-corner, white, blue, red);
+			}
+			#gra13 {
+				background: -webkit-radial-gradient(30% 40%, circle farthest-side, white, blue, red);
+			}
+			#gra14 {
+				background: -webkit-radial-gradient(30% 40%, circle farthest-corner, white, blue, red);
+			}
+		</style>
+	</body>
+</html>
