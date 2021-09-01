@@ -8,17 +8,126 @@
 </head>
 <body>
     <div class="wrapper"></div>
-        <header></header>
-        <main>
-            <aside></aside>
-            <div></div>
-        </main>
-        <footer></footer>
+        <header class="header">
+            <div class="h-left"></div>
+            <div class="h-main"></div>
+            <div class="h-right"></div>
+        </header>
+        <nav class="nav"></nav>
+        <div class="content">
+            <aside class="c-left"></aside>
+            <main class="c-main"></main>
+            <aside class="c-right">
+                <form action="test.html" method="POST">
+                        <div class="login-wrap">
+                            <div class="login-top">
+                                <div class="login-left">
+                                    <div class="login-id">
+                                        <input type="text" placeholder="ID를 입력하세요" />
+                                    </div>
+                                    <div class="login-pw">
+                                        <input type="text" placeholder="PW를 입력하세요" />
+                                    </div>
+                                </div>
+                                <div class="login-right">
+                                    <div class="login-submit">
+                                        <button>로그인</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="login-bottom">
+                                <a href="#"> <span>회원가입</span><span> ID/PW찾기</span> </a>
+                            </div>
+                        </div>
+                </form>
+            </aside>
+        </div>
+        <footer class="footer"></footer>
     </div>
 </body>
 <style>
+    /* layout  */
     .wrapper{
         width: 1180px;
+        background-color: red;
     }
+    .header{
+        height: 150px;
+        background-color: blue;
+    }
+    .footer{
+        height: 150px;
+        background-color: green;
+    }
+    .content{
+        height: 550px;  /* instead of  overflow: hidden; */
+    }
+    
+    .nav{
+        height: 50px;
+        background-color: khaki;
+    }
+
+    .content>* , .header>*{
+        height: inherit;
+        float: left;
+        box-sizing: border-box;
+        border: 10px dotted black;
+    }
+    .c-left{
+        width: 20%;
+    }
+    .c-main, .h-main{
+        width: 50%;
+    }
+    .c-right{
+        width: 30%;
+    }
+    .h-left, .h-right{
+        width: 25%;
+    }
+    
 </style>
+
+	<style>
+		.login-wrap {
+			width: 350px;
+		}
+		.login-top {
+			width: 100%;
+			height: 80%;
+		}
+		.login-top > * {
+			width: 100%;
+			height: 100%;
+			float: left;
+		}
+		.login-left > * > input,
+		.login-right > * > button {
+			box-sizing: border-box;
+			width: 100%;
+			height: 120%;
+		}
+        
+        .login-left > * > input{
+            height: 25px;
+            margin-top: 3.5px;
+        }
+        .login-right > * > button{
+            height: 50px;
+            width: 70%;
+            margin: 4px;
+        }
+		.login-left {
+			width: 70%;
+		}
+		.login-right {
+			width: 30%;
+		}
+		.login-bottom {
+			height: 20%;
+			clear: left;
+			text-align: center;
+		}
+	</style>
 </html>

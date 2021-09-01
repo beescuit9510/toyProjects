@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<form action="test.html" method="POST">
+			<div class="login-wrap">
+				<div class="login-top">
+					<div class="login-left">
+						<div class="login-id">
+							<input type="text" placeholder="ID를 입력하세요" />
+						</div>
+						<div class="login-pw">
+							<input type="text" placeholder="PW를 입력하세요" />
+						</div>
+					</div>
+					<div class="login-right">
+						<div class="login-submit">
+							<button>로그인</button>
+						</div>
+					</div>
+				</div>
+				<div class="login-bottom">
+					<a href="#"> <span>회원가입</span><span> ID/PW찾기</span> </a>
+				</div>
+			</div>
+		</form>
+	</body>
+
+	<style>
+		.login-wrap {
+			width: 350px;
+		}
+		.login-top {
+			width: 100%;
+			height: 80%;
+		}
+		.login-top > * {
+			width: 100%;
+			height: 80%;
+			float: left;
+		}
+		.login-left > * > input,
+		.login-right > * > button {
+			box-sizing: border-box;
+			width: 100%;
+			height: 120%;
+		}
+        
+        .login-left > * > input{
+            height: 25px;
+            margin-top: 3.5px;
+        }
+        .login-right > * > button{
+            height: 50px;
+            width: 90%;
+            margin: 4px;
+        }
+		.login-left {
+			width: 70%;
+		}
+		.login-right {
+			width: 30%;
+		}
+		.login-bottom {
+			height: 20%;
+			clear: left;
+			text-align: center;
+		}
+	</style>
+</html>
