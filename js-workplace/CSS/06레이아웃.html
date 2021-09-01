@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=h1, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1></h1>
+		<hr />
+		<h3>width / height : 내용이 자치하고 있는 영역 크기 조절 </h3>
+		<pre>selector { width/ height : 숫자(단위) ;}</pre>
+		<div id="div1"
+			>width/ height 테스트1 50%
+			<div id="div1-1">내부요소 50%</div>
+		</div>
+		<div id="div2"
+			>width/ height 테스트2 500px
+			<div id="div2-1">내부요소 50%</div>
+		</div>
+		<div id="div3"
+			>width/ height 테스트3 font-size: 100%
+			<div id="div3-1">내부요소 font-size: 1.5em 내부요소(hidden)</div>
+		</div>
+		<style>
+			#div1 {
+				background-color: blue;
+				width: 50%;
+			}
+			#div1-1 {
+				background-color: cornflowerblue;
+				width: 50%;
+			}
+			#div2 {
+				background-color: red;
+				width: 500px;
+			}
+			#div2-1 {
+				background-color: deeppink;
+				width: 50%;
+			}
+			#div3 {
+				background-color: green;
+				height: 50px;
+				font-size: 100%;
+			}
+			#div3-1 {
+				background-color: greenyellow;
+				font-size: 1.5em;
+				height: 20px;
+				overflow: hidden;
+			}
+		</style>
+		<hr />
+		<h3>display : 화면 배치 방법을 변경하는 속성</h3>
+		<pre>selector { display : none | block | inline | inline-block}</pre>
+		<div id="div4"> 인라인을 적용한 블록요소</div>
+		<span id="span1">인라인요소</span>
+		<span id="span2">인라인요소</span>
+		<br />
+		<br />
+		<div id="div5">display : inline-block 블록요소</div>
+		<span id="span3">display : inline-block 인라인요소</span>
+		<span id="span4">None 인라인요소</span>
+		<span id="span5">인라인요소</span>
+        <div id="div6">마우스를 올려 클릭!</div>
+        <ul id="ul1"> 
+            <li>클릭해보세요1</li>
+            <li>클릭해보세요2</li>
+            <li>클릭해보세요3</li>
+            <li>클릭해보세요4</li>
+        </ul>
+		<style>
+			#div4,
+			#div5,
+			span[id^='span'] {
+				background-color: indigo;
+				width: 100px;
+				height: 100px;
+				/* margin: 10px; */
+			}
+			#div4 {
+				display: inline;
+			}
+			#div5,
+			#span3,
+			#span4 {
+				display: inline-block;
+				/* float: left; */
+			}
+			#span4 {
+				display: none;
+			}
+			#span5 {
+				background-color: yellow;
+			}
+            #ul1{
+                display: none;
+            }
+
+            #div6{
+                width: 200px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                background-color: yellowgreen;
+                color: white;
+            }
+            #div6:hover{
+                background-color: white;
+                color: blue;
+            }
+
+            #div6:active+#ul1{
+                display: block;
+            }
+		</style>
+        <hr>
+        <h2>테두리 스타일</h2>
+        <h3>border-style : 테두리 스타일 지정</h3>
+        <pre>selector {border-style : none | hidden | dashed | dotted | double | groove | inset | outset | ridge | solid}</pre>
+        <h3>border-width : 테두리 두께</h3>
+        <pre>selector {border-[위치/생략]-width : thin | medium | thick | 숫자}</pre>
+        <h3>border-color : 테두리 색상</h3>
+        <pre>selector {border-[위치/생략]-color : 색상값}</pre>
+        <h3>border : 두께, 스타일, 색상을 한번에 지정</h3>
+        <pre>selector {border-[위치/생략] : 두께 스타일 색상값}</pre>
+        <h3>border-redius : 박스 모서리를 둥글게하는 속성</h3>
+        <pre>selector {border-[위치/생략]-radius : 숫자}</pre>
+        <pre>위치 = > top-left / top-right / bottom-left / bottom-right</pre>
+
+        <h3>box-shadow : 그림자 </h3>
+        <pre>selector {boㅌ-shadow : 숫자 숫자 숫자 숫자 색상값}</pre>
+        <div id="b1">테두리 스타일 dotted double solid none</div>
+        <div id="b2">테두리 스타일 inset </div>
+        <div id="b3">테두리 스타일 outset</div>
+        <div id="b4">테두리 스타일 groove</div>
+        <div id="b5">테두리 스타일 ridge</div>
+        <div id="b6">테두리 스타일 border-radius 100 50 10 0</div>
+        <div id="b7">테두리 스타일 box-shadow</div>
+        <style>
+            div[id^="b"]{
+                width: 100px;
+                height: 100px;
+                border-width: 10px;
+                float: left;
+                margin: 10px;
+            }
+            #b1{
+                border-style: dotted double solid none ;
+            }
+            #b2{
+                border-style: inset;
+            }
+            #b3{
+                border-style: outset;
+            }
+            #b4{
+                border-style: groove;
+            }
+            #b5{
+                border-style: ridge;
+            }
+            #b6{
+                border-style: solid;
+                border-radius: 100px 50px 10px 0px;
+            }
+            #b7{
+                border-style: hidden;
+                box-shadow: 10px 10px 10px 10px gray;
+            }
+        </style>
+	</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>여백스타일</h2>
+    <h3>margin : 요소와 요소들 사이의 거리</h3>
+    <pre>selector {margin-[위치] : 숫자}</pre>
+    <h3>padding : 테두리(border) 콘텐츠(content) 사이의 거리</h3>
+    <pre>selector {padding-[위치] : 숫자}</pre>
+    <div id="div1">내용내용내용</div>
+    <div id="wrap">
+        <!-- <div>머리</div> -->
+        <div>내용내용내용</div>
+        <div>내용내용내용</div>
+        <div class="leg">다리 다리1</div>
+        <div class="leg">다리 다리2</div>
+        <div>내용내용내용</div>
+        <div class="leg">다리 다리3</div>
+        <div class="leg">다리 다리4</div>
+    </div>
+    <div id="div2">
+        <div id="div2-1">내용내용내용</div>
+    </div>
+    <style>
+        div[id^="div"]{
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            border: 30px dashed black;
+            margin: 10px;
+            background-color: blueviolet;
+        }
+        #wrap{
+            width: 300px;
+            height: 300px;
+            background-color: bisque;
+        }
+        
+        #wrap>div{
+            width: 130px;
+            height: 130px;
+            line-height: 130px;
+            text-align: center;
+            border: 10px dashed black;
+            margin: 0%;
+            float: left;
+            background-color:yellowgreen;
+        }
+        #wrap>div:nth-of-type(2){
+            background-color: cornflowerblue;
+        }
+        #wrap>.leg{
+            width: 50px;
+            height: 10px;
+            line-height: 10px;
+            color: white;
+            margin-top: 5%;
+            background-color:darkred;
+        }
+        #wrap>.leg:nth-of-type(3), #wrap>.leg:nth-of-type(4){
+            background-color: yellow;
+            margin: 0%;
+            margin-top: 10%;
+        }
+        #wrap>.leg:nth-of-type(4){
+            margin-top: 30%;
+            margin-left: -23.3%;
+
+        }
+        #wrap>.leg:nth-child(6), #wrap>.leg:nth-child(7){
+            background-color: blue;
+            margin: 0%;
+            margin-top: 10%;
+        }
+        </style>
+
+        <style>
+            #div2{
+                width: 700px;
+                height: 500px;
+                line-height: 500px;
+                text-align: center;
+            }
+            #div2-1{
+                margin: 0 auto;
+                background-color: darkorange;
+            }
+        </style>
+</body>
+</html>

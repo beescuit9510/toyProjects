@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>포지셔닝 스타일</h1>
+		<hr />
+		<h3>box-sizing : width/height의 범위를 설정</h3>
+		<pre> selector : {box-sizing : content-box | border-box }</pre>
+		<div class="div" id="div1">width=200 content만 200</div>
+		<div class="div" id="div2"
+			>width=200 모두(content padding border)포함 200</div
+		>
+
+		<style>
+			.div {
+				width: 200px;
+				height: 200px;
+				border: 10px dashed blue;
+				padding: 50px;
+				display: inline-block;
+				margin: 10px;
+			}
+			#div1 {
+				background-color: cornflowerblue;
+				box-sizing: content-box;
+			}
+			#div2 {
+				background-color: cyan;
+				box-sizing: border-box;
+			}
+		</style>
+		<hr />
+		<h3>position : 페이지의 요소들의 위치를 설정</h3>
+		<pre> selector : {position : static | relatvie | absolute | fixed }</pre>
+		<div class="outer">
+			<div id="in1">absolute</div>
+			<div id="in2">absolute</div>
+			<div id="in3">absolute top left 40%</div>
+		</div>
+		<div id="fixed">fixed</div>
+		<style>
+			.outer {
+				width: 500px;
+				height: 500px;
+				position: relative;
+				border: 5px dotted black;
+			}
+			.outer > div[id^='in'] {
+				position: absolute;
+			}
+			#in1 {
+				width: 300px;
+				height: 300px;
+				background-color: orange;
+			}
+			#in2 {
+				width: 200px;
+				height: 200px;
+				background-color: greenyellow;
+			}
+			#in3 {
+				width: 100px;
+				height: 100px;
+				left: 40%;
+				top: 40%;
+				background-color: slateblue;
+			}
+			#fixed {
+				width: 100px;
+				height: 100px;
+				position: fixed;
+				background-color: blueviolet;
+				top: 0px;
+				right: 0px;
+			}
+		</style>
+		<hr />
+		<h3>visibility : 페이지에 요소를 보이거나 보이지않게 조절하는 속성</h3>
+		<pre>selector {visibility: none </pre>
+		<div id="wrapV">
+			<div id="v1"
+				>v1 :hover hidden
+				<br />
+				visibliity : hidden 후에도 여전히 v1 자리가 남아있음
+			</div>
+			<div id="v2"
+				>v2
+				<br />
+				display : none 후에 v2 자리는 사라짐
+			</div>
+			<div id="v3">v3</div>
+		</div>
+		<style>
+			#wrapV {
+				width: 200px;
+				border: 5px dotted black;
+			}
+			div[id^='v'] {
+				width: 200px;
+				height: 200px;
+			}
+			#v1 {
+				background-color: chartreuse;
+			}
+			#v1:hover {
+				visibility: hidden;
+			}
+			#v2 {
+				background-color: darkblue;
+			}
+			#v2:hover {
+				display: none;
+			}
+			#v3 {
+				background-color: crimson;
+			}
+		</style>
+		<hr />
+		<h3>z-index : 요소를들을 쌓는 순서</h3>
+		<pre>selector {z-index: 숫자}</pre>
+		<div id="z-wrap">
+			<div id="z1"></div>
+			<div id="z2"></div>
+			<div id="z3"></div>
+		</div>
+		<style>
+			div[id^='z'] {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+			}
+			#z-wrap {
+				width: 200px;
+				height: 200px;
+				background-color: bisque;
+                position: relative;
+			}
+			#z1 {
+				background-color: blue;
+			}
+			#z2 {
+				left: 25%;
+				top: 25%;
+				background-color: brown;
+				z-index: 1;
+			}
+			#z3 {
+				left: 50%;
+				top: 50%;
+				background-color: darkblue;
+				z-index: 2;
+			}
+		</style>
+		<hr />
+		<h3>float : 요소배치를 왼쪽 혹은 오른쪽으로 지정하는 속성</h3>
+		<pre>selector float : left | right | none}</pre>
+		<div class="float">
+			<div class="f">1111</div>
+			<div class="f">2222</div>
+			<div class="f">3333</div>
+			<div class="f">4444</div>
+			<div class="f">5555</div>
+		</div>
+        <div class="float-next">float next element 다음 내용!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>
+        <h3>clear : 페이지 float으로 인해 다음요소가 받는 영향을 초기화 해주는 속성</h3>
+        <pre> selector {clear : left | right | both | none }</pre>
+        <style>
+            .float{
+                border: 1px solid yellow;
+                height: 50px;
+                width: 100%;
+                
+            }
+            .f{
+                width: 100px;
+                height: 50px;
+                border: 1px solid black;
+                float: right;
+                /* margin: auto auto; */
+            }
+            .float-next{
+                clear: right;
+            }
+
+        </style>
+
+        <hr>
+        <h3>oveflow : 표현하려는 컨텐츠가 요소의 크기를 넘겼을때 표현하는 방식</h3>
+        <pre>selector : {overflow : scroll | auto | hidden | visible }</pre>
+        <div class="over" id="over-1"><span>AUTO</span> 가나다라마바사아자차카마파하가나다라마바사아자차카마파하</div>
+        <div class="over" id="over-2"><span>SCROLL</span> 가나다라마바사아자차카마파하가나다라마바사아자차카마파하</div>
+        <div class="over" id="over-3"><span>HIDDEN</span> 가나다라마바사아자차카마파하가나다라마바사아자차카마파하</div>
+        <div class="over" id="over-4"><span>VISIBLE</span> 가나다라마바사아자차카마파하가나다라마바사아자차카마파하</div>
+        <style>
+            .over{
+                width: 100px;
+                height: 100px;
+                border: 3px solid black;
+                font-size: 20px;
+            }
+            #over-1{
+                overflow: auto;
+            }
+            #over-2{
+                overflow: scroll;
+            }
+            #over-3{
+                overflow: hidden;
+            }
+            #over-4{
+                overflow: visible;
+            }
+            div[id^="over"]>span:first-of-type{
+                background-color: yellow;
+
+            }
+        </style>
+
+<br><br><br><br>
+<h3>
+    float 하면 부모가 자식[float된 자식]의 높이를 못찾아
+    높이가 0이 되기때문에 부모요소에 overflow hidden 해도 됨!
+</h3>
+        <div id="float-test">
+            <div class="f1"></div>
+            <div class="f1"></div>
+            <div class="f1"></div>
+            <div class="f1"></div>
+        </div>
+        <style>
+            #float-test{
+                overflow: hidden;
+                background-color: antiquewhite;
+            }
+            .f1{
+                width: 100px;
+                height: 100px;
+                border: 1px solid black;
+                float: left;
+            }
+        </style>
+		<!-- <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> -->
+	</body>
+</html>
