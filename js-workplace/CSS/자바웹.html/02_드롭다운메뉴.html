@@ -1,87 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <nav>
-        <div>프로그램 언어
-            <div>JAVA</div>
-            <div>C</div>
-            <div>C++</div>
-            <div>Python</div>
-        </div>
-        <div>데이터베이스
-        </div>
-        <div>FrontEnd
-            <div>HTML5</div>
-            <div>CSS3</div>
-            <div>javascript</div>
-            <div>jQuery</div>
-        </div>
-        <div>게시판
-        </div>
-    </nav>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<nav>
+			<div
+				>프로그램 언어
+				<div><a href="#">JAVA</a> </div>
+				<div><a href="#">C</a> </div>
+				<div><a href="#">C++</a></div>
+				<div><a href="#">Python</a> </div>
+			</div>
+			<div>데이터베이스 </div>
+			<div
+				>FrontEnd
+				<div><a href="#">HTML5</a></div>
+				<div><a href="#">CSS3</a></div>
+				<div><a href="#">javascript</a></div>
+				<div><a href="#">jQuery</a></div>
+			</div>
+			<div>게시판 </div>
+		</nav>
+	</body>
 
-<style>
-    :root{
-        --yellow: #FFE761;
-        --dark-green:#092e20;
-        --green:#234f32;
-        --light-green:#326342;
-    }
+	<style>
+		:root {
+			--yellow: #ffe761;
+			--dark-green: #092e20;
+			--green: #234f32;
+			--light-green: #326342;
+		}
 
-    nav {
-        width: 1000px;
-        height: 50px;
-    }
-    nav>div{
-        width: 200px;
-        height: 50px;
-        line-height: 50px;
-        text-align: center;
-        background-color: var(--yellow);
-        float: left;
-    }
+		nav {
+			width: 1000px;
+			height: 50px;
+		}
+		nav > div {
+			width: 200px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			background-color: var(--yellow);
+			float: left;
+		}
 
-    nav>div:hover{
-        background-color: var(--light-green);
-        font-size:1.1em;
-        color: var(--yellow);
-        /* font-weight: bolder; */
-    }
+		nav > div:hover {
+			background-color: var(--light-green);
+			font-size: 1.1em;
+			color: var(--yellow);
+		}
+        
+		nav > div > div:hover {
+			font-size: 1.2em;
+			font-weight: bolder;
+		}
+        
+		nav > div:hover > div {
+            visibility: visible;
+		}
 
-    nav>div>div:hover{
-        font-size:1.2em;
-        font-weight: bolder;
-    }
+		nav > div > div {
+			color: var(--yellow);
+            font-weight: initial;
+			background-color: var(--dark-green);
+			visibility: hidden;
+		}
+        
+        a {
+            text-decoration: none;
+            color: var(--yellow);
+        }
 
-    nav>div:hover>div{
-        visibility: visible;
-    }
-    
-    
-    nav>div>div{
-        color: var(--yellow);
-        font-weight: initial;
-        background-color: var(--dark-green);
-        visibility: hidden;
-    }
-
-
-    nav>div:first-child{
-        border-top-left-radius: 10px;
-    }
-    nav>div>div:last-child{
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-    nav>div:last-child{
-        border-top-right-radius: 10px;
-    }
-</style>
+		nav > div:first-child {
+			border-top-left-radius: 10px;
+		}
+		nav > div > div:last-child {
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+		nav > div:last-child {
+			border-top-right-radius: 10px;
+		}
+	</style>
 </html>
