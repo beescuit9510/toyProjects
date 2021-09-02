@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>색상</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+        .wrap{
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+        }
+        .wrap>li{
+            width: 200px;
+            min-width: 80px;
+            height: 200px;
+        }
+        .color{
+            margin: 0 auto;
+            border: 1px solid black;
+            width: 150px;
+            min-width: 80px;
+            height: 150px;
+            background-color: #EB8921;
+        }
+        .color+p{
+            font-weight: 900;
+            text-align: center;
+        }
+        .btn-box{
+            display: flex;
+        }
+        .btn{
+            margin: 10px;
+        }
+        
+    </style>
+    <script>
+                
+        $(function(){
+            $(document).on("click",".btn",function(){
+                $(".wrap").empty();
+                var idx = $(".btn").index(this);                
+                var colors = new Array();
+                if(idx==0){
+                    colors = ['#EB8921','#2e2f2f','#F5AD28', '#1e1e1e'];                                        
+                }else if(idx==1 || idx==2){
+                    colors = ['#FFE761','#092e20', '#234f32', '#326342'];
+                }else if(idx==3){
+                    colors = ['#50021b','#d7e2e9', '#ffcb35', '#1f4864','#e95c40','#ffffff'];
+                }
+
+                showColor(colors,idx);
+            });
+        });
+        function showColor(colors, idx){
+            for(var i=0;i<colors.length;i++){
+                var li = $("<li>");
+                var color = $("<div>");
+                color.addClass("color");
+                color.css("background-color",colors[i]);
+                var p = $("<p>");
+                p.html(colors[i]);
+                li.append(color).append(p);
+                $(".wrap").append(li);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>예제 사용 색상</h1>
+    <hr>
+    <div class="btn-box">
+        <button class="btn">메뉴1(기본메뉴)</button>
+        <button class="btn">메뉴2(드롭다운)</button>
+        <button class="btn">메뉴3(가로탭)</button>
+        <button class="btn">메뉴4(아코디언)</button>
+    </div>
+    <hr>
+    <ul class="wrap">     
+    </ul>
+    
+</body>
+</html>

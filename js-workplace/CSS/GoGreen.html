@@ -9,14 +9,38 @@
 <body>
     <div class="wrapper"></div>
         <header class="header">
-            <div class="h-left"></div>
-            <div class="h-main"></div>
+            <div class="h-left">
+                <img src="../구조imgs/logo.jpg" alt="">
+            </div>
+            <div class="h-main">
+                <img src="../구조imgs/mainlogo.jpg" alt="">
+            </div>
             <div class="h-right"></div>
         </header>
-        <nav class="nav"></nav>
+        <nav class="nav">
+            <div><a href="#">home</a></div>
+            <div><a href="#">profile</a></div>
+            <div><a href="#">board</a></div>
+            <div><a href="#">contact</a></div>
+        </nav>
         <div class="content">
-            <aside class="c-left"></aside>
-            <main class="c-main"></main>
+            <aside class="c-left">
+                <img src="../구조imgs/left_img.jpg" alt="">
+            </aside>
+            <main class="c-main">
+                <div class="row">
+                    <img src="../구조imgs/main_img1.jpg" alt="">
+                    <p>나무를 심는 사람들</p>
+                    <img src="../구조imgs/main_img2.jpg" alt="">
+                    <p>아이들에게 녹색 미래를..</p>
+                </div>
+                <div class="row">
+                    <img src="../구조imgs/main_img3.jpg" alt="">
+                    <p>설악산을 살리는 길</p>
+                    <img src="../구조imgs/main_img4.jpg" alt="">
+                    <p>사라지는 북극곰들</p>
+                </div>
+            </main>
             <aside class="c-right">
                 <form action="test.html" method="POST">
                         <div class="login-wrap">
@@ -40,6 +64,9 @@
                             </div>
                         </div>
                 </form>
+                <div>
+                    <img src="../구조imgs/right_img.jpg" alt="">
+                </div>
             </aside>
         </div>
         <footer class="footer"></footer>
@@ -49,15 +76,13 @@
     /* layout  */
     .wrapper{
         width: 1180px;
-        background-color: red;
     }
     .header{
         height: 150px;
-        background-color: blue;
+        /* background-color: blue; */
     }
     .footer{
         height: 150px;
-        background-color: green;
     }
     .content{
         height: 550px;  /* instead of  overflow: hidden; */
@@ -72,7 +97,7 @@
         height: inherit;
         float: left;
         box-sizing: border-box;
-        border: 10px dotted black;
+        /* border: 10px dotted black; */
     }
     .c-left{
         width: 20%;
@@ -130,4 +155,47 @@
 			text-align: center;
 		}
 	</style>
+
+    <style>
+        .nav>div{
+            width: 25%;
+            height: 100%;
+            background-color: rgb(54, 158, 54);
+            float: left;
+        }        
+        .nav>div>a{
+            width: 100%;
+            height: 100%;
+            line-height: 3em;
+            box-sizing: border-box;
+            text-transform: capitalize;
+            text-decoration-line: none;
+            text-align: center;
+            color: white;
+            display: block;
+        }
+        .nav>div>a:hover{
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        </style>
+
+    <style>
+        .h-left>img,.h-main>img, .c-left>img{
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <style>
+        .c-main>.row{
+            float: left;
+            width: 50%;
+        }
+        .row>img{
+            background-color: khaki;
+        }
+    </style>
 </html>

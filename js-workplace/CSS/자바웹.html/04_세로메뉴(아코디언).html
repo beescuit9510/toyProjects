@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>아코디언(세로메뉴) 만들기</h1>
+		<hr />
+		<div class="wrap">
+			<nav>
+				<ul>
+					<li
+						><a href="#">프로그램 언어</a>
+						<ul>
+							<li><a href="#">JAVA</a></li>
+							<li><a href="#">C</a></li>
+							<li><a href="#">C++</a></li>
+							<li><a href="#">Python</a></li>
+						</ul>
+					</li>
+					<li><a href="#">데이터베이스</a></li>
+					<li
+						><a href="#">FrontEnd</a>
+						<ul>
+							<li><a href="#">HTML5</a></li>
+							<li><a href="#">CSS3</a></li>
+							<li><a href="#">javascript</a></li>
+							<li><a href="#">jQuery</a></li>
+						</ul>
+					</li>
+					<li><a href="#">게시판</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="--color1"></div>
+		<div class="--color2"></div>
+		<div class="--color3"></div>
+		<div class="--color4"></div>
+	</body>
+
+	<style>
+		:root {
+			--color1: #50021b;
+			--color2: #d7e2e9;
+			--color3: #ffcb35;
+			--color4: #1f4864;
+			--color5: #e95c40;
+			--color6: #ffffff;
+		}
+		li,
+		ul {
+			box-sizing: border-box;
+			padding: 0px;
+			margin: 0px;
+		}
+		.wrap {
+			background-color: var(--color1);
+			width: 350px;
+		}
+		nav > ul > li:hover > ul > li:hover {
+			background-color: var(--color4);
+		}
+
+		a {
+			font-weight: 600;
+			font-size: 1.2em;
+			height: 70px;
+			line-height: 70px;
+			display: block;
+			text-shadow: var(--color6) 0.5px 0.5px 1px;
+			color: white;
+			text-decoration: none;
+			padding-left: 20%;
+			border-top: var(--color6) 3px solid;
+		}
+		li {
+			list-style: none;
+		}
+		nav > ul > li > ul > li {
+            background-color: var(--color5);
+            display: none;
+		}
+        
+		nav > ul > li:hover > ul > li {
+			display: inherit;
+		}
+
+		nav > ul > li:hover > a {
+			background-color: var(--color3);
+			color: var(--color4);
+		}
+	</style>
+</html>

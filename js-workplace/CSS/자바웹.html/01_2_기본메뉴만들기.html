@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>기본메뉴 만들기</h1>
+		<hr />
+		<div class="wrap">
+			<div class="nav1">
+				<ul>
+					<li><a href="#">JAVA</a></li>
+					<li><a href="#">ORACLE</a></li>
+					<li><a href="#">HTML5</a></li>
+					<li><a href="#">CSS3</a></li>
+					<li><a href="#">javascript</a></li>
+					<li><a href="#">jQuery</a></li>
+					<li><a href="#">서버</a></li>
+					<li><a href="#">Framework</a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+
+	<style>
+		:root {
+			--nav-w: 1000px;
+			--nav-h: 50px;
+			--radius: 5px;
+			--light-orange: #f5ad28;
+			--dark-orange: #eb8921;
+			--dark-black: #1e1e1e;
+			--black: #2e2f2f;
+		}
+		* {
+			box-sizing: border-box;
+		}
+		.wrap {
+			width: 1000px;
+			height: 10vh;
+		}
+		.nav1 > ul > li {
+			width: calc(1000px / 8);
+			height: 100%;
+			line-height: 10vh;
+			text-transform: none;
+			display: block;
+			float: left;
+			background-color: var(--black);
+			text-align: center;
+		}
+		.nav1 > ul > li > a {
+            text-decoration: none;
+			color: var(--dark-orange);
+			display: block;
+		}
+        
+		.nav1 > ul {
+            list-style-type: none;
+            box-shadow: black 0px 3px 3px;
+            padding: 0;
+            margin: 0;
+			overflow: hidden;
+            border-radius: 10px;
+		}
+		.nav1 > ul > li {
+			border-left: 3px solid var(--dark-orange);
+		}
+
+		.nav1 > ul > li:hover {
+			background-color: var(--light-orange);
+			border-left: 3px solid var(--light-orange);
+		}
+		.nav1 > ul > li:hover + li {
+			border-left: 3px solid var(--light-orange);
+		}
+
+		.nav1 > ul > li:hover > a {
+			color: var(--dark-black);
+			font-weight: bolder;
+		}
+
+		.nav1 > ul > li:first-child {
+			border-left: none;
+			border-bottom-left-radius: 10px;
+			border-top-left-radius: 10px;
+		}
+		.nav1 > ul > li:last-child {
+			border-bottom-right-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+	</style>
+</html>

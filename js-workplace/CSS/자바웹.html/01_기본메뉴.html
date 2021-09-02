@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>bun</title>
+	</head>
+	<body>
+		<nav class="nav1">
+			<div><a href="#">JAVA</a></div>
+			<div><a href="#">ORACLE</a></div>
+			<div><a href="#">HTML5</a></div>
+			<div><a href="#">CSS3</a></div>
+			<div><a href="#">javascript</a></div>
+			<div><a href="#">jQuery</a></div>
+			<div><a href="#">서버</a></div>
+			<div><a href="#">Framework</a></div>
+		</nav>
+	</body>
+</html>
+
+<style>
+	:root {
+		--nav-w: 1000px;
+		--nav-h: 50px;
+		--radius: 5px;
+		--light-orange: #f5ad28;
+		--dark-orange: #eb8921;
+		--dark-black: #1e1e1e;
+		--black: #2e2f2f;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+	.nav1 {
+		width: var(--nav-w);
+		height: var(--nav-h);
+	}
+
+	.nav1 > div > a {
+		width: calc(var(--nav-w) / 8);
+		color: var(--dark-orange);
+		height: var(--nav-h);
+		line-height: var(--nav-h);
+		text-align: center;
+		text-decoration: none;
+		background-color: var(--black);
+		border-left: var(--dark-orange) 3px solid;
+		float: left;
+		box-shadow: var(--dark-black) 1px 2px 3px;
+	}
+
+	.nav1 > div:first-child > a {
+		border-bottom-left-radius: var(--radius);
+		border-top-left-radius: var(--radius);
+		border-left: none;
+	}
+	.nav1 > div:last-child > a {
+		border-bottom-right-radius: var(--radius);
+		border-top-right-radius: var(--radius);
+	}
+	.nav1 > div:hover > a {
+		color: var(--dark-black);
+	}
+	.nav1 > div:hover > a {
+		background-color: var(--light-orange);
+		border-left: var(--light-orange) 3px solid;
+		font-weight: bold;
+	}
+
+	.nav1 > div:hover + div > a {
+		border-left: var(--light-orange) 3px solid;
+	}
+</style>
