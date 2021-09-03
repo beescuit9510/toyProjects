@@ -7,50 +7,31 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<nav class="wrap">
-			<div
-				>프로그램 언어
-				<div>
-                    <div>JAVA</div>
-                    <div>C</div>
-                    <div>C++</div>
-                    <div>Python</div>
-                    <div></div>
-                    <div></div>
-                </div>
-			</div>
-			<div
-				>데이터베이스
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-			<div
-				>FrontEnd
-				<div>
-					<div>HTML5</div>
-					<div>CSS3</div>
-					<div>javascript</div>
-					<div>jQuery</div>
-					<div></div>
-					<div></div>
+		<div id="div">
+			<nav class="wrap">
+				<div
+					>프로그램 언어
+					<div>
+				
+						<div>JAVA</div>
+						<div>C</div>
+						<div>C++</div>
+						<div>Python</div>
+					</div>
 				</div>
-			</div>
-			<div
-				>게시판
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-			<div></div>
-			<div></div>
-		</nav>
+				<div>데이터베이스 </div>
+				<div
+					>FrontEnd
+					<div>
+						<div>HTML5</div>
+						<div>CSS3</div>
+						<div>javascript</div>
+						<div>jQuery</div>
+					</div>
+				</div>
+				<div>게시판 </div>
+			</nav>
+		</div>
 	</body>
 	<style>
 		:root {
@@ -60,59 +41,71 @@
 			--light-green: #326342;
 		}
 
+		* {
+			box-sizing: border-box;
+		}
+
 		.wrap {
+			position: relative;
 			width: 1000px;
 			height: 50px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            background-color: var(--yellow);
+			line-height: 50px;
+			text-align: center;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			background-color: var(--yellow);
 		}
 		.wrap > div {
-			width: calc(1000px / 6);
-			height: 150%;
-			line-height: calc(100px / 2);
+			width: calc(1000px / 5);
 			float: left;
-			text-align: center;
 		}
-        
-        .wrap > div:hover {
-            height: 100%;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            background-color: var(--green);
-            color: var(--yellow);
-            font-weight: 900;
-            
-        }
-		.wrap > div > div {
+
+		/* .wrap > div:hover .wrap{ */
+			/* he */
+		/* } */
+
+		.wrap > div:hover {
+			font-weight: 900;
+			color: var(--yellow);
+			background-color: var(--green);
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+
+		#div{
 			width: 1000px;
-			height: 70%;
+			height: 100px;
+			overflow: hidden;
 		}
-		.wrap > div:nth-child(3) > div > div {
-			right: calc(1000px / 3);
+
+		.wrap > div:hover > div {
+			left: -1000px;
+			transform: translateX(1000px);
+			visibility: inherit;
+		}
+		.wrap > div > div {
+			transition-duration: 0.2s;
+			position: absolute;
+			width: 100%;
+			color: var(--yellow);
+			background-color: var(--dark-green);
+			overflow: hidden;
+			visibility: hidden;
 		}
 		.wrap > div > div > div {
-            position: relative;
-            height: 150%;
-			width: calc(1000px / 6);
-			background-color: var(--dark-green);
-			color: var(--yellow);
 			float: left;
-            visibility: hidden;
-            
+			width: calc(1000px / 5);
 		}
-        .wrap > div > div > div:first-child{
-            border-bottom-left-radius: 10px;
-        }
-        .wrap > div > div > div:last-child{
-            border-bottom-right-radius: 10px;
-        }
+		.wrap > div > div{
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
 		.wrap > div:hover > div > div {
-            font-weight: initial;
-            visibility: visible;
+			font-weight: initial;
+			visibility: visible;
 		}
-		.wrap > div:hover> div > div:hover {
-            font-weight: 900;
+		.wrap > div:hover > div > div:hover {
+			font-weight: 900;
 		}
 	</style>
 </html>

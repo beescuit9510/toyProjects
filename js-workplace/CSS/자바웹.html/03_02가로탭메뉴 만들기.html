@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>아코디언(세로메뉴) 만들기</h1>
+		<hr />
+		<div class="wrap">
+			<nav class="nav">
+				<ul>
+					<li
+						><a href="#">프로그램 언어</a>
+						<ul class="sub">
+							<li><a href="#">JAVA</a></li>
+							<li><a href="#">C</a></li>
+							<li><a href="#">C++</a></li>
+							<li><a href="#">Python</a></li>
+						</ul>
+					</li>
+					<li><a href="#">데이터베이스</a></li>
+					<li
+						><a href="#">FrontEnd</a>
+						<ul class="sub">
+							<li><a href="#">HTML5</a></li>
+							<li><a href="#">CSS3</a></li>
+							<li><a href="#">javascript</a></li>
+							<li><a href="#">jQuery</a></li>
+						</ul>
+					</li>
+					<li><a href="#">게시판</a></li>
+				</ul>
+			</nav>
+		</div>
+	</body>
+	<style>
+		:root {
+			--yellow: #ffe761;
+			--dark-green: #092e20;
+			--green: #234f32;
+			--light-green: #326342;
+		}
+
+		.wrap {
+			position: relative;
+			width: 1180px;
+			margin: 0 auto;
+		}
+		.nav ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			overflow: hidden;
+			width: 800px;
+		}
+		.nav > ul {
+			background-color: var(--yellow);
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+
+		.nav li {
+			float: left;
+			width: 150px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+		}
+		.nav > ul > li > a,
+		a {
+			display: block;
+			text-decoration: none;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			color: var(--dark-green);
+		}
+
+		.nav > ul > li:hover > a {
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			background-color: var(--light-green);
+			color: var(--yellow);
+		}
+
+		a {
+			color: var(--yellow);
+		}
+		.sub {
+			position: absolute;
+			height: 50px;
+			background-color: var(--dark-green);
+			visibility: hidden;
+			left: 0px;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+
+		.nav > ul > li:hover .sub {
+			visibility: inherit;
+		}
+	</style>
+</html>

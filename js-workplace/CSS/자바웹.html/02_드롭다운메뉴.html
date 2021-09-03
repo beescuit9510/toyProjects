@@ -60,18 +60,25 @@
 		}
         
 		nav > div:hover > div {
-            visibility: visible;
+			visibility: visible;
+			height: 50px;
+		}
+		nav > div:hover > div>a {
+			visibility: visible;
+			transition-duration: 0.5s;
 		}
 
 		nav > div > div {
+			transition-duration: 0.5s;
 			color: var(--yellow);
             font-weight: initial;
 			background-color: var(--dark-green);
-			visibility: hidden;
+			height:0px;
 		}
         
         a {
-            text-decoration: none;
+			visibility: hidden;
+			text-decoration: none;
             color: var(--yellow);
         }
 

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<div>
+		<h3>애니메이션</h3>
+		<div class="div1">
+			<img class="img1" src="../pngegg.png" alt="" />
+		</div>
+		<div class="div2"></div>
+		<div id="div">
+        </div>
+        
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <div>
+            <div class="rainbow"/>
+            <img class="img2" src="../pngegg.png" alt="" />
+        </div>
+	</body>
+	<style>
+        .img1 {
+            width: 400px;
+        }
+        .img2 {
+            position:absolute;
+            width: 350px;
+            padding-left: 70px;
+        }
+        .div1 {
+            margin: 100px;
+            width: 600px;
+            height: 600px;
+            text-align: center;
+            animation-name: ani1;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+
+        .div2 {
+            margin: 100px;
+            width: 700px;
+            height: 700px;
+            text-align: center;
+            animation-name: ani2;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+        .div2 {
+            animation-name: rainbow 4s steps(36) infinite;
+        }
+
+        @keyframes ani1 {
+            from {
+                background-color: royalblue;
+                border: 1px solid blue;
+            }
+            to {
+                background-color: pink;
+                border: 1px solid hotpink;
+                border-radius: 360px;
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes ani2 {
+            10% {
+                background-color: red;
+                border-radius: 80px;
+            }
+            20% {
+                background-color: orange;
+                border-radius: 120px;
+            }
+            30% {
+                background-color: yellow;
+                border-radius: 160px;
+            }
+            40% {
+                background-color: green;
+                border-radius: 200px;
+            }
+
+            60% {
+                background-color: blue;
+                border-radius: 240px;
+            }
+
+            80% {
+                background-color: darkblue;
+                border-radius: 300px;
+            }
+
+            100% {
+                background-color: darkviolet;
+                border-radius: 360px;
+            }
+        }
+
+        @-webkit-keyframes rainbow {
+            from {
+                -webkit-filter: hue-rotate(10deg);
+            }
+            to {
+                -webkit-filter: hue-rotate(360deg);
+            }
+        }
+
+        @keyframes rainbow {
+            from {
+                -webkit-filter: hue-rotate(10deg);
+                filter: hue-rotate(10deg);
+            }
+            to {
+                -webkit-filter: hue-rotate(360deg);
+                filter: hue-rotate(360deg);
+            }
+        }
+
+
+    #div {
+            background: url(http://forums.androidcentral.com/attachments/android-app-inventor/114178d1398172852t-game-free-true-color-icon_256.png) no-repeat;
+            width: 256px;
+            height: 256px;
+            -webkit-animation: rot 4s linear 0s infinite;
+            -moz-animation: rot 4s linear 0s infinite;
+            -o-animation: rot 4s linear 0s infinite;
+            animation: rot 4s linear 0s infinite;
+    }
+
+        @-webkit-keyframes rot { from { transform: rotate(0deg) } to { transform: rotate(360deg) }
+        @-moz-keyframes rot { from { transform: rotate(0deg) } to { transform: rotate(360deg) }
+        @-o-keyframes rot { from { transform: rotate(0deg) } to { transform: rotate(360deg) }
+        @keyframes rot { from { transform: rotate(0deg) } to { transform: rotate(360deg) }
+	</style>
+
+	<style>
+		:root {
+			--f: 1;
+			--s: 6.7%;
+			--l: 25%;
+			--side: 500px;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+            display: grid;
+			place-items: center;
+			height: 100vh;
+			/* background-color: darkslateblue; */
+		}
+
+		.rainbow {
+            margin:200px;
+			height: var(--side);
+			width: var(--side);
+			border-radius: 50%;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+			background: var(--gradients);
+			animation: rotate 5s linear infinite;
+		}
+
+		.rainbow {
+			--gradients: radial-gradient(
+					rgba(255, 255, 255, 0.5),
+					rgba(255, 255, 255, 0)
+				),
+				radial-gradient(
+					circle at bottom var(--l) left var(--s),
+					rgba(0, 0, 255, calc(var(--f) / 2)),
+					rgba(0, 0, 255, 0) 50%
+				),
+				radial-gradient(
+					circle at bottom center,
+					rgba(0, 255, 255, var(--f)),
+					rgba(0, 255, 255, 0) 50%
+				),
+				radial-gradient(
+					circle at bottom var(--l) right var(--s),
+					rgba(0, 255, 0, var(--f)),
+					rgba(0, 255, 0, 0) 50%
+				),
+				radial-gradient(
+					circle at top var(--l) right var(--s),
+					rgba(255, 255, 0, var(--f)),
+					rgba(255, 255, 0, 0) 50%
+				),
+				radial-gradient(
+					circle at top center,
+					rgba(255, 0, 0, var(--f)),
+					rgba(255, 0, 0, 0) 50%
+				),
+				radial-gradient(
+					circle at top var(--l) left var(--s),
+					rgba(255, 0, 255, var(--f)),
+					rgba(255, 0, 255, 0) 50%
+				),
+				radial-gradient(
+					circle at bottom var(--l) left var(--s),
+					rgba(0, 0, 255, calc(var(--f) / 2)),
+					rgba(0, 0, 255, 0) 50%
+				);
+		}
+
+		@keyframes rotate {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</html>
