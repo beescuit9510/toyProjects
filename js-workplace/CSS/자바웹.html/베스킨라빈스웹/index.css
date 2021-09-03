@@ -1,0 +1,125 @@
+:root {
+	--light-greey: #eef5f4;
+	--mint: #19bbae;
+	--green: #12615b;
+	--red: #ae0000;
+	--grey: #dddddd;
+	--black: #282828;
+	--white: #ffffff;
+}
+
+@font-face {
+	font-family: 'ns_r';
+	src: url(Noto_Sans_KR/NotoSansKR-Regular.otf);
+}
+@font-face {
+	font-family: 'ns_b';
+	src: url(Noto_Sans_KR/NotoSansKR-Bold.otf);
+}
+@font-face {
+	font-family: 'bangers';
+	src: url(Bangers/Bangers-Regular.ttf);
+}
+
+* {
+	font-family: 'ns_r';
+	color: var(--black);
+}
+
+body {
+	margin: 0px;
+}
+
+.header {
+	background-color: var(--light-greey);
+	overflow: hidden;
+}
+.header > .head-content > div,
+.header3 > div {
+	float: left;
+}
+.head-content {
+    width: 1180px;
+	margin: auto auto;
+    text-align: center;
+}
+.header1 {
+    width: 30%;
+}
+.header2 {
+    width: 50%;
+}
+.header3 {
+    margin-top: 10px;
+    width: 20%;
+}
+.logo {
+    width: 20px;
+	height: 20px;
+}
+
+.header3 .logo {
+    width: 35px;
+	height: 35px;
+}
+
+.header3 > div {
+    width: 60px;
+	height: 70px;
+}
+.header3 > div> a, nav>.nav-content>div>a{
+    text-decoration: none;
+    font-size: 14px;
+}
+#search {
+	display: none;
+}
+
+form {
+	text-align: center;
+	line-height: 90px;
+}
+input[name='query'] {
+	width: 500px;
+	font: 16px;
+	border: none;
+	background: none;
+	border-bottom: 2px solid var(--mint);
+	/* #19bbae; */
+}
+input[name='query']:focus {
+	outline: none;
+	border-bottom: 2px solid var(--mint);
+}
+
+.header1 > a {
+	font-size: 80px;
+	font-family: 'Bangers';
+	color: var(--mint);
+}
+
+nav{
+    position: relative;
+    clear: left;
+    height: 50px;
+    line-height: 50px;
+    background-color: var(--mint);
+    overflow: hidden;
+}
+
+nav::before{
+    position: absolute;
+    width: 3000%;
+    background-color: var(--mint);
+    background-color: royalblue;
+    height: 50px;
+
+}
+nav> div{
+    width: 900px;
+    margin: auto auto;
+}
+nav > div> div {
+    width: 100px;
+    float: left;
+}
