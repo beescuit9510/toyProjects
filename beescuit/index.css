@@ -1,0 +1,18 @@
+:root{
+    --width:1180px;
+}
+
+*{
+    box-sizing: border-box;
+}
+body{
+    width: var(--width)
+}
+
+div[class^="div"]{
+    width: calc(var(--width)/5)
+}
+
+header> .div3{
+    
+}
