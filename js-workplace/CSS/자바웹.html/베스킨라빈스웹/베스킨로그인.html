@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>bunny and honey</title>
+		<link rel="stylesheet" href="index.css" />
+		<!-- <link rel="stylesheet" href="베스킨라빈스메인.css" /> -->
+	</head>
+	<body>
+		<div class="wrap">
+			<header class="header">
+				<header class="head-content">
+					<div class="header1">
+						<a href="#베스킨라빈스메인">ICE-MALL</a>
+					</div>
+					<div class="header2">
+						<form action="#" method="GET">
+							<input
+								type="text"
+								name="query"
+								placeholder="검색어를 입력하세요"
+							/>
+							<input type="submit" id="search" value="검색" />
+							<label for="search">
+								<img class="logo" src="베스킨라빈스이미지/dot.png" alt="" />
+							</label>
+						</form>
+					</div>
+					<div class="header3">
+						<div>
+							<a href="카트.html">
+								<img
+									class="logo"
+									src="베스킨라빈스이미지/cart.png"
+									alt="카트"
+								/>
+								CART</a
+							>
+						</div>
+						<div>
+							<a href="">
+								<img
+									class="logo"
+									src="베스킨라빈스이미지/login.png"
+									alt="로그인"
+								/>
+								LOGIN</a
+							>
+						</div>
+						<div>
+							<a href="">
+								<imglo
+									class="logo"
+									src="베스킨라빈스이미지/join.png"
+									alt="조인"
+								/>
+								JOIN</a
+							>
+						</div>
+					</div>
+				</header>
+				<nav class="head-footer">
+					<div class="nav-content">
+						<div><a href="#">MENU</a></div>
+						<div><a href="#">성분 & 알러지</a></div>
+						<div><a href="#">민초관</a></div>
+						<div><a href="#">반민초관</a></div>
+						<div><a href="#">EVENT</a></div>
+						<div><a href="#">ABOUT</a></div>
+					</div>
+				</nav>
+			</header>
+			<main class="main">
+				<div class="title">
+					<h1>login</h1>
+				</div>
+				<div class="login">
+					<form action="#" method="POST">
+						<input type="text" name="id" placeholder="id" />
+						<input type="password" name="pw" placeholder="pw" />
+						<button>로그인</button>
+					</form>
+				</div>
+			</main>
+
+			<footer class="footer">
+				<div>
+					<p>상호명 : (주) ICE-MALL</p>
+					<p>소재지 : 서울시 영등포구 선유로 57 이레빌딩 19f / A</p>
+					<p id="call">고객센터 : 1577-0081 [평일 09:00 - 18-00 ]</p>
+					<p>email : next007@iei.or.kr</p>
+				</div>
+			</footer>
+		</div>
+	</body>
+
+	<style>
+		.main {
+			margin: 0 auto;
+		}
+
+		.title > h1 {
+			font-family: 'bangers';
+			text-align: center;
+			margin-top: 50px;
+			color: var(--green);
+		}
+
+		:root {
+			--light-greey: #eef5f4;
+			/* --mint: #19bbae; */
+			--green: #12615b;
+			/* --red: #ae0000; */
+			/* --grey: #dddddd; */
+			/* --black: #282828; */
+			--white: #ffffff;
+		}
+
+		.login {
+            margin: 0 auto;
+			width: 300px;
+		}
+		.login > form > input,
+		button {
+            box-sizing: border-box;
+			margin: 10px;
+            width: 250px;
+            height: 50px;
+			font-size: 20px;
+			float: left;
+			border: 3px solid var(--green);
+			background-color: var(--white);
+			border-radius: 10px;
+		}
+
+		.login > form > input:focus {
+			outline: none;
+		}
+
+		.login > form > button:hover {
+			background-color: var(--green);
+			color: var(--white);
+		}
+
+		.footer {
+			clear: both;
+		}
+	</style>
+</html>

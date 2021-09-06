@@ -30,7 +30,10 @@ body {
 	margin: 0px;
 }
 
+
+
 .header {
+	position: relative;
 	background-color: var(--light-greey);
 	overflow: hidden;
 }
@@ -99,27 +102,56 @@ input[name='query']:focus {
 }
 
 nav{
-    position: relative;
-    clear: left;
-    height: 50px;
-    line-height: 50px;
+	width: 100%;
+	clear: both;
     background-color: var(--mint);
-    overflow: hidden;
+	overflow: hidden;
 }
 
-nav::before{
-    position: absolute;
-    width: 3000%;
-    background-color: var(--mint);
-    background-color: royalblue;
-    height: 50px;
-
-}
 nav> div{
-    width: 900px;
+	width: 900px;
+    /* width: 1180px; */
     margin: auto auto;
 }
 nav > div> div {
     width: 100px;
     float: left;
+	height: 50px;
+	line-height: 50px;
+	width: 120px;
+	text-align: center;
 }
+
+nav > div> div>a:hover{
+	font-family: 'ns-b';
+	color: var(--light-greey);
+}
+
+.footer{
+	background-color: var(--light-greey);
+	font-family: 'ns_b';
+	color: var(--white);
+}
+
+.footer > div{
+	width: 1180px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#call{
+	font-size: 18px;
+	font-family: 'ns_b';
+}
+
+
+.header{
+	width: 100%;
+	top:0;
+	position: fixed;
+}
+
+
+main{
+	padding-top: 143px;
+} 
