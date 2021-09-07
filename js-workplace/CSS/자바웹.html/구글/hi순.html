@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="구글로그인.css" />
+		<title>Google</title>
+	</head>
+	<body>
+		<main>
+			<img src="이미지들/구글로고.png" alt="" />
+			<p>Hi 순</p>
+			<a href="구글로그인.html" class="id">
+				<img src="이미지들/순.png" alt="" />
+				<p>pengsoon@gmail.com <span>∨</span></p>
+			</a>
+			<div class="form">
+				<form action="구글메인.html">
+					<input
+						type="password"
+						name="login"
+						id=""
+						placeholder="Enter your password"
+					/>
+					<div class="input-next">Enter your password</div>
+					<div>
+						<input type="checkbox" />
+						<span> Show password </span>
+					</div>
+				</form>
+			</div>
+			<div>
+				<div> More ways to sigin in </div>
+				<div>
+					<button>Next</button>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div>
+				<p>english</p>
+			</div>
+			<div>
+				<p>help</p>
+				<p>privacy</p>
+				<p>terms</p>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style>
+	main > p {
+		margin-bottom: 20px;
+	}
+	.id {
+		border: 1px solid #dadce0;
+		overflow: hidden;
+		width: 230px;
+		height: 30px;
+		margin: 0 auto;
+		border-radius: 30px;
+		margin-bottom: 30px;
+	}
+	.id > * {
+		margin-left: 5px;
+		float: left;
+		font-size: 17px;
+	}
+	.id > p {
+		margin-top: 2px;
+	}
+	.id > p > span {
+		font-weight: 600;
+	}
+	.id > img {
+		border-radius: 40px;
+		width: 25px;
+		margin-top: 3px;
+	}
+	.id + * {
+		clear: both;
+	}
+
+	form > input,
+	input::placeholder {
+		width: 336px;
+		height: 28px;
+		color: #202124;
+		padding: 12px;
+		margin: 2px;
+		border-radius: 7px;
+	}
+	input {
+		border: 1px solid #dadce0;
+	}
+	form > input:focus {
+		outline: none;
+		width: 334px;
+		height: 26px;
+		color: #202124;
+		padding: 12px;
+		margin: 2px;
+		border: 2px solid #1a73e8;
+	}
+
+	.form {
+		position: relative;
+	}
+	input:focus::placeholder {
+		color: transparent;
+	}
+	.input-next {
+		display: none;
+	}
+	input:focus + .input-next {
+		z-index: 2;
+		position: absolute;
+		content: 'Enter your password';
+		top: -15px;
+		left: 20px;
+		font-size: 13px;
+		padding-left: 5px;
+		padding-right: 5px;
+		background-color: white;
+		color: #1a73e8;
+		display: inherit;
+	}
+
+	form > div > input {
+		width: 20px;
+		height: 20px;
+	}
+	form > div > span {
+		float: right;
+		display: block;
+		padding-top: 5px;
+		padding-left: 10px;
+	}
+	form > div {
+		float: left;
+		margin-left: 40px;
+		margin-top: 10px;
+		font-size: 14px;
+	}
+
+	main > div:last-child {
+		clear: both;
+	}
+	main > div:last-child > * {
+		margin-top: 90px;
+		margin-left: 47px;
+		text-align: left;
+		color: #1a73e8;
+		color: #1a73e8;
+		font-size: 15px;
+	}
+	main > div:last-child > *:last-child {
+		float: right;
+		margin-top: -15px;
+		margin-right: 47px;
+	}
+	main > div:last-child > *:last-child > button {
+		width: 79.167px;
+		height: 38px;
+		background: #1a73e8;
+		color: white;
+		border: none;
+		border-radius: 7px;
+		font-weight: 600;
+	}
+</style>

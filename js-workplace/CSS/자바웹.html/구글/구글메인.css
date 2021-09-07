@@ -1,0 +1,217 @@
+nav {
+	position: relative;
+	height: 50px;
+	overflow: hidden;
+}
+nav > div {
+	position: absolute;
+	right: 0;
+}
+nav > div > div {
+	width: 70px;
+	float: left;
+}
+
+nav > div > div > a {
+	font-family: arial, sans-serif;
+	text-decoration: none;
+	text-transform: capitalize;
+	color: #222;
+	line-height: 50px;
+	width: 40px;
+	height: 40px;
+}
+
+nav>div:first-child>div:last-child>a::before{
+	content: '';
+	position: absolute;
+	z-index: 2;
+	width: 150%;
+	height: 100%;
+	display: block;
+}
+
+
+nav > div > div > a:hover{
+	text-decoration: underline;
+}
+
+nav > div > div > a > svg {
+	width: 100%;
+	height: 100%;
+	padding-top: 15px;
+	padding-left: 15px;
+	line-height: 50px;
+	opacity: 0.6;
+}
+nav > div > div:last-child >a> img {
+	margin-top: 10px;
+	border-radius: 50px;
+	width: 40px;
+}
+
+header {
+	text-align: center;
+	width: 100%;
+}
+header > img {
+	height: 92px;
+	width: 272px;
+}
+.search > form > * {
+	box-sizing: border-box;
+	float: left;
+	width: 30px;
+	height: 30px;
+}
+.search > form > input,
+.search > form > input:focus {
+	float: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 500px;
+	border: none;
+	outline: none;
+}
+
+.search > form > svg:first-child {
+	padding-left: 10px;
+}
+.search > form > svg:first-child {
+	opacity: 0.43;
+}
+
+.search {
+	margin: 0 auto;
+	margin-top: 30px;
+	padding-top: 9px;
+	padding-bottom: 7px;
+	width: 570px;
+	border-radius: 30px;
+	overflow: hidden;
+	border: 1px solid #dfe1e5;
+	box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
+* {
+	text-transform: capitalize;
+}
+main > div {
+	width: max-content;
+	overflow: hidden;
+	margin: 10px auto;
+}
+main > div > div > a {
+	text-align: center;
+	text-decoration: none;
+	color: #3c4043;
+	font-size: 14px;
+	margin: 11px 4px;
+}
+
+main > div:first-child > div {
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: #f8f9fa;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 36px;
+	border-radius: 5px;
+	line-height: 36px;
+	text-align: center;
+	float: left;
+}
+
+main > div {
+	margin-top: 30px;
+}
+main > div:last-child {
+	margin-top: 20px;
+}
+main>div:first-child>div{
+	border: 1px solid white;
+}
+main > div:first-child > div:hover {
+	box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+	background-color: #f8f9fa;
+	border: 1px solid #dadce0;
+	color: #202124;
+}
+main > div:last-child > div > a > span:hover {
+	text-decoration: underline;
+}
+main > div:last-child > div > a > span {
+	color: blue;
+}
+main > div:last-child > div > a {
+	font-size: 13px;
+}
+body {
+	margin: 0;
+}
+footer {
+	left: 0;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+footer > div {
+	background: #f2f2f2;
+	overflow: hidden;
+	color: #70757a;
+}
+
+footer > div > div:first-child {
+	height: 50px;
+	line-height: 50px;
+	padding-left: 40px;
+	border-bottom: 1px solid #dfe1e5;
+}
+
+footer > div > div {
+	padding-left: 40px;
+	clear: left;
+}
+.footer-left,
+.footer-right {
+	display: inline-block;
+}
+
+.footer-right {
+	position: absolute;
+	right: 0;
+}
+
+.footer-right > div:last-child {
+	padding-right: 40px;
+}
+
+.footer-left > div,
+.footer-right > div {
+	float: left;
+	margin: 10px 10px;
+	font-size: 14px;
+}
+.footer-left > div:first-child {
+	margin-left: 0;
+}
+
+@media (max-width: 700px) {
+	.footer-left,
+	.footer-right {
+		width: max-content;
+		display: block;
+		overflow: hidden;
+		margin: 0 auto;
+	}
+
+	.footer-right {
+		position: inherit;
+	}
+	.footer-right {
+		margin-bottom: 10px;
+	}
+	.footer-left > div:first-child,
+	.footer-right > div:first-child {
+		margin-left: 0;
+	}
+}
