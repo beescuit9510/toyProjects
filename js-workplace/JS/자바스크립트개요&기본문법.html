@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>자바스크립스 개요</h1>
+        <h2>유연한 혹은 체계가 안잡힌 언어</h2>
+		<hr />
+		<h2>자바스크립트 작성 방식</h2>
+		<h3>1. inline : 자바스크립스 양이 한 줄 또는 두줄 정도로 소량일때 사용</h3>
+		<h3
+			>2. internal 방식 : html파일 내 자바스크립트 소스를 작성(script 태그 내부
+			작성)</h3
+		>
+		<h3
+			>3. external 방식 : 자바스크립스 파일을 따로 외부 파일로 작성한 후
+			불러오는 방식</h3
+		>
+		<button onclick="javascript:alert('인라인 방식');">inline</button>
+		<button onclick="func1();">internal</button>
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<hr />
+		<h2>데이터 출력 방법</h2>
+		<h3>1. document.write (내용) : 브라우저 화면에 값을 출력</h3>
+		<h3
+			>2. window.alert(내용) : 내용을 메서지 창에 출력 (window는 생략 가능하여
+			alert으로 사용 가능)</h3
+		>
+		<h3
+			>3. console.log(내용) : 개발자도구 화면의 콘솔에 출력(개발 도중 값 확인을
+			위한 용도로 사용)</h3
+		>
+		<button onclick="func2();">documenet.write</button>
+		<button onclick="func3();">window.alert</button>
+		<button onclick="func4();">console.log</button>
+
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<hr />
+		<h2>데이터 입력 방법</h2>
+		<h3
+			>1. window.confirm(질문) : 질문에 대해 예/아니오의 결과(true/false)를
+			얻을때 사용
+		</h3>
+		<h3
+			>2. windwo.prompt(질문) : 질문에 대해 입력할 텍스트 필드와 확인/취소
+			버튼이 있는 대화창 출력</h3
+		>
+		<button onclick="func5();">window.confirm</button>
+		<button onclick="func6();">window.prompt</button>
+
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<hr />
+		<h1>자바스크립스 기본 문법</h1>
+		<h2>주석</h2>
+		<h3>한줄 주석 : // </h3>
+		<h3>여러 줄 주석 : /* */ </h3>
+		<button onclick="func7();">주석</button>
+
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<!--  -->
+		<hr />
+		<h2>자바스크립스 자료형</h2>
+		<h3>자바스크립트는 변수 선언시 자료형을 작성하지 않음 무조건 var</h3>
+		<h3
+			>1. 문자열: "",''로 묶여있는 리터럴(자바와 다르게 '',"" 구분없이 모두
+			문자열로 처리</h3
+		>
+		<p>string이라는 내장 객체로 기본적인 함수(메소드)들이 존재</p>
+		<h3>2. 숫자 : 정수형숫자와 부동소수점 숫자 처리하는 자료형</h3>
+		<p>Math라는 내장객체를 이용하여 기본적인 메소드 사용이 가능</p>
+		<h3
+			>3. 기타자료형: 논리형(true/false), 객체(object), undefined,
+			함수(function)</h3
+		>
+		<button onclick="func8();">문자열</button>
+		<button onclick="func9();">숫자</button>
+		<button onclick="func10();">기타자료형</button>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <hr>
+        <h2>자바스크립스 연산자</h2>
+        <h3>1. 대부분 연산자는 자바 연산자와 동일</h3>
+        <h3>2. ==, != : 데이터만 확인</h3>
+        <h2 style="color: red;">("1"==1 true)</h2>
+        <h3>2. ===, !== : 자료형과 데이터가 모두 일치하는지 확인하는 연산자</h3>
+        <h2 style="color: red;">("1"===1 false)</h2>
+        <h3>3. typeof() : 해당하는 값이 어떤 자료형인지 확인하는 연산자</h3>
+		<button onclick="operator1();">===, !==</button>
+		<button onclick="operator2();">typeof</button>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <hr>
+        <h2>자바스크립스 형변환</h2>
+        <h3>문자열 -> 숫자 형변환 : Number(문자) / 숫자 -> 문자열 형변환 : String(숫자)</h3>
+		<button onclick="casting();">casting</button>
+		<button onclick="operator2();">typeof</button>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <hr>
+        <h2>자바스크립스 변수</h2>
+        <h3>지역변수 & 전역변수</h3>
+		<button onclick="global();">전역변수</button>
+		<button onclick="local();">지역변수</button>
+		<button onclick="global2();">전역변수</button>
+		<button onclick="javascript:console.log(data);">인라인으로 불러오는 전역변수 data</button>
+		<button onclick="javascript:console.log(data2);">인라인으로 불러오는 전역변수 data2</button>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <hr>
+        <h2>자바스크립스 제어문</h2>
+        <h3>1. 조건문(if, if-else, if-else, if, 짧은 조건문(||, &&), : 짧은 조건문을 제외하면 자바와 동일</h3>
+        <h3>2. 반복문(for, while): 자바와 동일</h3>
+        <h3>2. 분기문(continue, break): 자바와 동일</h3>
+		<button onclick="conditional1();">짧은 조건문</button>
+	</body>
+</html>
+
+<script>
+	function func1() {
+		alert('하하');
+	}
+
+	function func2() {
+		document.write('<h1>안녕!</h1>');
+	}
+	function func3() {
+		window.alert('안녕!');
+	}
+	function func4() {
+		console.log('안녕!');
+	}
+	function func5() {
+		var reply = window.confirm('자바스립트가 처음이신가요');
+		console.log(reply);
+		if (reply) {
+			alert('처음이시군요');
+		} else {
+			alert('처음은 아니시군요');
+		}
+	}
+
+	function func6() {
+		var name = window.prompt('이름 입력 :');
+		if (name == '') {
+			return;
+		}
+		alert('만나서 반갑습니다 ' + name + '님.');
+	}
+	function func7() {
+		console.log('테스트1');
+		console.log('테스트2');
+		// console.log("테스트3")
+		console.log('테스트4');
+		console.log('테스트5');
+	}
+
+	function func8() {
+
+        //  함수
+        var data = 'hello javascript';
+		var upper = data.toUpperCase();
+		var lower = data.toLowerCase();
+
+		console.log(data);
+		console.log(upper);
+		console.log(lower);
+
+		console.log(data.length);
+		console.log("index of j: "+data.indexOf('j'));
+		console.log("last index of j: "+data.lastIndexOf('j'));
+		console.log("index of J: "+data.indexOf('J'));
+		console.log("last index of J: "+data.lastIndexOf('J'));
+		console.log("chat at 6: "+data.charAt(6));
+		console.log("substring(6): "+data.substring(6));
+
+        // 배열 
+        var arr = data.split(" ");
+        console.log(arr[0]);
+        console.log(arr[1]);
+	}
+
+
+    function func9(){
+        var num = -7;
+        console.log("num : "+num);
+        console.log(Math.abs(num));
+        console.log(Math.log(num));
+        
+        num = -7.4;
+        console.log("num : "+num);
+        console.log(Math.round(num));
+        console.log(Math.ceil(num));
+        console.log(Math.floor(num));
+    }
+
+    function func10(){
+        var bool = true;
+        if(bool){
+            console.log('True');
+        }else{
+            console.log('False');
+        }
+    }
+    function operator1(){
+        var data1 = "1";
+        var data2 = 1;
+
+        if(data1==data2){
+            console.log("테이터 일치!");
+        }else{
+            console.log("테이터 불일치!");
+        }
+
+        if(data1===data2){
+            console.log("자료형까지 일치 !");
+        }else{
+            console.log("자료형 불일치 !");
+        }
+
+    }
+    function operator2(){
+        var data1 = "11";
+        var data2 = 11;
+        var data3 = true;
+        var data4;
+        var expla = "변수는 있는데(선언은 했는데) 값이 안들어있는 상태 null과는 다름"
+        console.log(typeof(data1));
+        console.log(typeof(data2));
+        console.log(typeof(data3));
+        console.log(typeof(data4));
+        console.log("undefined - >"+expla);
+    }
+
+    function casting(){
+        var data1 = "11";
+        var data2 = 11;
+        console.log(typeof(data1));
+        console.log(typeof(data2));
+        console.log(typeof(Number(data1)));
+        console.log(typeof(String(data2)));
+    }
+
+    var data = "전역 변수1111";
+    function global(){
+        console.log("data : "+data);
+        console.log("data2 : "+data2);
+    }
+    
+    function local(){
+        console.log(data);
+        var data = "지역 변수 입니다.";
+        data2 = "전역 변수2222"
+        console.log("전역 변수 data2를 생성했습니다.")
+        console.log(data);
+    }
+    
+    function global2(){
+        console.log("전역 변수 data 값을 '변경된 전역 변수1111' 로 변경했습니다.")
+        data = "변경된 정역 변수1111";
+        console.log(data);
+        console.log(data2);
+    }
+
+    function conditional1(){
+        // for(var i=0;i<5;i++)
+        var data = 9;
+        // console.log(data==10? "data는 10":"data는 10이 아님");
+        var bool1 = data%2 == 0 || console.log("홀수");
+        var bool2 = data%2 == 0 && console.log("짝수");
+        console.log(bool1);
+        console.log(bool2);
+    }
+</script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>자바스크립트 실습</title>
+		<style>
+			div > p {
+				border: 1px solid black;
+				width: 500px;
+				background-color: lightgoldenrodyellow;
+				padding: 50px;
+			}
+			.p1 {
+				color: lightgoldenrodyellow;
+			}
+		</style>
+		<script>
+			function q1() {
+                var input = document.getElementById("ans1");
+                document.getElementById("query").innerHTML = input.value;
+            }
+			function q2() {
+                var input = document.getElementById("ans2");
+                var r = Number(input.value)%2==0? "짝수":"홀수";
+                document.getElementById("result").innerHTML = r
+            }
+			function q3() {
+                var img = document.getElementsByTagName("img")[0]
+                img.src = "img/angel.png"
+            }
+			function q4() {
+                document.getElementsByClassName("p1")[0].style.color="navy"
+            }
+		</script>
+	</head>
+	<body>
+		<h1>실습1</h1>
+		<p>다음 문제를 보고 요구하는 함수를 작성해주세요.</p>
+		<hr />
+		<h2>문제 1. 다음 쿼리문을 보고 올바르게 고쳐서 다시 출력해주세요.</h2>
+		<div>
+			<p id="query">INSERT FROM MEMBER INTO (100,'홍길동','개발팀',3000000);</p>
+		</div>
+		수정답안 입력 : <input type="text" id="ans1" size="50" />
+		<button onclick="q1();">수정하기</button>
+		<hr />
+		<h2
+			>문제 2. 숫자를 입력받아 홀수인지 짝수인지 구별하고, 숫자가 아닌경우
+			숫자가 아니라고 출력</h2
+		>
+		<div>
+			<p id="result">여기에 결과를 출력해주세요!</p>
+		</div>
+		숫자 입력 : <input type="text" id="ans2" size="50" />
+		<button onclick="q2();">결과확인</button>
+		<hr />
+		<h3>문제 3. 아래 이미지를 클릭했을 때 angel.png 이미지로변경해주세요.</h3>
+		<img src="img/smile.jpg" width="200px" height="200px" onclick="q3();" />
+		<hr />
+		<h2
+			>문제 4. 아래 영역의 글씨색과 배경색이 동일해서 보이지 않습니다. 글씨색을
+			navy로 변경해주세요.</h2
+		>
+		<div>
+			<p class="p1">수고하셨습니다.</p>
+		</div>
+		<button onclick="q4();">변경하기</button>
+	</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>작성된 html 태그 접근</h1>
+    <hr>
+    <h2>엘리먼트 객체 가져오기</h2>
+    <h2>getElement / getElements(배열)</h2>
+    <h3>1. id 속성 이용: document.getElemenetById("아이디명")</h3>
+    <p>태그의 아읻속성을 이용해서 태그 정보를 가져오며, id속성은 태그의 고유식별속성으로 동일한 아이디를 여러개 태그에 부여해도 1개의 요소만 가져온다.</p>
+    <h3>2. class 속성 이용: document.getElementsByClassName("클라스명")</h3>
+    <p>클래스 속성으로 태그정보를 가져오며, 동일한 클래스 속성값을 가진 엘리먼트를 모두 가져옴 -> 배열 형태
+        <br>
+        단, 해당클래스를 사용하는 속성이 1개여도 무조건 배열</b>
+    </p>
+    <h3>3. name 속성 이용: document.getElementsByName("name속성값")</h3>
+    <p>name속성으로 태그정보를 가져오며, 동일한 name속성값을 가진 엘리먼트를 모두 가졍옴 -> 배열 형태
+        <br>
+        단, 해당 name속성을 사용하는 엘리먼트가 1개여도 무조건 배열
+    </p>
+    <h3>4. 태그 사용 : document.getElemetsByTagName("태그명")</h3>
+    <p>태그 이름을 이용해서 태그정보를 가져오며, 동일한 태그 엘리먼트를 모두 가져옴 -> 배열 형태
+        <br>
+        단, 해당 태그가 1개여도 무조건 배열
+    </p>
+    <hr>
+    <h2>엘리먼트 정보 사용</h2>
+    <h3>1. innerHTML 속상 : 엘리먼트 객체의 시작태그와 종료태그 사이의 내용을 문자열로 가져옴</h3>
+    <p>엘리먼트 내부 내용을 읽어올 수 있고 변경도 가능</p>
+    <h3>2. outerHTML 속상 : 시작태그 + 엘리먼트 객체의 시작태그와 종료태그 사이의 내용 + 종료태그 포함하여 문자열로 가져옴</h3>
+    <p>엘리먼트 내용을 읽어올 수 있음! 수정 및 변경 X</p>
+    <h3>3. value 속성 : 엘리먼트 객페의 value 속성 값(주로 input 태그에 사용)</h3>
+    <!-- <input type="submit" value="버튼안의 글씨"> -->
+    <p>엘리먼트의 value 값을 읽어올 수 있으며 변경 가능</p>
+    <hr>
+    <h2>태그 접근 테스트</h2>
+    <div class="dd1" id="d1" name="n1">첫번째</div>
+    <div class="dd1" id="d2" name="n1">두번째</div>
+    <div class="dd2" id="d3" name="n1">세번째</div>
+    <div class="dd2" id="d4" name="n2">네번째</div>
+    <div class="dd3" id="d1" name="n2">다섯번째</div>
+    <button onclick="id1()">id 속성이용</button>
+    <button onclick="calss1()">class 속성이용</button>
+    <button onclick="name1()">name 속성이용 (nodelist)</button>
+    <button onclick="tag1()">태그를 이용</button>
+    <button onclick="value1()">value 속성 이용</button>
+    <input id="input1" type="text" value="벨루값">
+    <hr>
+    <h3>
+        innerHTM, value 속성은 현재 값을 가져오는 것 뿐만아니라 변경도 가능
+        <br>
+        단, outerHTML은 현재 값을 가져오는 것만 가능하고 변경은 불가능
+    </h3>
+    <input type="text" value="벨루 값 변경전" id="test2">
+    <div id="test1">변경된 값</div>
+    <button onclick="changeHTML1()">메세지 변경</button>
+    <button onclick="changeVal1()">value 변경</button>
+    <button onclick="change3()">주의사항</button>
+    <hr>
+    <h2>엘리먼트 css 변경</h2>
+    <h3>
+        css 속성값을 변경하는 방법 elementObject.style.속석명 = "값" 으로 적용
+        <br>
+        이때 속성명은 camal case 사용 (Ex, background-color -> backgroundColor)
+    </h3>
+    <div id="div1">안녕</div>
+    <div id="div2">안녕</div>
+    <button onclick="css1()">변경!</button>
+    <button onclick="css2()">색상변경!</button>
+    <br>
+    색상 입력 : <input type="text" name="color" id="color">
+    <input onclick="css3();">
+    <div id="red" onclick="css4('red')">red</div>
+    <div id="blue" onclick="css4('blue')">blue</div>
+    <div onclick="css5(this)">yellow</div>
+    <div onclick="css5(this)">green</div>
+</body>
+</html>
+<script>
+    function id1(){
+        var d1 = document.getElementById("d1");
+        var d4 = document.getElementById("d4");
+        
+        console.log(d1)
+        console.log("inner: "+d1.innerHTML)
+        console.log("outer: "+d1.outerHTML)
+        
+        console.log("d1, d4 자체는 element 객체 자체 모든 속성을 가진 태그 자체를 가져온것.")
+        console.log("inner/outer은 문자열(string)으로 가져온것.")
+        console.log(typeof(d1))
+        console.log("객체 : "+d1)
+        
+        // console.log(d4)
+        // console.log(d4.innerHTML)
+        // console.log(d4.outerHTML)
+        d1.innerHTML = "변경된 첫번째 ";
+        d4.innerHTML = "변경된 네번째 ";
+        d1.id = "변경된 id"
+        console.log(d1)
+    }
+
+    function calss1(){
+        var arr = document.getElementsByClassName("dd1")
+        console.log(arr)
+        console.log(arr[0])
+        console.log(arr[0].innerHTML)
+        console.log(arr[1].innerHTML)
+
+        var arr2 = document.getElementsByClassName("없는클라스네임")
+        console.log(arr2)
+        console.log(arr2[0])
+
+        var arr3 = document.getElementsByClassName("dd2")
+        console.log(arr3)
+        for(var i=0;i<arr3.length;i++){
+            console.log(arr3[i].innerHTML)
+        }
+    
+        console.log(arr3)
+        for(var i=0;i<arr3.length;i++){
+            console.log(arr3[i].innerHTML)
+        }
+
+        
+    }
+    function name1(){
+        var arr = document.getElementsByName("n1")
+    
+        console.log(arr)
+        for(var i=0;i<arr.length;i++){
+            console.log(arr[i].innerHTML)
+        }
+
+        console.log(typeof(arr))
+        console.log("arr :"+arr)
+        console.log(arr[0])
+    }
+
+    function tag1(){
+        var arr = document.getElementsByTagName("div")
+    
+        console.log(arr)
+        for(var i=0;i<arr.length;i++){
+            console.log(arr[i].innerHTML)
+        }
+
+        console.log(typeof(arr))
+        console.log("arr :"+arr)
+        console.log(arr[0])
+    }
+
+    function value1(){
+        var inputTag = document.getElementById("input1");
+        console.log(inputTag.value)
+        inputTag.value = "변경된 벨루값"
+    }
+
+    var i = 0
+    function changeHTML1(){
+        var data = document.getElementById("test1")
+        console.log(data)
+        data.innerHTML = "변경후 값"+(++i)
+    }
+    var j = 0
+    function changeVal1(){
+        var data = document.getElementById("test2")
+        console.log(data)
+        data.value = "벨루 값 변경후 "+(++j)
+    }
+    function change3(){
+        document.getElementById("test1").innerHTML = "하하하하하하하핳핳핳"
+        var str = document.getElementById("test1").innerHTML
+        console.log(str )
+        console.log("type of str : "+typeof(str))
+        str = "hahahahahaha"
+        console.log("innerHtml : "+document.getElementById("test1").innerHTML)
+        console.log("str : "+str)
+        console.log("str이고, html이 아니라서 str = 'hahahaha' 해도 엘리먼트 속성값은 안바뀜")
+    }
+
+    function css1(){
+        var div1 = document.getElementById("div1")
+        div1.style.fontSize = "30px"
+        div1.style.backgroundColor="yellow";
+        div1.style.width="60px";
+
+        console.log("important을 제외하면 inline 이 가장 높기 때문에 자바스크립트(inline으로 넣어주는 방식이기때문에)로 컨트룰 불가")
+        //  important을 제외하면 inline 이 가장 높기 때문에
+        // 자바스크립스로 컨트룰이 불가능! 
+    }
+
+    function css2(){
+        var div2 = document.getElementById("div2")
+        var color = window.prompt("색깔 입력 :");
+        color==""? color = "#6042f5":color;
+        div2.style.backgroundColor=color;
+    }
+
+    function css3(){
+        var div2 = document.getElementById("div2")
+        var input = document.getElementById("color")
+        div2.style.backgroundColor=input.value;
+    }
+
+    function css4(id){
+        var div2 = document.getElementById("div2")
+        var color = document.getElementById(id).innerHTML
+        div2.style.backgroundColor=color
+    }
+
+    function css5(element){
+        console.log(element)
+        var div2 = document.getElementById("div2")
+        var color = element.innerHTML
+        div2.style.backgroundColor=color
+    }
+
+
+</script>
+
+<style>
+    #div2{
+        width: 200px;
+        height: 200px;
+        border: 1px solid;
+    }
+</style>
