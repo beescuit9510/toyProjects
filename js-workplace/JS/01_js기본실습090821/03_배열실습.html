@@ -97,16 +97,14 @@
 	var len = document.getElementsByClassName('divs').length;
 	function func3(el) {
 		if (len <= colors.length) {
+			var r = colors[i++].outerHTML;
 
-            var r = colors[i++].outerHTML;
+			document.getElementById('divWrap').innerHTML += r;
 
-            document.getElementById('divWrap').innerHTML += r;
-
-            if (i >= colors.length) {
+			if (i >= colors.length) {
 				colors = [];
 				i = 0;
 			}
-
 		} else if (el) {
 			el.remove();
 			colors.push(el);
