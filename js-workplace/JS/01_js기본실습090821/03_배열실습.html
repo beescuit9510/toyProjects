@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>배열실습</title>
+		<style>
+			.divs {
+				width: 100px;
+				height: 100px;
+				float: left;
+				border: 1px solid black;
+			}
+			#red {
+				background-color: red;
+			}
+			#blue {
+				background-color: blue;
+			}
+			#green {
+				background-color: green;
+			}
+			#pink {
+				background-color: pink;
+			}
+			#yellow {
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>배열실습문제</h1>
+		<hr />
+		<h2>
+			문자열 입력 후 조회버튼을 누르는 경우 보기에 있는 데이터들을 하나의 배열로
+			저장하여 몇번째에 존재하는지 알려주어라.(alert사용)<br />
+			단, 존재하지 않는경우 존재하지 않는다는 메세지 출력
+		</h2>
+		<fieldset>
+			<legend>보기</legend>
+			<span id="s1">사과,바나나,당근</span><br />
+			<span id="s2">고양이,강아지</span><br />
+			<span id="s3">콜라,사이다</span>
+		</fieldset>
+		입력 : <input type="text" id="input1" />
+		<button onclick="print1()">조회</button>
+		<hr />
+		<h2>
+			다음 입력창에 문자열을 입력하면 계속저장하고, 출력버튼 클릭 시 입력했던
+			모든 문자열이 출력되도록 만들어라.<br />
+			입력 시 input 값은 자동으로 비워지게하며, 출력하고나면 다시 새롭게
+			처음부터 저장할 수 있도록 설정
+		</h2>
+		입력 : <input type="text" id="input2" />
+		<button onclick="func2(this.innerHTML)">입력</button>
+		<button onclick="func2(this.innerHTML)">출력</button>
+		<p id="result"></p>
+		<hr />
+		<h2
+			>★심화문제 - 다음 보기의 그림을 클릭하면 그림이 사라지고 다섯개 모두
+			사라지면 클릭한 순서대로 다시 나오게 하여라.</h2
+		>
+		<p>hint. 개발자도구 및 outerHTML 활용</p>
+		<fieldset onclick="func3()">
+			<legend>보기</legend>
+			<div id="divWrap">
+				<div onclick="func3(this)" class="divs" id="red"></div>
+				<div onclick="func3(this)" class="divs" id="blue"></div>
+				<div onclick="func3(this)" class="divs" id="green"></div>
+				<div onclick="func3(this)" class="divs" id="pink"></div>
+				<div onclick="func3(this)" class="divs" id="yellow"></div>
+			</div>
+		</fieldset>
+	</body>
+</html>
+
+<script>
+	function print1() {
+		var spans = [...document.getElementsByTagName('span')];
+		var str = '';
+		spans.forEach((el) => (str += el.innerHTML + ','));
+		var arr = str.split(',');
+		var r = arr.indexOf(document.getElementById('input1').value);
+		window.alert(r == -1 ? '존재하지 않음' : r + 1 + '번째 존재');
+	}
+
+	var arr = [];
+	function func2(sel) {
+		sel == '입력' && arr.push(document.getElementById('input2').value);
+		sel == '출력' && window.alert(arr);
+		sel == '출력' && arr.splice(0, arr.length);
+	}
+
+	var colors = [];
+	var i = 0;
+	var len = document.getElementsByClassName('divs').length;
+	function func3(el) {
+		if (len <= colors.length) {
+
+            var r = colors[i++].outerHTML;
+
+            document.getElementById('divWrap').innerHTML += r;
+
+            if (i >= colors.length) {
+				colors = [];
+				i = 0;
+			}
+
+		} else if (el) {
+			el.remove();
+			colors.push(el);
+		}
+	}
+</script>

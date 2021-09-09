@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="tab-menu">
+        <ul class="tabs">
+            <li onclick="selectTap(0)" class="tab">tap1</li>
+            <li onclick="selectTap(1)" class="tab">tap2</li>
+            <li onclick="selectTap(2)" class="tab">tap3</li>
+        </ul>
+        <div class="tab-content">1번내용내용</div>
+        <div class="tab-content">2번내용내용</div>
+        <div class="tab-content">3번내용내용</div>
+    </div>
+</body>
+</html>
+<script>
+    function selectTap(idx){
+        var tab = document.getElementsByClassName("tab");
+        var tabContent = document.getElementsByClassName("tab-content")
+        for(var i=0; i<tab.length;i++){
+            tabContent[i].style.display = "none"
+            tab[i].style.border = "1px solid black"
+            tab[i].style.backgroundColor = "transparent"
+        }
+        tab[idx].style.border = "1px solid #ffffff"
+        tab[idx].style.backgroundColor = "#ffffff"
+        tabContent[idx].style.display = "block"
+    }
+</script>
+<style>
+    .tab-menu{
+        background-color: rgb(201, 201, 201);
+        padding: 10px;
+    }
+    .tabs{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        list-style-type: none;
+    }
+    .tab{
+        box-sizing: border-box;
+        border: 1px solid black;
+        width: 100px;
+        height: 30px;
+        text-align: center;
+        float: left;
+    }
+    .tab-content{
+        width: 500px;
+        width: 300px;
+        background-color: white;
+        display: none;
+    }
+</style>
