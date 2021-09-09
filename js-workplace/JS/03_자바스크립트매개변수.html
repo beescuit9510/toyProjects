@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			#result {
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+			}
+			li:hover {
+				width: 50px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>매개변수 사용</h1>
+		<hr />
+		<div id="result"></div>
+		<ul>
+			<li onclick="changeColor(this.innerHTML)">red</li>
+			<li onclick="changeColor(this.innerHTML)">blue</li>
+			<li onclick="changeColor(this.innerHTML)">green</li>
+			<li onclick="changeColor(this.innerHTML)">yellow</li>
+			<li onclick="changeColor(this.innerHTML)">orange</li>
+			<li onclick="changeColor(this.innerHTML)">orangered</li>
+		</ul>
+		<hr />
+		<h2>계산기 만들기</h2>
+		<div id="r1">정답 나오는 곳 </div>
+		첫번째 수 입력 : <input type="text" class="inputNum1" /> 두번째 수 입력 :
+		<input type="text" class="inputNum1" />
+		<button onclick="calculator(this.innerHTML)">+</button>
+		<button onclick="calculator(this.innerHTML)">-</button>
+		<button onclick="calculator(this.innerHTML)">*</button>
+		<button onclick="calculator(this.innerHTML)">/</button>
+	</body>
+</html>
+<script>
+	function changeColor(color) {
+		var divResult = document.getElementById('result');
+		divResult.style.backgroundColor = color;
+		// div.style.backgroundColor = html.innerHTML
+	}
+
+	function calculator(oper) {
+		var num = document.getElementsByClassName('inputNum1');
+		var r = num[0].value + oper + num[1].value;
+		document.getElementById('r1').innerHTML = eval(r);
+	}
+</script>
