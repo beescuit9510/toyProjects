@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		#wrap {
+			display: inline-block;
+			overflow: hidden;
+			border: 1px solid black;
+		}
+		#result {
+			height: 30px;
+			border: 1px solid black;
+		}
+		#main > div > div {
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			float: left;
+			border: 1px solid black;
+		}
+		#main > div {
+			clear: left;
+		}
+	</style>
+	<body>
+		<div id="wrap">
+			<header id="result"></header>
+			<main id="main">
+				<div>
+					<div onclick="addEx(this.innerHTML)">(</div>
+					<div onclick="addEx(this.innerHTML)">)</div>
+					<div onclick="addEx(this.innerHTML)">%</div>
+					<div onclick="addEx(this.innerHTML)">AC</div>
+				</div>
+				<div>
+					<div onclick="addEx(this.innerHTML)">7</div>
+					<div onclick="addEx(this.innerHTML)">8</div>
+					<div onclick="addEx(this.innerHTML)">9</div>
+					<div onclick="addEx(this.innerHTML)">/</div>
+				</div>
+				<div>
+					<div onclick="addEx(this.innerHTML)">4</div>
+					<div onclick="addEx(this.innerHTML)">5</div>
+					<div onclick="addEx(this.innerHTML)">6</div>
+					<div onclick="addEx(this.innerHTML)">*</div>
+				</div>
+				<div>
+					<div onclick="addEx(this.innerHTML)">1</div>
+					<div onclick="addEx(this.innerHTML)">2</div>
+					<div onclick="addEx(this.innerHTML)">3</div>
+					<div onclick="addEx(this.innerHTML)">-</div>
+				</div>
+				<div>
+					<div onclick="addEx(this.innerHTML)">0</div>
+					<div onclick="addEx(this.innerHTML)">.</div>
+					<div onclick="addEx(this.innerHTML)">=</div>
+					<div onclick="addEx(this.innerHTML)">+</div>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>
+<script>
+	function addEx(html) {
+		var r = document.getElementById('result');
+
+		if (r.innerHTML.indexOf('다시 입력') > -1) {
+			r.innerHTML = '';
+		}
+
+		if (html == '=') {
+			r.innerHTML = calc();
+			return;
+		}
+
+		r.innerHTML += isFinite(html) ? html : ' ' + html + ' ';
+
+		if (html == 'AC') {
+			r.innerHTML = '';
+		}
+	}
+
+	function calc() {
+		var r = document.getElementById('result');
+		var data = r.innerHTML.split(' ');
+		data = data.filter((a) => a != ' ' && a != '');
+
+		if (isNaN(data[0]) || isNaN(data[data.length - 1])) {
+			if (data[0] == '(' && data.indexOf(')') > -1) {
+			} else {
+				return '다시 입력';
+			}
+		}
+		if (data.indexOf('(') > -1) {
+			if (data.indexOf(')') > -1) {
+			} else {
+				return '다시 입력';
+			}
+		}
+
+		for (var i = 0; i < data.length - 1; i++) {
+			if (isNaN(data[i]) && isNaN(data[i + 1])) {
+				if (data[i] == '*' && data[i + 1] == '*') {
+				} else {
+					return '다시 입력';
+				}
+			}
+		}
+
+		return eval(data.join(''));
+	}
+
+</script>

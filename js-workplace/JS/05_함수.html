@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>함수</h1>
+		<hr />
+		<h2>함수는 선언적함수, 익명함수(변수에 저장, 스스로 실행)로 구분</h2>
+		<h2>함수 선언 시 매개변수 및 리턴 설정 가능</h2>
+		<h2>함수 리천 시 함수를 리턴하는 형태를 클로저!</h2>
+		<button onclick="func1()">선언적함수 호출</button>
+		<button onclick="test1()">익명함수1 호출</button>
+		<button onclick="param1(this)">매개변수 전달</button>
+		<button onclick="returnTest1()">리턴 테스트</button>
+		<button onclick="param2(this, this, this)">매개변수 전달2</button>
+		<button onclick="param3('전달값1','전달값2','전달값3')"
+			>매개변수 전달3</button
+		>
+		<button onclick="closer1()">클로저 테스트</button>
+		<button onclick="closer2()">클로저 테스트2</button>
+		<hr />
+		<h2
+			>내장함수 : 개발의 편의성을 제공하기 위한 내장함수가
+			존재(인코딩/디코딩/코드실행/숫자판별)</h2
+		>
+		<h3
+			>인코딩/디코딩 : 웹 통신 시 유니코드문자가 오작동을 일으킬 가능성이 있어
+			이를 인코딩하는 함수</h3
+		>
+		<p
+			>escape() : URL문자열 중 알파벳, 숫자, @, *, -, _, +, ., / 을 제외한
+			문자열 인코딩</p
+		>
+		<p>unescape() : escape()로 인코딩된 문자열을 다시 디코딩</p>
+		<p
+			>encodeURI()/decodeURI(), encodeURICompnent()/decodeURIComponent 추가로
+			존재하여 인코딩 정도의 차이!</p
+		>
+		<p>escape 랑 unescape는 중간정도</p>
+		<h3>eval() : 문자열로 기술된 코드를 자바스크립트로 실행</h3>
+		<h3
+			>isFinite(Number), isNaN(Number) : 매개변수로 전달한 값이 숫자인지
+			판단</h3
+		>
+		<button onclick="func13()">인코딩/디코딩</button>
+		첫번째 숫자 입력 <input type="text" id="su1" /><br />
+		두번째 숫자 입력 <input type="text" id="su2" /><br />
+		연산자 선택 :
+		<select name="" id="oper">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		<p id="result">결과 !</p>
+		<button onclick="numberFunc()">eval/isFinite/isNaN</button>
+	</body>
+</html>
+<script>
+	function func1() {
+		console.log('선언적함수 호출');
+	}
+
+	// test1()
+	// 만들기전에 사용 불가능!
+	var test1 = function () {
+		console.log('변수에 저장되어 있는 익명함수!!');
+		console.log('만들기전에 사용 불가능!!!');
+	};
+
+	test1();
+
+	(function () {
+		console.log('자동으로 실행되는 익명함수! 호출/리턴 불가능!');
+	})();
+
+	function param1(param) {
+		console.log(param);
+	}
+
+	function returnTest1() {
+		var data1 = func3();
+		var data2 = func4();
+		var data3 = func5();
+		console.log(data1);
+		console.log(data2);
+		console.log(data3);
+		func5();
+	}
+
+	function func3() {
+		return 100;
+	}
+	function func4() {
+		return '안녕';
+	}
+	function func5() {
+		console.log('리턴안하는 함수');
+	}
+	function func5() {
+		console.log('리턴 전');
+		return;
+		console.log('리턴 후');
+	}
+	function param2() {
+		// 매개변수의 수가 호출시 전달되는 값과 다른 경우 선언한 매개변수 개수만큼 사용하고 나머지는 사용안함
+		console.log(
+			'매개변수의 수가 호출시 전달되는 값과 다른 경우 선언한 매개변수 개수만큼 사용하고 나머지는 사용안함!'
+		);
+
+		console.log(
+			'매개변수를 받지 않는 함수 param2 호출할때 param(this, this, this) 했지만 여전히 잘 작동함!!'
+		);
+		console.log('param2 호출 완료!');
+	}
+
+	function param3() {
+		// 매개변수를 선언하지 않아도 호출 시 매개변수를 전달하면 arguments 배열에 순서대로 저장되어 있어 팔요시 사용가능
+		var data1 = arguments[0];
+		var data2 = arguments[1];
+		console.log(
+			'매개변수를 선언하지 않아도 호출 시 매개변수를 전달하면 arguments 배열에 순서대로 저장되어 있어 팔요시 사용가능'
+		);
+		console.log(data1);
+		console.log(data2);
+	}
+
+	function closer1() {
+		var data = clo1();
+	}
+
+	function clo1() {
+		var count = 0;
+		count++;
+		return count;
+	}
+	var closer = clo2();
+
+    
+	function closer2() {
+		var data = closer();
+		console.log(data);
+	}
+
+	function clo2() {
+		var count = 0;
+		return function () {
+			return count++;
+		};
+	}
+
+	function func13() {
+		var addr = 'www.iei.or.kr?msg=안녕하세요';
+		var enc = escape(addr);
+		console.log(enc);
+		var dec = unescape(enc);
+		console.log(dec);
+	}
+
+	function numberFunc() {
+		var su1 = document.getElementById('su1').value;
+		var su2 = document.getElementById('su2').value;
+		var oper = document.getElementById('oper').value;
+		var expr = su1 + oper + su2;
+		var board = document.getElementById('result');
+        console.log(isFinite())
+		if (!isNaN(su1) && isFinite(su2)) {
+			board.innerHTML = expr+" = "+eval(expr);
+		}
+	}
+</script>

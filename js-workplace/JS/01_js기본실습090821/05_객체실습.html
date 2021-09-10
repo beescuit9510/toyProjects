@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			#result {
+				height: 100px;
+				width: 500px;
+				border: 1px solid red;
+			}
+			#studentTbl td,
+			#studentTbl th {
+				width: 200px;
+				height: 50px;
+				border: 1px solid black;
+				text-align: center;
+			}
+			#studentTbl {
+				margin: 0 auto;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>객체실습</h1>
+		<hr />
+		<h3>
+			문제1. 다음 입력버튼 클릭 시 이름,나이,주소를 prompt로 입력받은 후
+			member라는객체에 저장<br />
+			출력버튼 클릭 시 member객체안의 정보를 출력창에 출력<br />
+			단, 입력을 받지 않은 산태에서 출력버튼 클릭 시 입력을 먼저 해달라는 알림을
+			띄워라. ex) 출력예<br />
+			이름 : 홍길동<br />
+			나이 : 20세<br />
+			주소 : 서울<br />
+		</h3>
+		<p id="result"></p>
+		<button onclick="inputMember();">입력</button
+		><button onclick="printMember();">출력</button>
+		<hr />
+		<h3>
+			문제2. 다음 입력버튼 클릭 시 학생 3명 정보를 prompt로 입력받아 아래
+			테이블에 채워라.<br />
+			단, 학생정보는 객체로 처리하여 테이블에 입력 후 객체 배열에 저장할것<br />
+			console.log(배열);을하면 console에 모든 학생정보가 나와야 함
+		</h3>
+		<button onclick="students();">학생정보 입력 및 출력</button>
+		<table id="studentTbl">
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>주소</th>
+			</tr>
+			<tr>
+				<td class="name"></td>
+				<td class="age"></td>
+				<td class="addr"></td>
+			</tr>
+			<tr>
+				<td class="name"></td>
+				<td class="age"></td>
+				<td class="addr"></td>
+			</tr>
+			<tr>
+				<td class="name"></td>
+				<td class="age"></td>
+				<td class="addr"></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+<script>
+	var st;
+	function inputMember() {
+		var name = prompt('이름 입력 :');
+		var age = prompt('나이 입력 :');
+		var addr = prompt('addr 입력 :');
+		st = new Studnet(name, age, addr);
+	}
+	function printMember() {
+		if (st == undefined) {
+			alert('먼저 입력하세요');
+			return;
+		}
+		var str =
+			'이름 : ' + st.name + '<br> 나이 : ' + st.age + '<br> 주소 : ' + st.addr;
+		document.getElementById('result').innerHTML = str;
+	}
+	function students() {
+		var arr = [];
+		for (var i = 0; i < 3; i++) {
+			var name = prompt('이름 입력 :');
+			var age = prompt('나이 입력 :');
+			var addr = prompt('addr 입력 :');
+			arr.push(new Studnet(name, age, addr));
+		}
+        
+		[...document.getElementsByClassName('name')].forEach(
+			(e, i) => (e.innerHTML = arr[i].name)
+		);
+		[...document.getElementsByClassName('age')].forEach(
+			(e, i) => (e.innerHTML = arr[i].age)
+		);
+		[...document.getElementsByClassName('addr')].forEach(
+			(e, i) => (e.innerHTML = arr[i].addr)
+		);
+	}
+
+	function Studnet(name, age, addr) {
+		this.name = name;
+		this.age = age;
+		this.addr = addr;
+	}
+</script>

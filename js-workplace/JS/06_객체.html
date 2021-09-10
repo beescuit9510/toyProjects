@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>객체 테스트</h1>
+		<hr />
+		<button onclick="func1()">객체 테스트1(생성)</button>
+		<button onclick="func2()">객체 테스트2(메소드사용)</button>
+		<button onclick="func3()">객체 테스트3(in/with)</button>
+		<button onclick="func4()">객체 테스트4(속성 추가/ 삭제하기)</button>
+		<button onclick="func5()">객체 테스트5</button>
+		<button onclick="func6()">객체 테스트6(객체 배열)</button>
+		<button onclick="func7()">메소드를 통한 객체 생성</button>
+		<button onclick="func8()">생성자를 이용한 객체 생성</button>
+	</body>
+</html>
+<script>
+	function func1() {
+		var testObj = { a: 100, b: '안녕하세요', c: true };
+		console.log(testObj);
+		console.log(testObj.a);
+		console.log(testObj.b);
+		console.log(testObj.c);
+		console.log(testObj.d);
+	}
+	function func2() {
+		var testObj = { a: 100, b: '안녕하세요', c: true };
+		console.log(testObj);
+		console.log(testObj.a);
+		console.log(testObj.b);
+		console.log(testObj.c);
+		console.log(testObj.d);
+
+		testObj.d = function () {
+			return '안녕~~';
+		};
+		console.log(testObj.d);
+		console.log(testObj.d());
+	}
+
+	function func3() {
+		var testObj = { a: 100, b: '안녕하세요', c: true };
+		console.log('a' in testObj);
+		console.log('aa' in testObj);
+		console.log('b' in testObj);
+		console.log('d' in testObj);
+		// testObj.d
+
+		with (testObj) {
+			a = '200';
+			b = '잘가라';
+			c = false;
+			d = '추가된 D';
+		}
+		console.log('a' in testObj);
+		console.log('b' in testObj);
+		console.log('c' in testObj);
+		console.log('d' in testObj);
+		console.log(testObj.a);
+		console.log(testObj.b);
+		console.log(testObj.c);
+		console.log(testObj.d);
+	}
+	function func4() {
+		var testObj = { a: 100, b: '안녕하세요', c: true };
+		delete testObj.a;
+		console.log('a' in testObj);
+	}
+
+	function func5() {
+		var name = prompt('이름 입력:');
+		var age = prompt('나이 입력:');
+		var addr = prompt('주소 입력:');
+		var obj = {
+            name: name,
+			age: age,
+			addr: addr,
+            print : function(){
+                var str = this.name+"/"+this.age+"/"+this.addr
+                return str;
+            }
+		};
+        console.log(obj.print())
+
+	}
+    
+    function func6(){
+        var arr = [];
+        var stu1 = {name:"변덕이",age:9, addr:"서울"}
+        var mem1 = {grade:"silver",name:"변덕이",point:1000}
+        var stu2 = {name:"afriditi",age:21, addr:"파키스탄"}
+        arr.push(stu1)
+        arr.push(mem1)
+        arr.push(stu2)
+        console.log(arr[0].name)
+    }
+    
+    var makeOBJ = makeObj("변덕이",5,"서울")
+
+    function func7(){
+        var obj = makeOBJ
+        console.log(obj())
+    }
+    
+    function makeObj(name, age, addr){
+        var arr = [];
+        var obj = {name:name,age:age,addr:addr} 
+        return function(){
+            arr.push(obj)
+            return arr;
+        };
+    }
+    function func8(){
+        var arr = []
+        var a = Studnet("변덕이",5,"서울");
+        arr.push(Studnet("변덕이",5,"서울"))
+        arr.push(Studnet("변덕이",5,"서울"))
+        arr.push(Studnet("변덕이",5,"서울"))
+        arr.push(a)
+        console.log(arr)
+        console.log(arr)
+    }
+
+    function Studnet(name, age, addr){
+        this.name = name;
+        this.age = age;
+        this.addr = addr;   
+    }
+</script>
