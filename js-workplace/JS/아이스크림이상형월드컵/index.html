@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+    <style>
+        #wrap{
+            width: 1000px;
+            margin: 0 auto;
+            display: none;
+            overflow: hidden;
+        }
+        #round-info{
+            text-align: center;
+            background-color: black;
+            color: white;
+            font-size: 50px;
+        }
+        
+        .item {
+            width: 500px;
+            float: left;
+            text-align: center;
+            border: 3px solid black;
+            box-sizing: border-box;
+        }
+        .item >div>img{
+            width: 400px;
+        }
+        .item>div:last-child, #final-name{
+            font-size: 30px;
+            padding: 20px;
+            background-color: blanchedalmond;
+        }
+        #final{
+            text-align: center;
+            display: none;
+        }
+    </style>
+	<body>
+		<h1>아이스크림 이상형 월드컵</h1>
+		<hr />
+		<select name="" id="sel">
+			<option value="16">16강</option>
+			<option value="8">8강</option>
+			<option value="4">4강</option>
+		</select>
+		<button onclick="startGame();">시작하기</button>
+		<div id="wrap">
+			<div id="round-info"></div>
+			<div class="item">
+				<div>
+					<img id="left" src="" alt="" />
+				</div>
+				<div id="left-name"></div>
+			</div>
+			<div class="item">
+				<div>
+					<img id="right" src="" alt="" />
+				</div>
+				<div id="right-name"></div>
+			</div>
+
+
+            <div id="final">
+                <div>
+                    <img src="" alt="" id="final-img">
+                </div>
+                <div id="final-name"></div>
+            </div>
+		</div>
+	</body>
+
+</html>
+<script>
+    var round; //사용자가 선택한 round -> 게임이 끝나는 시점
+    var gameArr; // 게임한번 진행시 사용할 배열
+    var selectArr; // 사용자가 선택한 정보를 저장할 배열
+    var showArr; //화면에 아이스크림 출력 시 중복을 제거하기위한 배열
+    var count; // 이미지를 왼쪽/오른쪽에 배치하기위한 구분번호
+    var printNo; //라운드 진행정보 표현용
+    var allIcecream = [] //전체 아이스크림 정보가 들어있는 배열
+
+    allIcecream.push({img:"img/ice1.png",name:"엄마는 외계인"})
+    allIcecream.push({img:"img/ice2.png",name:"아몬드 붕붕"})
+    allIcecream.push({img:"img/ice3.png",name:"민트 초콜릿 칩"})
+    allIcecream.push({img:"img/ice4.png",name:"베리베리 스트롱베리"})
+    allIcecream.push({img:"img/ice5.png",name:"사랑에 빠진 딸기"})
+    allIcecream.push({img:"img/ice6.png",name:"슈팅스타"})
+    allIcecream.push({img:"img/ice7.png",name:"뉴욕 치즈케이크"})
+    allIcecream.push({img:"img/ice8.png",name:"체리쥬빌레"})
+    allIcecream.push({img:"img/ice9.png",name:"오레오 쿠키 앤 크림"})
+    allIcecream.push({img:"img/ice10.png",name:"바람과 함께 사라지다"})
+    allIcecream.push({img:"img/ice11.png",name:"피스타치오 아몬드"})
+    allIcecream.push({img:"img/ice12.png",name:"바닐라"})
+    allIcecream.push({img:"img/ice13.png",name:"그린티"})
+    allIcecream.push({img:"img/ice14.png",name:"초콜릿 무스"})
+    allIcecream.push({img:"img/ice15.png",name:"이상한 나라의 솜사탕"})
+    allIcecream.push({img:"img/ice16.png",name:"망고 탱고"})
+
+    function startGame() {
+        document.getElementById("wrap").style.display = "block"
+        var sel = document.getElementById("sel").value;
+        round = sel;
+        count = 0
+        printNo = 1;
+        gameArr = []
+        showArr = []
+        selectArr = []
+        // allIcecream[5].name
+        for(var i=0;i<allIcecream.length;i++){
+            gameArr.push(i)
+        }
+        play()
+    }
+
+    function play() {
+        showImage(count++);
+        showImage(count++);
+    }
+
+    function showImage(cnt) {
+        while(true){
+            // Math.random() 0 포함 1포함아님!
+            var ran = Math.floor(Math.random()*gameArr.length)
+            var check = showArr.indexOf(gameArr[ran])
+            if(check == -1){
+                var img;
+                var name;
+                if(cnt%2==0){
+                    img = document.getElementById("left")
+                    name = document.getElementById("left-name")
+                }else{
+                    img = document.getElementById("right")
+                    name = document.getElementById("right-name")
+                }
+                showArr.push(gameArr[ran]);
+                img.src = allIcecream[gameArr[ran]].img;
+                name.innerHTML = allIcecream[gameArr[ran]].name;
+                break;
+            }
+        }
+        
+    }
+</script>
