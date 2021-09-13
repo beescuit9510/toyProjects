@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.result {
+				border: 5px solid black;
+				height: 500px;
+				width: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>DOM</h1>
+		<button onclick="func1()">텍스트노드가 있는 노드를 생성 후 추가</button>
+		<button onclick="func2()">태그를 문자열로 인식시키는 방법</button>
+		<button onclick="func3()">요소노드 여러개 처리</button>
+		<button onclick="func4()">텍스트노드가 없는  노드 생성 후 추가</button>
+		<p class="result"></p>
+        <button onclick="func5()">요소추가</button>
+        <button onclick="func6()">요소삭제(부모요소 기준)</button>
+        <button onclick="func7()">요소삭제(해당객체 삭제)</button>
+		<p class="result"></p>
+	</body>
+</html>
+
+<script>
+	function func1(params) {
+		var el = document.createElement('h3');
+		var content = document.createTextNode('안녕 난 추가된 메세지야 !');
+		el.appendChild(content);
+		document.getElementsByClassName('result')[0].appendChild(el);
+		document.getElementsByClassName('result')[0].innerHTML += el.outerHTML;
+		// document.getElementsByClassName("result")[0].innerHTML = el.outerHTML;
+	}
+
+	function func2(params) {
+		var content = document.createTextNode('<h3>안녕 난 추가된 메세지야!!</h3>');
+		document.getElementsByClassName('result')[0].appendChild(content);
+	}
+
+	function func3(params) {
+		var table = document.createElement('table');
+
+        var n = 0  
+        for(var j=0;j<3;j++){
+            var tr = document.createElement('tr');
+            var end = n+3
+            for (var i = n; i < end; i++) {
+                var td = document.createElement('td');
+                var content = document.createTextNode(i + '' + i + i);
+                td.appendChild(content);
+                tr.appendChild(td);
+                table.appendChild(tr);
+                n = i+1
+            }
+        }
+		document.getElementsByClassName('result')[0].appendChild(table);
+	}
+
+
+    function func4(params) {
+        var img = document.createElement("img")
+        img.src = "../pngegg.png"
+        img.width = "200"
+        document.getElementsByClassName("result")[0].appendChild(img);
+
+        
+    }
+
+
+    var index = 0;
+    function func5(params) {
+        var div = document.createElement("div")
+        div.style.width = "100px"
+        div.style.height = "100px"
+        div.style.backgroundColor = "green"
+        div.id = "div1"
+        // div.textContent = index++;
+        div.innerHTML = index++;    
+        document.getElementsByClassName("result")[1].appendChild(div)
+        
+    }
+
+    function func6(params) {
+        var parent = document.getElementsByClassName("result")[1]
+        var div1 = document.getElementById("div1")
+        parent.removeChild(div1)
+        
+    }
+
+    function func7(params) {
+        var div1 = document.getElementById("div1")
+        div1.remove();
+        
+    }
+</script>

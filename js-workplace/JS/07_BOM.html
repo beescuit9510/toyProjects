@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script>
+			var p2;
+			function func6(params) {
+				// 전역변수 p2와 지역변수p2는 다름!!
+				// 스크립트가 body보다 위에있어서 스크립트가 먼저 실행되는데
+				// 그상태에선 p2가 존재하지 않음!
+				// 그렇기에 전역변수 p2는 null ! 지역변수는 해당 함수를 실행할때 실행되니까
+				// 그 시점에선 p2가 존재하여 에러가 나지 않음!
+				// var p2 = document.getElementById('p2');
+				// 하지만 전역변수 p2가 필요할 경우!
+				// 1.스크립트 태그를를 body태그 밑으로 옮긴다.
+				// 2. widnow.onload 이용
+				p2.innerHTML = 'test';
+			}
+
+			window.onload = function () {
+				// 로드가 다 완료 후 실행되는 함수 ! (window.onload)
+
+				var str =
+					'전역변수 p2와 지역변수p2는 다름!! <br> 스크립트가 body보다 위에있어서 스크립트가 먼저 실행되는데<br> 그상태에선 p2가 존재하지 않음!<br> 그렇기에 전역변수 p2는 null ! 지역변수는 해당 함수를 실행할때 실행되니까<br> 그 시점에선 p2가 존재하여 에러가 나지 않음!<br> 하지만 전역변수 p2가 필요할 경우!<br> 1.스크립트 태그를를 body태그 밑으로 옮긴다.<br> 2. widnow.onload 이용';
+
+				document.getElementById('p2').innerHTML = str;
+				p2 = document.getElementById('p2');
+			};
+		</script>
+	</head>
+	<body>
+		<h1>BOM(browser object model)</h1>
+		<p
+			>브라우저의 정보, URL 정보, 모니터 화면 정보 들을 취득하거나 제어할 수
+			있는 객체</p
+		>
+		<hr />
+		<h3
+			>window : 자바스크립트 최상위 객체로 브라우저 창에 대한 설정을 하는
+			객체</h3
+		>
+		<h3>window.open : 높이와 너비를 입력하여 팝업창을 띄움</h3>
+		<h3>setTimeout : 일정 시간 후 함수를 한번 실행 / id값 리턴</h3>
+		<h3>clearTimeout(id) : setTimerout() 종료</h3>
+		<h3>setInterval : 일정 시간마다 함수를 반복 실행 / id값 리턴</h3>
+		<h3>clearInterval(id) : setInterval() 종료</h3>
+		<h3>onload : 윈도우 객체가 로드가 완료되면 자동으로 실행되는 함수</h3>
+		<button onclick="func1()">세창띄우기</button>
+		<button onclick="func1()">세창띄우기</button>
+		<button onclick="func2()">setTimeout</button>
+		<button onclick="func3()">clearTimeout</button>
+		<button onclick="func4()">setInterval</button>
+		<button onclick="func5()">clearInterval</button>
+		<button onclick="func6()">onload 테스트</button>
+		<p id="p1"></p>
+		<p id="p2"></p>
+		<hr />
+		<h3>screen 객체 : client 운영페제 화면에 대한 속성값을 가지는 객체</h3>
+		<h3>location 객체 : 브라우저 주소표시줄(URL)과 관련된 객체</h3>
+		<h3>navigator 객체 : 브라우저에 대한 정보를 가지는 객체</h3>
+		<button onclick="func7()">screen 객체 테스트</button>
+		<button onclick="func8()">location.hreft</button>
+		<button onclick="func9()">location.reload()</button>
+		<button onclick="func10()">위도/경도 조회</button>
+ㄹ	</body>
+</html>
+<script>
+	function func1() {
+		// 첫번째 매개변수 : 주소,
+		// 두번째 매개변수 : 열릴방식 또는 이름
+		window.open('http://www.google.com', '_blank', 'width=500, height=500');
+		// 익스플로어전용느낌(특화!)
+	}
+
+	var timeoutId;
+	function func2() {
+		var i = 1;
+		timeoutId = window.setTimeout(function () {
+			console.log(i++);
+		}, 1 * 1000);
+	}
+
+	function func3() {
+		clearTimeout(timeoutId);
+	}
+
+	var intervalId;
+	function func4() {
+		var p1 = document.getElementById('p1');
+		intervalId = window.setInterval(function () {
+			var date = new Date();
+			p1.innerHTML =
+				date.getHours() + ' : ' + date.getMinutes() + ' : ' + date.getSeconds();
+		});
+	}
+	function func5() {
+		clearInterval(intervalId);
+	}
+
+	var p2 = document.getElementById('p2');
+	function func6(params) {
+		p2.innerHTML = 'test';
+	}
+
+	function func7() {
+		console.log('화면 높이 값: ' + screen.height);
+		console.log('화면 넓이: ' + screen.width);
+		console.log('실제 사용 가능 높이: ' + screen.availHeight);
+		console.log('실제 사용 가능 넓이: ' + screen.availWidth);
+		console.log('사용 가능한 색상 수: ' + screen.colorDepth);
+		console.log('한 픽셀당 비트 수: ' + screen.pixelDepth);
+	}
+
+	function func8() {
+		location.href = 'http://www.google.com';
+	}
+	function func9() {
+		// 새로 고침
+		location.reload();
+	}
+
+    var lat;
+    var lng;
+    window.onload = function () {
+        navigator.geolocation.getCurrentPosition(showMyLocation);
+        // 내위치를 가져와서 처리할 함수명 지정
+        // 보안상 https:// 만 사용가능
+        
+    }
+
+    function showMyLocation(position) {
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        
+    }
+    function func10(params) {
+        console.log(lat)
+        console.log(lng)
+    }
+</script>

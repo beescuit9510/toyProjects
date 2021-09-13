@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			table {
+				border: 1px solid black;
+			}
+			th,
+			td {
+				width: 100px;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>DOM 실습</h1>
+		<hr />
+		<h3
+			>문제1. 추가 버튼을 클릭하면 prompt를 이용하여 이름,나이,주소를 입력받은
+			후 테이블에 추가</h3
+		>
+		<table id="exam1">
+			<tr> <th>이름</th><th>나이</th><th>주소</th> </tr>
+		</table>
+		<button onclick="exam1();">추가하기</button>
+		<hr />
+		<br /><br />
+		<h3
+			>문제2. 추가 버튼을 클릭하면 prompt를 이용하여 이름,나이,주소를 입력받은
+			후 테이블에 추가하며 삭제버튼을 함께 추가</h3
+		>
+		<table id="exam2">
+			<tr> <th>이름</th><th>나이</th><th>주소</th><th>삭제</th> </tr>
+		</table>
+		<button onclick="exam2();">추가하기</button>
+	</body>
+</html>
+
+<script>
+	function exam1() {
+		var tr = document.createElement('tr');
+		var list = ['이름', '나이', '주소'];
+
+		for (var i = 0; i < 3; i++) {
+			var th = document.createElement('th');
+			th.innerHTML = prompt(list[i] + ' 입력 : ');
+			tr.appendChild(th);
+		}
+
+		document.getElementById('exam1').appendChild(tr);
+	}
+	function exam2() {
+        var tr = document.createElement('tr');
+		var list = ['이름', '나이', '주소'];
+        
+		for (var i = 0; i < 3; i++) {
+			var th = document.createElement('th');
+            th.innerHTML = prompt(list[i] + ' 입력 : ');
+			tr.appendChild(th);
+		}
+
+		var th = document.createElement('th');
+		th.innerHTML = '삭제';
+		th.onclick = function () {
+			tr.remove();
+		};
+		tr.appendChild(th);
+		document.getElementById('exam2').appendChild(tr);
+	}
+</script>
