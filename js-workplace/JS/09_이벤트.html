@@ -42,9 +42,39 @@
 			아이디 : <input type="text" name="id" id="id" /><br />
 			비밀번호 : <input type="text" name="pw" id="pw" />
 			<!-- 함수 실행 결과 checkValue()결과를 리턴해서 onclick이 가짐 -->
+			<!-- 폼태그가 checkvalue 에서 false가 리턴되서 이벤트가 막히는거임 -->
 			<input type="submit" value="로그인" onclick="return checkValue()" />
 			<input type="reset" value="취소" />
 		</form>
+		<br />
+		<form action="join.html" onsubmit="return checkPw()">
+			<fieldset>
+				<legend>회원가입</legend>
+				아이디 : <input type="text" name="userId" id="userId" required /><br />
+				비밀번호 : <input type="password" name="userPw" id="userPw" required />
+				<br />
+				비밀번호 확인 :
+				<input type="password" name="userPwRe" id="userPwRe" required /> <br />
+				<input type="submit" value="회원가입" />
+			</fieldset>
+		</form>
+		<br /><br />
+		<h3>
+			<br />
+			입력 값을 제출 <br />
+			1) submit 버튼 클릭 <br />
+			2) form 내부 데이터 전송
+			<br />
+			<br />
+			입력값 제출을 막는 방법 <br />
+			1) submit 버튼 클릭시 -> false를 리턴하여 form 내부데이터 전송이 중단
+			<br />
+			2) form 내부데이터 전송시 중단! <br />
+			<br />
+			1이 직관적이지만 실제로 중단해야하는 시점은 form임
+            <br>
+            시점의 차이일뿐 데이터 전송을 막는다는 점은 같음!
+		</h3>
 	</body>
 </html>
 <script>
@@ -90,4 +120,21 @@
 			return false;
 		}
 	}
+
+	function checkPw() {
+		var userPw = document.getElementById('userPw').value;
+		var userPwRe = document.getElementById('userPwRe').value;
+		if (userPw != userPwRe) {
+			alert('비밀번호과 일치하지 않습니다');
+			return false;
+		}
+	}
+	// 입력 값을 제출
+	//  1) submit 버튼 클릭
+	//  2) form 내부 데이터 전송
+
+	// 입력값 제출을 막는 방법
+	// 1) submit 버튼 클릭시 -> false를 리턴하여 form 내부데이터 전송이 중단
+	// 2) form 내부데이터 전송시 중단!
+	// 1이 직관적이지만 실제로 중단해야하는 시점은 form임
 </script>
