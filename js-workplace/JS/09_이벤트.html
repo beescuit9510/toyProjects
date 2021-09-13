@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>이벤트</h1>
+		<hr />
+		<h3
+			>고전이벤트모델 : 요소객체가 가지고있는 이벤트 속성에 함수를 연결하는
+			방법(이벤트 제거시 속성에 null 입력)</h3
+		>
+		<h3>인라인 이벤트 모델 : 요소 내부에 이벤트를 작성하는 방법</h3>
+		<h3
+			>표준이벤트 모델: w3c(웹 표준 지정 기관)에서 공식적으로 지정한
+			이벤트모델</h3
+		>
+		<button id="btn1">고전이벤트1</button>
+		<button id="btn2">고전이벤트2</button>
+		<button onclick="func1()">인라인 이벤트모델</button>
+		<button id="btn3">표준 이벤트 모델1</button>
+		<button class="btn">btn1</button>
+		<button class="btn">btn2</button>
+		<button class="btn">btn3</button>
+		<button class="btn">btn4</button>
+		<button class="btn">btn5</button>
+		<hr />
+		<h3
+			>기본이벤트 제거 : 태그 중 이벤트를 기본적으로 가지고 있는 태그들이
+			존재하는데 그 이벤트를 제거하는것(a,input type=submit)</h3
+		>
+		<!-- <a href="http://wwww.google.com" id="aa">클릭 ! </a> -->
+		<!-- 첫번째 방식 -->
+		<a href="javascript:void(0)" id="aa"
+			>첫번째 방식! <br />href="javascript:void(0)"</a
+		>
+		<br /><br />
+		<form action="/login.html" method="GET">
+			아이디 : <input type="text" name="id" id="id" /><br />
+			비밀번호 : <input type="text" name="pw" id="pw" />
+			<!-- 함수 실행 결과 checkValue()결과를 리턴해서 onclick이 가짐 -->
+			<input type="submit" value="로그인" onclick="return checkValue()" />
+			<input type="reset" value="취소" />
+		</form>
+	</body>
+</html>
+<script>
+	window.onload = function () {
+		var btn1 = document.getElementById('btn1');
+		btn1.onclick = function () {
+			console.log('고전이벤트 모델');
+		};
+
+		var btn2 = document.getElementById('btn2');
+		btn2.onclick = function () {
+			console.log('고전이벤트 모델');
+			btn1.onclick = null;
+		};
+
+		var btn3 = document.getElementById('btn3');
+		btn3.addEventListener('click', function () {
+			console.log('표준 이벤트 모델');
+		});
+
+		var btn = [...document.getElementsByClassName('btn')];
+		btn.forEach((e) =>
+			e.addEventListener('click', function () {
+				console.log(this.innerHTML);
+			})
+		);
+
+		var a = document.getElementById('aa');
+	};
+
+	function func1() {
+		console.log('인라인 이벤트 모델');
+	}
+
+	function checkValue() {
+		var id = document.getElementById('id').value;
+		var pw = document.getElementById('pw').value;
+		if (id == '') {
+			alert('아이디를 입력하세요.');
+			return false;
+		} else if (pw == '') {
+			alert('비밀번호를 입력하세요.');
+			return false;
+		}
+	}
+</script>

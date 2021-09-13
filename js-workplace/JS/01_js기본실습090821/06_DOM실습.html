@@ -54,21 +54,39 @@
 		document.getElementById('exam1').appendChild(tr);
 	}
 	function exam2() {
-        var tr = document.createElement('tr');
+		var tr = document.createElement('tr');
 		var list = ['이름', '나이', '주소'];
-        
+
 		for (var i = 0; i < 3; i++) {
 			var th = document.createElement('th');
-            th.innerHTML = prompt(list[i] + ' 입력 : ');
+			th.innerHTML = prompt(list[i] + ' 입력 : ');
 			tr.appendChild(th);
 		}
 
 		var th = document.createElement('th');
 		th.innerHTML = '삭제';
+
+        // th.setAttribute("onclick", delTr())
+        // 직접 함수 설정해도 괜찮음.
+
 		th.onclick = function () {
 			tr.remove();
 		};
+
+
 		tr.appendChild(th);
 		document.getElementById('exam2').appendChild(tr);
 	}
+// function create_row() {
+// 		var tr = document.createElement('tr');
+// 		var list = ['이름', '나이', '주소'];
+
+// 		for (var i = 0; i < 3; i++) {
+// 			var th = document.createElement('th');
+// 			th.innerHTML = prompt(list[i] + ' 입력 : ');
+// 			tr.appendChild(th);
+// 		}
+
+// 		return tr;
+// 	}
 </script>
