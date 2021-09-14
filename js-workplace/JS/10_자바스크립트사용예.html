@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h2>1. 체크박스 전채체크</h2>
+		<div class="checkWrap">
+			<input type="checkbox" id="allCheck" /><label for="allCheck"
+				>전체체크</label
+			>
+			<p class="agree">
+				개인정보 처리는 매우 중요하니까 조심히 관리해볼게요. <br />
+				개인정보 처리는 매우 중요하니까 조심히 관리해볼게요. <br />
+				개인정보 처리는 매우 중요하니까 조심히 관리해볼게요. <br />
+			</p>
+			<input type="checkbox" name="agree" id="privacy" /><label for="privacy"
+				>개인정보처리방침 동의</label
+			>
+			<p class="agree">
+				가입은 당신마음이지만 탈퇴는 내마음이예요. 동의하시죠? <br />
+				가입은 당신마음이지만 탈퇴는 내마음이예요. 동의하시죠? <br />
+				가입은 당신마음이지만 탈퇴는 내마음이예요. 동의하시죠? <br />
+			</p>
+			<input type="checkbox" name="agree" id="join" /><label for="join"
+				>회원가입약관 동의</label
+			>
+		</div>
+
+		<hr />
+		<h2>2. 이메일 입력</h2>
+		<div class="emailWrap">
+			<input type="text" name="email1" />@
+			<input type="text" name="email2" />
+			<select name="" id="selectMail">
+				<!-- <option value="직접입력">직접입력</option> -->
+				<option value="">직접입력</option>
+				<option value="gmail.com">gmail.com</option>
+				<option value="naver.com">naver.com</option>
+			</select>
+		</div>
+	</body>
+</html>
+<style>
+	.agree {
+		border: 1px solid black;
+		width: 300px;
+	}
+
+	.emailWrap > * {
+		border: 1px solid black;
+		width: 200px;
+		height: 30px;
+		line-height: 30px;
+		padding: 0;
+		box-sizing: border-box;
+	}
+</style>
+<script>
+	window.onload = function () {
+		var allCheck = document.getElementById('allCheck');
+		allCheck.addEventListener('change', function () {
+			var status = this.checked;
+			var agree = [...document.getElementsByName('agree')];
+			agree.forEach((e) => (e.checked = status));
+		});
+
+		var selectMail = document.getElementById('selectMail');
+		selectMail.addEventListener('change', function () {
+			var data = this.value;
+			// data = data == '직접입력' ? '' : data;
+			document.getElementsByName('email2')[0].value = data;
+		});
+	};
+</script>

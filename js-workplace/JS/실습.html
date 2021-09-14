@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="div-first"
+				>약관확인
+				<div>
+					<div class="div-fisrt">이용약관 확인 및 동의</div>
+					<form action="">
+						<input
+							class="checkbox1"
+							type="checkbox"
+							name="agree"
+							id="allCheck"
+						/><label for="allCheck">이용약관 전체체크</label><br />
+						<input
+							class="checkbox1"
+							type="checkbox"
+							name="agree"
+							id="necessary"
+						/><label for="necessary"
+							>개인정보 수집 및 이용 동의<span>(필수)</span></label
+						>
+						<ul>
+							<li>수집항목 : 이름, 휴대전화번호, 생년월일, 비밀번호</li>
+							<li>수집 및 이용 목적 : 회원제 서비스 제공</li>
+							<li>보유 및 이용 기간 : 회원탈퇴 시 까지</li>
+						</ul>
+						<input
+							class="checkbox1"
+							type="checkbox"
+							name="agree"
+							id="necessary"
+						/><label for="unnecessary"
+							>개인정보 수집 및 이용 동의<span>(선택)</span></label
+						>
+						<ul>
+							<li>수집항목 : 이름, 휴대전화번호, 생년월일, 비밀번호</li>
+							<li>수집 및 이용 목적 : 회원제 서비스 제공</li>
+							<li>보유 및 이용 기간 : 회원탈퇴 시 까지</li>
+						</ul>
+						<input type="button" class="submit" value="다음" />
+					</form>
+				</div>
+			</div>
+			<div id="div-second"
+				>필수정보입력
+				<div>
+					<div class="div-fisrt">필수정보입력</div>
+					<form action="">
+						<div>
+							<label for="id">아이디</label> <input id="id" type="text" /><span
+								id="span1"
+							></span>
+						</div>
+						<div>
+							<label for="pw">비밀번호</label>
+							<input id="pw" type="password" />
+						</div>
+						<div>
+							<label for="pwRe">비밀번호 확인 </label>
+							<input id="pwRe" type="password" /><span id="span2"></span>
+						</div>
+						<div>
+							<label for="name">이름</label>
+							<input id="name" type="text" />
+						</div>
+
+						<input type="button" class="submit" value="다음" />
+					</form>
+				</div>
+			</div>
+			<div id="div-third"
+				>상세정보입력
+				<div>
+					<div class="div-fisrt">추가정보입력</div>
+					<form action="">
+						<table>
+							<tr class="tr2">
+								<td>이메일</td>
+								<td id="email1"> <input type="text" /><span>@</span></td>
+								<td id="email2">
+									<input type="text" value="" />
+								</td>
+								<td
+									><select>
+										<option value="">직접입력</option>
+										<option value="naver.com">naver.com</option>
+										<option value="google.com">google.com</option>
+										<option value="nate.com">nate.com</option>
+									</select>
+								</td>
+							</tr>
+							<tr class="tr2">
+								<td>성별</td>
+								<td
+									><input
+										class="gender"
+										type="radio"
+										value="남자"
+										id="m"
+									/><label for="m">남자</label></td
+								>
+								<td
+									><input
+										class="gender"
+										type="radio"
+										value="여자"
+										id="fm"
+									/><label for="fm">여자</label></td
+								>
+							</tr>
+							<tr class="tr2">
+								<td>자기소개</td>
+								<td colspan="3"><input type="text" /></td>
+							</tr>
+						</table>
+						<input type="button" class="submit" value="다음" />
+					</form>
+				</div>
+			</div>
+			<div id="div-forth"
+				>가입완료
+				<div>
+					<div class="div-fisrt">가입을 축하합니다</div>
+					<input type="checkbox" id="login" /><label for="login"
+						>로그인하기</label
+					>
+					<div>
+						<span>아이디</span> <input type="text" name="" id="" />
+						<span>비밀번호</span> <input type="text" name="" id="" />
+						<button>로그인</button>
+						<button>취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <br><br><br><br><br><br><br><br><br><br> -->
+	</body>
+</html>
+<script>
+	window.onload = function () {
+		var allCheck = document.getElementById('allCheck');
+		allCheck.addEventListener('change', function () {
+			var checks = [...document.getElementsByClassName('checkbox1')];
+			checks.forEach((e) => (e.checked = this.checked));
+		});
+
+		var divSecond = document.getElementById('div-second');
+		var divFisrt = document.getElementById('div-first');
+		var divThird = document.getElementById('div-third');
+		var divForth = document.getElementById('div-forth');
+		divFisrt.style.borderBottom = 'none';
+
+		var submit = document.getElementsByClassName('submit');
+		submit[0].addEventListener('click', function () {
+			var div = document.getElementById('necessary');
+			!div.checked && alert('다시시도');
+
+			if (div.checked) {
+				divFisrt.firstElementChild.style.display = 'none';
+				divSecond.firstElementChild.style.display = 'block';
+				divFisrt.style.borderBottom = '1px solid black';
+				divSecond.style.borderBottom = 'none';
+			}
+			return div.checked;
+		});
+
+		var userArr = [0, 1, 2, 3, 5];
+		var id = document.getElementById('id');
+		var pw = document.getElementById('pw');
+		var pwRe = document.getElementById('pwRe');
+
+		id.addEventListener('keyup', function () {
+			var span1 = document.getElementById('span1');
+			var b;
+			userArr.forEach((user) => {
+				b = user == id.value ? true : b;
+			});
+			span1.innerHTML = b
+				? '사용불가 아이디입니다.'
+				: '사용가능한 아이디입니다.';
+			span1.style.color = b ? 'red' : 'blue';
+		});
+
+		pwRe.addEventListener('keyup', function () {
+			span2.innerHTML =
+				pw.value == pwRe.value
+					? '비밀번호가 일치합니다.'
+					: '비밀번호가 일치하지 않습니다.';
+			span2.style.color = pw.value == pwRe.value ? 'blue' : 'red';
+		});
+
+		submit[1].addEventListener('click', function () {
+			var name = document.getElementById('name').value;
+
+			name == '' && alert('이름을 입력해주세요!');
+			id.value == '' && alert('아이디를 입력해주세요!');
+			pw.value != pwRe.value && alert('비밀번호가 일치하지 않습니다.');
+			span1.style.color == 'red' && alert('사용불가 아이디입니다.');
+			var r =
+				id.value != '' &&
+				name != '' &&
+				pw.value == pwRe.value &&
+				span1.style.color != 'red' &&
+				span2.style.color != 'red';
+
+			if (r) {
+				divSecond.firstElementChild.style.display = 'none';
+				divThird.firstElementChild.style.display = 'block';
+				divSecond.style.borderBottom = '1px solid black';
+				divThird.style.borderBottom = 'none';
+			}
+
+			return r;
+		});
+
+		var select = document.getElementsByTagName('select')[0];
+		select.addEventListener('change', function () {
+			var email2 = document.getElementById('email2');
+			email2.firstElementChild.value = select.value;
+		});
+
+		var gender = [...document.getElementsByClassName('gender')];
+		gender.forEach((e) => {
+			e.addEventListener('click', function () {
+				var sibling = this.nextElementSibling;
+				if (sibling.style.color == 'white') {
+					sibling.style.backgroundColor = 'white';
+					sibling.style.color = '#1f4787';
+				} else {
+					sibling.style.backgroundColor = '#1f4787';
+					sibling.style.color = 'white';
+				}
+			});
+		});
+
+		submit[2].addEventListener('click', function () {
+			var email1 = document.getElementById('email1').firstElementChild.value;
+			var email2 = document.getElementById('email2').firstElementChild.value;
+			console.log(email1);
+			console.log(email2);
+			var emailCheck = email1 != '' && email2 != '';
+			var genderCheck = false;
+			gender.forEach((e) => {
+				genderCheck = e.checked ? true : genderCheck;
+			});
+			!emailCheck && alert('이메일을 입력해주세요.');
+			!genderCheck && alert('성별을 선택해주세요.');
+
+			var r = emailCheck && genderCheck;
+			if (r) {
+				divThird.firstElementChild.style.display = 'none';
+				divForth.firstElementChild.style.display = 'block';
+				divThird.style.borderBottom = '1px solid black';
+				divForth.style.borderBottom = 'none';
+			}
+
+			return r;
+		});
+
+		var login = document.getElementById('login').nextElementSibling;
+		login.addEventListener('click', function () {
+			this.nextElementSibling.style.display = 'block';
+		});
+	};
+</script>
+
+<style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+	}
+	:root {
+		--dark-gray: #282828;
+		--silver: #d8d8d8;
+		--black: #1f1111;
+		--gray: #707070;
+		--dark-white: #ebebeb;
+		--light-dray: b3b3b3;
+		--white: #fbfcfd;
+		--main-bg-color: #1f4787;
+		--blue: #0e77d9;
+	}
+	.wrap {
+		margin: 100px;
+		box-sizing: border-box;
+		width: calc(200px * 4);
+		/* overflow: hidden; */
+		position: relative;
+	}
+	.wrap > div {
+		float: left;
+		width: 199px;
+		line-height: 50px;
+		text-align: center;
+		border: 1px solid black;
+		border-top: 7px solid var(--main-bg-color);
+	}
+	.wrap > div > * {
+		display: none;
+		/* padding-bottom: 50px; */
+	}
+	/* #div-first{
+		border-bottom: none;
+		border-right: none;
+	} */
+	.wrap > div > div {
+		left: 0;
+		border: 1px solid black;
+		border-top: none;
+		width: calc(199px * 4);
+		padding-left: 30px;
+		padding-right: 30px;
+		text-align: left;
+		position: absolute;
+	}
+	.div-fisrt,
+	.div-second {
+		padding-top: 50px;
+		font-size: 25px;
+		font-weight: 600;
+		color: var(--main-bg-color);
+	}
+
+	ul {
+		border: 1px solid black;
+	}
+	.necessary,
+	.unnecassary {
+		font-size: 10px;
+	}
+	label > span,
+	.label > span {
+		color: var(--main-bg-color);
+	}
+
+	.submit {
+		width: 200px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 20px;
+		text-align: center;
+		margin: 0 auto;
+		display: block;
+		color: white;
+		background-color: var(--main-bg-color);
+		border: none;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	#div-second > div > form > div {
+		height: 45px;
+		position: relative;
+		border: 2px solid var(--dark-white);
+		border-top: none;
+		border-left: none;
+		border-right: none;
+	}
+	#div-second > div > form > div:first-child {
+		border-top: 2px solid var(--main-bg-color);
+	}
+	#div-second > div > form > div:last-of-type {
+		border-bottom: 2px solid var(--silver);
+	}
+	#div-second > div > form {
+		margin-top: 30px;
+		margin-bottom: 20px;
+	}
+	#div-second > div > form > div > label {
+		position: absolute;
+		display: inline-block;
+		width: 250px;
+		height: 100%;
+		padding-left: 50px;
+		text-align: left;
+		line-height: 45px;
+		background-color: var(--white);
+	}
+
+	#div-second > div > form > div > input {
+		display: block;
+		position: absolute;
+		top: 2.5px;
+		left: 250px;
+		box-sizing: border-box;
+		height: 90%;
+		width: 300px;
+		border: 1px solid var(--silver);
+	}
+	#div-second > div > form > div > input:focus {
+		outline: none;
+	}
+
+	.tr2 > td > input,
+	.tr2 > td > label {
+		display: inline-block;
+		/* height: 20px; */
+	}
+
+	.tr2 {
+		font-size: 15px;
+		text-align: center;
+	}
+	.tr2 > td:first-child {
+		text-align: left;
+		padding-right: 80px;
+	}
+
+	.tr2:first-child + * > td > input {
+		display: none;
+	}
+	.tr2:first-child + * > td > label {
+		width: 50%;
+		height: 100%;
+		/* background-color: var(--main-bg-color); */
+		/* color: var(--white); */
+		border: 1px solid var(--main-bg-color);
+		color: var(--main-bg-color);
+	}
+	.tr2:first-child + * > td:last-of-type > label {
+		left: -48%;
+	}
+
+	.tr2:first-child > td:first-child + td > input {
+		z-index: 1;
+		width: 80%;
+		display: inline-block;
+	}
+	.tr2:first-child > td:first-child + td > span {
+		text-align: right;
+		font-size: 20px;
+		margin-left: -4px;
+		border: none;
+	}
+	.tr2 > td > * {
+		border: 1px solid var(--dark-white);
+		display: block;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		position: absolute;
+	}
+
+	.tr2 > td {
+		position: relative;
+		display: block;
+		float: left;
+		height: 30px;
+		line-height: 30px;
+		min-width: 150px;
+	}
+
+	.tr2:last-of-type > td + td {
+		width: 65%;
+		height: 300px;
+		margin-bottom: 10px;
+	}
+
+	.tr2 {
+		border: 2px solid var(--dark-white);
+		border-left: none;
+		border-right: none;
+	}
+	.tr2:first-child {
+		border-top: 2px solid var(--main-bg-color);
+	}
+	.tr2:last-of-type {
+		border-bottom: 2px solid var(--silver);
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	#div-forth > div > div:last-of-type {
+		/* background-color: olivedrab; */
+		display: none;
+		margin: 0 auto;
+		width: 50%;
+	}
+	#div-forth > div > div:last-of-type > * {
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	#div-forth > div > div:last-of-type > span {
+		display: block;
+		margin-bottom: -25px;
+	}
+	#div-forth > div > div:last-of-type > button:first-of-type {
+		margin-top: 25px;
+	}
+	#div-forth > div > div:last-of-type > input {
+		height: 25px;
+	}
+	#div-forth > div > div:last-of-type > button {
+		height: 37px;
+		background-color: var(--main-bg-color);
+		border: none;
+		color: var(--white);
+	}
+	#div-forth > div > div:last-of-type > button:last-of-type {
+		margin-bottom: 50px;
+	}
+	#login {
+		display: none;
+	}
+	#login + label {
+		margin: 50px;
+		margin-left: 0;
+		display: block;
+		width: 150px;
+		height: 50px;
+		text-align: center;
+		background-color: var(--main-bg-color);
+		color: var(--white);
+	}
+
+	#div-first > div {
+		display: block;
+	}
+	#span1,
+	#span2 {
+		font-size: 12px;
+		line-height: 40px;
+		display: block;
+		margin-left: 550px;
+		text-align: left;
+		height: 40px;
+		z-index: 1;
+	}
+
+    #div-first>div{
+        margin-bottom: 500px;
+    }
+</style>

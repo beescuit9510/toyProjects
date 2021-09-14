@@ -58,9 +58,8 @@
 				<input type="submit" value="회원가입" />
 			</fieldset>
 		</form>
-		<br /><br />
-		<h3>
-			<br />
+		<br />
+		<h4>
 			입력 값을 제출 <br />
 			1) submit 버튼 클릭 <br />
 			2) form 내부 데이터 전송
@@ -72,9 +71,48 @@
 			2) form 내부데이터 전송시 중단! <br />
 			<br />
 			1이 직관적이지만 실제로 중단해야하는 시점은 form임
-            <br>
-            시점의 차이일뿐 데이터 전송을 막는다는 점은 같음!
-		</h3>
+			<br />
+			시점의 차이일뿐 데이터 전송을 막는다는 점은 같음!
+		</h4>
+		<br /><br /><br />
+		<hr />
+		<h3
+			>이벤트 버블링 : 부모,자식,후손등이 동일한 이벤트가 있는 경우 이벤트
+			버블링 발생(자식노드의 이벤트를 호출하면 부모노드의 이벤트도 같이
+			발생)</h3
+		>
+		<div onclick="alertColor('orange')" class="div-test div1">
+			<div onclick="alertColor('green')" class="div-test div2">
+				<div onclick="alertColor('blue')" class="div-test div3"></div>
+			</div>
+		</div>
+		<hr />
+		<div class="test-div" id="div1">클릭</div>
+		<div class="test-div" id="div2">더블클릭</div>
+		<div class="test-div" id="div3">mouseenter/mouseleave</div>
+		<input type="text" id="input1" />
+
+		<br />
+		<br />
+		아이디 : <input id="input2" type="text" /><span id="idChk"></span><br />
+		비밀번호 : <input id="input3" type="password" /><br />
+		비밀번호 확인 : <input id="input4" type="password" /><br /><span
+			id="pwChk"
+		></span
+		><br />
+		관심사 선택 :
+		<input type="checkbox" name="test" value="java" />java
+		<input type="checkbox" name="test" value="htm;" />htm
+		<input type="checkbox" name="test" value="css" />css
+		<input type="checkbox" name="test" value="javascript" />javascript
+		<br />
+		<br />
+		<select name="" id="select">
+			<option value="java">java</option>
+			<option value="htm">htm</option>
+			<option value="css">css</option>
+			<option value="javascript">javascript</option>
+		</select>
 	</body>
 </html>
 <script>
@@ -137,4 +175,118 @@
 	// 1) submit 버튼 클릭시 -> false를 리턴하여 form 내부데이터 전송이 중단
 	// 2) form 내부데이터 전송시 중단!
 	// 1이 직관적이지만 실제로 중단해야하는 시점은 form임
+
+	function alertColor(params) {
+		alert(params);
+		window.event.stopImmediatePropagation();
+	}
+
+	window.onload = function () {
+		var d1 = document.getElementById('div1');
+		d1.addEventListener('click', function () {
+			console.log(d1.innerHTML);
+		});
+
+		var d2 = document.getElementById('div2');
+		d2.addEventListener('dblclick', function () {
+			console.log(d2.innerHTML);
+		});
+
+		var d3 = document.getElementById('div3');
+		d3.addEventListener('mouseenter', function () {
+			this.style.backgroundColor = 'orange';
+		});
+		d3.addEventListener('mouseleave', function () {
+			this.style.backgroundColor = 'white';
+		});
+
+		var input1 = document.getElementById('input1');
+		input1.addEventListener('focus', function () {
+			this.style.backgroundColor = 'yellow';
+		});
+		input1.addEventListener('focusout', function () {
+			this.style.backgroundColor = 'white';
+		});
+
+		var useArr = [];
+		useArr.push('user01');
+		useArr.push('user02');
+		useArr.push('user03');
+
+		// var input2 = document.getElementById('input2');
+		// input2.addEventListener('change', function () {
+		// 	var check = true;
+		// 	useArr.forEach((id) => (check = id == this.value ? false : check));
+		// 	alert('input 값 변경');
+
+		// 	var idChk = document.getElementById('idChk');
+		// 	idChk.innerHTML = check
+		// 		? '사용가능한 아이디 입니다'
+		// 		: '이미사용중인 아이디입니다.';
+		// 	idChk.style.color = check ? 'blue' : 'red';
+		// });
+
+		var input4 = document.getElementById('input4');
+
+		input4.addEventListener('change', function () {
+			var pw = document.getElementById('input3').value;
+			var pwRe = this.value;
+			var check = pw == pwRe ? true : false;
+
+			var pwChk = document.getElementById('pwChk');
+			pwChk.innerHTML = check
+				? '비밀번호가 일치합니다'
+				: '비밀번호가 일치하지 않습니다.';
+			pwChk.style.color = check ? 'blue' : 'red';
+		});
+
+		var test = [...document.getElementsByName('test')];
+		test.forEach((e) =>
+			e.addEventListener('click', function () {
+				var status = this.checked;
+				console.log(status);
+			})
+		);
+
+		var select = document.getElementById('select');
+		select.addEventListener('change', function () {
+			console.log(this.value);
+		});
+
+		var input2 = document.getElementById('input2');
+		input2.addEventListener('keyup', function () {
+			var check = true;
+			useArr.forEach((id) => (check = id == this.value ? false : check));
+			alert('input 값 변경');
+
+			var idChk = document.getElementById('idChk');
+			idChk.innerHTML = check
+				? '사용가능한 아이디 입니다'
+				: '이미사용중인 아이디입니다.';
+			idChk.style.color = check ? 'blue' : 'red';
+		});
+	};
 </script>
+<style>
+	.div-test {
+		border: 1px solid black;
+		padding: 20px;
+	}
+
+	.div1 {
+		background-color: orange;
+	}
+	.div2 {
+		background-color: green;
+	}
+	.div3 {
+		background-color: blue;
+	}
+
+	.test-div {
+		width: 100px;
+		height: 100px;
+		background-color: white;
+		border: 1px solid black;
+	}
+</style>
