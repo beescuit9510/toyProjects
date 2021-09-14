@@ -238,6 +238,13 @@
 					sibling.style.backgroundColor = '#1f4787';
 					sibling.style.color = 'white';
 				}
+				gender.forEach((e) => {
+					if (e != this) {
+					var sibling = e.nextElementSibling;
+						sibling.style.backgroundColor = 'white';
+						sibling.style.color = '#1f4787';
+					}
+				});
 			});
 		});
 
@@ -540,7 +547,7 @@
 		z-index: 1;
 	}
 
-    #div-first>div{
-        margin-bottom: 500px;
-    }
+	#div-first > div {
+		margin-bottom: 500px;
+	}
 </style>
