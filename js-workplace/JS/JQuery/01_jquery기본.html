@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- <script type="text/javscript" src="http://code.jquery.com/jquery-3.3.1.js"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>jQuery 기본개요</h1>
+		<hr />
+		<h2>jQuery는 DOM객체를 CSS 선택자를 이용하여 처리가능</h2>
+		<h3>$("selector")</h3>
+		<h3
+			>window.onload = function(){} 같은 개념으로
+			$(document).ready(function(){}) -> $(function(){})</h3
+		>
+		<p id="p1" onclick="func1()">아이디로 처리(인라인 방식)</p>
+		<p class="p2">클라스로 처리1</p>
+		<p class="p2">클라스로 처리2</p>
+		<button onclick="func2()">클래스처리</button>
+		<ul class="ul1">
+			<li>ul1-1</li>
+			<li>ul1-2</li>
+			<li>ul1-3</li>
+		</ul>
+		<ol class="ol1">
+			<li>ol1-1</li>
+			<li>ol1-2</li>
+			<li>ol1-3</li>
+		</ol>
+		<hr />
+		<h2>객체 탐색</h2>
+		<h3
+			>1. 선택자로 선택된 요소들 중 특정요소만 선택하기 위해 한번 더 필터링하는
+			작업</h3
+		>
+		<h3
+			>1. 선택된 요소 중 직접 필터링 : first(), last(),
+			eq(index),filter("selector"),not("selector")</h3
+		>
+		<div class="filter">
+			<p class="pp1">p-1</p>
+			<p class="pp2">p-2</p>
+			<p class="pp3">p-3</p>
+			<p class="pp4">p-4</p>
+		</div>
+		<button onclick="func3()">필터확인</button>
+		<hr />
+		<h3
+			>2.선택된 요소들의 상위요소(부모요소)들을 선택 할 수 있는 메소드 :
+			parent(),parents(),parentsUntil()</h3
+		>
+		<div class="ancestors">
+			<div style="width: 500px"
+				>div(great-grandparent)
+				<ul
+					>ul(grandparent)
+					<li>li(direct-parent)<span>span</span></li>
+				</ul>
+			</div>
+			<div style="width: 500px"
+				>div(grandparent)
+				<p>p(direct-parent)<span>span</span></p>
+			</div>
+		</div>
+		<div>$('.ancestors span') 기준 </div>
+		<button onclick="func4()">parent()</button>
+		<button onclick="func5()">parents()</button>
+		<button onclick="func5('ul')">parents("ul")</button>
+		<button onclick="func6()">parentsUntil()</button>
+		<button onclick="func6('div')">parentsUntil("div")</button>
+		<h3 style="background-color: cornflowerblue"
+			>parents() : 매개변수가 없는 경우 -> 모든 상위 요소<br />
+			parents("selector") : 매개변수가 있는 경우 -> 모든 상위 요소 중 선택자와
+			일치하는 요소만</h3
+		>
+		<hr />
+		<h3
+			>3. 선택된 요소들의 하위요소(자식요소)들을 선택 할 수 있는 메소드 :
+			children(), find()</h3
+		>
+		<div class="descendants" style="width: 500px">
+			<p class="child1"
+				>p(child)
+				<span class="child1">span(grand-child)</span>
+			</p>
+			<p class="child2"
+				>p(child)
+				<span>span(grand-child)</span>
+			</p>
+		</div>
+		<div>$('.descendants') 기준 </div>
+		<button onclick="func7()">children()</button>
+		<button onclick="func7('.child1')">children(".child1")</button>
+		<button onclick="func8('.child1')">find(".child1")</button>
+		<button onclick="func8('span')">find("span")</button>
+		<h3 style="background-color: cornflowerblue"
+			>children() : 매개변수가 없는 경우 모든 직계 자식 요소(후손포함 X라 span은
+			처리안된 것)<br />
+			children("selector") : 매개변수가 있는 경우 직계 자식 요소중 선택자에
+			해당하는 요소</h3
+		>
+		<h3 style="background-color: cornflowerblue"
+			>'find("selector") : 모든 후손요소(자식포함) 중 선택자에 해당하는 요소</h3
+		>
+		<hr />
+		<h3
+			>4. 선택된 요소들과 같은레벨(형제)를 선택할 수 있는 메소드 :
+			siblings(),next(),nextAll(),nextUntil(),prev(),prevAll(),prevUntil()</h3
+		>
+		<div class="siblings">
+			<div style="width: 500px"
+				>div(parent)
+				<p>p</p>
+				<span>span</span>
+				<h2>h2(current element)</h2>
+				<p>p</p>
+				<h3>h3</h3>
+				<h4>h4</h4>
+				<h5>h5</h5>
+				<p>p</p>
+			</div>
+		</div>
+		<div>$('.siblings h2) 기준</div>
+		<button onclick="func9()">siblings()</button>
+		<button onclick="func9('p')">siblings("p")</button>
+		<button onclick="func10()">next()</button>
+		<button onclick="func11()">nextAll()</button>
+		<button onclick="func11('p')">nextAll('p')</button>
+		<button onclick="func12('p')">nextUntil('p')</button>
+		<button onclick="func12('h5')">nextUntil('h5')</button>
+		<button onclick="func13()">prev()</button>
+		<button onclick="func14()">prevAll()</button>
+		<button onclick="func14('p')">prevAll('p')</button>
+		<button onclick="func14('span')">prevAll('span')</button>
+		<button onclick="func15('p')">prevUntill('p')</button>
+		<button onclick="func15('span')">prevUntil('span')</button>
+		<h3 style="background-color: cornflowerblue"
+			>siblings() : 매개변수가 없는 경우 형제관계에 있는 모든 요소<br />
+			siblings('selector') : 매개변수가 있는 경우 형제관계에 있는 모든 요소중
+			선택자에 해당되는 요소
+			<br /><br />
+			nextAll() : 매개변수 없는 경우 선택된 요소의 형제들 중 이후에 있는 모든
+			요소<br />
+			nextAll('selector') : 매개변수 있는 경우 선택된 요소의 형제들 중 이후에
+			있는 모든 요조 중 선택자에 해당되는 요소
+			<br /><br />
+			nextUntil('selector'): 선택된 요소 이후에 있는 요소들 중 인자로 받는
+			선택자에 해당하는 요소 전까지만
+			<br /><br />
+			prevAll() : 매개변수 없는경우 선택된요소의 형제들 중 이전에 있는 모든
+			요소<br />
+			prevAll('selector') :매개변수가 있는 경우 선택된 요소의 형제들 중 이전에
+			있는 요소 중 선택자에 해당되는 요소
+			<br /><br />
+			prevUntil('selector') : 선택된 요소의 이전에 있는 형제들 중 매개변수로
+			받는 선택자 사이에 있는 모든 요소
+		</h3>
+		<button class="fixedbtn" onclick="javascript:location.reload();"
+			>location.reload()</button
+		>
+	</body>
+</html>
+<script>
+	function func1() {
+		console.log('자바스크립트 방식 !');
+	}
+	function func2(params) {
+		// var ul = document.getElementsByClassName("ul1")[0]
+		var ol = document.getElementsByClassName('ol1')[0];
+		Array.from(ol.children).forEach((e) => {
+			e.addEventListener('click', function () {
+				this.style.color = 'blue';
+				this.style.backgroundColor = 'blue';
+			});
+		});
+	}
+</script>
+<script>
+	var p1 = $('#p1');
+	console.log(p1.html());
+
+	var p2 = $('.p2');
+	p2.css('color', 'green');
+	p2.css({ backgroundColor: 'pink' });
+
+	$(document).ready(function () {});
+
+	// 자바스크립트와 달리 한번에 이벤트/css를 적용
+	$(function () {
+		console.log('자바스크립트와 달리 한번에 이벤트/css를 적용');
+
+		p2.click(function () {
+			alert(p2.html());
+		});
+	});
+
+	// $(document).ready(function() {
+	//     p2.click(function() {
+	//         alert(p2.html())
+	//     })
+	// })
+
+	$('.ul1>li').click(function () {
+		// $(this).css("color","blue").css("background-color","blue")
+		$(this).css({ color: 'blue', backgroundColor: 'blue' });
+	});
+
+	function func3(params) {
+		var filter = $('.filter>p');
+		console.log('선택된 엘리멘트 array : ');
+		console.log(filter);
+
+		var first = filter.first();
+		console.log('first () : ' + first.html());
+
+		var last = filter.last();
+		console.log('last () : ' + last.html());
+
+		var eq = filter.eq(2);
+		console.log('eq () : ' + eq.html());
+
+		var filter2 = filter.filter("p[class^='pp']");
+		console.log('filter.filter () : ');
+		console.log(filter2);
+
+		var not = filter2.not('.pp3');
+		console.log('not () : ');
+		console.log(not);
+		// console.log(Array.from(filter2).forEach((e) => console.log(e.html())));
+	}
+
+	function func4() {
+		var select = $('.ancestors span');
+		var parent = select.parent();
+		parent.css({ border: '2px solid red' });
+		// $(".ancestors span").parent().css({border:"2px solid black"})
+	}
+
+	function func5(selector) {
+		var select = $('.ancestors span');
+		var parents = select.parents(selector);
+		parents.css({ border: '2px solid red' });
+		console.log('parents() : 매개변수가 없는 경우 -> 모든 상위 요소');
+		console.log(
+			'parents("selector") : 매개변수가 있는 경우 -> 모든 상위 요소 중 선택자와 일치하는 요소만'
+		);
+		// $(".ancestors span").parent().css({border:"2px solid black"})
+	}
+	function func6(selector) {
+		var select = $('.ancestors span');
+		var parentsUntil = select.parentsUntil(selector);
+		parentsUntil.css({ border: '2px solid red' });
+		// $(".ancestors span").parent().css({border:"2px solid black"})
+	}
+	function func7(selector) {
+		var select = $('.descendants');
+		select.children(selector).css({ border: '2px solid red' });
+		console.log('children() : 매개변수가 없는 경우 모든 직계 자식 요소');
+		console.log(
+			'children("selector") : 매개변수가 있는 경우 직계 자식 요소중 선택자에 해당하는 요소'
+		);
+	}
+	function func8(selector) {
+		var select = $('.descendants');
+		select.find(selector).css({ border: '2px solid red' });
+		console.log(
+			'find("selector") : 모든 후손요소(자식포함) 중 선택자에 해당하는 요소'
+		);
+	}
+
+	function func9(seletor) {
+		var select = $('.siblings h2');
+		select.siblings(seletor).css({ border: '2px solid red' });
+		console.log('siblings() : 매개변수가 없는 경우 형제관계에 있는 모든 요소');
+		console.log(
+			"siblings('selector') : 매개변수가 있는 경우 형제관계에 있는 모든 요소중 선택자에 해당되는 요소"
+		);
+	}
+
+	function func10() {
+		var select = $('.siblings h2');
+		select.next().css({ border: '2px solid red' });
+	}
+	function func11(selector) {
+		var select = $('.siblings h2');
+		select.nextAll(selector).css({ border: '2px solid red' });
+		console.log(
+			'nextAll() : 매개변수 없는 경우 선택된 요소의 형제들 중 이후에 있는 모든 요소'
+		);
+		console.log(
+			"nextAll('selector') : 매개변수 있는 경우 선택된 요소의 형제들 중 이후에 있는 모든 요조 중 선택자에 해당되는 요소"
+		);
+	}
+
+	function func12(selector) {
+		var select = $('.siblings h2');
+		select.nextUntil(selector).css({ border: '2px solid red' });
+		console.log(
+			"nextUntil('selector'): 선택된 요소 이후에 있는 요소들 중 인자로 받는 선택자에 해당하는 요소 전까지만"
+		);
+	}
+
+	function func13() {
+		var select = $('.siblings h2');
+		select.prev().css({ border: '2px solid red' });
+	}
+	function func14(selector) {
+		var select = $('.siblings h2');
+		console.log(
+			'prevAll() : 매개변수 없는경우 선택된요소의 형제들 중 이전에 있는 모든 요소'
+		);
+		console.log(
+			"prevAll('selector') :매개변수가 있는 경우 선택된 요소의 형제들 중 이전에 있는 요소 중 선택자에 해당되는 요소"
+		);
+		//prevAll() : 매개변수 없는경우 선택된요소의 형제들 중 이전에 있는 모든 요소
+		//prevAll('selector') :매개변수가 있는 경우 선택된 요소의 형제들 중 이전에 있는 요소 중 선택자에 해당되는 요소
+		select.prevAll(selector).css({ border: '2px solid red' });
+	}
+	function func15(selector) {
+		var select = $('.siblings h2');
+		console.log(
+			"prevUntil('selector') : 선택된 요소의 이전에 있는 형제들 중 매개변수로 받는 선택자 사이에 있는 모든 요소"
+		);
+		select.prevUntil(selector).css({ border: '2px solid red' });
+	}
+</script>
+<style>
+	.ancestors *,
+	.descendants *,
+	.siblings * {
+		display: block;
+		border: 2px solid lightblue;
+		color: lightcoral;
+		padding: 5px;
+		margin: 15px;
+	}
+	.fixedbtn {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		background-color: darkblue;
+		color: white;
+		border: none;
+		width: 150px;
+		height: 40px;
+		font-size: 15px;
+	}
+</style>
