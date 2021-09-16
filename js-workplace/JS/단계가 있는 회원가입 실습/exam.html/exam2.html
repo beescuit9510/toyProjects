@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+
+        body{
+
+            font-family : Arial;
+
+        }
+
+        .tab{
+
+            overflow: hidden;
+
+            border : 1px solid #cccccc;
+
+            background-color: #f1f1f1;
+
+        }
+
+        .tab button {
+
+            float: left;
+
+            border: none;
+
+            outline: none;
+
+            cursor : pointer;
+
+            padding: 14px 16px;
+
+            font-size: 17px;
+
+        }
+
+        .tab button:hover{
+
+            background-color: #dddddd;
+
+        }
+
+        .tabcontent{
+
+            display: none;
+
+            padding: 6px 12px;
+
+            border : 1px solid #cccccc;
+
+            border-top: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <p>탭 메뉴를 선택해 보세요</p>
+
+    <div class="tab">
+
+        <button class="tablinks">html</button>
+
+        <button class="tablinks">css</button>
+
+        <button class="tablinks">javascript</button>
+
+    </div>
+
+    <div id="html" class="tabcontent">
+
+        <h3>HTML</h3>
+
+        <p>HyperText Markup Language</p>
+
+    </div>
+
+    <div id="css" class="tabcontent">
+
+        <h3>CSS</h3>
+
+        <p>Cascading Style Sheets</p>
+
+    </div>
+
+    <div id="javascript" class="tabcontent">
+
+        <h3>JAVASCRIPT</h3>
+
+        <p>JAVASCRIPT</p>
+
+    </div>
+
+    <script>
+        var tablinks = document.getElementsByClassName("tablinks");
+
+        window.onload = function() {
+            
+            document.getElementById(tablinks[0].innerHTML).style.display = "block";
+        }
+
+
+        for(var i=0;i<tablinks.length;i++){            
+            
+            tablinks[i].addEventListener("click",function(){
+
+                var tabcontent = document.getElementsByClassName("tabcontent");
+
+                for(var j=0;j<tablinks.length;j++){
+
+                    tablinks[j].style.backgroundColor = "#dddddd";
+                    
+                }                
+                
+                var showDiv = this.innerHTML;
+                
+                document.getElementById(tablinks[0].innerHTML).style.display = "none";
+                document.getElementById(tablinks[1].innerHTML).style.display = "none";
+                document.getElementById(tablinks[2].innerHTML).style.display = "none";
+                document.getElementById(showDiv).style.display = "block";
+
+                this.style.backgroundColor = "#cccccc";
+
+
+            });
+
+        }
+
+        tablinks[0].style.backgroundColor = "#cccccc";        
+
+    </script>
+
+</body>
+
+</html>​

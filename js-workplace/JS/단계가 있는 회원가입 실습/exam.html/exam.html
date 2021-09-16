@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            background-color: black;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <p>사각형의 색상을 선택하세요.</p>
+    <p>
+        <button>red</button>
+        <button>orange</button>
+        <button>yellow</button>
+        <button>green</button>
+        <button>blue</button>        
+    </p>
+    <div id="box"></div>
+    <p>선택한 색상은 <strong class="color">black</strong>입니다.</p>
+    <script>
+        var btn = document.getElementsByTagName("button");
+        var selectedColor = document.getElementsByClassName("color");
+        for(var i=0;i<btn.length;i++){
+            console.log(btn)
+            // btn -> btn[i]
+            btn[i].addEventListener("click",function(){
+                var box = document.getElementById("box");
+                box.style.backgroundColor = this.innerHTML;                
+                selectedColor[0].style.color = this.innerHTML;                
+            });
+        }
+    </script>
+</body>
+</html>​
