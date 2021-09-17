@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=, initial-scale=1.0" />
+		<script
+			type="text/javascript"
+			src="http://code.jquery.com/jquery-3.3.1.js"
+		></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>이벤트</h1>
+		<hr />
+		<h2>이벤트 연결 방법</h2>
+		<h3>1. inline 이벤트 : 자바스크립트와 동일(onclick="선언적함수()")</h3>
+		<h3>2. 고전이벤트모델 : $("선택자").이벤트명({function(){}})</h3>
+		<h3>3. $(document).on("이벤트명","선택자",function(){})</h3>
+		<div id="test1">
+			<div class="d1">test-1</div>
+			<div class="d1">test-2</div>
+		</div>
+		<button id="btn1">클릭</button>
+		<button id="btn2">클릭</button>
+		<p style="background-color: pink"
+			>연결된 이벤트를 취소하는 함수($(document))방식의 이벤트는 취소 불가능)</p
+		>
+		<hr />
+        <h2>이벤트 강제 실행</h2>
+        <h3>triger(), click()</h3>
+		<div class="levelup">
+			<button>레벨업</button>HTML : <span>0</span>Level <br />
+			<button>레벨업</button>CSS : <span>0</span>Level <br />
+			<button>레벨업</button>Javascript : <span>0</span>Level <br />
+			<button id="allLevelUp">전체레벨업</button>
+		</div>
+        <input type="text" id="id">
+        <input type="password" id="pw">
+        <hr>
+        <p id="mouse">마우스 업/다운</p>
+        <div>현재 마우스 위치 : <span id="mousemove"></span></div>
+	</body>
+</html>
+<script>
+	$(function () {
+		$('#btn1').click(function () {
+			var test1 = $('#test1');
+			test1.append("<div> class='d1'>test-1</div>");
+		});
+
+		$(document).on('click', 'd1', function () {
+			var test1 = $('#test1');
+			test1.append("<div> class='d1'>test-1</div>");
+		});
+
+		$('#btn2').click(function () {
+			// 연결된 이벤트를 취소하는 함수($(document))방식의 이벤트는  취소 불가능)
+			$('#btn1').off('click');
+		});
+
+		$('.levelup button').not("#allLevelUp").click(function () {
+            var n = Number($(this).next().html());
+            $(this).next().html(n + 1);
+			// if ($(this).is('#allLevelUp')) {
+                // var nums = $('.levelup span');
+                // $('.levelup span').each((i, e) =>
+                //     $(e).html(Number(nums[i].innerHTML) + 1)
+                // );
+            // } else {
+			// }
+		});
+        $("#allLevelUp").click(function () {
+            var levelupbtns = $(".levelup button").not("#allLevelUp")
+            // levelupbtns.trigger("click")
+            levelupbtns.click()
+        })
+
+
+        $("#id").change(function () {
+            var inputId = $(this).val();
+            if(inputId == "user01"){
+                console.log("이미 사용중인 아이디")
+                $("#id").val("");
+                $("#id").focus();
+            }else{
+                console.log("사용 가능한 아이디")
+            }
+        })
+
+        $("#id").focusin(function () {
+            $(this).css("border-bottom","3px solid black")
+        })
+        $("#mouse").mousedown(function () {
+            $(this).css("color","blue")
+        })
+        $("#mouse").mouseup(function () {
+            $(this).css("color","red")
+        })
+
+        $(document).mousemove(function (event) {
+            $("#mousemove").html(event.pageX+","+event.pageY)
+        })
+        
+	});
+</script>
+<style>
+    .d1{
+        color: red;
+    }
+    #id{
+        border: none;
+        border-bottom: 3px solid lightblue;
+        outline: none;
+    }
+</style>

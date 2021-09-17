@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			type="text/javascript"
+			src="http://code.jquery.com/jquery-3.3.1.js"
+		></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>효과</h1>
+		<hr />
+		<h2>페이저에 애니메이션 효과를 만들기위한 메소드</h2>
+		<h3>사용방법 : $("selector").메소드명([speed],[easing],[callback])</h3>
+		<!-- callback 변화를 준다음 자동으로 호출할 함수 -->
+		<p
+			>speed : 실행속도(ms) <br />
+			easing : 변경되는 지점별 속도(linear : 일정하게| swing : 처음과 끝이 약간
+			느리게) <br />
+			callback : 메소드 실행 후 수행할 함수</p
+		>
+		<br />
+		<p
+			>단, easing 을 사용하기 위해서는 일반 jquery 가 아닌 jquery-ui
+			라이브러리를 추가로 선언해야 함</p
+		>
+		<button id="btn1">show</button>
+		<button id="btn2">hide</button>
+		<button id="btn3">toggle</button>
+		<button id="btn4">slideDown</button>
+		<button id="btn5">slideUp</button>
+		<button id="btn6">slideToggle</button>
+		<button id="btn7">fadeIn</button>
+		<button id="btn8">fadeOut</button>
+		<button id="btn9">fadeToggle</button>
+		<div id="d1"></div>
+		<hr />
+		<h3
+			>animate() : 현재의 css 속성을 설정한 값으로 차츰 변경되는 효과를 주는
+			메소드</h3
+		>
+		<h3>$("선택자").animate({css속성},[시간],[easing],[callback])</h3>
+		<p
+			>단, 모든 속성이 적용되는 것은 아니며 jquery-ui 라이브러리를 추가하면 더
+			많은 속성을 animate로 조절 가능 <br> (ex, background-color}</p
+		>
+		<button id="btn10">animate</button>
+	</body>
+</html>
+<script>
+	$(function () {
+		var d1 = $('#d1');
+		$('#btn1').click(function () {
+			d1.show(400);
+		});
+		$('#btn2').click(function () {
+			d1.hide(400);
+		});
+		$('#btn3').click(function () {
+			d1.toggle(400);
+		});
+
+		$('#btn4').click(function () {
+			d1.slideDown(400);
+		});
+		$('#btn5').click(function () {
+			d1.slideUp(400);
+		});
+		$('#btn6').click(function () {
+			d1.slideToggle(400);
+		});
+
+		$('#btn7').click(function () {
+			d1.fadeIn(400);
+		});
+		$('#btn8').click(function () {
+			d1.fadeOut(400);
+		});
+		$('#btn9').click(function () {
+			d1.fadeToggle(400);
+		});
+
+		$('#btn10').click(function () {
+			d1.animate(
+				{
+					backgroundColor: 'red',
+					width: '300px',
+					height: '150px',
+					opacity: '0.5',
+				},
+				1000
+			);
+		});
+	});
+</script>
+<style>
+	#d1 {
+		width: 500px;
+		height: 300px;
+		border: 1px solid black;
+		background-color: yellow;
+	}
+</style>

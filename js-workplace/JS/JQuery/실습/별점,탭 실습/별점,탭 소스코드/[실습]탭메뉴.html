@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab-board{
+            width: 800px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+        .tab-head>ul{
+            list-style-type: none;
+            padding: 0;
+            overflow: hidden;
+            margin: 0;
+        }
+        .tab-head>ul>li{
+            float: left;
+            margin-right: 5px;
+        }
+        .tab-menu{
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-top : 5px solid #b3b3b3;
+            text-align: center;
+            width: 150px;
+            text-decoration: none;
+            display: block;
+            height: 70px;
+            line-height: 70px;
+            background-color: #b3b3b3;
+            color:#ffffff;
+            font-weight: bold;
+        }
+        .tab-content{
+            padding: 20px;
+            display: none;
+        }
+        .tab-content>*{
+            color : #3b3b3b;
+        }
+        .active{
+            display: block;
+            background-color: #e7e7e7;
+            color : #dc446e;
+        }
+        .active-line{
+            border-top : 5px solid #dc446e;
+        }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(function(){
+            $(".tab-menu").click(function(){
+                //클릭한 메뉴가 몇번째 메뉴인지 구하는 메소드
+                var index = $(".tab-menu").index(this);
+                //본문 전체 초기화
+                $(".tab-content").removeClass("active");
+                //메뉴 전체 초기화
+                $(".tab-menu").removeClass("active active-line");
+                //선택한 메뉴 활성화
+                $(this).addClass("active active-line");
+                //선택한 메뉴에 해당하는 본문 활성화
+                $(".tab-content").eq(index).addClass("active");
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>탭메뉴 만들기</h1>
+    <hr>
+    <div class="tab-board">
+        <div class="tab-head">
+            <ul>
+                <li><a href="#" class="tab-menu">HTML</a></li>
+                <li><a href="#" class="tab-menu">CSS</a></li>
+                <li><a href="#" class="tab-menu">Javascript</a></li>
+                <li><a href="#" class="tab-menu">jquery</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <div class="tab-content">
+                <h2>HTML</h2>
+                <hr>
+                <p>
+                    "Hyper Text Mark-up Language" 의 약자. 웹 페이지의 모습을 기술하기 위한 규약. 프로그래밍 언어가 아니라 마크업 언어[1]다. 헷갈리지 않도록 하자.[2] 웹사이트에서 흔히 볼 수 있는 htm이나 html 확장자가 바로 이 언어로 작성된 문서다.
+                    최초 제안자는 CERN의 물리학자 티머시 J. 버너스리이다. URL, HTTP, WWW의 전신인 Enquire 등도 그가 세트로 개발하고 제안했다. TCP/IP 통신규약을 만든 빈턴 G. 서프(Vinton Gray Cerf)와 함께 인터넷의 아버지로 불린다.
+                </p>
+            </div>
+            <div class="tab-content">
+                <h2>CSS</h2>
+                <hr>
+                <p>
+                    CSS의 C가 Cascading의 약자인데, 이는 상위 요소의 스타일 속성을 자손 요소들에게 상속시켜주는 모습이 DOM 트리구조에서 마치 폭포수처럼 내려가는 모습을 닮았기 때문이다.
+                </p>
+            </div>
+            <div class="tab-content">
+                <h2>Javascript</h2>
+                <hr>
+                <p>
+                    모질라 재단의 프로토타입기반의 프로그래밍 언어로, 스크립트 언어에 해당된다. 특수한 목적이 아닌 이상 모든 웹 브라우저에 인터프리터가 내장되어 있다. 오늘날 HTML, CSS와 함께 웹을 구성하는 요소 중 하나다. HTML이 웹 페이지의 기본 구조를 담당하고, CSS가 디자인을 담당한다면 JavaScript는 클라이언트 단에서 웹 페이지가 동작하는 것을 담당한다.[1] 웹 페이지를 자동차에 비유하자면, HTML은 자동차의 뼈대, CSS는 자동차의 외관, JavaScript는 자동차의 동력이라고 볼 수 있다.
+                </p>
+            </div>
+            <div class="tab-content">
+                <h2>jQuery</h2>
+                <hr>
+                <p>
+                    jQuery는 HTML 속 클라이언트 사이드 스크립트 언어를 단순화하도록 설계된 브라우저 호환성이 있는 JavaScript 라이브러리이다. 존 레식에 의해 2006년 뉴욕 시 바캠프(Barcamp NYC)에서 공식적으로 소개되었다.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

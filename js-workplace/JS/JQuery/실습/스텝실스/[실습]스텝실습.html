@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script
+			type="text/javascript"
+			src="http://code.jquery.com/jquery-3.3.1.js"
+		></script>
+	</head>
+	<style>
+		.tab-board {
+			width: 1200px;
+			margin: 0 auto;
+			margin-top: 100px;
+		}
+		.tab-head > ul {
+			list-style-type: none;
+			padding: 0;
+			overflow: hidden;
+			margin: 0;
+		}
+		.tab-board ul > li {
+			float: left;
+			margin-right: 5px;
+		}
+		.tab-menu > span {
+			font-size: 25px;
+			display: block;
+			line-height: 50px;
+		}
+		.tab-menu {
+			border-top-right-radius: 35px;
+			border-bottom-right-radius: 35px;
+			padding-left: 15px;
+			text-align: left;
+			width: 250px;
+			/* width: calc(800px/4.5); */
+			text-decoration: none;
+			display: block;
+			height: 90px;
+			line-height: 0px;
+			color: #0464bb;
+			background-color: #ebebeb;
+			font-weight: bold;
+		}
+		.tab-content {
+			padding: 20px;
+			display: none;
+		}
+		.tab-content > * {
+			color: #0464bb;
+		}
+
+		.active {
+			background-color: #ea8511;
+			color: #f8f8f8;
+		}
+		.preActive {
+			background-color: #0464bb;
+			color: #f8f8f8;
+		}
+		.active-content {
+			display: block;
+		}
+		.btn {
+			border: none;
+			width: 70px;
+			height: 25px;
+			border-radius: 10px;
+			background-color: #5a5655;
+			color: #f8f8f8;
+		}
+		.next,
+		.Done {
+			float: right;
+		}
+
+        .Done{
+            display: none;
+        }
+	</style>
+	<body>
+		<h1>탭메뉴 만들기</h1>
+		<hr />
+		<div class="tab-board">
+			<div class="tab-head">
+				<ul>
+					<li
+						><a class="tab-menu active" href="#"
+							><span>Stap1</span>HTML</a
+						></li
+					>
+					<li
+						><a class="tab-menu" href="#"><span>Stap2</span>CSS</a></li
+					>
+					<li
+						><a class="tab-menu" href="#"><span>Stap3</span>Javascript</a></li
+					>
+					<li
+						><a class="tab-menu" href="#"><span>Stap4</span>jQuery</a></li
+					>
+				</ul>
+			</div>
+			<div class="tab-body">
+				<div class="tab-content">
+					<h2>HTML</h2>
+					<p
+						>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+						voluptate harum natus architecto nostrum at reiciendis, in hic,
+						deserunt optio, provident neque autem aperiam dolorum fugiat
+						incidunt dolorem earum quae.</p
+					>
+				</div>
+				<div class="tab-content">
+					<h2>CSS</h2>
+					<p
+						>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+						voluptate harum natus architecto nostrum at reiciendis, in hic,
+						deserunt optio, provident neque autem aperiam dolorum fugiat
+						incidunt dolorem earum quae.</p
+					>
+				</div>
+				<div class="tab-content">
+					<h2>Javascript</h2>
+					<p
+						>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+						voluptate harum natus architecto nostrum at reiciendis, in hic,
+						deserunt optio, provident neque autem aperiam dolorum fugiat
+						incidunt dolorem earum quae.</p
+					>
+				</div>
+				<div class="tab-content">
+					<h2>jQuery</h2>
+					<p
+						>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+						voluptate harum natus architecto nostrum at reiciendis, in hic,
+						deserunt optio, provident neque autem aperiam dolorum fugiat
+						incidunt dolorem earum quae.</p
+					>
+				</div>
+			</div>
+			<button class="btn back"> <span><</span>back </button>
+			<button class="btn next"> next<span>></span> </button>
+			<button class="btn Done">Done</button>
+		</div>
+	</body>
+</html>
+<script>
+	$(function () {
+        $('.tab-menu').click(function () {
+            
+			$('.tab-menu').removeClass('preActive active');
+			$('.active-content').removeClass('active-content');
+			
+            $(this).addClass('active');
+			var idx = $('.tab-menu').index(this);
+			$('.tab-content').eq(idx).addClass('active-content');
+			$('.tab-menu').each((i, e) => {
+                idx > i && $(e).addClass('preActive');
+			});
+            
+            idx==0 && $(".back").hide();
+            idx!=0 && $(".back").show();
+            idx==3 && $(".Done").show() && $(".next").hide();
+            idx!=3 && $(".Done").hide() && $(".next").show();
+		});
+
+        $(".back").click(function() {
+            $(".active").parent().prev().find("a").click();
+        })
+        $(".next").click(function() {-
+            $(".active").parent().next().find("a").click();
+        })
+
+        $('.active').click()
+	});
+
+
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(function(){
+            $("#btn1").click(function(){
+                var rate = $("#starrate").val();
+                //$(".star-wrap1>img").attr("src","img/star-off.png");
+                $(".star-wrap1>img").each(function(index,item){
+                    if(index<rate){
+                        $(item).attr("src","img/star-on.png");
+                    }else{
+                        $(item).attr("src","img/star-off.png");
+                    }
+                });
+            });
+            $(".star-wrap2>img").mouseover(function(){
+                //$("선택자").index(this); -> 선택자 중 this가 몇번째 요소인지 리턴(시작숫자 0)
+                var idx = $(".star-wrap2>img").index(this);                
+                $(".star-wrap2>img").each(function(index,item){
+                    if(index<=idx){
+                        $(item).attr("src","img/star-on.png");
+                    }else{
+                        $(item).attr("src","img/star-off.png");
+                    }
+                });
+                $("#result").html(idx+1);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>별점</h1>
+    <hr>
+    <h2>1. 다음 input에 입력한 만큼 별점을 표시</h2>
+    <input type="text" id="starrate">
+    <button id="btn1">별점입력</button>
+    <div class="star-wrap1">
+        <img class="star" src="img/star-off.png">
+        <img class="star" src="img/star-off.png">
+        <img class="star" src="img/star-off.png">
+        <img class="star" src="img/star-off.png">
+        <img class="star" src="img/star-off.png">
+    </div>
+    <hr>
+    <h2>2. 별위에 마우스를 올려서 별점 입력 점수표시</h2>
+    <div class="star-wrap2">
+        <img class="star" src="img/star-off.png">
+        <img class="star" src="img/star-off.png">
+        <img class="star" src="img/star-off.png">
+        <img class="star" src="img/star-off.png">
+        <img class="star" src="img/star-off.png">
+        <span id="result">0</span> 점
+    </div>
+</body>
+</html>

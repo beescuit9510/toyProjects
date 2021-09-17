@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script
+			type="text/javascript"
+			src="http://code.jquery.com/jquery-3.3.1.js"
+		></script>
+	</head>
+	<style>
+		.tab-board {
+			width: 800px;
+			margin: 0 auto;
+			margin-top: 100px;
+		}
+		.tab-head > ul {
+			list-style-type: none;
+			padding: 0;
+            overflow: hidden;
+            margin: 0;
+		}
+		.tab-board ul > li {
+			display: inline-block;
+			/* float: left; */
+		}
+		.tab-menu {
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			border-top: 5px solid #b3b3b3;
+			text-align: center;
+			/* width: 150px; */
+			width: calc(800px/4.5);
+			display: block;
+			height: 70px;
+			line-height: 70px;
+			color: #ffffff;
+			text-decoration: none;
+			background-color: #b3b3b3;
+			font-weight: bold;
+		}
+		.tab-content {
+			padding: 20px;
+			display: none;
+		}
+		.tab-content > * {
+			color: #3b3b3b;
+		}
+
+		.active {
+			display: block;
+			background-color: #e7e7e7;
+			color: #dc446e;
+		}
+		.active-line {
+			border: 5px solid #dc446e;
+		}
+	</style>
+	<body>
+		<h1>탭메뉴 만들기</h1>
+		<hr />
+		<div class="tab-board">
+			<div class="tab-head">
+				<ul>
+					<li><a class="tab-menu" href="#">HTML</a></li>
+					<li><a class="tab-menu" href="#">CSS</a></li>
+					<li><a class="tab-menu" href="#">Javascript</a></li>
+					<li><a class="tab-menu" href="#">jQuery</a></li>
+				</ul>
+			</div>
+			<div class="tab-body">
+				<div class="tab-content">
+					<h2>HTML</h2>
+					<hr />
+					<p
+						>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+						voluptate harum natus architecto nostrum at reiciendis, in hic,
+						deserunt optio, provident neque autem aperiam dolorum fugiat
+						incidunt dolorem earum quae.</p
+					>
+				</div>
+				<div class="tab-content">
+					<h2>CSS</h2>
+					<hr />
+					<p
+						>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+						voluptate harum natus architecto nostrum at reiciendis, in hic,
+						deserunt optio, provident neque autem aperiam dolorum fugiat
+						incidunt dolorem earum quae.</p
+					>
+				</div>
+				<div class="tab-content">
+					<h2>Javascript</h2>
+					<hr />
+					<p
+						>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+						voluptate harum natus architecto nostrum at reiciendis, in hic,
+						deserunt optio, provident neque autem aperiam dolorum fugiat
+						incidunt dolorem earum quae.</p
+					>
+				</div>
+				<div class="tab-content">
+					<h2>jQuery</h2>
+					<hr />
+					<p
+						>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+						voluptate harum natus architecto nostrum at reiciendis, in hic,
+						deserunt optio, provident neque autem aperiam dolorum fugiat
+						incidunt dolorem earum quae.</p
+					>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	$(function () {
+		$('.tab-menu').click(function () {
+            $(".tab-menu").removeClass("active")
+			$(".tab-content").removeClass('active aictive-line');
+
+            var idx = $(".tab-menu").index(this)
+			$(this).addClass('active aictive-line');
+			$(".tab-content").eq(idx).addClass('active ');
+		});
+	});
+</script>

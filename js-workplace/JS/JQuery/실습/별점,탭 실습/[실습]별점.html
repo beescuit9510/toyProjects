@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script
+			type="text/javascript"
+			src="http://code.jquery.com/jquery-3.3.1.js"
+		></script>
+	</head>
+	<body>
+        <h1>별점</h1>
+        <hr>
+        <h2>1. 다음 input에 입력한 만큼 별점을 표시</h2>
+        <input type="text" id="starrate">
+        <button id="btn1">별점 입력</button>
+        <div class="star-wrap1">
+            <img src="star-off.png" alt="star">
+            <img src="star-off.png" alt="star">
+            <img src="star-off.png" alt="star">
+            <img src="star-off.png" alt="star">
+            <img src="star-off.png" alt="star">
+        </div>
+        <hr>
+        <h2>1. 별위에 마우스를 올려서 별점입력 점수표시</h2>
+        <input type="text" id="starrate">
+        <button id="btn2">별점 입력</button>
+        <div class="star-wrap2">
+            <img src="star-off.png" alt="star">
+            <img src="star-off.png" alt="star">
+            <img src="star-off.png" alt="star">
+            <img src="star-off.png" alt="star">
+            <img src="star-off.png" alt="star">
+        </div>
+        <p style="background-color: pink;">$("선택자").index(this); => 선택자 중 this가 몇번째 요소인지 리턴(시작 idx 0)</p>
+    </body>
+</html>
+<script>
+    $("#btn1").click(function () {
+        var rate = $("#starrate").val()
+        $(".star-wrap1 img").each((idx,e)=>{
+            var src = idx>=rate? "star-off.png":"star-on.png" 
+            $(e).attr("src",src)
+        })
+    })
+    
+    $(".star-wrap2 img").mouseover(function () {
+        // $("선택자").index(this); => 선택자 중 this가 몇번째 요소인지 리턴(시작 idx 0)
+        var idx = $(".star-wrap2 img").index(this)
+        $(".star-wrap2 img").each(function (index, e) {
+            var src = idx<=index? "star-off.png":"star-on.png" 
+            $(e).attr("src",src)
+            
+        })
+    })
+</script>
