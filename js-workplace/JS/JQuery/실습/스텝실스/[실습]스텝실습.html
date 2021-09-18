@@ -152,8 +152,8 @@
 	$(function () {
         $('.tab-menu').click(function () {
             
-			$('.tab-menu').removeClass('preActive active');
-			$('.active-content').removeClass('active-content');
+			$('.tab-menu, .active-content').removeClass('preActive active active-content');
+			// $('.active-content').removeClass('active-content');
 			
             $(this).addClass('active');
 			var idx = $('.tab-menu').index(this);
