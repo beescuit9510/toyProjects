@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>반응형 단위</h1>
+		<hr />
+		<div class="container">
+			<div class="div1"></div>
+			<div class="div1"></div>
+			<div class="div1"></div>
+			<div class="div1"></div>
+		</div>
+        <hr>
+		<div class="container">
+            <div class="div2"></div>
+			<div class="div2"></div>
+			<div class="div2"></div>
+			<div class="div2"></div>
+		</div>
+        <hr>
+		<div class="container2">
+            <div class="div3"></div>
+			<div class="div3"></div>
+			<div class="div3"></div>
+			<div class="div3"></div>
+		</div>
+        <hr>
+        <h2>% 는 부모크기 기준</h2>
+        <h2>vw 는 무조건 브라우저 기준</h2>
+	</body>
+</html>
+<style>
+	body {
+		margin: 0;
+        width: 1000px;
+	}
+
+	.container {
+		background-color: khaki;
+		overflow: hidden;
+	}
+	.div1 {
+		width: 100px;
+		height: 100px;
+		background-color: lawngreen;
+		float: left;
+		border: 1px solid black;
+	}
+	.div2 {
+		width: 15%;
+		height: 100px;
+		background-color: blueviolet;
+		float: left;
+		border: 1px solid black;
+	}
+
+	.container2 {
+        background-color: khaki;
+		overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+	}
+    .div3 {
+        width: 15%;
+        height: 100px;
+        background-color: orange;
+        float: left;
+        border: 1px solid black;
+    }
+
+</style>

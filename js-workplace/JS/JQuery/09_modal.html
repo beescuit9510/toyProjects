@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script
+			type="text/javascript"
+			src="http://code.jquery.com/jquery-3.3.1.js"
+		></script>
+	</head>
+	<body>
+		<h1>모달 로그인 만들기</h1>
+		<hr />
+		<button id="btn">로그인</button>
+		<div class="modal-wrap">
+			<div class="modal">
+				<div class="modal-top">
+					<h1>로그인</h1>
+				</div>
+				<div class="modal-content">
+					<form action="/login.html" method="POST">
+						<input type="text" name="id" placeholder="아이디를 입력하세요" />
+						<input type="text" name="pw" placeholder="비밀번호를 입력하세요" />
+						<input type="submit" value="로그인" />
+						<input type="button" value="닫기" />
+					</form>
+				</div>
+			</div>
+		</div>
+        <br><br><br><br><br><br>
+        <div class="wrap">
+            <span>글씨</span>
+            <select name="" id="">
+                <option value="">옵션1</option>
+                <option value="">옵션2</option>
+                <option value="">옵션3</option>
+            </select>
+            <button>클릭클릭</button>
+            <img src="../JQuery/실습/별점,탭 실습/star-on.png" alt="">
+            <input type="text">
+        </div>
+        <ul class="navi">
+            <li><a href="#">JAVA</a></li>
+            <li><a href="#">ORACLE</a></li>
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JAVASCRIPT</a></li>
+            <li><a href="#">JQUERY</a></li>
+            <li><a href="#">RESPONSIVE WEBSITE</a></li>
+        </ul>
+	</body>
+</html>
+<style>
+	body {
+	}
+	.modal-wrap {
+        width: 100vw;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.5);
+		position: absolute;
+		top: 0;
+		left: 0;
+        /* display: none; */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+    
+	.modal {
+        background-color: white;
+		width: 40vw;
+		height: 40vh;
+        min-width: 300px;
+        max-width: 400px;
+        min-height: 300px;
+        max-height: 500px;
+	}
+
+	.modal-top > h1 {
+		text-align: center;
+	}
+
+	.modal-content input {
+		display: block;
+		outline: none;
+		margin: 20px auto;
+		width: 80%;
+		height: 30px;
+		border: 1px solid #cccccc;
+	}
+</style>
+<script>
+	$(function () {
+		$('#btn').click(function () {
+			$('.modal-wrap').show();
+		});
+		$('input[type=button').click(function () {
+			$('.modal-wrap').hide();
+		});
+	});
+    $('.modal-wrap').hide();
+</script>
+
+<style>
+    .wrap{
+        display: flex;
+        align-items: center;
+        /* align-items: center; */
+    }
+</style>
+
+<style>
+    .navi{
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        list-style-type: none;
+        min-width: 900px;
+    }
+
+    .navi>li{
+        float: left;
+        width: calc(100%/7);
+    }
+    .navi>li>a{
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        height: 50px;
+        line-height: 50px;
+        font-size: 15px;
+        text-align: center;
+        border: 1px solid black;
+
+    }
+</style>

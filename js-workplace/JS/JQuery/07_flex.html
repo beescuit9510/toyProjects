@@ -85,6 +85,25 @@
 			<div class="item item2">2</div>
 			<div class="item item3">3</div>
 		</div>
+        <h2>justify-content / align item !</h2>
+        <h2>flex-start : 반대축 시작방향</h2>
+        <h2>flex-start : 반대축 끝방향</h2>
+        <h2>flex-start : 반대축 가운데</h2>
+		<div class="container justify-content5">
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+			<!-- <div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div> -->
+		</div>
+        <h2>vw -> view-port width : 현재 브라우저 크기의 넓이 1~100</h2>
+        <h2>50vw</h2>
+        <h2>hw -> view-port height : 현재 브라우저 크기의 높이 1~100</h2>
+        <h2>50vw</h2>
 	</body>
 </html>
 <style>
@@ -118,24 +137,46 @@
 	.justify-content4 {
 		justify-content: space-between;
 	}
+	.justify-content5 {
+        /* align-items: flex-end; */
+		/* align-items: flex-start; */
+        /* flex-wrap: wrap; */
+		/* align-items:; */
+        justify-content: center;
+	}
 	[class*='justify-content'] div {
-		width: 50px;
+        width: 50px;
 		height: 50px;
 	}
+    .justify-content5 > div {
+        width: 150px;
+        height: 150px;
+    }
 	.item {
 		width: 250px;
 		height: 250px;
 	}
-
+    
 	.item1 {
-		background-color: cyan;
+        background-color: cyan;
+        /* flex-grow: 1; */
 	}
-
+    
 	.item2 {
-		background-color: chocolate;
+        background-color: chocolate;
+        /* flex-grow: 8; */
 	}
-
+    
 	.item3 {
-		background-color: crimson;
+        background-color: crimson;
+        /* flex-grow: 1; */
 	}
+    .justify-content5 > .item1{
+        align-self: flex-start;
+    }
+    .justify-content5 > .item2{
+    }
+    .justify-content5 > .item3{
+        align-self: flex-end;
+    }
 </style>
