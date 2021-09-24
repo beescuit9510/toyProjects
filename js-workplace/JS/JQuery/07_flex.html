@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h2
+			>메인축 설정(column : 세로축이 기본 방향, row : 가로축이 기본 방향 /
+			defaut</h2
+		>
+		<div class="container">
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+		</div>
+		<h2>공간이 부족한 경우 균일하게 넓이를 바꿔줌</h2>
+		<div class="container">
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+		</div>
+		<h2
+			>내부아이템이 flex범위를 벗어나느 경우 줄여서 한줄로 맞추는 설정 :
+			nowrap</h2
+		>
+		<h2>크기를 유지하고 다음줄 설정 : wrap</h2>
+		<h2>default -> nowrap</h2>
+		<div class="container wrap">
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+		</div>
+		<h2>text-align 은 block 요소에 적용안됨! inline만 가능</h2>
+		<h2>대신 justify-content 사용!</h2>
+		<h2>justify-content 메인 축 정렬 기준 설정</h2>
+		<h2>center : 메인축 가운데정렬</h2>
+		<h2>flex-start : 메인축 시작방향</h2>
+		<h2>flex-end : 메인축 끝방향</h2>
+		<h2>flex-direction : row-reserver/column-reverse 와 다름.</h2>
+		<h2
+			>1,2,3 -> 3,2,1 로 아예 순서롤 바꿔주고, flex-start/end는 순서를 바꾸지
+			않음
+		</h2>
+		<div class="container justify-content">
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+		</div>
+		<h2
+			>space-around : 각 아이템별로 좌우 여백을 동일하게 맞춤 -> 아이쳄과 아이템
+			사이는 여벅 2개가 적용 양쪽끝은 여백 1개</h2
+		>
+		<div class="container justify-content2">
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+		</div>
+		<h2>space-evenly : 모든 간격이 동일</h2>
+		<div class="container justify-content3">
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+		</div>
+		<h2
+			>space-evenly : flex-start, flex-end에 각각 아이템을 끝에 붙이고 나머지를
+			같은 간격으로 설정</h2
+		>
+		<div class="container justify-content4">
+			<div class="item item1">1</div>
+			<div class="item item2">2</div>
+			<div class="item item3">3</div>
+		</div>
+	</body>
+</html>
+<style>
+	.container {
+		background-color: cadetblue;
+		height: 700px;
+		display: flex;
+		/* 메인축 설정(column : 세로축이 기본 방향, row : 가로축이 기본 방향 / defaut : row) */
+		/* flex-direction: row; */
+		/* flex-direction: column; */
+		/* flex-direction: row-reverse; */
+		/* flex-direction: column-reverse; */
+		/* flex-direction: initial;       */
+		/* flex-wrap: wrap; */
+	}
+	.wrap {
+		flex-wrap: wrap;
+	}
+	.justify-content {
+		justify-content: center;
+		justify-content: flex-start;
+		justify-content: flex-end;
+		justify-content: space-around;
+	}
+	.justify-content2 {
+		justify-content: space-around;
+	}
+	.justify-content3 {
+		justify-content: space-evenly;
+	}
+	.justify-content4 {
+		justify-content: space-between;
+	}
+	[class*='justify-content'] div {
+		width: 50px;
+		height: 50px;
+	}
+	.item {
+		width: 250px;
+		height: 250px;
+	}
+
+	.item1 {
+		background-color: cyan;
+	}
+
+	.item2 {
+		background-color: chocolate;
+	}
+
+	.item3 {
+		background-color: crimson;
+	}
+</style>
