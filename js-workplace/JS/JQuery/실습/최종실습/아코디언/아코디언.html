@@ -17,6 +17,7 @@
 			<div>Oracle</div>
 			<div
 				>FrontEnd
+				<span>+</span>
 				<div>HTML5</div>
 				<div>CSS3</div>
 				<div>JavaScript</div>
@@ -28,14 +29,13 @@
 					<div>효과</div>
 					<span>+</span>
 				</div>
-				<span>+</span>
 			</div>
 			<div>Server</div>
 			<div
 				>Framework
+				<span>+</span>
 				<div> Mybatis</div>
 				<div> Spring</div>
-				<span>+</span>
 			</div>
 		</div>
 	</body>
@@ -69,9 +69,9 @@
 		background-color: var(--black);
 	}
 
-    .wrap > div > div > div{
-        display: none;
-    }
+	.wrap > div > div > div {
+		display: none;
+	}
 	div > span {
 		position: absolute;
 		right: 0;
@@ -79,53 +79,48 @@
 		padding-right: 50px;
 	}
 
-    div > .active-div::before{
-        content: "";
-        margin-left: -50px;
-        height: 80px;
-        position: absolute;
-        width: 20px;
-        display: block;
-        z-index: 1;
-        background-color: var(--red);
-    }
+	div > .active-div::before {
+		content: '';
+		margin-left: -50px;
+		height: 80px;
+		position: absolute;
+		width: 20px;
+		display: block;
+		z-index: 1;
+		background-color: var(--red);
+	}
 
-    .wrap > .active{
-        background-color: var(--red);
-        
-    }
+	.wrap > .active {
+		background-color: var(--red);
+	}
 </style>
 <script>
-	$('div span').click(function () {
-		$(this).html(this.html=='x'?'+':'x');
-		$(this).parent().children().slideToggle();
+	$('.wrap > div, .wrap > div> div').click(function (event) {
+		$(this).find('span').html($(this).find("span").html() == 'x' ? '+' : 'x');
+		$(this).children('div').slideToggle();
+		event.stopPropagation();
 	});
-    
-    $(".wrap > div").hover(function () {
-        $(".wrap > div").removeClass("active")
-        $(this).addClass("active")
-    })
-    $(".wrap > div").mouseout(function () {
-        $(".wrap > div").removeClass("active")
-    })
 
-    $(".wrap > div div").hover(function () {
-        $(".wrap > div div").removeClass("active-div")
-        $(this).addClass("active-div")
-        $(this).children().removeClass("active-div")
-    })
-    $(".wrap > div > div").mouseout(function () {
-        $(".wrap > div > div").removeClass("active-div")
-    })
-    
-    $(".wrap > div > div > div").hover(function () {
-        $(".wrap > div > div > div").removeClass("active-div")
-        $(this).addClass("active-div")
-        $(this).parent().addClass("active-div")
+	$('.wrap > div').hover(function () {
+		$('*').removeClass('active');
+		$(this).addClass('active');
+	});
 
-    })
+	$('.wrap > div div').hover(function () {
+		$('.wrap > div div').removeClass('active-div');
+		$(this).addClass('active-div');
+		$(this).parent().addClass('active');
+		$(this).parent().parent().addClass('active');
+	});
+	$('div').mouseout(function (e) {
+		$(this).removeClass('active-div');
+	});
+	$('.wrap > div').mouseout(function (e) {
+		$(this).removeClass('active');
+	});
 
-    
-
-
+	$('.wrap > div > div > div').hover(function () {
+		$(this).addClass('active-div');
+		$(this).parent().addClass('active-div');
+	});
 </script>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+        .menu{
+            width: 260px;
+        }
+        .menu a{
+            font-size: 14px;
+            height: 40px;
+            line-height: 40px;
+            display: block;
+            text-decoration: none;
+            color : #ffffff;
+            padding-left: 20px;
+            position: relative;
+        }
+        .menu ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        .main-menu>li{
+            background-color: #ed5565;
+            border-bottom: 1px solid #da4453;
+        }
+        .main-menu>li:hover{
+            background-color:  #da4453;
+        }
+        .sub-menu>li>a{
+            background-color: #383838;
+            border-left: 10px solid #383838;
+        }
+        .sub-menu>li:hover>a{
+            border-left: 10px solid #da4453;
+        }
+        .sub-menu{
+            display: none;
+        }
+        .more{
+            position: absolute;
+            font-size: 20px;
+            right: 20px;
+            transition-duration: 0.5s;
+        }
+        .active{
+            transform: rotate(45deg);
+        }
+    </style>
+    <script>
+        $(function(){
+            $(".sub-menu").prev().append("<span class='more'>+</span>");
+            $(".more").parent().click(function(){
+                $(this).next().slideToggle();
+                $(this).children(".more").toggleClass("active");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="menu">
+        <ul class="main-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">JAVA</a></li>
+            <li>
+                <a href="#">Oracle</a>
+                <ul class="sub-menu">
+                    <li><a href="#">sub-1</a></li>
+                    <li><a href="#">sub-2</a></li>
+                    <li><a href="#">sub-3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">FrontEnd</a>
+                <ul class="sub-menu">
+                    <li><a href="#">HTML5</a></li>
+                    <li><a href="#">CSS3</a></li>
+                    <li><a href="#">Javascript</a></li>
+                    <li>
+                        <a href="#">jQuery</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">객체탐색</a></li>
+                            <li><a href="#">객체조작</a></li>
+                            <li><a href="#">이벤트</a></li>
+                            <li><a href="#">효과</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">Server</a></li>
+            <li>
+                <a href="#">Framework</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Mybatis</a></li>
+                    <li><a href="#">Spring</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
