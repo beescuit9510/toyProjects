@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <style>
+        .menu div{
+            padding: 0;
+        }
+        .menu {
+            background: linear-gradient(to bottom,#c9c9c9,#848484);
+        }
+        .menu div a:hover{
+            color : #ffffff;
+            text-shadow: 0px 1px 0px #ffffff;
+            background-color: #333333;
+        }
+        .menu div a {
+            display: block;
+            text-decoration: none;
+            color:#232323;
+        }
+        #goods{
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron text-center" style="margin: 0;">
+        <h1>반응형 웹</h1>
+    </div>
+
+    <div class="row menu">
+        <div class="col-md-4 col-lg-1 text-center"><a href="#">MENU-1</a></div>
+        <div class="col-md-4 col-lg-1 text-center"><a href="#">MENU-2</a></div>
+        <div class="col-md-4 col-lg-1 text-center"><a href="#">MENU-3</a></div>        
+    </div>
+    
+    <div class="container" style="padding:0">
+        <br><br>
+        <div class="row">
+            <div class="col-lg-8">
+                <img src="img/web.png" id="goods">
+            </div>
+            <div class="col-lg-4">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th style="font-size:1.5em;" colspan="2">홈페이지 제작</th>
+                        </tr>
+                        <tr>
+                            <th>개발사</th>
+                            <td>Lee`s Corporation</td>
+                        </tr>
+                        <tr>
+                            <th>개발기간</th>
+                            <td>기본개발 14일(옵션에따라 변동)</td>
+                        </tr>
+                        <tr>
+                            <th>금액</th>
+                            <td>9,000,000 ~</td>
+                        </tr>
+                        <tr>
+                            <th rowspan="4">옵션 선택</th>
+                            <td><input type="checkbox"> PC 페이지 (+1,000,000)</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"> 모바일 페이지 (+1,000,000)</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"> 반응형 웹 (+3,000,000)</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"> Secure Coding (+6,000,000)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                <button class="btn btn-warning">문의하기</button>
+                                <button class="btn btn-outline-primary">결제하기</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <button class="btn btn-info btn-lg" style="width: 100%;" data-toggle="collapse" data-target="#detail_page">상세정보</button>
+        </div>
+
+        <div id="detail_page" class="collapse">
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="img/PC_Page.png" style="width: 100%;">
+                </div>
+                <div class="col-md-6 text-muted" style="height: 100%; width: 95%;">
+                    <h2>PC 페이지</h2>
+                    <hr>
+                    <ul>
+                        <li>PC 화면 크기 최적화</li>
+                        <li>다양한 브라우져 지원</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="img/mobile.png" style="width: 100%;">
+                </div>
+                <div class="col-md-6 text-muted" style="height: 100%; width: 95%;">
+                    <h2>모바일 페이지</h2>
+                    <hr>
+                    <ul>
+                        <li>모바일 화면 크기 최적화</li>
+                        <li>다양한 기기 호환</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="img/responsiveweb.jpeg" style="width: 100%;">
+                </div>
+                <div class="col-md-6 text-muted" style="height: 100%; width: 95%;">
+                    <h2>반응형 웹</h2>
+                    <hr>
+                    <ul>
+                        <li>기기에 따라 최적화 된 화면 제공</li>
+                        <li>스마트폰 가로모드 지원</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="img/secure_coding.jpg" style="width: 100%;">
+                </div>
+                <div class="col-md-6 text-muted" style="height: 100%; width: 95%;">
+                    <h2>Secure Coding</h2>
+                    <hr>
+                    <ul>
+                        <li>시큐어 코딩을 통한 내부 정보 보호</li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <footer class="py-5 bg-dark">
+        <p class="m-0 text-center text-white">&copy;Lee`s Corporation</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="menu">
+				<p class="menu-name">썹도그</p>
+				<div>
+					<p class="menu-en-name">SUB DOG</p>
+					<p class="menu-kcal">544Kcal</p>
+				</div>
+				<img
+					src="이미지들/앱용_썹도그 단품_570x400px_20210823014252973.png"
+					alt=""
+				/>
+			</div>
+		</div>
+		<div class="menuIntro">
+			<div class="intro"
+				>처음부터 끝까지 통으로 즐길 수 있는 고민은 덜고 취향은 더한 최상의
+				꿀조합! 써브웨이와 쟌슨빌의 썹띵!</div
+			>
+			<div class="ingredient">
+				<div>
+					<img src="이미지들/썹도그/recipe_sausage.png" alt="" />
+					<p>소시지 1개</p>
+				</div>
+				<div>
+					<img src="이미지들/썹도그/recipe_shredded_cheese.png" alt="" />
+					<p>슈레드치즈 1스쿱</p>
+				</div>
+				<div>
+					<img src="이미지들/썹도그/sauce_ketchup.png" alt="" />
+					<p>케챱 1줄</p>
+				</div>
+				<div>
+					<img src="이미지들/썹도그/sauce_yellow_mustard.png" alt="" />
+					<p>머스타드 1줄</p>
+				</div>
+			</div>
+			<div class="additional-info">
+				<br />
+				* 매장에 따라 추천소스는 상이할 수 있습니다. <br />
+				* 썹도그는 최상의 맛을 위해 개발된 고정 레시피로 제공됩니다. <br />
+				* 빵과 치즈는 선택할 수 있습니다. <br />
+				* 야채는 피망, 양파, 피클, 할라피뇨가 제공되며 야채 추가 및 모든 추가
+				선택이 불가합니다. <br />
+				* 소스는 케첩과 머스타드가 제공되며 소스 변경 및 추가가 불가합니다.
+				<br />
+				* 제품 사진은 이미지컷입니다.
+			</div>
+
+			<div class="table-wrap">
+				<div>영양성분표</div>
+				<div class="table">
+					<div class="gram">
+						<p>중량(g)</p>
+						<p>244</p>
+					</div>
+					<div class="kcal">
+						<p>열량(kcal)</p>
+						<p>544</p>
+					</div>
+					<div class="sugar">
+						<p>당류(g)</p>
+						<p>9</p>
+					</div>
+					<div class="protein">
+						<p>단백질(g)</p>
+						<p>22(40%)</p>
+					</div>
+					<div class="fat">
+						<p>포화지방(g)</p>
+						<p>11(73%)</p>
+					</div>
+					<div class="sodium">
+						<p>나트륨(mg)</p>
+						<p>1408(70%)</p>
+					</div>
+				</div>
+				<div>
+					<p>
+						※ 기본야채 5종(양상추, 토마토, 오이, 피망, 양파) 및 제품에 따른
+						미트류 포함, 치즈 및 소스 제외, 15cm 위트 브레드 기준
+						<br />
+						※ 괄호 안 %는 1일 영양소 기준치에 대한 비율
+					</p>
+					<button class="button">
+					<a href="서브웨이_메뉴소개3.html">원산지 정보</a></button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<style>
+	.wrap {
+		/* min-width: 1000px; */
+	}
+	.menu {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		color: #292929;
+	}
+
+	.menu div {
+		display: flex;
+		flex-direction: row;
+		font-family: font_sw;
+		font-size: 16px;
+	}
+
+	.menu img {
+		max-width: 400px;
+	}
+	.menu > div > p:first-of-type {
+		color: #999999;
+		border-right: 0.5px solid #999999;
+		padding-right: 25px;
+		margin-top: 0;
+	}
+	.menu > div > p:last-of-type {
+		padding-left: 25px;
+		margin-top: 0;
+	}
+
+	.menu-name {
+		font-size: 50px;
+		padding-bottom: 11px;
+		letter-spacing: -0.055em;
+		margin-bottom: 0;
+	}
+
+	.intro {
+		text-align: center;
+		display: block;
+		font-size: 16px;
+		color: #999999;
+		line-height: 26px;
+		margin-top: 24px;
+		letter-spacing: -0.045em;
+		margin-bottom: 40px;
+	}
+	.ingredient {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.ingredient div img {
+		width: 100px;
+	}
+
+	.ingredient div p {
+		font-size: 13px;
+		color: #292929;
+		letter-spacing: -0.025em;
+		margin-top: 8px;
+		text-align: center;
+	}
+
+	.table {
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		font-family: font_ns, sans-serif;
+	}
+
+	.table-wrap div:first-of-type {
+		font-weight: bold;
+		color: #292929;
+		font-size: 28px;
+		text-align: center;
+		letter-spacing: -0.05em;
+		/* margin-bottom: 37px; */
+	}
+
+	.table div p:first-of-type {
+		border-top: 4px solid #009223;
+		width: 150px;
+		color: #009223;
+		font-size: 16px;
+		font-weight: 300;
+		border-bottom: 1px solid #009223;
+		height: 69px;
+		line-height: 69px;
+		font-weight: 600;
+	}
+	.table div p:last-of-type {
+		height: 69px;
+		line-height: 69px;
+		border-bottom: 1px solid #dddddd;
+		text-align: center;
+		color: #292929;
+		font-size: 16px;
+	}
+
+	.additional-info {
+		text-align: center;
+		color: #999;
+		font-size: 13px;
+		letter-spacing: -0.05em;
+		position: relative;
+		margin-top: 30px;
+		line-height: 1.6;
+		margin-bottom: 80px;
+	}
+
+	.body {
+		margin: 0px;
+	}
+
+	.table-wrap > div:last-of-type {
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+	}
+	.table-wrap > div:last-of-type > p {
+		margin: 0;
+		margin-bottom: 37px;
+		color: #999;
+		font-size: 13px;
+		justify-content: start;
+	}
+	.button {
+		margin-top: 30px;
+		font-weight: 600;
+		font-size: 16px;
+		height: 40px;
+		line-height: 40px;
+		font-family: font_ns, sans-serif;
+		background-color: #444;
+		min-width: 140px;
+		color: white;
+		border-radius: 30px;
+		border: none;
+	}
+
+	a{
+		text-decoration: none;
+		color: white;
+	}
+</style>
