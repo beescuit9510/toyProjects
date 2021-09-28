@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway</title>
+    <link rel="stylesheet" href="CSS/default.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(function(){
+            $(".index").eq(0).addClass("active-select");
+            $(".set").eq(0).addClass("active");
+
+            $(".index").click(function(){
+                var index = $(".index").index(this);
+                $(".set").removeClass("active");
+                $(".index").removeClass("active active-select");
+                $(this).addClass("active active-select");
+                $(".set").eq(index).addClass("active");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <!-- 헤더 -->
+        <div class="header">
+            <div class="head-content">
+                <div class="main-logo">
+                    <a href="main.html"><img src="img/logo_w.png"></a>
+                </div>
+                <div class="membership">
+                    <div>
+                        <a href="#">
+                            <img src="img/icon_utill_global.png">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="서브웨이_회원가입.html">
+                            회원가입
+                        </a>
+                    </div>
+                    <div>
+                        <a href="login.html">
+                            로그인
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- 네비 -->
+            <div class="navi">
+                <ul>
+                    <li>
+                        <a class="main-navi" href="#">메뉴소개</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="서브웨이_메뉴소개.html">샌드위치</a>
+                                </li>
+                                <li>
+                                    <a href="#">랩, 기타</a>
+                                </li>
+                                <li>
+                                    <a href="#">찹샐러드</a>
+                                </li>
+                                <li>
+                                    <a href="#">아침메뉴</a>
+                                </li>
+                                <li>
+                                    <a href="#">스마일 썹</a>
+                                </li>
+                                <li>
+                                    <a href="#">단체메뉴</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">이용방법</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="store.html">써브웨이 이용방법</a>
+                                </li>
+                                <li>
+                                    <a href="#">단체메뉴 이용방법</a>
+                                </li>
+                                <li>
+                                    <a href="#">신선한 재료 소개</a>
+                                </li>
+                                <li>
+                                    <a href="#">APP이용 방법</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">새소식</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="#">이벤트 프로모션</a>
+                                </li>
+                                <li>
+                                    <a href="#">뉴스 공지사항</a>
+                                </li>
+                                <li>
+                                    <a href="#">광고영상</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">써브웨이</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="#">써브웨이 역사</a>
+                                </li>
+                                <li>
+                                    <a href="#">써브웨이 약속</a>
+                                </li>
+                                <li>
+                                    <a href="#">샌드위치 아티스트지원</a>
+                                </li>
+                                <li>
+                                    <a href="#">매장찾기</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">가맹점</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="#">써브웨이 프렌차이즈</a>
+                                </li>
+                                <li>
+                                    <a href="#">가맹관련 FAQ</a>
+                                </li>
+                                <li>
+                                    <!-- 가맹점 -->
+                                    <a href="#">가맹신청 문의</a>
+                                </li>
+                                <li>
+                                    <a href="#">지사안내</a>
+                                </li>
+                                <li>
+                                    <a href="#">사업설명회</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 온라인 주문 -->
+                        <a class="main-navi" href="#">온라인주문</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="#">FAST-SUB</a>
+                                </li>
+                                <li>
+                                    <a href="#">HOME-SUB</a>
+                                </li>
+                                <li>
+                                    <a href="#">단체주문</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 메인 -->
+	<div class="content">
+			<div class="row">
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img src="이미지들/미트볼샌드위치_20210503114049252.png" alt="" />
+					</a>
+					<p>미트볼</p>
+					<p>Meatball</p>
+					<p>480kcal</p>
+				</div>
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/앱용_썹도그 단품_570x400px_20210823014252973.png"
+							alt=""
+						/>
+					</a>
+
+					<p>썹도그</p>
+					<p>SUB DOG</p>
+					<p>544kcal</p>
+				</div>
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+					<p>에그마요</p>
+					<p>Egg Mayo</p>
+					<p>480kcal</p>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+
+					<p>미트볼</p>
+					<p>Meatball</p>
+					<p>480kcal</p>
+				</div>
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+					<p>썹도그</p>
+					<p>SUB DOG</p>
+					<p>544kcal</p>
+				</div>
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+
+					<p>에그마요</p>
+					<p>Egg Mayo</p>
+					<p>480kcal</p>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+					<p>미트볼</p>
+					<p>Meatball</p>
+					<p>480kcal</p>
+				</div>
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+					<p>썹도그</p>
+					<p>SUB DOG</p>
+					<p>544kcal</p>
+				</div>
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+					<p>에그마요</p>
+					<p>Egg Mayo</p>
+					<p>480kcal</p>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+					<p>미트볼</p>
+					<p>Meatball</p>
+					<p>480kcal</p>
+				</div>
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+					<p>썹도그</p>
+					<p>SUB DOG</p>
+					<p>544kcal</p>
+				</div>
+				<div>
+					<a href="서브웨이_메뉴소개2.html">
+						<img
+							src="이미지들/에그마요_20200707034204773_20210204032015776.jpg"
+							alt=""
+						/>
+					</a>
+					<p>에그마요</p>
+					<p>Egg Mayo</p>
+					<p>480kcal</p>
+				</div>
+			</div>
+		</div>
+
+		</div>
+        <!-- 풋터 -->
+        <div class="footer">
+            <div class="foot1">
+                <span>이용약관</span>
+                <span><strong>개인정보처리방침</strong></span>
+                <span>써브카드</span>
+                <span>점주관리자</span>
+                <span>Subway Listnes</span>
+            </div>
+            <div class="foot2">
+                <p>서울시 영등포구 선유로 57 이레빌딩 19F | 대표 : 서브웨이 | 전화 : 1577-0001</p>
+                <p>SUBWAY® is a Registered Trademark of Subway IP LLC. © 2021 Subway IP LLC. All Rights Reserved.</p>
+                <!-- <img class="notouch" src="img/icon_sns_facebook1.png"> -->
+                <img class="touch" src="img/icon_sns_facebook2.png">
+                <!-- <img class="notouch" src="img/icon_sns_instar1.png"> -->
+                <img class="touch" src="img/icon_sns_instar2.png">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+	/* . { */
+	body {
+		background-color: rgb(214, 209, 209, 0.3);
+	}
+	/* } */
+	.row {
+		/* background-color: #f2f2f2; */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 35px;
+        margin-top: 30px;
+	}
+	.row div {
+		width: 370px;
+		height: 330px;
+		font-family: font_ns, sans-serif;
+		text-align: center;
+		background-color: white;
+	}
+	.row p:nth-of-type(1) {
+		color: #292929;
+		font-size: 22px;
+		/* font-size: 30px; */
+		font-weight: bold;
+		margin: 10px 0 7px;
+		margin-bottom: 2px;
+	}
+	.row p:nth-of-type(2) {
+		color: #666666;
+		font-size: 16px;
+		font-family: font_sw;
+		margin: 0 0 13px;
+		margin-top: 0;
+	}
+	.row p:last-child {
+		color: #ffc300;
+		font-size: 18px;
+		font-family: font_sw;
+		font-weight: bold;
+	}
+
+	.row img {
+		width: 270px;
+	}
+
+	.row {
+		margin-bottom: 35px;
+	}
+</style>
+<script></script>

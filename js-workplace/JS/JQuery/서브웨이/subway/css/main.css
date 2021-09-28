@@ -1,0 +1,231 @@
+.main{
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    
+}
+/* 이벤트 탭 */
+.event-tab img{
+    width: 100%;
+    display: none;
+}
+
+.event-tab img:first-child{
+    display: block;
+}
+/* 매장찾기/가맹신청문의 */
+.click{
+    float: right;
+}
+.click div{
+    display: inline-block;
+    width: 280px;
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+    top: -30px;
+    right: 30%;
+}
+.click div a{
+    text-decoration: none;
+}
+
+.find{
+    float: right;
+    background-color: #ffce32;
+    border-top-left-radius: 30px;
+}
+.find a{
+    color: black;
+}
+.franchise{
+    float: right;
+    background-color: #009223;
+    margin-left: 0; 
+    border-bottom-right-radius:30px ;
+    
+}
+.franchise>a{
+    color: #fff;
+}
+
+/* 메뉴 */
+
+.menu{
+    background-color: #fff;
+    height: 700px;
+    margin: 0 auto;
+    padding: 0;
+}
+.subway-menu{
+    margin: 0 auto;
+    padding-top: 130px;
+}
+.subway-menu img{
+    padding-top: 10px;
+    padding-left: 319px;
+    position: absolute;
+    
+}
+.subway-menu h1{
+    padding-left: 350px;
+    position: relative;
+}
+.set img{
+    width: 260px;
+    height: 182px;
+}
+.select ul{
+    list-style-type: none;
+    float: right;
+    position: relative;
+    right: 200px;
+}
+.select>ul>li{
+    display: inline-block;
+}
+.select a{
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.select{
+    color: #666;
+}
+.set{
+    padding-top: 100px;
+    text-align: center;
+    margin: 0 auto;
+    list-style-type: none;
+}
+.set li{
+    display: inline-block;
+    cursor: pointer;
+}
+.set>li>img:hover{
+    transform: scale(1.5,1.5);
+}
+.set>li> p:first-child{
+    color: black;
+}
+.set p{
+    font-size: 10px;
+    color: #666;
+}
+.set{
+    display: none;
+}
+.active{
+    display: block;
+}
+.active-select{
+    color: #009223;
+    font-size: 17px;
+}   
+/* 뉴스 */
+    .news{
+        height: 850px;
+        background-color: rgb(224, 223, 223);
+        overflow: hidden;
+    }
+    .news-img{
+        float: left;
+        text-align: center;
+        padding-left: 100px;
+        margin-left: 30px;
+        margin-top: 100px;
+    }
+    .news-img img{
+        position: absolute;
+        margin: 0 auto;
+}
+.p1{
+    text-align: left;
+    left: 170px;
+    position: relative;
+    color: white;
+    font-size: 28px;
+}
+.p2{
+    text-align: left;
+    left: 550px;
+    position: relative;
+    color: white;
+    font-size: 28px;
+}
+.new{
+    background-color: #fff;
+    border-bottom-right-radius:30px ;
+    border-top-left-radius:30px ;
+    width: 870px;
+    height: 300px;
+    position: relative;
+    top: 450px;
+    left: 250px;
+    padding: 10px;
+}
+.new img{
+    position: absolute;
+    left: 50px;
+    top: 100px;
+}
+.new h1{
+    position: relative;
+    top: -110px;
+    left: 50px;
+}
+.new p{
+    position: relative;
+    top: -110px;
+    left: 50px;
+}
+.new ul{
+    position: relative;
+    top: -280px;
+    left: 400px;
+    list-style-type: none;
+    cursor: pointer;
+}
+.new ul li{
+    padding-top: 30px;
+    font-weight: bold;
+}
+.new ul li:hover{
+    color: #009223;
+    text-decoration: underline;
+}
+/* 아이콘 */
+.icon{
+    height: 150px;
+    background-color: #fff;
+    
+}
+.icon ul{
+    padding-top: 20px;
+    margin: 0;
+    text-align: center;
+    list-style-type: none;
+}
+.icon ul li{
+    padding-right: 30px;
+    padding-left: 30px;
+    display: inline-block;
+    text-align: center;
+}
+.icon span{
+    position: relative;
+    font-weight: bold;
+    top: -30px;
+}
+.icon p{
+    color: #666;
+    font-size: 10px;
+    position: relative;
+    top: -35px;
+    left: 75px;
+    text-align: left;
+}

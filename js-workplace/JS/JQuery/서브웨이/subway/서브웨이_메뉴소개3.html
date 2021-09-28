@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="wrap-wrap-wap-wrap">
+			<div class="meat-origin-wrap">
+				<div class="meat-origin">
+					<div
+						>원산지 정보
+						<div class="origin-btns">
+							<img src="이미지들/원산지/icon_popup_close.png" alt="" />
+							<button class="origin-close-btn"></button>
+						</div>
+					</div>
+					<div class="meant-origin-content">
+						<div>
+							<div>
+								<img src="이미지들/원산지/icon_country_origin01.png" alt="" />
+								<p>쇠고기</p>
+							</div>
+							<div
+								><p>미트볼 <span>: 호주산</span></p>
+								<p>스테이크 <span>: 미국산</span></p></div
+							>
+						</div>
+						<div>
+							<div>
+								<img src="이미지들/원산지/icon_country_origin02.png" alt="" />
+								<p>돼지고기</p>
+							</div>
+							<div>
+								<p
+									>베이컨, 살라미, 페퍼로니, 풀드 포크 바비큐
+									<span>: 미국산</span></p
+								>
+								<p>베이컨 비츠, 소시지 <span>: 미국산</span></p>
+								<p
+									>햄
+									<span
+										>: 외국산(독일, 미국, 네덜란드 등)과 국내산 섞음</span
+									></p
+								>
+							</div>
+						</div>
+						<div>
+							<div>
+								<img src="이미지들/원산지/icon_country_origin03.png" alt="" />
+								<p>닭고기</p>
+							</div>
+							<div>
+								<p
+									>치킨 브레스트, 치킨 스트립, 로티세리 바비큐 치킨
+									<span>: 미국산</span></p
+								>
+								<p>페퍼치킨 슈니첼 <span>: 태국산</span></p>
+							</div>
+						</div>
+						<div>
+							<div>
+								<img src="이미지들/원산지/icon_country_origin04.png" alt="" />
+								<p>칠면조고기</p>
+							</div>
+							<div>
+								<p
+									>터키 브레스트 <span>: 외국산(칠레, 미국, 헝가리 등)</span></p
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<style>
+	.meat-origin {
+		min-width: 530px;
+		max-width: 530px;
+		height: 750px;
+		background-color: #ffc300;
+		border-radius: 30px;
+		font-family: font_ns, sans-serif;
+	}
+
+	.meat-origin > div:first-of-type {
+		font-size: 30px;
+		text-align: center;
+		color: rgb(41, 41, 41);
+		font-weight: 300;
+		letter-spacing: -0.045em;
+		padding: 35px 0px 29px;
+		font-weight: 600;
+	}
+
+	.meat-origin img {
+		width: 80px;
+		margin-top: 20px;
+	}
+
+	.meant-origin-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.meant-origin-content > div {
+		display: flex;
+	}
+	.meant-origin-content > div > div:first-of-type {
+		float: left;
+		margin-left: 50px;
+	}
+	.meant-origin-content > div > div:last-of-type {
+		clear: both;
+	}
+
+	.meant-origin-content span {
+		font-size: 16px;
+		color: rgb(102, 102, 102);
+		font-family: font_ns, sans-serif;
+		font-weight: bold;
+		font-size: 13px;
+	}
+	.meant-origin-content p {
+		color: rgb(41, 41, 41);
+		/* font-size: 16px; */
+		font-size: 13px;
+		font-weight: bold;
+		padding-bottom: 7px;
+		letter-spacing: -0.03em;
+		padding-right: 2px;
+		padding-left: 30px;
+	}
+
+	.meant-origin-content div > div:first-of-type > p {
+		font-size: 16px;
+		padding-left: 0;
+		color: rgb(0, 146, 35);
+		font-weight: 300;
+		margin-top: 8px;
+		font-weight: 600;
+		text-align: center;
+	}
+
+	.meant-origin-content > div > div:first-of-type {
+		display: block;
+		margin-left: 20px;
+	}
+
+	.meant-origin-content > div > div:last-of-type {
+		display: block;
+	}
+
+	.meant-origin-content > div {
+		width: 480px;
+		align-self: center;
+		background-color: white;
+		border-top: 1px solid rgb(232, 232, 232);
+	}
+
+	.meant-origin {
+		position: relative;
+	}
+
+	.meat-origin-wrap {
+		display: flex;
+		justify-content: center;
+		flex-flow: column;
+		align-items: center;
+	}
+
+	.origin-btns > button {
+		width: 73px;
+		height: 73px;
+		position: absolute;
+		top: 20px;
+		left: 0;
+		visibility: hidden;
+	}
+
+	.origin-btns {
+		width: 73px;
+		height: 73px;
+		position: absolute;
+		right: -73px;
+		top: -11px;
+	}
+
+	.meat-origin > div:first-of-type {
+		position: relative;
+	}
+
+	.body {
+		background-color: gray;
+	}
+
+	.meat-origin-wrap {
+		padding-top: 100px;
+	}
+
+	.wrap-wrap-wap-wrap {
+        width: auto;
+		height: 1000px;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-image: url('이미지들/5402952379_83cb696757_z.jpg');
+	}
+    .origin-btns{
+        display: none;
+    }
+</style>
