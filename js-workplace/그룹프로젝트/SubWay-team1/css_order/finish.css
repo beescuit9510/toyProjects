@@ -1,0 +1,30 @@
+.finish-wrap>div {
+    width: 900px;
+    height: 400px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+.finish-wrap>div>p {
+    font-size: 30px;
+    text-align: center;
+    color: gray;
+    box-sizing: border-box;
+}
+.homeBtn {
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid #ebebeb;
+}
+.homeBtn a {
+    text-decoration: none;
+    color: #fff;
+}
+#home-btn {
+    width: 150px;
+    height: 45px;
+    font-size: 18px;
+    border-radius: 20px;
+    border: none;
+    background-color: #009223;
+    margin-top: 50px;
+}

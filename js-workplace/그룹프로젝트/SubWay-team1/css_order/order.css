@@ -1,0 +1,126 @@
+.order-content {
+    width: 900px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.order-content h2 {
+    margin-top: 70px;
+    color: dimgray;
+}
+.input-set {
+    width: 900px;
+    height: 70px;
+    line-height: 70px;
+    margin-bottom: 5px;
+    border: 1px solid #ebebeb;
+}
+.input-set>dl {
+    overflow: hidden;
+    margin: 0;
+}
+.input-set>dl>dt {
+    float: left;
+    width: 200px;
+    margin-left: 20px;
+}
+.input-set>dl>dd {
+    float: left;
+    margin: 0;
+}
+#request {
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+.input-set:hover {
+    border-color: #009223;
+}
+
+input[name=payment] {
+    display: none;
+}
+input[name=payment]+label {
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    width: 100px;
+    text-align: center;
+    border: none;
+    background-color: #ebebeb;
+    color: gray;
+}
+input[name=payment]:checked+label {
+    background-color: #009223;
+    color: #fff;
+}
+.order-table, .payment-table {
+    width: 900px;
+    height: 70px;
+    line-height: 70px;
+    border-top: 2px solid #009223;
+    border-bottom: 1px solid #009223;
+    margin-top: 30px;
+}
+.payment-table {
+    border-bottom: 1px solid #ebebeb;
+}
+.order-table td {
+    text-align: center;
+}
+.order-table td:first-child {
+    text-align: left;
+    padding-left: 20px;
+}
+#selectSandwich>span {
+    font-size: 14px;
+    color: gray;
+}
+.payment-table td {
+    text-align: right;
+    padding-right: 55px;
+}
+.payment-table td:first-child {
+    text-align: left;
+    padding-left: 20px;
+}
+.payment-table {
+    border-spacing: 0;
+}
+#tr1>td {
+    border-bottom: 1px solid #ebebeb;
+}
+.payment-table ul {
+    padding: 0;
+}
+.payment-table li {
+    line-height: 30px;
+    font-size: 14px;
+    color: gray;
+}
+.payment-table li:last-child {
+    color: red;
+}
+.payment-table dl {
+    margin: 30px 0;
+}
+.payment-table dt {
+    line-height: 20px;
+}
+.order-bottom {
+    height: 100px;
+    line-height: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+#paymentBtn {
+    width: 150px;
+    height: 45px;
+    font-size: 18px;
+    border-radius: 20px;
+    border: none;
+    background-color: #009223;
+    color: #fff;
+}
+#paymentBtn:hover {
+    cursor: pointer;
+}

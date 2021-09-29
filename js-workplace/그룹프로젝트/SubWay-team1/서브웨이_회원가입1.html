@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보입력</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="css/join.css" type="text/css">
+<link rel="stylesheet" href="CSS/default.css">
+<style>
+        .join-step1{
+            background-image: url(img-sura/step_1.png);
+            background-repeat: no-repeat;
+        }
+        .join-step2{
+            background-image: url(img-sura/step2.png);
+            background-repeat: no-repeat;
+        }
+        .join-step3{
+            background-image: url(img-sura/step_3.png);
+            background-repeat: no-repeat;
+        }
+</style>
+<script>
+    var userArr=new Array();
+    userArr.push("user01@naver.com");
+    userArr.push("user02@gmail.com");
+    userArr.push("user03@daum.net");
+    var resultArr=[false, false, false];
+
+    // window.onload=function(){
+    //     var selectMail=document.getElementById("selectMail1");
+    //         selectMail.addEventListener("change", function(){
+    //             var data=this.value;
+    //             document.getElementsByName("email2")[0].value=data;
+    //         });
+    // }
+    
+    $(function(){
+        $("#selectMail1").change(function(){
+            $("#email2").val($("#selectMail1").val());
+        });
+
+        $("#chkbtn").on("click",function(){
+            var idReq=/^[a-zA-Z0-9]{5,12}$/;
+            var id1=$("#email1").val();;
+            if($("#email1").val()!="" && $("#email2").val()!="" && idReq.test(id1)){
+                var id=$("#email1").val()+"@"+$("#email2").val();
+                var find=".";
+                if(id.indexOf(find)!=-1){
+                    if(userArr.indexOf(id)==-1){
+                        $("#wrong1").css("display","none");
+                        alert("사용 가능한 아이디입니다!");
+                        resultArr[0]=true;
+                    }else{
+                        alert("이미 사용 중인 아이디입니다.");
+                        resultArr[0]=false;
+                    }
+                }else{
+                    $("#wrong1").css("display","block");
+                    resultArr[0]=false;
+                }
+            }else{
+                $("#wrong1").css("display","block");
+                resultArr[0]=false;
+            }
+        });
+        
+        $("#pw").keyup(function(){
+            if(!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]){8,}/.test($("#pw").val())){
+                $("#wrong2").css("display","block");
+                resultArr[1]=false;
+            }else{
+                $("#wrong2").html("사용 가능한 비밀번호입니다.");
+                $("#wrong2").css("color","blue");
+                $("#wrong2").css("display","block");
+                resultArr[1]=true;
+            }
+        });
+
+        $("#pwRe").keyup(function(){
+            if($("#pw").val()==$("#pwRe").val()){
+                $("#wrong3").html("비밀번호가 일치합니다.");
+                $("#wrong3").css("color", "blue");
+                $("#wrong3").css("display","block");
+                resultArr[2]=true;
+            }else{
+                $("#wrong3").css("display","block");
+                resultArr[2]=false;
+            }
+        })
+    });
+
+    function checkValue(){
+        if(!(resultArr[0]&&resultArr[1]&&resultArr[2])){
+            alert("입력값을 확인하세요.");
+                    return false;
+                }
+        }
+</script>
+<body>
+        <div class="wrap">
+            <div class="header">
+                <div class="head-content">
+                    <div class="main-logo">
+                        <a href="main.html"><img src="img/logo_w.png"></a>
+                    </div>
+                    <div class="membership">
+                        <div>
+                            <a href="#">
+                                <img src="img/icon_utill_global.png">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="서브웨이_회원가입.html">
+                                회원가입
+                            </a>
+                        </div>
+                        <div>
+                            <a href="login.html">
+                                로그인
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        <div class="content-wrap">
+            <div class="content">
+                <div class="join-wrap">
+                    <h2 class="subtitle">회원가입</h2>
+                    <div class="join-step">
+                        <ul>
+                            <!--진행사항 표시-->
+                            <li class="join-step1"></li>
+                            <li class="join-step2"></li>
+                            <li class="join-step3"></li>
+                        </ul>
+                    </div>
+                    <div class="step-title">
+                        <h3><span>Step 2.</span> 정보입력</h3>
+                    </div>
+                    <div class="step-content">
+                        <form action="서브웨이_회원가입2.html" method="get">
+                            <div class="required-wrap">
+                                <h2>기본 정보(필수 입력)</h2>
+                                <div class="required-info">
+                                    <div>아이디(이메일)<span>*</span></div>
+                                    <div>
+                                        <input type="text" id="email1" name="email1" placeholder="이메일 아이디 입력">
+                                        @
+                                        <input type="text" id="email2" name="email2" placeholder="이메일 도메인 입력">
+                                    </div>
+                                    <div>
+                                        <select id="selectMail1">
+                                            <option value="">직접 입력</option>
+                                            <option value="naver.com">naver.com</option>
+                                            <option value="daum.net">daum.net</option>
+                                            <option value="gmail.com">naver.com</option>
+                                        </select>
+                                    </div>
+                                    <div id="chkbtn">
+                                        중복확인
+                                    </div>
+                                    <div id="wrong1">이메일 아이디 혹은 도메인을 다시 확인해주세요. 이메일 아이디는 영어 대,소문자와 숫자 포함 5~12글자입니다.</div>
+                                </div>
+                                <div class="required-info">
+                                    <div>비밀번호<span>*</span></div>
+                                    <div>
+                                        <input type="password" id="pw" placeholder="비밀번호 입력">
+                                    </div>
+                                    <div id="wrong2">8자 이상 입력하세요. (대문자 1개, 소문자 1개, 숫자1개, 특수문자 1개 필수)</div>
+                                </div>
+                                <div class="required-info">
+                                    <div>비밀번호 확인<span>*</span></div>
+                                    <div>
+                                        <input type="password" id="pwRe" placeholder="비밀번호 입력">
+                                    </div>
+                                    <div id="wrong3">비밀번호가 일치하지 않습니다.</div>
+                                </div>
+                            </div>
+                            <div class="choice-wrap">
+                                <h2>추가 정보(선택 입력)</h2>
+                                <div class="choice-info">
+                                        <div>우편번호</div>
+                                        <div>
+                                            <input type="text" placeholder="00000">
+                                        </div>
+                                        <div id="addrbtn">우편번호 검색</div>
+                                </div>
+                                <div class="choice-info">
+                                        <div>주소</div>
+                                        <div>
+                                            <input type="text" id="inputAddr" placeholder="주소 입력">
+                                        </div>
+                                </div>
+                                <div class="choice-info">
+                                        <div>상세주소</div>
+                                        <div>
+                                            <input type="text" id="inputAddr1" placeholder="상세주소 입력">
+                                        </div>
+                                </div>
+                                <div class="next-btn">
+                                    <input type="submit" onclick="return checkValue();" value="회원가입 완료"> 
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="foot1">
+                <span>이용약관</span>
+                <span><strong>개인정보처리방침</strong></span>
+                <span>써브카드</span>
+                <span>점주관리자</span>
+                <span>Subway Listnes</span>
+            </div>
+            <div class="foot2">
+                <p>서울시 영등포구 선유로 57 이레빌딩 19F | 대표 : 서브웨이 | 전화 : 1577-0001</p>
+                <p>SUBWAY® is a Registered Trademark of Subway IP LLC. © 2021 Subway IP LLC. All Rights Reserved.</p>
+                <!-- <img class="notouch" src="img/icon_sns_facebook1.png"> -->
+                <img class="touch" src="img/icon_sns_facebook2.png">
+                <!-- <img class="notouch" src="img/icon_sns_instar1.png"> -->
+                <img class="touch" src="img/icon_sns_instar2.png">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

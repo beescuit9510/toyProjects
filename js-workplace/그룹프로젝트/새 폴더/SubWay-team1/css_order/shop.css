@@ -1,0 +1,129 @@
+.wrap {
+    background-color: #8CCD31;
+}
+.main-wrap {
+    width: 1180px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.main-top {
+    width: 800px;
+    margin: 0 auto;
+}
+.order-title * {
+    text-align: center;
+    margin: 0;
+}
+.order-title>h3 {
+    padding: 10px 0;
+    margin-top: 60px;
+    color: #fff;
+    font-size: 70px;
+    font-family: 'ns_black';
+}
+.order-title>p {
+    color: #fff;
+    font-size: 16px;
+    font-family: 'ns_r';
+}
+.order-step {
+    margin: 0 auto;
+    padding: 0;
+    margin-top: 70px;
+    overflow: hidden;
+}
+.order-step>li {
+    padding-left: 40px;
+    border-radius: 10px;
+    border-top-right-radius: 35px;
+    box-sizing: border-box;
+    margin-left: 25px;
+    list-style: none;
+    float: left;
+    width: 170px;
+    height: 80px;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+.order-step>li>h2 {
+    margin: 0;
+    margin-top: 15px;
+    font-size: 15px;
+    font-family: 'ns_b';
+    color: #fff;
+}
+.order-step>li>p {
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    color: #fff;
+}
+.main-mid {
+    margin-top: 70px;
+}
+.main-mid>div {
+    margin-bottom: 100px;
+}
+.step-nav>p {
+    width: 1180px;
+    height: 70px;
+    margin: 0;
+    line-height: 70px;
+    font-size: 20px;
+    background-color: #009223;
+    color: #fff;
+    text-align: center;
+}
+.shop-content {
+    width: 1000px;
+    height: 450px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+.shop-content>p {
+    margin: 0;
+    padding-top: 50px;
+    font-size: 15px;
+    color: gray;
+}
+.shop-content>p>span {
+    color: #009223;
+    font-weight: bold;
+}
+.shop-table {
+    margin-top: 30px;
+    width: 1000px;
+    height: 250px;
+    text-align: center;
+    border-top: 3px solid #009223;
+    border-spacing: 0;
+}
+.shop-table>thead {
+    height: 70px;
+    line-height: 70px;
+    font-size: 17px;
+    color: #009223;
+}
+.shop-table>thead th {
+    border-bottom: 1px solid #009223;
+}
+.shop-table>tbody {
+    font-size: 16px;
+    height: 70px;
+    line-height: 70px;
+    color: darkslategray;
+}
+.shop-table>tbody td {
+    border-bottom: 1px solid #ebebeb;
+}
+.shop-btn {
+    background-color: #009223;
+    color: #fff;
+    border: none;
+    border-radius: 35px;
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+}
+.shop-btn:hover {
+    cursor: pointer;
+}

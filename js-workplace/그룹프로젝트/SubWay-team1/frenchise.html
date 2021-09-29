@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type = "text/javascript" src = "http://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script   script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="CSS/default.css">
+    <link rel="stylesheet" href="CSS/main.css">
+
+    <title>frenchise</title>
+    <style>     
+    
+        .page_title
+        {
+            margin-top: 95px;            
+        }
+        .subTitle_00
+        {
+            font-size: 40px;    
+            font-weight: bold;        
+        }
+        .subTitle_01
+        {
+            font-size: 28px;
+            color: black;
+            font-weight: bold;
+
+            margin-top: 96px;
+            padding-bottom: 38px;
+        }     
+        .store_wrapper
+        {
+            min-width: 800px;
+            height: 220px;
+        }
+        .store_wrapper>div
+        {
+            height: 100%;
+            float: left; 
+        }
+        .store_wrapper>.nation
+        {
+            background-image: url("images/franchise/bg_nation.jpg");
+            transition-duration: 0.5s;
+        } 
+        .store_wrapper>.store
+        {
+            background-image: url("images/franchise/bg_store.jpg"); 
+            transition-duration: 0.5s;           
+        } 
+        .inner
+        {
+            margin-top: 25px;            
+        }
+        .inner_top_text
+        {
+            color: white;
+            font-size: 30px;
+            text-decoration: underline ;
+        }
+        .inner_low_text
+        {
+            color: white;
+            font-size: 80px;
+            font-weight: bold;
+        }
+        .inner_low_text>strong
+        {
+            font-size: 30px;
+        }
+
+        .frenchise_wrap
+        {
+            width: 100%;
+        }
+        .frenchise_content
+        {
+            width: 100%;
+            max-width: 1700px;
+            height: 0 auto;   
+
+            display: inline-block;
+           
+            text-align: center;
+            overflow: hidden; 
+        }
+
+        .contest_box
+        {
+            width: 570px;  
+            height: 415px;          
+            
+            display: inline-block;
+
+            margin-left: 10px;
+            margin-right: 10px;
+            overflow: hidden; 
+        }
+
+        .contest_box>div>img
+        {
+            width: 570px;
+            height: 290px;
+        }
+        .contest_box>div>.content_text
+        {
+            display: block;
+            margin-left: 180px;
+
+            text-align: left;
+            line-height: 25px;
+
+            color: #666666;
+            font-size: 16px;
+        }
+
+        .content_square
+        {
+            width: 170px;
+            height: 150px;
+
+            background-color: #ffce32;
+            box-sizing: border-box;
+            text-align: center;
+
+            position: absolute;
+
+            margin-top: 210px;
+
+            color: #009223;
+            line-height: 30px;
+            font-size: 22px;
+            font-weight: bold;    
+            
+            padding-top: 50px;
+        }
+
+        .progress_wrap
+        {
+            /* width: 2400px;  */
+            /* min-width: 2400px; */
+            width: 100%;
+            overflow: hidden;
+            border: 1px solid #009223;      
+        }
+
+        .progress_field
+        {
+            width: 100%;
+            height: 710px;
+            background-image: url("images/franchise/bg_franchise_process.jpg");  
+            text-align: center;          
+        }
+
+        .progress_title
+        {
+            font-size: 28px;
+            font-weight: bold;
+            padding-top: 95px;    
+            
+            color: white; 
+        }
+        .progress_sub
+        {
+            font-size: 16px;
+            line-height: 26px;
+            margin-top: 22px;    
+            
+            color: white;
+        }
+
+        .progress_content_box
+        {
+            margin-right: 50px;            
+            margin-top: 100px;
+
+            height: 294px;
+            display: inline-block;
+        }
+        .circle_subbox
+        {
+            margin-top: 20px;
+            font-size: 16px;
+            margin-bottom: 4px;   
+            color: white;         
+        }
+
+        .progress_circle_green
+        {
+            width: 192px;
+            height: 192px;
+
+            border: 5px solid #009223;
+            border-radius: 50%;
+            display: inline-block;
+
+            position: relative;
+        }
+
+        .progress_circle_yellow
+        {
+            width: 192px;
+            height: 192px;
+
+            border: 5px solid #ffc300;
+            border-radius: 50%;
+            display: inline-block;
+
+            position: relative;
+        }
+
+        .progress_circle_green>.circle_textbox
+        {
+            margin-top: 60px;            
+        }
+
+        .progress_circle_yellow>.circle_textbox
+        {
+            margin-top: 60px;            
+        }
+
+        .progress_circle_green>.circle_textbox>.circle_textbox_step
+        {
+            color: #62ce08;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        .progress_circle_yellow>.circle_textbox>.circle_textbox_step
+        {
+            color: #ffd800;
+            font-size: 13px;
+            font-weight: 300;
+        }
+        .circle_textbox_title
+        {
+            color: white;
+            font-size: 22px;
+            font-weight: 300;            
+        }
+        .invest_wrap
+        {
+            margin-top: 95px;
+            width: 100%;   
+            height: 0 auto;         
+        }
+
+        .invest_title_box>.invest_title
+        {
+            font-size: 28px;
+            color: #292929;
+            font-weight: bold;
+        }
+
+        .invest_title_box>.invest_title_sub>p
+        {
+            font-size: 13px;
+            color: #999999;
+            text-align: right;
+
+            padding-right: 20%;
+        }
+
+        .invest_table_box
+        {
+            width: 60%; 
+            height: 0 auto;
+            border-top: 5px solid #009223;      
+            display: inline-block;
+
+            margin-bottom: 127px;
+        }
+        .invest_table_box>table
+        {
+            width: 100%; 
+            text-align: center;
+        }
+        .content_header
+        {
+            height: 69px;
+            border-bottom: 1px solid #009223;
+        }
+        .content_row
+        {
+            border-top: 1px solid rgb(168, 156, 156);
+            text-align: left;
+            height: 69px; 
+        }
+        .content_row_last
+        {
+            border-bottom: 1px solid rgb(168, 156, 156);
+        }
+        .content_row>td
+        {
+            padding-left: 30px;
+
+            font-size: 16px;
+            color: #666666;
+        } 
+        .content_row_last>td
+        {
+            font-weight: bold;
+            color: #292929;
+        }
+     
+        .table_head>.category
+        {
+            width: 20%;
+        }
+
+        .table_head>.price
+        {
+            width: 20%;
+        }
+
+        .table_head>.table_content
+        {
+            width: 60%;            
+        }
+
+        .invest_table_sub
+        {
+            width: 100%; 
+            height: 0 auto;
+
+            text-align: left;
+
+            font-size: 13px;
+            color: #999;
+        }
+
+        .invest_link_button
+        {
+            margin-top: 50px;      
+            height: 0 auto;   
+            text-align: center;
+        }
+      
+
+        .invest_link_button>div
+        {
+            text-decoration: none; 
+            width: 160px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #009223;
+
+            border: 1px solid #009223;
+            border-radius: 30px;
+
+            display: inline-block;
+            transition-duration: 0.2s;
+        }
+
+        .invest_link_button>div:hover
+        {
+            background-color: #075e1b;   
+            border: 1px solid #075e1b;                     
+        }
+
+        .invest_link_button>div>a
+        {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;            
+        }
+
+    </style>
+    <script>
+        $(function()
+        {   
+            $(".nation").mouseover(function()
+            {
+                $(this).css("background-image","none");
+                $(this).find(".inner_top_text").css("color","black");
+                $(this).find(".inner_low_text").css("color","black");
+                $(this).find(".inner_low_text").find("strong").css("color","black");
+            });
+
+            $(".nation").mouseleave(function()
+            {
+                $(this).css("background-image","url('images/franchise/bg_nation.jpg')");
+                $(this).find(".inner_top_text").css("color","white");
+                $(this).find(".inner_low_text").css("color","white");
+                $(this).find(".inner_low_text").find("strong").css("color","white");
+            });
+
+            $(".store").mouseover(function()
+            {
+                $(this).css("background-image","none");       
+                $(this).find(".inner_top_text").css("color","black");
+                $(this).find(".inner_low_text").css("color","black");
+                $(this).find(".inner_low_text").find("strong").css("color","black");                          
+            });
+
+            $(".store").mouseleave(function()
+            {
+                $(this).css("background-image","url('images/franchise/bg_store.jpg')");
+                $(this).find(".inner_top_text").css("color","white");
+                $(this).find(".inner_low_text").css("color","white");
+                $(this).find(".inner_low_text").find("strong").css("color","white");
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <!-- 헤더 -->
+    <div class="header">
+        <div class="head-content">
+            <div class="main-logo">
+                <a href="main.html"><img src="img/logo_w.png"></a>
+            </div>
+            <div class="membership">
+                <div>
+                    <a href="#">
+                        <img src="img/icon_utill_global.png">
+                    </a>
+                </div>
+                <div>
+                    <a href="서브웨이_회원가입.html">
+                        회원가입
+                    </a>
+                </div>
+                <div>
+                    <a href="login.html">
+                        로그인
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- 네비 -->
+        <div class="navi">
+            <ul>
+                <li>
+                    <a class="main-navi" href="#">메뉴소개</a>
+                    <div class="sub-navi">
+                        <ul>
+                            <li>
+                                <a href="서브웨이_메뉴소개.html">샌드위치</a>
+                            </li>
+                            <li>
+                                <a href="#">랩, 기타</a>
+                            </li>
+                            <li>
+                                <a href="#">찹샐러드</a>
+                            </li>
+                            <li>
+                                <a href="#">아침메뉴</a>
+                            </li>
+                            <li>
+                                <a href="#">스마일 썹</a>
+                            </li>
+                            <li>
+                                <a href="#">단체메뉴</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="main-navi" href="#">이용방법</a>
+                    <div class="sub-navi">
+                        <ul>
+                            <li>
+                                <a href="store.html">써브웨이 이용방법</a>
+                            </li>
+                            <li>
+                                <a href="#">단체메뉴 이용방법</a>
+                            </li>
+                            <li>
+                                <a href="#">신선한 재료 소개</a>
+                            </li>
+                            <li>
+                                <a href="#">APP이용 방법</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="main-navi" href="#">새소식</a>
+                    <div class="sub-navi">
+                        <ul>
+                            <li>
+                                <a href="#">이벤트 프로모션</a>
+                            </li>
+                            <li>
+                                <a href="#">뉴스 공지사항</a>
+                            </li>
+                            <li>
+                                <a href="#">광고영상</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="main-navi" href="#">써브웨이</a>
+                    <div class="sub-navi">
+                        <ul>
+                            <li>
+                                <a href="#">써브웨이 역사</a>
+                            </li>
+                            <li>
+                                <a href="#">써브웨이 약속</a>
+                            </li>
+                            <li>
+                                <a href="#">샌드위치 아티스트지원</a>
+                            </li>
+                            <li>
+                                <a href="#">매장찾기</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="main-navi" href="#">가맹점</a>
+                    <div class="sub-navi">
+                        <ul>
+                            <li>
+                                <a href="frenchise.html">써브웨이 프렌차이즈</a>
+                            </li>
+                            <li>
+                                <a href="franchiseFaq.html">가맹관련 FAQ</a>
+                            </li>
+                            <li>
+                                <!-- 가맹점 -->
+                                <a href="franchiseInquiry.html">가맹신청 문의</a>
+                            </li>
+                            <li>
+                                <a href="#">지사안내</a>
+                            </li>
+                            <li>
+                                <a href="#">사업설명회</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <!-- 온라인 주문 -->
+                    <a class="main-navi" href="#">온라인주문</a>
+                    <div class="sub-navi">
+                        <ul>
+                            <li>
+                                <a href="order.html">FAST-SUB</a>
+                            </li>
+                            <li>
+                                <a href="#">HOME-SUB</a>
+                            </li>
+                            <li>
+                                <a href="#">단체주문</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class = "row menu text-center content">
+        <div class = "col-md-12 page_title">
+            <h2 class="subTitle_00">써브웨이 프랜차이즈</h2>
+        </div>        
+        <div class = "col-md-12">
+            <p class="summary">
+                미국 프랜차이즈 1위! 써브웨이는 매장수 및 분포지역 기준, <br />
+                Quick Service Restaurant(QSR) 부분 No.1 프랜차이즈입니다.
+            </p> 
+        </div>       
+            <!-- 전세계 매장수 -->
+        <div class= "col-md-12">
+		<div class="col-md-12 store_wrapper">
+			<div class=" col-md-6  nation">
+			    <div class="inner">
+                    <div class = "inner_top_text">전세계</div>
+                    <div class = "inner_low_text">104<strong>개국</strong></div>
+				</div>
+			</div>
+			<div class=" col-md-6 store">
+				<div class="inner">
+                    <div class = "inner_top_text">매장수</div>
+                    <div class = "inner_low_text">37,525<strong>개</strong></div>
+				</div>
+			</div>
+		</div>
+        </div>
+		<!--// 전세계 매장수 --> 
+        <div class = "frenchise_wrap">
+        <div class = "frenchise_content">
+            <div class = "subTitle_01">
+                써브웨이 브랜드 경쟁력
+            </div>
+            <div class = "contest_box">
+                <div>
+                    <div class = "content_square">BRAND<br>POWER</div>
+                    <img src ="images/franchise/img_barnd_comp01.jpg" style="object-fit : cover;">
+                    <div class = "content_text">·세계 1위 프랜차이즈로서의 브랜드가치</div>
+                    <div class = "content_text">·전세계 3만 8천여개 매장으로 검증된 안정성</div>
+                    <div class = "content_text">·글로벌 브랜드 관리 및 지원 - 신제품 개발, 브랜드 가치 향상, 스탠더드 관리</div>
+                </div>
+            </div>
+            <div class = "contest_box content_lastrow">
+                <div>
+                    <div class = "content_square">WELL<br>-BEING</div>
+                    <img src ="images/franchise/img_barnd_comp02.jpg" style="object-fit : cover;">
+                    <div class = "content_text">·건강한 식재료 공급을 통한 균형잡힌 메뉴 제공</div>
+                    <div class = "content_text">·아이들에게도 안심하고 먹을 수 있는 영양식</div>
+                    <div class = "content_text">·신뢰할 수 있는 영양정보 제공</div>
+                    <div class = "content_text"><br></div>
+                </div>
+            </div>
+            <div class = "contest_box">
+                <div>
+                    <div class = "content_square">MADE<br>FRESH</div>
+                    <img src ="images/franchise/img_barnd_comp03.jpg" style="object-fit : cover;">
+                    <div class = "content_text">·Fresh Baked Bread - 매장에서 매일 갓 구워낸 빵 제공</div>
+                    <div class = "content_text">·Made To Order - 취향대로 재료 선택 가능</div>
+                    <div class = "content_text">·Fresh Vegetable - 매장에서 매일 준비되는 신선한 야채</div>
+                </div>
+            </div>
+            <div class = "contest_box content_lastrow">
+                <div>
+                    <div class = "content_square">SMART<br>INVESTMENT</div>
+                    <img src ="images/franchise/img_barnd_comp04.jpg" style="object-fit : cover;">
+                    <div class = "content_text">·빠른 ROI - 최적의 비지니스 모델 제공</div>
+                    <div class = "content_text">·체계적인 오퍼레이션 - 용이한 직원 교육 가능</div>
+                    <div class = "content_text">·효율적인 인력 운영 - 인력 운영 시스템 및 체계적인 교육 제공</div>
+                    <div class = "content_text">·빠른 테이블 회전율과 엄격한 재고 관리</div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class = "progress_wrap">
+            <div class = "progress_field">
+                <div class = "progress_title">
+                    가맹점 개설 절차
+                </div>
+                <div class= "progress_sub">
+                    높은 수익성과 탁월한 안정성이 전세계 104개국, 37,525여개 매장으로 검증된 글로벌 No.1 프랜차이즈 써브웨이<br>
+                    체계화된 성공 노하우와 함께 새로운 비즈니스의 시작을 준비하십시오.                    
+                </div>
+                <div class = "progress_content_box">
+                    <div class = "progress_circle_yellow">
+                        <div class = "circle_textbox">
+                            <div class = "circle_textbox_step">STEP1</div>
+                            <div class = "circle_textbox_title">신청서 작성/상담</div>
+                        </div>                        
+                    </div>
+                    <div class = "circle_subbox">
+                        <div>·가맹과 경영에 대한<br>정보 상담</div>
+                        <div><br></div>
+                    </div>
+                </div>
+                <div class = "progress_content_box">
+                    <div class = "progress_circle_green">
+                        <div class = "circle_textbox">
+                            <div class = "circle_textbox_step">STEP2</div>
+                            <div class = "circle_textbox_title">가맹계약 체결</div>
+                        </div>                        
+                    </div>
+                    <div class = "circle_subbox">
+                        <div>·계약서 작성</div>
+                        <div>·가맹비 입금</div>
+                        <div><br></div>
+                    </div>
+                </div>
+                <div class = "progress_content_box">
+                    <div class = "progress_circle_yellow">
+                        <div class = "circle_textbox">
+                            <div class = "circle_textbox_step">STEP3</div>
+                            <div class = "circle_textbox_title">상권분석 및 선정</div>
+                        </div>                        
+                    </div>
+                    <div class = "circle_subbox">
+                        <div>·상권조사 / 입지분석</div>
+                        <div>·매장 결정</div>
+                        <div>·공사일정 협의</div>
+                    </div>
+                </div>
+                <div class = "progress_content_box">
+                    <div class = "progress_circle_green">
+                        <div class = "circle_textbox">
+                            <div class = "circle_textbox_step">STEP4</div>
+                            <div class = "circle_textbox_title">오픈 준비</div>
+                        </div>                        
+                    </div>
+                    <div class = "circle_subbox">
+                        <div>·설계도 확정/ 장비주문</div>
+                        <div>·인테리어 공사</div>
+                        <div>·가맹 교육/매장 실습</div>
+                    </div>
+                </div>
+                <div class = "progress_content_box">
+                    <div class = "progress_circle_yellow">
+                        <div class = "circle_textbox">
+                            <div class = "circle_textbox_step">STEP5</div>
+                            <div class = "circle_textbox_title">매장 오픈</div>
+                        </div>                        
+                    </div>
+                    <div class = "circle_subbox">
+                        <div>·직원 교육</div>
+                        <div>·운영테스트</div>
+                        <div>·그랜드오픈</div>
+                    </div>
+                </div>
+            </div>
+        </div><!--!progress_wrap end!-->
+        <div class = "invest_wrap">
+            <div class = "invest_title_box">
+                <div class = "invest_title">예상 투자비용</div>
+                <div class = "invest_title_sub"><p>VAT 별도, 25평 기준</p></div>
+            </div>
+            <div class = "invest_table_box">
+                <table>
+                    <tr class = "content_header">
+                        <td class = "category">항목</td>
+                        <td class = "price">금액</td>
+                        <td class = "table_content">내용</td>
+                    </tr>
+                    <tr class = "content_row">
+                        <td>가맹비</td>
+                        <td>14,889,000원</td>
+                        <td>소멸성</td>
+                    </tr>
+                    <tr class = "content_row">
+                        <td>교육비</td>
+                        <td>없음</td>
+                        <td>교육에 대한 추가 비용 없음</td>
+                    </tr>
+                    <tr class = "content_row">
+                        <td>장비 및 기자재</td>
+                        <td>12,000만원</td>
+                        <td>샌드위치 유니트, 브래드 오븐, 스피드 오븐, 전자레인지, 냉장냉동시설, 주방설비 및 집기, 커피머신, CCTV, 음향장비, 가구 및 인테리어 소품 등</td>
+                    </tr>
+                    <tr class = "content_row">
+                        <td>인테리어<br>
+                            (간판 및 철거비용 제외)</td>
+                        <td>200만원~210만원/평당</td>
+                        <td>가설, 전기, 바닥, 벽체, 천정, 설비, 출입문 철거 및 조성, 장비세팅, 기본덕트, 스프링쿨러 등</td>
+                    </tr>
+                    <tr class = "content_row">
+                        <td>간판</td>
+                        <td>410만원</td>
+                        <td>H:450mm / 1면 기준, 어닝 포함</td>
+                    </tr>
+                    <tr class = "content_row">
+                        <td>전기증설</td>
+                        <td>150만원</td>
+                        <td>10KW증설</td>
+                    </tr>
+                    <tr class = "content_row">
+                        <td>냉난방</td>
+                        <td>450만원</td>
+                        <td>32평형 시스템1, 벽걸이(냉난방)1, 배관비</td>
+                    </tr>
+                    <tr class = "content_row content_row_last">
+                        <td>합계</td>
+                        <td>약 2억 원~2억 1천만원</td>
+                        <td>총 비용은 경우에 따라 변동 될 수 있습니다.</td>
+                    </tr>
+                </table>
+                <div class = "invest_table_sub">
+                    <div>※ 일반 매장 최소 전용면적은 25평이며, 공항, 백화점, 병원 등 특수상권 매장은 25평 이하로 선택적 입점 가능</div>
+                    <div>※ 별도 비용 : 외부공사(갈바, 데크 등), 추가공사(철거, 자동문 등), 전기 간선작업, 건물의 공사 준수사항에 따른 비용 등 매장 여건에 따라 투자비용이 달라질 수 있습니다</div>
+                </div>
+                <div class = "invest_link_button">
+                   <div><a href = "./franchiseInquiry.html">가맹신청/문의</a></div>
+                </div>
+            </div>
+            <!-- 풋터 -->
+        <div class="footer">
+            <div class="foot1">
+                <span>이용약관</span>
+                <span><strong>개인정보처리방침</strong></span>
+                <span>써브카드</span>
+                <span>점주관리자</span>
+                <span>Subway Listnes</span>
+            </div>
+            <div class="foot2">
+                <p>서울시 영등포구 선유로 57 이레빌딩 19F | 대표 : 서브웨이 | 전화 : 1577-0001</p>
+                <p>SUBWAY® is a Registered Trademark of Subway IP LLC. © 2021 Subway IP LLC. All Rights Reserved.</p>
+                <!-- <img class="notouch" src="img/icon_sns_facebook1.png"> -->
+                <img class="touch" src="img/icon_sns_facebook2.png">
+                <!-- <img class="notouch" src="img/icon_sns_instar1.png"> -->
+                <img class="touch" src="img/icon_sns_instar2.png">
+            </div>
+        </div>
+        </div>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/default.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="css_order/default.css">
+    <link rel="stylesheet" href="css_order/shop.css">
+    <link rel="stylesheet" href="css_order/menu.css">
+    <link rel="stylesheet" href="css_order/order.css">
+    <link rel="stylesheet" href="css_order/finish.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(function() {
+            var orderStep = $(".order-step>li");
+            var contents = $(".main-mid>div");
+            var shopBtn = $(".shop-btn");
+            var place = $(".place");
+            var addr = $(".addr");
+            var phone = $(".phone");
+            var sandwich = $(".sandwich>p");
+            var sandwichName = $(".sandwich-name>p");
+            var price = $(".price>span");
+            var sandwichImg = $(".img-box>img");
+            var paymentBtn = $("#paymentBtn");
+            var currentStep = 0;
+            var selectPlace;
+            var selectAddr;
+            var selectPhone;
+            var selectSandwich;
+            var selectSandwichName;
+            var selectPrice;
+            
+            $(".index").eq(0).addClass("active-select");
+            $(".set").eq(0).addClass("active");
+
+            $(".index").click(function(){
+                var index = $(".index").index(this);
+                $(".set").removeClass("active");
+                $(".index").removeClass("active active-select");
+                $(this).addClass("active active-select");
+                $(".set").eq(index).addClass("active");
+            });
+
+            // 첫번째 페이지 버튼(주문하기)
+            shopBtn.click(function() {
+                var index = shopBtn.index(this);
+                clear();
+                selectPlace = place.eq(index).html();
+                selectAddr = addr.eq(index).html();
+                selectPhone = phone.eq(index).html();
+
+                // 입력 잘되는지 확인
+                console.log(selectPlace);
+                console.log(selectAddr);
+                console.log(selectPhone);
+
+
+                currentStep++;
+                showStep(currentStep);
+                showContent(currentStep);
+            });
+
+            // 두번째 페이지 샌드위치 이미지들
+            sandwichImg.click(function() {
+                var index = sandwichImg.index(this);
+                clear();
+                selectSandwich = sandwich.eq(index).html();
+                selectSandwichName = sandwichName.eq(index).html();
+                selectPrice = price.eq(index).html();
+
+                // 입력 잘되는지 확인
+                console.log(selectSandwich);
+                console.log(selectSandwichName);
+                console.log(selectPrice);
+
+                $("#selPlace").html(selectPlace);
+                $("#selAddr").html(selectAddr);
+                $("#selPhone").html(selectPhone);
+                $("#selectSandwich").html(selectSandwich);
+                $("#selectPrice").html(selectPrice);
+                $("#selPrice").html(selectPrice);
+
+                currentStep++;
+                showStep(currentStep); // 세번째 탭 보여줌
+                showContent(currentStep); // 세번째 컨텐츠 보여줌
+                
+            });
+            paymentBtn.click(function() {
+                if ($("input:checked[id='agree']").is(":checked")) {
+                    clear();
+                    showStep(3);
+                    showContent(3);
+                } else {
+                    alert("구매조건 및 결제진행 동의를 선택해주세요.");
+                }
+            });
+            function clear() {
+                orderStep.css({
+                    backgroundColor: "rgba(200, 200, 200, 0.5)"
+                });
+                orderStep.children("h2").css({
+                    color: "#fff"
+                });
+                contents.hide();
+            };
+            function showStep(index) {
+                orderStep.eq(index).css({
+                    backgroundColor: "#9631a9"
+                });
+                orderStep.eq(index).children("h2").css({
+                    color: "#ffc300"
+                });
+            }
+            function showContent(index) {
+                contents.eq(index).show();
+            }
+
+            clear();
+            showStep(0);
+            showContent(0);
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <!-- 헤더 -->
+        <div class="header">
+            <div class="head-content">
+                <div class="main-logo">
+                    <a href="main.html"><img src="img/logo_w.png"></a>
+                </div>
+                <div class="membership">
+                    <div>
+                        <a href="#">
+                            <img src="img/icon_utill_global.png">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="서브웨이_회원가입.html">
+                            회원가입
+                        </a>
+                    </div>
+                    <div>
+                        <a href="login.html">
+                            로그인
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- 네비 -->
+            <div class="navi">
+                <ul>
+                    <li>
+                        <a class="main-navi" href="#">메뉴소개</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="서브웨이_메뉴소개.html">샌드위치</a>
+                                </li>
+                                <li>
+                                    <a href="#">랩, 기타</a>
+                                </li>
+                                <li>
+                                    <a href="#">찹샐러드</a>
+                                </li>
+                                <li>
+                                    <a href="#">아침메뉴</a>
+                                </li>
+                                <li>
+                                    <a href="#">스마일 썹</a>
+                                </li>
+                                <li>
+                                    <a href="#">단체메뉴</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">이용방법</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="store.html">써브웨이 이용방법</a>
+                                </li>
+                                <li>
+                                    <a href="#">단체메뉴 이용방법</a>
+                                </li>
+                                <li>
+                                    <a href="#">신선한 재료 소개</a>
+                                </li>
+                                <li>
+                                    <a href="#">APP이용 방법</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">새소식</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="#">이벤트 프로모션</a>
+                                </li>
+                                <li>
+                                    <a href="#">뉴스 공지사항</a>
+                                </li>
+                                <li>
+                                    <a href="#">광고영상</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">써브웨이</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="#">써브웨이 역사</a>
+                                </li>
+                                <li>
+                                    <a href="#">써브웨이 약속</a>
+                                </li>
+                                <li>
+                                    <a href="#">샌드위치 아티스트지원</a>
+                                </li>
+                                <li>
+                                    <a href="#">매장찾기</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">가맹점</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="frenchise.html">써브웨이 프렌차이즈</a>
+                                </li>
+                                <li>
+                                    <a href="franchiseFaq.html">가맹관련 FAQ</a>
+                                </li>
+                                <li>
+                                    <!-- 가맹점 -->
+                                    <a href="franchiseInquiry.html">가맹신청 문의</a>
+                                </li>
+                                <li>
+                                    <a href="#">지사안내</a>
+                                </li>
+                                <li>
+                                    <a href="#">사업설명회</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 온라인 주문 -->
+                        <a class="main-navi" href="#">온라인주문</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="order.html">FAST-SUB</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="main-wrap">
+            <div class="main-top">
+                <div class="order-title">
+                    <h3>Fast-Sub</h3>
+                    <p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+                </div>
+                <ul class="order-step">
+                    <li class="step-shop">
+                        <h2>STEP 1</h2>
+                        <p>매장선택</p>
+                    </li>
+                    <li class="step-menu">
+                        <h2>STEP 2</h2>
+                        <p>메뉴선택</p>
+                    </li>
+                    <li class="step-order">
+                        <h2>STEP 3</h2>
+                        <p>주문하기</p>
+                    </li>
+                    <li class="step-payment">
+                        <h2>STEP 4</h2>
+                        <p>주문완료</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="main-mid">
+                <div>
+                    <div class="step-nav">
+                        <p>매장 선택</p>
+                    </div>
+                    <div class="shop-wrap">
+                        <div class="shop-content">
+                            <p>근처 매장 (등록 매장 <span>3</span>개)</p>
+                            <table class="shop-table">
+                                <thead>
+                                    <tr>
+                                        <th>매장명</th>
+                                        <th>매장주소</th>
+                                        <th>연락처</th>
+                                        <th>주문상태</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="place">선유도역</td>
+                                        <td class="addr">서울특별시 영등포구 양평로 121</td>
+                                        <td class="phone">02-2632-1232</td>
+                                        <td><button class="shop-btn">주문하기</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="place">당산역</td>
+                                        <td class="addr">서울특별시 영등포구 양평로 58</td>
+                                        <td class="phone">02-2636-1014</td>
+                                        <td><button class="shop-btn">주문하기</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="place">영등포</td>
+                                        <td class="addr">서울특별시 영등포구 영중로 25</td>
+                                        <td class="phone">02-2635-5255</td>
+                                        <td><button class="shop-btn">주문하기</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="step-nav">
+                        <p>메뉴 선택</p>
+                    </div>
+                    <div class="menu-wrap">
+                        <div class="menu-content">
+                            <ul>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/1_SUB DOG.png">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>썹도그</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>SUB DOG</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/2_Double Cheese SUB DOG.png">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>더블치즈 썹도그</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Double Cheese SUB DOG</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/3_Avocado SUB DOG.png">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>아보카도 썹도그</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Avocado SUB DOG</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>5,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <br>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/4_Steak & Cheese.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>스테이크 & 치즈</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Steak & Cheese</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>6,500 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/5_Turkey Bacon Avocado.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>터키 베이컨 아보카도</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Turkey Bacon Avocado</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>6,500 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/6_K-BBQ.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>K-바비큐</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>K-BBQ</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>5,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <br>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/7_Subway Club.png">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>써브웨이 클럽</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Subway Club</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/8_Shrimp.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>쉬림프</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Shrimp</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>6,500 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/9_Spicy Italian.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>스파이시 이탈리안</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Spicy Italian</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>6,500 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <br>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/10_Chicken Teriyaki.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>치킨 데리야끼</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Chicken Teriyaki</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>5,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/11_B.L.T..jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>비엘티</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>B.L.T.</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/12_Italian B.M.T..jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>이탈리안비엠티</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Italian B.M.T.</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>5,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <br>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/13_Meatball.png">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>미트볼</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Meatball</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/14_Turkey.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>터키</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Turkey</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/15_Tuna.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>참치</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Tuna</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <br>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/16_Ham.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>햄</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Ham</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/17_Egg Mayo.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>에그마요</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Egg Mayo</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>4,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="product">
+                                    <a href="#">
+                                        <div class="img-box">
+                                            <img src="img_order/18_Veggie Delite.jpg">
+                                        </div>
+                                        <div class="info">
+                                            <div class="sandwich">
+                                                <p>베지</p>
+                                            </div>
+                                            <div class="sandwich-name">
+                                                <p>Veggie Delite</p>
+                                            </div>
+                                            <div class="price">
+                                                <span>5,900 원</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="order-wrap">
+                        <div class="order-content">
+                            <div class="shop-info">
+                                <h2>픽업매장</h2>
+                                <div>
+                                    <div class="input-set">
+                                        <dl>
+                                            <dt id="selPlace">selectPlace</dt> <!--해당 값 대체-->
+                                            <dd id="selAddr">selectAddr</dd> <!--해당 값 대체-->
+                                        </dl>
+                                    </div>
+                                    <div class="input-set">
+                                        <dl>
+                                            <dt>전화번호</dt>
+                                            <dd id="selPhone">selectPhone</dd> <!--해당 값 대체-->
+                                        </dl>
+                                    </div>
+                                    <div class="input-set">
+                                        <dl>
+                                            <dt>방문포장/매장식사</dt>
+                                            <dd>
+                                                <input type="radio" name="radio" id="pack" checked>
+                                                <label for="pack"> 방문포장</label>
+                                                <input type="radio" name="radio" id="meal">
+                                                <label for="meal"> 매장식사</label>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="input-set">
+                                        <dl>
+                                            <dt>주문시, 요청사항</dt>
+                                            <dd><input type="text" placeholder="주문시 요청사항을 입력하세요." id="request"></dd>
+                                        </dl>
+                                    </div>
+                                    <div class="input-set">
+                                        <dl>
+                                            <dt>일회용품</dt>
+                                            <dd>
+                                                <input type="checkbox" name="recycle" id="recycle">
+                                                <label for="recycle"> 일회용품(스푼, 포크 등)을 사용하지 않겠습니다.</label>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <h2>결제 수단 선택</h2>
+                                <div>
+                                    <div class="input-set">
+                                        <dl>
+                                            <dt>결제 수단</dt>
+                                            <dd>
+                                                <input type="radio" name="payment" value="신용카드" id="c" checked>
+                                                <label for="c">신용카드</label>
+                                                <input type="radio" name="payment" value="현장결제" id="p">
+                                                <label for="p">현장결제</label>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <h2>주문 내역</h2>
+                                <table class="order-table">
+                                    <thead>
+                                        <tr>
+                                            <td id="selectSandwich">selectSandwich</td> <!--해당 값 대체-->
+                                            <td id="amount">1개</td>
+                                            <td id="selectPrice">selectPrice</td> <!--해당 값 대체-->
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <h2>총 결제 금액</h2>
+                                <table class="payment-table">
+                                    <thead>
+                                        <tr id="tr1">
+                                            <td>총 주문 금액</td>
+                                            <td id="selPrice">selectPrice</td> <!--해당 값 대체-->
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <dl>
+                                                        <dt>
+                                                            <input type="checkbox" name="agree" id="agree">
+                                                            <label for="agree">구매조건 및 결제진행 동의</label>
+                                                        </dt>
+                                                        <dd>
+                                                            <ul>
+                                                                <li>주문할 메뉴와 가격, 매장정보를 명확히 확인하였으며 결제 진행에 동의합니다.</li>
+                                                                <li>제조시간은 매장상황에 따라 상이할 수 있습니다.</li>
+                                                                <li>주문 후 제조가 시작되면 주문을 취소할 수 없습니다.</li>
+                                                            </ul>
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <div class="order-bottom">
+                                    <button id="paymentBtn">결제하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="finish-wrap">
+                        <div>
+                            <p>주문이 완료되었습니다.</p>
+                            <div class="homeBtn">
+                                <button id="home-btn"><a href="main.html">홈으로</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer">
+            <div class="foot1">
+                <span>이용약관</span>
+                <span><strong>개인정보처리방침</strong></span>
+                <span>써브카드</span>
+                <span>점주관리자</span>
+                <span>Subway Listnes</span>
+            </div>
+            <div class="foot2">
+                <p>서울시 영등포구 선유로 57 이레빌딩 19F | 대표 : 서브웨이 | 전화 : 1577-0001</p>
+                <p>SUBWAY® is a Registered Trademark of Subway IP LLC. © 2021 Subway IP LLC. All Rights Reserved.</p>
+                <!-- <img class="notouch" src="img/icon_sns_facebook1.png"> -->
+                <img class="touch" src="img/icon_sns_facebook2.png">
+                <!-- <img class="notouch" src="img/icon_sns_instar1.png"> -->
+                <img class="touch" src="img/icon_sns_instar2.png">
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>

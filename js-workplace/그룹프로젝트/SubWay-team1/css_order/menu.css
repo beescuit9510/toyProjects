@@ -1,0 +1,53 @@
+.menu-content>ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+}
+.product {
+    float: left;
+    width: calc(100%/3);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.product:last-child {
+    padding-bottom: 50px;
+}
+.product>a {
+    text-decoration: none;
+    display: block;
+    padding-bottom: 20px;
+}
+.img-box {
+    width: 80%;
+    margin: 0 auto;
+}
+.img-box>img {
+    width: 95%;
+    transition-duration: 0.2s;
+}
+.info {
+    width: 70%;
+    margin: 0px auto;
+}
+.sandwich>p {
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+    font-family: 'ns_b';
+    margin: 0;
+}
+.sandwich-name>p {
+    font-size: 18px;
+    margin: 0;
+    color: gray;
+}
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffc300;
+}
+.img-box>img:hover {
+    transform: scale(1.1);
+}

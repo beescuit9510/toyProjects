@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "ns_r";
+    src: url(Noto_Sans_KR/NotoSansKR-Regular.otf);
+}
+@font-face {
+    font-family: "ns_b";
+    src: url(Noto_Sans_KR/NotoSansKR-Bold.otf);
+}
+@font-face {
+    font-family: "ns_black";
+    src: url(Noto_Sans_KR/NotoSansKR-Black.otf);
+}
+* {
+    font-family: "ns_r";
+}
+.main-mid>div {
+    background-color: #fff;
+}

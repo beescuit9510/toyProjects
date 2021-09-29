@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type = "text/javascript" src = "http://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script   script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="CSS/default.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <title>franchiseFaq</title>
+    <style>
+        .franchiseFaq_wrap
+        {
+            text-align: center;     
+              
+        }
+        .franchiseFaq_wrap>.page_title
+        {
+            font-size: 40px;
+            font-weight: bold; 
+            
+            margin-bottom: 95px;
+            margin-top: 95px;
+        }
+        .franchiseFaq_Menu
+        {
+            width: 80%;
+            height: 1080px;
+            border-top: 5px solid #009223;      
+            display: inline-block;      
+        }
+
+        .menu
+        {
+            width: 100%;
+            background-color: #ececec;
+        }
+        .menu a
+        {
+            font-size: 18px;
+            line-height: 72px;
+
+            text-align: left;
+            display: block;
+            text-decoration: none;
+
+            color : black;
+            padding-left: 20px;
+            position: relative;
+        }
+        .menu ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        .main-menu>li
+        {
+            border-bottom: 1px solid #666666;  
+        } 
+
+        .q
+        {
+            width: 30px;
+            height: 30px;
+
+            box-sizing: border-box;
+            text-align: center;
+            
+            color: white;
+            background-color: #009223;
+            border-radius: 15px;
+            font-size: 25px;          
+            
+            display: inline-block;
+            line-height: 30px;
+
+            margin-right: 50px;
+        }
+
+        .icon_box
+        {
+            width: 30px;
+            height: 100px;
+            display: inline-block;            
+        }
+
+        .icon_box_00
+        {
+            position: relative;
+            top: -25px;
+        }
+        .icon_box_01
+        {
+            position: relative;
+            top: -55px;
+        }
+
+        .icon_box_02
+        {
+            position: relative;
+            top: -15px;
+        }
+
+        .icon_box_03
+        {
+            position: relative;
+            top: -13px;
+        }
+
+        .a_sub
+        {
+            width: 970px;            
+            box-sizing: border-box;
+            text-align: left;
+
+            line-height: 40px;
+
+            padding-top: 40px;
+            padding-left: 50px;
+            font-size: 16px;          
+            
+            display: inline-block; 
+        }
+        .a
+        {
+            width: 30px;
+            height: 30px;
+
+            box-sizing: border-box;
+            text-align: center;
+            
+            color: white;
+            background-color: #ffc300;
+            border-radius: 15px;
+            font-size: 25px;          
+            
+            display: inline-block;
+            line-height: 30px;
+            margin-right: 50px;            
+        }
+        
+        .sub-menu{
+            display: none;
+        }
+        .more{
+            position: absolute;
+            font-size: 40px;
+            right: 20px;
+            transition-duration: 0.5s;
+
+            color: #009223;
+        }
+        .active{
+            transform: rotate(45deg);
+        }
+        .border-bottom-gray
+        {
+            border-bottom: 1px solid rgb(230, 221, 221); 
+            transition-duration: 0.5s;           
+        }
+        .color_green
+        {
+            color: #009223;            
+        }
+    </style>
+    <script>
+        $(function()
+        {
+            $(".sub-menu").prev().append("<span class='more'>+</span>");
+            $(".more").parent().click(function()
+            {
+                $(this).next().slideToggle();
+                $(this).children(".more").toggleClass("active");
+
+                $(this).toggleClass("border-bottom-gray");
+                $(this).find("strong").toggleClass("color_green");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class = "franchiseFaq_wrap">
+        <!-- 헤더 -->
+        <div class="header">
+            <div class="head-content">
+                <div class="main-logo">
+                    <a href="main.html"><img src="img/logo_w.png"></a>
+                </div>
+                <div class="membership">
+                    <div>
+                        <a href="#">
+                            <img src="img/icon_utill_global.png">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="서브웨이_회원가입.html">
+                            회원가입
+                        </a>
+                    </div>
+                    <div>
+                        <a href="login.html">
+                            로그인
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- 네비 -->
+            <div class="navi">
+                <ul>
+                    <li>
+                        <a class="main-navi" href="#">메뉴소개</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="서브웨이_메뉴소개.html">샌드위치</a>
+                                </li>
+                                <li>
+                                    <a href="#">랩, 기타</a>
+                                </li>
+                                <li>
+                                    <a href="#">찹샐러드</a>
+                                </li>
+                                <li>
+                                    <a href="#">아침메뉴</a>
+                                </li>
+                                <li>
+                                    <a href="#">스마일 썹</a>
+                                </li>
+                                <li>
+                                    <a href="#">단체메뉴</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">이용방법</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="store.html">써브웨이 이용방법</a>
+                                </li>
+                                <li>
+                                    <a href="#">단체메뉴 이용방법</a>
+                                </li>
+                                <li>
+                                    <a href="#">신선한 재료 소개</a>
+                                </li>
+                                <li>
+                                    <a href="#">APP이용 방법</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">새소식</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="#">이벤트 프로모션</a>
+                                </li>
+                                <li>
+                                    <a href="#">뉴스 공지사항</a>
+                                </li>
+                                <li>
+                                    <a href="#">광고영상</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">써브웨이</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="#">써브웨이 역사</a>
+                                </li>
+                                <li>
+                                    <a href="#">써브웨이 약속</a>
+                                </li>
+                                <li>
+                                    <a href="#">샌드위치 아티스트지원</a>
+                                </li>
+                                <li>
+                                    <a href="#">매장찾기</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="main-navi" href="#">가맹점</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="frenchise.html">써브웨이 프렌차이즈</a>
+                                </li>
+                                <li>
+                                    <a href="franchiseFaq.html">가맹관련 FAQ</a>
+                                </li>
+                                <li>
+                                    <!-- 가맹점 -->
+                                    <a href="franchiseInquiry.html">가맹신청 문의</a>
+                                </li>
+                                <li>
+                                    <a href="#">지사안내</a>
+                                </li>
+                                <li>
+                                    <a href="#">사업설명회</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 온라인 주문 -->
+                        <a class="main-navi" href="#">온라인주문</a>
+                        <div class="sub-navi">
+                            <ul>
+                                <li>
+                                    <a href="order.html">FAST-SUB</a>
+                                </li>
+                                <li>
+                                    <a href="#">HOME-SUB</a>
+                                </li>
+                                <li>
+                                    <a href="#">단체주문</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class = "page_title">
+            가맹관련 FAQ
+        </div>
+        <div class = "franchiseFaq_Menu">
+            <div class="menu">
+                <ul class="main-menu">
+                    <li>
+                        <a href="#"><div class = "q">Q</div><strong>써브웨이 가맹점 오픈에 필요한 투자 금액은 어느 정도 인가요?</strong></a>
+                        <ul class="sub-menu">
+                            <li><a href="#" class = "anser_a">
+                                <div class = "icon_box icon_box_00">
+                                    <div class = "a">A</div>
+                                </div>
+                                <div class = "a_sub">
+                                    최소 전용 면적 25평 기준, 약 2억원 ~ 2억 1천만원이 예상됩니다.
+                                    (추가공사, 별도비용, 임대료, 부가세 제외)
+                                    자세한 예상비용은 홈페이지 "가맹점 → 써브웨이 프랜차이즈"에서 확인하실 수 있습니다.
+                                    http://www.subway.co.kr/franchise
+                                </div>
+                            </a></li>                         
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><div class = "q">Q</div><strong>써브웨이 가맹점주가 되기 위한 조건이 있나요?</strong></a>
+                        <ul class="sub-menu">
+                            <li><a href="#" class = "anser_a">
+                                <div class = "icon_box icon_box_01">
+                                    <div class = "a">A</div>
+                                </div>
+                                <div class = "a_sub">
+                                    써브웨이는 50년이 넘는 역사를 지닌 프랜차이즈이며, 전 세계 가장 많은 매장을 운영하는 글로벌 QSR 브랜드 입니다.
+                                    따라서 제품의 퀄리티, 매장 운영, 고객 서비스에 있어 브랜드의 가치를 실현하기 위해 운영 매누얼 및 본사의 규정과 지침을 이행하고 준수 할 수 있는 분, 고객 서비스 마인드를 갖춘 분과 가맹계약을 체결합니다.
+                                    각 지사의 가맹 개발자는 계약 체결 전, 심도 깊은 상담, 성향 테스트를 통해 이부분은 검증합니다.
+                                </div>
+                            </a></li> 
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><div class = "q">Q</div><strong>가맹이 불가능한 지역은 언제쯤 상담 및 가맹점 오픈이 가능한가요?</strong></a>
+                        <ul class="sub-menu">
+                            <li><a href="#" class = "anser_a">
+                                <div class = "icon_box icon_box_02">
+                                    <div class = "a">A</div>
+                                </div>
+                                <div class = "a_sub">
+                                    지사 설립 후 가맹이 가능한 지역이 되기까지 최소 1년 이상 소요될 것으로 예산되나, 준비 상황에 따라 가맹시점이 달라질 수 있습니다.
+                                </div>
+                            </a></li> 
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><div class = "q">Q</div><strong>현재 가맹이 불가능한 지역은 어디인가요?</strong></a>
+                        <ul class="sub-menu">
+                            <li><a href="#" class = "anser_a">
+                                <div class = "icon_box icon_box_03">
+                                    <div class = "a">A</div>
+                                </div>
+                                <div class = "a_sub">
+                                    써브웨이는 각 지역권에 대해 미국 본사로 부터 승인을 받은 지사가 직접 가맹사업을 진행하고 있습니다.
+                                    지사가 아직 설립되지 않은 지역은 경기일부지역, 강원도, 충청북도, 제주도입니다.
+                                </div>
+                            </a></li> 
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 풋터 -->
+        <div class="footer">
+            <div class="foot1">
+                <span>이용약관</span>
+                <span><strong>개인정보처리방침</strong></span>
+                <span>써브카드</span>
+                <span>점주관리자</span>
+                <span>Subway Listnes</span>
+            </div>
+            <div class="foot2">
+                <p>서울시 영등포구 선유로 57 이레빌딩 19F | 대표 : 서브웨이 | 전화 : 1577-0001</p>
+                <p>SUBWAY® is a Registered Trademark of Subway IP LLC. © 2021 Subway IP LLC. All Rights Reserved.</p>
+                <!-- <img class="notouch" src="img/icon_sns_facebook1.png"> -->
+                <img class="touch" src="img/icon_sns_facebook2.png">
+                <!-- <img class="notouch" src="img/icon_sns_instar1.png"> -->
+                <img class="touch" src="img/icon_sns_instar2.png">
+            </div>
+        </div>
+
+    </div>        
+</body>
+</html>

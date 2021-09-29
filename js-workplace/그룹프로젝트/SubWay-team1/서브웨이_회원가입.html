@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>약관동의</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="css/join.css" type="text/css">
+    <link rel="stylesheet" href="CSS/default.css">
+    <style>
+        .join-step1{
+            background-image: url(img-sura/step1.png);
+            background-repeat: no-repeat;
+        }
+        .join-step2{
+            background-image: url(img-sura/step_2.png);
+            background-repeat: no-repeat;
+        }
+        .join-step3{
+            background-image: url(img-sura/step_3.png);
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script>
+
+        $(function(){
+            $("#allAgreeChk").click(function(){
+                if($("#allAgreeChk").prop("checked")){
+                    $("input[type=checkbox]").prop("checked", true);
+                }else{
+                    $("input[type=checkbox]").prop("checked", false);
+                }
+            });
+
+        });
+
+        function reqInfo(){
+            var agree=document.getElementsByName("agree");
+                if(agree[0].checked!=true && agree[1].checked!=true){
+                    alert("이용약관 필수 동의 항목을 확인하세요.");
+                    return false;
+                }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="head-content">
+                <div class="main-logo">
+                    <a href="main.html"><img src="img/logo_w.png"></a>
+                </div>
+                <div class="membership">
+                    <div>
+                        <a href="#">
+                            <img src="img/icon_utill_global.png">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="서브웨이_회원가입.html">
+                            회원가입
+                        </a>
+                    </div>
+                    <div>
+                        <a href="login.html">
+                            로그인
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <div class="content-wrap">
+            <div class="content">
+                <div class="join-wrap">
+                    <h2 class="subtitle">회원가입</h2>
+                    <div class="join-step">
+                        <ul>
+                            <!--진행사항 표시-->
+                            <li class="join-step1"></li>
+                            <li class="join-step2"></li>
+                            <li class="join-step3"></li>
+                        </ul>
+                    </div>
+                    <div class="step-title">
+                        <h3><span>Step 1.</span> 약관동의</h3>
+                    </div>
+                    <div class="step-content">
+                        <form action="서브웨이_회원가입1.html" method="get">
+                            <div class="step1">
+                                <div class="all-agree">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="allAgreeChk">
+                                        <span class="icon"></span>
+                                        <b>약관 전체 동의</b>
+                                    </label>
+                                </div>
+                                <div class="agree">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="agree" class="agreeChk">
+                                        <span class="icon"></span>
+                                        <span id="required">(필수)</span> 홈페이지 이용약관 동의
+                                    </label>
+                                    <div class="scroll-box">
+                                        마지막 수정일: 2020년 5월 7일
+                                        <br>
+                                        이 이용약관은 이용자(“이용자”)와 SUBWAY SYSTEMS SINGAPORE PTE LTD 한국사무소(“SSSPL”)(명시적으로 SUBWAY IP LLC, FRANCHISE WORLD HEADQUARTERS, LLC, DOCTOR’S ASSOCIATES LLC, SUBWAY INTERNATIONAL, B.V., SUBWAY FRANCHISEE ADVERTISING FUND TRUST B.V. 등 그 자회사 및 계열사 포함, “THE SUBWAY GROUP”, 이하 “회사”)가 제공하는 서비스를 이용자가 이용함에 있어 필요한 이용 조건, 절차 및 당사자 간의 권리, 의무 등 기본적인 사항을 규정하는 것을 목적으로 하는 계약(이하 “합의서”)을 형성합니다. 이 합의서는 이용자가 www.subway.co.kr 웹사이트와 SSSPL이 운영하거나 위탁한 모든 웹사이트(이하 “웹사이트”)를 사용하거나, 써브웨이 모바일 앱("Subway® 앱")을 다운로드 및 사용함으로써 그 효력이 발생합니다. (이하 "웹사이트"와 "Subway® 앱"을 통칭하여 “사이트”라고 합니다.)
+                                    </div>
+                                </div>
+                                <div class="agree">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="agree" class="agreeChk">
+                                        <span class="icon"></span>
+                                        <span id="required">(필수)</span> 개인정보 수집 및 이용동의
+                                    </label>
+                                    <div class="scroll-box">
+                                        회사는 이용자의 개인정보를 중요시합니다. 이 문서는 회사가 이용자의 개인정보를 수집, 사용, 공개, 전송 및 저장하는 방법을 설명한 개인정보 처리방침입니다. 이 문서에는 개인정보에 관한 이용자의 권리에 대해서도 명시되어 있습니다. Subway Systems Singapore Pte. Ltd. 한국사무소(“SSSPL”)(명시적으로 Subway IP, LLC, Franchise World Headquarters, LLC, Doctor’s Associates, LLC, Subway International, B.V., Subway Franchisee Advertising Fund Trust B.V. 등 그 자회사 및 계열사 포함, 이하 “The Subway Group”, “회사”)는 이용자의 개인정보를 존중하고 개인정보 보호법을 준수합니다.
+                                    </div>
+                                </div>
+                                <div class="agree">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="agree" class="agreeChk">
+                                        <span class="icon"></span>
+                                        (선택) 마케팅 정보 제공 동의
+                                    </label>
+                                    <div class="scroll-box">
+                                        등록하신 휴대폰번호, 이메일 정보와 APP 알림 받기 설정으로 이벤트 소식, 할인 정보, 서비스 안내등을 받을수 있습니다.
+                                        <br>
+                                        이용 목적 : 새로운 서비스 및 이벤트 정보등의 안내
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step1-notice">
+                                <b>만 14세 이상 고객만 가입이 가능합니다.</b>
+                                <p>
+                                써브웨이는 만 14세 미만 아동의 회원가입을 제한하고 있습니다.<br>
+                                「정보통신망 이용촉진 및 정보보호 등에 관한 법률에는 만 14세 미만 아동의 개인정보 수집 시 법정대리인 동의를<br>
+                                받도록 규정하고 있으며, 만 14세 미만 아동의 법정대리인 동의없이 회원가입을 하는 경우 회원탈퇴 또는 서비스 이용이 제한될 수 있습니다.」
+                                </p>
+                            </div>
+                            <div class="next-btn">
+                                <input type="submit" onclick="return reqInfo();" value="다음"> 
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="foot1">
+                <span>이용약관</span>
+                <span><strong>개인정보처리방침</strong></span>
+                <span>써브카드</span>
+                <span>점주관리자</span>
+                <span>Subway Listnes</span>
+            </div>
+            <div class="foot2">
+                <p>서울시 영등포구 선유로 57 이레빌딩 19F | 대표 : 서브웨이 | 전화 : 1577-0001</p>
+                <p>SUBWAY® is a Registered Trademark of Subway IP LLC. © 2021 Subway IP LLC. All Rights Reserved.</p>
+                <!-- <img class="notouch" src="img/icon_sns_facebook1.png"> -->
+                <img class="touch" src="img/icon_sns_facebook2.png">
+                <!-- <img class="notouch" src="img/icon_sns_instar1.png"> -->
+                <img class="touch" src="img/icon_sns_instar2.png">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

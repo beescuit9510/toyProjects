@@ -1,0 +1,142 @@
+body{
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ececec;
+}
+
+/* 헤더 */
+.header{
+    width: 100%;
+    height: 165px;
+    background-color: white;
+    border-top: 5px solid #009223;
+}
+.head-content{
+    margin: 0 auto;
+}
+.main-logo{
+    margin-top: 10px;
+    text-align: center;
+}
+.main-logo a{
+    margin-top: 30px;
+    display: block;
+    height: 40px;
+}
+.membership{
+    margin-right: 250px;
+}
+.membership>div{
+    width: 80px;
+    text-align: center;
+    float: right;
+    margin: 0 auto;
+}
+.membership a{
+    text-decoration: none;
+    color: #666666;
+    font-size: 13px;
+}
+
+
+/* 네비게이션 */
+.navi{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 100px;
+}
+.navi>ul{
+    display: inline-block;
+    list-style: none;
+}
+.navi>ul>li{
+    float: left;
+    width: 165px;
+    position: relative;
+}
+.navi >ul>li a.main-navi{
+    font-size: 18px;
+    color: #292929;
+    font-weight: bold;
+    position: relative;
+    display: block;
+    padding-top: 20px;
+    text-decoration: none;
+}
+.navi .sub-navi{
+    overflow: hidden;
+    position: absolute;
+}
+.sub-navi{
+    float: left;
+    width: 165px;
+    position: absolute;
+    opacity: 0;
+    top: 0px;
+    transition-duration: 0.2s;
+}
+.sub-navi>ul{
+    padding: 0;
+}
+.navi>ul>li:hover> .sub-navi{
+    top: 53px;
+    background-color: #fff;
+    opacity: 1;
+    border-bottom: 1px solid lightgray;
+
+}
+.navi >ul>li a.main-navi:hover{
+    color: #009223;
+}
+.sub-navi li{
+    list-style-type: none;
+}
+.sub-navi a{
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    display: block;
+    padding : 8px 0 9px;
+}
+.sub-navi>ul>li>a:hover{
+    color: #009223;
+    text-decoration: underline;
+}
+.sub-navi>ul>li>a:hover>.main-navi{
+    color: #009223;
+}
+
+
+
+
+/* 풋터 */
+.footer{
+    background-color: #292929;
+}
+.footer>div{
+    width: 100%;
+    padding: 20px 0px;
+    bottom: 100px;
+    text-align: left;
+
+} 
+.foot1 span{
+    color: #666666;
+    margin-right: 10px;
+}
+.foot2{
+    color: #666666;
+    font-size: 13px;
+}
+.foot2 img{
+    padding: 10px;
+    position: relative;
+    bottom: 100px;
+    cursor: pointer;
+    right: -1000px;
+}
+.foot2 img:hover{
+    transform: scale(1.1,1.1);
+}
