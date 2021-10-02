@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MVC2 프로젝트</title>
+</head>
+<body>
+	<h1>MVC2 프로젝트</h1>
+	<hr>
+	<h3><a href="/views/loginFrm.jsp">1. 로그인</a></h3>
+	<h3><a href="/views/joinFrm.jsp">2. 회원가입</a></h3>
+	<h3><a href="/allMember">3. 전체회원조회</a></h3>
+	
+	<hr>
+	<p>			
+			
+			//세션객체 생성
+			// request.getSession();
+			// -> 매개변수가 없는 경우 세션이 이미 존재하면 있는 세션을 가져오고
+			// -> 매개변수가 있는 경우 세션이
+			// 매개변수가 없는 경우 자동으로 true로 봄.
+			
+			// request.getSession(false) 매개변수로 false
+			//기존에 세션이 존재하면 기존세션을 가져오고
+			//기존에 세션이 존재하지 않으면 null 리턴;
+			
+</body>
+</html>

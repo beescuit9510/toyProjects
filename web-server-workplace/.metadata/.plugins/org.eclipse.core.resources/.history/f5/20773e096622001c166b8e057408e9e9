@@ -1,0 +1,18 @@
+<%@page import="java.util.ArrayList" %>
+<%@page import="kr.or.iei.member.model.vo.Member" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%
+    //서블릿에서 request 영역에 등록해놓은 데이터를 추출;
+    	ArrayList<Member> members = (ArrayList<Member>)request.getAttribute("members");
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

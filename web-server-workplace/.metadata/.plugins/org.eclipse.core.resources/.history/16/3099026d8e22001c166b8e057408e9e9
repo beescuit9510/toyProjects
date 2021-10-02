@@ -1,0 +1,20 @@
+package member.model.dao;
+
+import java.sql.Connection;
+
+import member.model.vo.Member;
+
+public class MemberDao {
+
+	public Member selectOneMember(Connection conn, String memberId, String memberPw) {
+		
+		
+		String query = "select * from member where member_id = ? and member_pw = ?";
+		
+		
+		
+		
+		return null;
+	}
+
+}

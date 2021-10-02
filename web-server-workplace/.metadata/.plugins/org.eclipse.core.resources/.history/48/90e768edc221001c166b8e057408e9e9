@@ -1,0 +1,49 @@
+<%@page import="kr.or.iei.member.model.service.MemberService"%>
+<%@page import="kr.or.iei.member.model.vo.Member"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <% 
+    request.setCharacterEncoding("utf-8");
+    
+    String memberId = request.getParameter("memberId");
+    String memberPw = request.getParameter("memberPw");
+    
+    Member member = new MemberService().selectOneMember(memberId, memberPw);
+    
+    boolean r = member!=null;
+    
+    
+    String resultToPrint = r? "로그인 성공":"로그인 실패";
+    String wellcome ;
+    String page;
+    String href;
+	if(r){
+    wellcome = "["+member.getMemberId()+"]님 환영합니다.";
+	href = "/05_jspDbProject/views/loginFrm.jsp";
+	}
+    
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>로그인 결과</h2>
+	<hr>
+	<p><%=resultToPrint %></p>
+
+	<% if(r) { %>
+		<h2></h2>
+		<table border="1">
+			<tr>
+				<th>회원번호</th><th>아이디</th><th>비밀번호</th><th>이름</th>
+				<th>전화번호</th><th>주소</th><th>회원등급</th><th>가입일자</th>
+			</tr>
+			<%= member.getTd() %>
+		</table>
+	
+	<% } %>
+</body>
+</html>

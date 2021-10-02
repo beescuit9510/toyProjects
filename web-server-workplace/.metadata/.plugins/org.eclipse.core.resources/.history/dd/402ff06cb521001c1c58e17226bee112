@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@page import="kr.or.iei.member.model.service.MemberService" %>
+    <%@page import="kr.or.iei.member.model.vo.Member" %>
+    <%
+    	request.setCharacterEncoding("utf-8");
+    	String memberId= request.getParameter("memberId");
+    	String memberPw= request.getParameter("memberPw");
+    	String memberName= request.getParameter("memberName");
+    	String phone  = request.getParameter("phone");
+    	String address = request.getParameter("address");
+    	
+    	Member member = new Member();
+    	MemberService service = new MemberService(memberId,memberPw,memberName,phone,address);
+    	
+    	int result = service.insertMember(member);
+    	
+    	String resultToprint = result>0? "회원가입 성공":"회원가입 실패";
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>회원가입 결과</h2>
+	<hr>
+	<h2><%=result %></h2>
+</body>
+</html>

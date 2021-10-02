@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>메인페이지 입니다</h1>
+	<a href="/requestServer">1. 서버 호출하기</a><br>
+	<a href="/sendData1?test=abc&name=변덕">2. 서버 호출하며 값 전송하기</a>
+	<a href="/sendData2?p1=abc&p2=변덕">2. 서버 호출하며 값 전송하기</a>
+	<a href="/SendData3?p1=abc&p2=변덕">2. 서버 호출하며 값 전송하기</a>
+</body>
+</html>

@@ -1,0 +1,61 @@
+package kr.or.iei.member.model.service;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import common.JDBCTemplate;
+import kr.or.iei.member.model.dao.MemberDao;
+import kr.or.iei.member.model.vo.Member;
+
+public class MemberService {
+	MemberDao dao = new MemberDao();
+
+
+	public int insertMember(Member member) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertMember(conn, member);
+		
+		if (result > 0)
+			JDBCTemplate.commit(conn);
+		else
+			JDBCTemplate.rollback(conn);
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Member> allMember() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Member> members = dao.allMember(conn);
+	
+		JDBCTemplate.close(conn);
+	
+		return members;
+	}
+	
+	public Member selectOneMember(String memberId, String memberPw) {
+		Connection conn = JDBCTemplate.getConnection();
+		Member member = dao.selectOneMember(conn, memberId, memberPw);
+		
+		JDBCTemplate.close(conn);
+		
+		return member;
+	}
+	
+	public int update(Member member) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.update(conn, member);
+		
+		if(result>0) {
+			conn.commit();
+			JDBCTemplate.commit(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
+}

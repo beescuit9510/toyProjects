@@ -1,0 +1,44 @@
+package member.model.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import member.model.vo.Member;
+
+public class MemberDao {
+
+	public Member selectOneMember(Connection conn, String memberId, String memberPw) {
+		
+		
+		String query = "select * from member where member_id = ? and member_pw = ?";
+		Member member;
+		PreparedStatement pstmt;
+		ResultSet r;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, memberPw);
+			
+			r = pstmt.executeQuery();
+			
+			if(r.next()) {
+				int i = 1;
+				member = new Member(r.getInt(i++),r.getString(i++),r.getString(i++),r.getString(i++),r.getString(i++),r.getString(i++),r.getInt(i++),r.getString(i++));
+				
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		return null;
+	}
+
+}

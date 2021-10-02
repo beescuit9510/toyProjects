@@ -1,0 +1,29 @@
+package practice;
+
+
+public class MyThread extends Thread {
+
+	@Override
+	public void run() {
+//		if (this.isDaemon())
+//			System.out.println("this is a deaman thread that is running");
+//		else
+//			System.out.println("this is a user thread that is running");
+		
+		for(int i=10;i>0;i--) {
+			System.out.println("Thread #1:" +i);
+			
+//			System.out.println(10/0);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+//			throw new NullPointerException("demo");
+		}
+		System.out.println("Thread #1 is finished :)");
+		
+	}
+
+}

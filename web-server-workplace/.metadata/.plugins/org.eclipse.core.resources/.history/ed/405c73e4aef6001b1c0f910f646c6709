@@ -1,0 +1,9 @@
+package run;
+
+public class SudokuGame {
+
+	public SudokuGame() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

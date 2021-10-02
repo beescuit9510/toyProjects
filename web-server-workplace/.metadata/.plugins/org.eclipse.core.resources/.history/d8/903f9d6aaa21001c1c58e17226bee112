@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>jsp 프로젝트</h1>
+	<hr>
+	<h1>위치 - > http://192.168.0.2/04_jspProject/</h1>
+	<%@include file="/jsp/test.jsp" %>
+	<h3><a href="/04_jspProject/jsp/directiveTag.jsp">1. 지시자 태그</a></h3>
+	<h3><a href="/04_jspProject/jsp/scriptletTag.jsp">2. 스크립틀릿태그</a></h3>
+	<h3><a href="/04_jspProject/jsp/expresstionTag.jsp">3. 표현식태그</a></h3>
+</body>
+</html>

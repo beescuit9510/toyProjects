@@ -1,0 +1,98 @@
+package MySort;
+
+public class QuickSort {
+
+	public static void main(String[] args) {
+
+		int[] list = { 1, 2, 3, 4, 9, 8, 7, 2, 1, 3, 10, 12, 16 };
+//		int[] list = { 4, 2, 1, 16, 3 };
+		quickSort(list, 0, list.length);
+
+		for (int i : list) {
+			System.out.print(i + "\t");
+		}
+	}
+
+	private static void quickSort(int[] list, int low, int high) {
+
+		if (low >= high || high - low <= 0) {
+			return;
+		}
+
+		int pivot = 0;
+
+		for (int i = low; i <= high; i++)
+			pivot += i;
+
+		pivot = pivot / (high - low);
+
+		int gap = Math.abs(pivot - list[0]);
+		int pivot2 = 0;
+		int tmpt = -1;
+
+		for (int j = low; j < high; j++) {
+			if (list[j] == pivot) {
+				tmpt = list[j];
+				break;
+			} else {
+				pivot2 = Math.abs(gap - list[j]) < gap ? j : pivot2;
+
+			}
+		}
+		int pivotToUse = tmpt > -1 ? tmpt : pivot2;
+
+		int mid = (high - low) / 2;
+		int box = list[mid];
+		list[mid] = list[pivotToUse];
+		list[pivotToUse] = box;
+		int[] left = new int[high - low];
+		int[] right = new int[high - low];
+		int idxR = 0;
+		int idxL = 0;
+
+		for (int k = low; k < pivotToUse; k++) {
+			
+			if (list[k] > list[pivotToUse] && list[high - k] < list[pivotToUse]) {
+				int box2 = list[k];
+				list[k] = list[pivotToUse];
+				list[pivotToUse] = box2;
+			} else if (list[k] > list[pivotToUse]) {
+				idxL++;
+
+			} else if (list[high - k] < list[pivotToUse]) {
+				idxR++;
+			}
+
+		}
+		int a = Math.max(idxL, idxR);
+
+		for (; a >= 0; a--) {
+			int box4 = list[left[idxL--]];
+			list[left[idxL--]] = list[right[idxR]];
+			list[right[idxR]] = box4;
+		}
+
+		while (idxL > -1 && idxR > -1) {
+			if (idxL > -1) {
+				int box6 = list[left[idxL]];
+				for (int i = left[idxL--]; i > pivotToUse; i++) {
+					list[i] = list[i + 1];
+				}
+				list[pivotToUse] = box6;
+			}
+			if (idxR > -1) {
+				int box6 = list[right[idxR]];
+				for (int i = pivotToUse; i > left[idxL--]; i++) {
+					list[i] = list[i + 1];
+				}
+				list[pivotToUse] = box6;
+
+			}
+		}
+
+		
+		quickSort(list,0,mid);
+		quickSort(list,mid,list.length);
+	}
+
+}

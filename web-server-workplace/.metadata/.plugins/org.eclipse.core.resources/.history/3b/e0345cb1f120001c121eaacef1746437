@@ -1,0 +1,44 @@
+<!DOCTYPE html>ge0
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>메인페이지 입니다</h1>
+	<a href="/requestServer">1. 서버 호출하기</a><br>
+	<a href="/sendData1?test=abc&name=변덕">2. 서버 호출하며 값 전송하기</a>
+	<a href="/sendData2?p1=abc&p2=변덕">2. 서버 호출하며 값 전송하기</a><br>
+	<a href="/SendData3?age=11&name=변덕">3. 서버 호출하며 값 전송하기</a><br>
+	<form action="/SendData3" method="get">
+		보낼 문자 : <input type="text" name="str"><br>
+		보낼 숫자 : <input type="text" name="num"><br>
+		성별 : 
+		<input type="radio" name="gender" value="남"> 남자
+		<input type="radio" name="gender" value="여"> 여자
+		<br>
+		취미 :
+		<input type="checkbox" name="hobby" value="study"> 공부
+		<input type="checkbox" name="hobby" value="reading"> 독서
+		<input type="checkbox" name="hobby" value="soccer">  축구 
+		<br>
+		나이 :
+		<select name="age">
+			<option value="10">10대<option>
+			<option value="20">20대<option>
+			<option value="30">30대<option>
+			<option value="40">40대<option>
+		</select>
+		<input type="hidden" name="hiddenData" value="숨겨진데이터">
+		<input type="text" name="input1" value="테스트데이터리드온리" readonly><br>
+		<input type="text" name="input2" value="테스트데이터디스에이블드" disabled><br>
+		
+	
+		<input type="submit" value="서버로 전송">
+		
+	<input type="text" name="input3" value="테스트데이터폼테그밖은 안넘어감" disabled><br>
+	</form>
+	<input type="text" name="input3" value="테스트데이터폼테그밖은 안넘어감" disabled><br>
+		
+</body>
+</html>

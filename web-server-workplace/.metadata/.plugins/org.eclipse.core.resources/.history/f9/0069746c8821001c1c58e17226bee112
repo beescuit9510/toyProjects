@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원가입 정보입력</h1>
+	<hr>
+	<form action="/join" method="post">
+		<fieldset>
+			<legend>회원가입</legend>
+			<label for="memberId">아이디</label>
+			<input type="text" name="memberId">
+			
+			
+	memberNo ;
+    memberId ;
+    memberPw ;
+    memberName ;
+    phone;
+    address;
+    memberLevel;
+    enrollDate;
+		</fieldset>
+	</form>
+</body>
+</html>

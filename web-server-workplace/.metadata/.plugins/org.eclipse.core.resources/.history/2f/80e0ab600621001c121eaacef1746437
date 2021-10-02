@@ -1,0 +1,14 @@
+package kr.or.iei.member.model.vo;
+
+public class Member {
+	
+    private String MEMBER_NO ;
+    private String MEMBER_ID ;
+    private String MEMBER_PW ;
+    private String MEMBER_NAME ;
+    private String PHONE;
+    private String ADDRESS;
+    private int MEMBER_LEVEL;
+    private String ENROLL_DATE;
+
+}

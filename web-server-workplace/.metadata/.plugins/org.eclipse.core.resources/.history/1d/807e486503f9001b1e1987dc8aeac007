@@ -1,0 +1,50 @@
+package practice;
+
+public class basicThread {
+	
+	public static void main(String[] args) {
+		
+		MyThread thread1 = new MyThread();
+
+		MyRunnable runnable1 = new MyRunnable();
+		Thread thread2 = new Thread(runnable1);
+		
+		System.out.println(thread1.getPriority());
+		System.out.println(thread2.getPriority());
+		thread2.start();
+		thread1.start();
+		
+	}
+
+	public void threadTest() throws InterruptedException {
+
+//		for (int i = 3; i > 0; i--) {
+//			System.out.println(i);
+//			Thread.sleep(1000);
+//		}
+//		System.out.println("done!");
+
+//		Thread.currentThread().setPriority(10);
+
+		MyThread thread2 = new MyThread();
+
+		thread2.setDaemon(false);
+		System.out.println(thread2.isDaemon());
+//		
+//		thread2.run(); // isAlive false
+		thread2.start(); // isAlive true
+//		System.out.println(thread2.isAlive());
+
+//		thread2.setName("2nd thread");
+//		System.out.println(thread2.getName());
+
+//		thread2.setPriority(1);
+//		System.out.println(thread2.getPriority());
+
+		System.out.println(Thread.activeCount());
+
+	}
+	
+	
+
+}

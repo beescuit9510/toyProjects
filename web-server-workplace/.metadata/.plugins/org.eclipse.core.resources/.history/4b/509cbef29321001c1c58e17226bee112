@@ -1,0 +1,36 @@
+package kr.or.iei.member.model.service;
+
+import java.sql.Connection;
+
+import common.JDBCTemplate;
+import kr.or.iei.member.model.dao.MemberDao;
+import kr.or.iei.member.model.vo.Member;
+
+public class MemberService {
+	MemberDao dao = new MemberDao();
+
+
+	public int insertMember(Member member) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertMember(conn, member);
+		
+		if (result > 0)
+			JDBCTemplate.commit(conn);
+		else
+			JDBCTemplate.rollback(conn);
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public Member[] allMember() {
+		Connection conn = JDBCTemplate.getConnection();
+		Member[] members = dao.allMember(conn);
+	
+		JDBCTemplate.close(conn);
+	
+		return members;
+	}
+
+}

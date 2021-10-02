@@ -1,0 +1,31 @@
+package practice;
+
+public class Thread1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		
+//		for (int i = 3; i > 0; i--) {
+//			System.out.println(i);
+//			Thread.sleep(1000);
+//		}
+//		System.out.println("done!");
+
+//		Thread.currentThread().setPriority(10);
+		
+		MyThread thread2 = new MyThread(); 
+//		
+		thread2.run(); // isAlive false
+		thread2.start(); //isAlive true
+		System.out.println(thread2.isAlive());
+		
+		thread2.setName("2nd thread");
+		System.out.println(thread2.getName());
+		thread2.setPriority(1);
+		System.out.println(thread2.getPriority());
+	
+	}
+	
+	
+
+}

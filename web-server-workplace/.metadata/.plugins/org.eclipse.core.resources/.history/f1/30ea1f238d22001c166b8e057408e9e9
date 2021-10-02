@@ -1,0 +1,13 @@
+package member.model.vo;
+
+public class Member {
+	
+	private int memberNo;
+    private String memberId;
+	private String memberPw;
+	private String memberName;
+	private String phone;
+	private String address;
+	private int memberLevel;
+	private String enrollDdate;
+}

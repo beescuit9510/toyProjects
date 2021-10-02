@@ -1,0 +1,50 @@
+package MySort;
+
+public class BubbleSort {
+
+	public static void main(String[] args) {
+
+		int[] list = { 9, 8, 7, 2, 1, 3, 10, 12, 16 };
+		bubbleSort(list);
+
+	}
+
+	public static void swap(int[] list, int idx1, int idx2) {
+
+		for (int i = 0; i < list.length - 1; i++) {
+			if (i == idx1) {
+				System.out.printf(i + " -> ");
+				continue;
+			}
+			System.out.print(i + "\t");
+		}
+		System.out.println();
+
+		int box = list[idx1];
+		list[idx1] = list[idx2];
+		list[idx2] = box;
+	}
+
+	public static void bubbleSort(int[] list) {
+
+		int len = list.length;
+		int compare = 0;
+
+		for (int i = 0; i < len - 1; i++) {
+			for (int j = len - 1; j > i; j--) {
+				compare++;
+				if (list[j] < list[j - 1]) {
+
+					swap(list, j, j - 1);
+				}
+			}
+		}
+		System.out.printf("총 %d번 비교 했습니다.", compare);
+		System.out.println("결과 : ");
+		for (int i : list) {
+			System.out.print(i + "\t");
+
+		}
+	}
+
+}

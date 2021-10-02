@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>선언식 태그</h1>
+	<hr>
+	<h3>jsp 클래스의 전역변수 및 추가 메소드를 생성하는 태그</h3>
+</body>
+</html>

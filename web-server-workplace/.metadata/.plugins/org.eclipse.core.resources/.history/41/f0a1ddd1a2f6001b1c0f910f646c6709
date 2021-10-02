@@ -1,0 +1,30 @@
+package lesson1;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Run {
+
+	public static void main(String[] args) {
+		
+//		String[] things = {"eggs","lasers","hats","pie"};
+		
+		LinkedList<? extends Person> things2 =  new LinkedList<>();
+		things2.add(new Student("jack"));
+//		things2.add(new Student());
+//		things2.add(new Animal());
+//		List<Person> list = new ArrayList<Person>(things2);
+//		list.add(things[0]);
+		
+		System.out.println(things2.get(0));
+		
+		
+		
+//		for(String str : things) {
+//			System.out.println(str);
+//		}
+
+	}
+
+}

@@ -1,0 +1,19 @@
+package lesson1;
+
+import java.util.ArrayList;
+
+public class Run {
+
+	public static void main(String[] args) {
+		
+		String[] things = {"eggs","lasers","hats","pie"};
+		
+		List<String> list = new ArrayList<>(things);
+		
+		for(String str : things) {
+			System.out.println(str);
+		}
+
+	}
+
+}

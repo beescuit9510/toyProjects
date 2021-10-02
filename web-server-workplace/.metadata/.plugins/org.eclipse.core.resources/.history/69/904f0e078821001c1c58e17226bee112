@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원가입 정보입력</h1>
+	<hr>
+	<form action="/join" method="post">
+		<fieldset>
+			<legend>회원가입</legend>
+		</fieldset>
+	</form>
+</body>
+</html>
