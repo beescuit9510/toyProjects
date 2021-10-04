@@ -54,7 +54,7 @@ public class JoinServlet extends HttpServlet {
 			request.setAttribute("msg", "회원 가입 실패");
 //			request.setAttribute("loc", "/WEN-INF/views/member/join.jsp");
 			request.setAttribute("loc", "/joinFrm");
-			view.forward(request, response);
+			view.forward(request, response);			
 			
 		}
 		

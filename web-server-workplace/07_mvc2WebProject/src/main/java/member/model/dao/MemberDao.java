@@ -61,5 +61,33 @@ public class MemberDao {
 		
 		return result;
 	}
+
+
+	public Member selectOneMember(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet r = null;
+		Member member = null;
+		String query = "select * from member where member_id = ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+
+			r = pstmt.executeQuery();
+
+			if (r.next()) {
+				int i = 1;
+				member = new Member(r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++),
+						r.getString(i++), r.getString(i++), r.getInt(i++), r.getString(i++));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(r);
+		}
+
+		return member;
+	}
 	
 }
