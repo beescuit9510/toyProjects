@@ -53,7 +53,7 @@
 				<button class="btn btn-secondary my-2 my-0" data-toggle="modal" data-target=".modal">로그인</button>
 				<a href="/joinFrm" class="btn btn-secondary my-2 my-sm-0">회원가입</a>
 			<%} else { %>
-				<a href="#" class="btn btn-secondary my-2 my-sm-0"><%=member.getMemberName() %></a>
+				<a href="/mypage" class="btn btn-secondary my-2 my-sm-0"><%=member.getMemberName() %></a>
 				<a href="/logout" class="btn btn-secondary my-2 my-sm-0">로그아웃</a>
 			<%} %>
 			

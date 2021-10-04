@@ -9,10 +9,10 @@ public class Member {
 	private String phone;
 	private String address;
 	private int memberLevel;
-	private String enrollDdate;
+	private String enrollDate;
 
 	public Member(int memberNo, String memberId, String memberPw, String memberName, String phone, String address,
-			int memberLevel, String enrollDdate) {
+			int memberLevel, String enrollDate) {
 		super();
 		this.memberNo = memberNo;
 		this.memberId = memberId;
@@ -21,7 +21,7 @@ public class Member {
 		this.phone = phone;
 		this.address = address;
 		this.memberLevel = memberLevel;
-		this.enrollDdate = enrollDdate;
+		this.enrollDate = enrollDate;
 	}
 
 	public Member(String memberId, String memberPw, String memberName, String phone, String address) {
@@ -93,17 +93,17 @@ public class Member {
 		this.memberLevel = memberLevel;
 	}
 
-	public String getEnrollDdate() {
-		return enrollDdate;
+	public String getEnrollDate() {
+		return enrollDate;
 	}
 
-	public void setEnrollDdate(String enrollDdate) {
-		this.enrollDdate = enrollDdate;
+	public void setEnrollDate(String enrollDate) {
+		this.enrollDate = enrollDate;
 	}
 
 	@Override
 	public String toString() {
-		return memberNo + memberId + memberPw + memberName + phone + address + memberLevel + enrollDdate;
+		return memberNo + memberId + memberPw + memberName + phone + address + memberLevel + enrollDate;
 	}
 
 }

@@ -1,0 +1,18 @@
+<%@page import="member.model.vo.Member" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+	<%
+		Member member = (Member)session.getAttribute("member");
+	%>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my page</title>
+</head>
+<body>
+<%@include file="/WEB-INF/views/common/header.jsp" %>
+<%@include file="/WEB-INF/views/common/footer.jsp" %>
+	
+</body>
+</html>
