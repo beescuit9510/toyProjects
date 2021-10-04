@@ -11,6 +11,8 @@ C:\Users\82104\Desktop\javaToyProjects\.metadata\.plugins\org.eclipse.jst.jsp.co
 \05_jspDbProject\src\main\java
 C:\Users\82104\Desktop\javaToyProjects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2178491999.index
 \07_mvc2WebProject\src\main\java
+C:\Users\82104\Desktop\workplaces\web-server-workplace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2178491999.index
+\07_mvc2WebProject\src\main\java
 C:\Users\82104\Desktop\javaToyProjects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3253551919.index
 \06_mvc2Project\src\main\java
 C:\Users\82104\Desktop\javaToyProjects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1223951038.index
@@ -19,3 +21,5 @@ C:\Users\82104\Desktop\javaToyProjects\.metadata\.plugins\org.eclipse.jst.jsp.co
 \07_mvc2WebProject\src\main\java
 C:\Users\82104\Desktop\javaToyProjects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1214193395.index
 \05_jspDbProject\src\main\java
+C:\Users\82104\Desktop\workplaces\web-server-workplace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\349285494.index
+\07_mvc2WebProject\src\main\java
