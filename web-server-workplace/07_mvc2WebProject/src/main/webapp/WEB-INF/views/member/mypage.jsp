@@ -66,7 +66,7 @@
 				<%if(member.getMemberLevel() == 1) {%>
 				<a href="/adminPage" class="btn btn-outline-danger">회원관리</a>
 				<%} else{ %>
-				<a href="/deleteMember" class="btn btn-outline-danger">회원탈퇴</a>
+				<a href="/deleteMember?memberNo=<%=member.getMemberNo() %>" class="btn btn-outline-danger">회원탈퇴</a>
 				<%} %>
 			</fieldset>
 		</div>

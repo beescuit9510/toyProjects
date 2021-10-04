@@ -3,12 +3,17 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item key="selection" value="enrollDate"/>
 		<item key="wrap" value="true"/>
-		<item key="casesensitive" value="false"/>
+		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="enrollDdate"/>
 			<item value="address"/>
+			<item value="phone"/>
+			<item value="memberId"/>
+			<item value="member"/>
+			<item value="mberId"/>
 			<item value="memberName"/>
 			<item value="memberNo"/>
 			<item value="&quot;&amp;#9;&quot;"/>
@@ -20,9 +25,12 @@
 		</list>
 		<list key="replacehistory">
 			<item value="enrollDate"/>
-			<item value="memberLevel"/>
+			<item value="memberId"/>
 			<item value="address"/>
 			<item value="phone"/>
+			<item value="mberName"/>
+			<item value="memberPw"/>
+			<item value="memberLevel"/>
 			<item value="memberName"/>
 			<item value="&quot;&lt;/td&gt;&lt;td&gt;&quot;"/>
 			<item value="&quot;&amp;#9;&quot;"/>

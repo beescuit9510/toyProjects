@@ -40,7 +40,7 @@ public class LogoutServlet extends HttpServlet {
 			session.invalidate();
 
 			// 동적 페이지 이동
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/msg.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 
 			request.setAttribute("msg", "로그아웃");
 			request.setAttribute("loc", "/");

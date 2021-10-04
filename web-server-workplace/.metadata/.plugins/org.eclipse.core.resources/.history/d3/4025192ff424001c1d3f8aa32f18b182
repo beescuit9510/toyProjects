@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>아이디/비밀번호 찾기</title>
+</head>
+<body>
+	<%@include file="/WEB-INF/views/common/header.jsp"%>
+	<div class="container">
+		<form action="/findId" method="post" name="joinFrm">
+			<legend>아이디 찾기</legend>
+			<div class="from-group">
+				<label class="control-label" for="memberName">이름</label>
+				<input type="text" name="memberName" id="memberName" class="form-control"><br>
+				<label class="control-label" for="phone">전화번호</label>
+				<input type="text" name="phone" id="phone" class="form-control">
+				<br><br>
+			<button type="submit" class="btn btn-outline-primary btn-lg btn-block">아이디 찾기</button>
+			</div>
+		</form>
+		<br>
+		<br>
+		<br>
+		<br>
+		<form action="/findPw" method="post" name="joinFrm">
+			<legend>비밀번호 찾기</legend>
+			<div class="from-group">
+				<label class="control-label" for="memberId">아이디</label>
+				<input type="text" name="memberId" id="memberId" class="form-control"><br>
+				<label class="control-label" for="phone">전화번호</label>
+				<input type="text" name="phone" id="phone" class="form-control">
+				<br><br>
+			<button type="submit" class="btn btn-outline-primary btn-lg btn-block">비밀번호 찾기</button>
+			</div>
+		</form>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+</body>
+</html>

@@ -20,23 +20,29 @@
 				style="width:90%; display:inline-block;">
 				<button type="button" id="idChk" class="btn btn-secondary">중복체크</button>
 			</div>
+			<br>
 			<div class="from-group">
 				<label class="control-label" for="memberPw">비밀번호</label>
 				<input type="text" name="memberPw" id="memberPw" class="form-control">
 			</div>
+			<br>
 			<div class="from-group">
 				<label class="control-label" for="memberName">이름</label>
 				<input type="text" name="memberName" id="memberName" class="form-control">
 			</div>
+			<br>
 			<div class="from-group">
 				<label class="control-label" for="phone">전화번호</label>
 				<input type="text" name="phone" id="phone" class="form-control" placeholder="010-0000-0000">
 			</div>
+			<br>
 			<div class="from-group">
 				<label class="control-label" for="address">주소</label>
 				<input type="text" name="address" id="address" class="form-control">
 			</div>
+			<br><br>
 			<button type="submit" class="btn btn-outline-primary btn-lg btn-block">회원가입</button>
+			<br><br>
 		</form>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
