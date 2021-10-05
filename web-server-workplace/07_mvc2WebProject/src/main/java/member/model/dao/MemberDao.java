@@ -211,8 +211,8 @@ public class MemberDao {
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(query);){	
 			
-			pstmt.setInt(1, memberNo);
-			pstmt.setInt(2, memberLevel);
+			pstmt.setInt(1, memberLevel);
+			pstmt.setInt(2, memberNo);
 			
 			r = pstmt.executeUpdate();
 			

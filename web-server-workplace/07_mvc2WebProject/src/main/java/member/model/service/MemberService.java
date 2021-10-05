@@ -2,6 +2,7 @@ package member.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import common.JDBCTemplate;
 import member.model.dao.MemberDao;
@@ -121,6 +122,42 @@ public class MemberService {
 			JDBCTemplate.rollback(conn);
 			
 		}
+		
+		JDBCTemplate.close(conn);
+		
+		return r;
+	}
+
+	public boolean chkChangeLevel(String num, String level) {
+		Connection conn = JDBCTemplate.getConnection();
+				
+		MemberDao dao = new MemberDao();
+		
+		StringTokenizer nums = new StringTokenizer(num, "/");
+		
+		StringTokenizer levels = new StringTokenizer(level, "/");
+		
+		boolean r = true;
+		
+		while(nums.hasMoreTokens()) {
+			
+			int memberNo = Integer.parseInt(nums.nextToken());
+			int memberLevel = Integer.parseInt(levels.nextToken());
+			int temp = dao.changeLevel(conn, memberNo, memberLevel);
+//			System.out.println(memberNo+""+memberLevel);
+//			System.out.println(temp);
+			if(temp == 0) {
+				r = false;
+				break;
+			}
+		}
+		
+		if(r) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
 		
 		JDBCTemplate.close(conn);
 		

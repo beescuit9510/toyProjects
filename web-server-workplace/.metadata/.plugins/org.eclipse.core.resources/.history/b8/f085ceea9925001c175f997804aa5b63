@@ -1,0 +1,5 @@
+package notice.modal.service;
+
+public class NoticeService {
+
+}

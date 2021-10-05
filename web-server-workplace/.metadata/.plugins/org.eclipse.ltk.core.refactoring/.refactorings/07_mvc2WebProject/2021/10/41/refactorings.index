@@ -1,3 +1,5 @@
 1633318672768	Move 'msg.jsp' to 'common'
 1633336798888	Rename resource 'findIdPwFrm.jsp'
 1633396014779	Rename type 'AminPageServlet'
+1633410354170	Delete element
+1633412279365	Move 'noticeList.jsp' to 'notice'

@@ -1,0 +1,11 @@
+package notice.model.vo;
+
+public class Notice {
+	private String notice;
+	private String notice;
+	private String notice;
+	private String notice;
+	private String notice;
+	private String notice;
+
+}
