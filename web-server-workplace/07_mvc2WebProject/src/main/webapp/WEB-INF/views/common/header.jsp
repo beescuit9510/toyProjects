@@ -31,7 +31,7 @@
 					<a class="nav-link" href="/noticeList">공지사항</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/">Menu2</a>
+					<a class="nav-link" href="/boardList">자유게시판</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Menu3</a>

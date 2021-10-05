@@ -14,6 +14,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
 /**
@@ -84,11 +85,34 @@ public class NoticeWriteServlet extends HttpServlet {
 		//데이터 추출시 request로 추출하면 모두 null로 처리 -> mRequest로 추출해야함;
 		//한번 포장된거라고 할 수 있음.
 		Notice notice = new Notice(mRequest.getParameter("noticeTitle"),
-				mRequest.getParameter("noticeWriter"),
 				mRequest.getParameter("noticeContent"),
+				mRequest.getParameter("noticeWriter"),
 				mRequest.getOriginalFileName("upfile"), //file name 사용자가 올린 파일 이름;
 				mRequest.getFilesystemName("upfile") //file path 서버에 업로드된 파일 이름;
 				);
+		//getOriginalFileName(), getFilesystemName()의 매개변수는
+		//<input type="file" name="upfile"> -> name 속성값을 매개변수로.
+		
+		
+		System.out.println("original : "+notice.getFilename());
+		System.out.println("filesystem : "+notice.getFilepath());
+		
+		System.out.println(notice);
+		
+		int result = new NoticeService().insertNotice(notice);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		
+		if(result > 0) {
+			request.setAttribute("msg", "공지사항 등록 성공!");
+		}else {
+			request.setAttribute("msg", "에러가 났어요! 찾아요 빨리!");			
+		}
+		
+		request.setAttribute("loc", "/noticeWriteFrm");
+		view.forward(request, response);
+		
+
 		
 		
 		request.getParameter("");

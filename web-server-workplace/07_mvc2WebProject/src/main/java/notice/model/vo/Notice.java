@@ -117,6 +117,16 @@ public class Notice {
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
+				+ ", noticeWriter=" + noticeWriter + ", readCount=" + readCount + ", regCount=" + regCount
+				+ ", filename=" + filename + ", filepath=" + filepath + "]";
+	}
+	
+	
 	
 	
 	

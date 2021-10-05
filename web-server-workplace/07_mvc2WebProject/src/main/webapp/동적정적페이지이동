@@ -1,0 +1,23 @@
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession(false);
+
+		if (session != null) {
+
+			session.invalidate();
+
+			// 동적 페이지 이동
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+
+			request.setAttribute("msg", "로그아웃");
+			request.setAttribute("loc", "/");
+
+			view.forward(request, response);
+
+		} else {
+			// 정적 페이지 이동
+			response.sendRedirect("/");
+
+		}
+	}
