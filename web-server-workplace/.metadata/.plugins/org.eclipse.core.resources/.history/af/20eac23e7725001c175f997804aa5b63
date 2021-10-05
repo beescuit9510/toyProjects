@@ -1,0 +1,23 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList;
+"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%
+    	ArrayList<Member> members = (ArrayList<Member>)request.getAttribute("members");
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>운영자 페이지</title>
+</head>
+<body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
+	<div class="container">
+		
+	</div>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
+</body>
+</html>

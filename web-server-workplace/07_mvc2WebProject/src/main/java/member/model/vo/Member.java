@@ -100,6 +100,19 @@ public class Member {
 	public void setEnrollDate(String enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+	
+	public String getTd() {
+		String td =
+				"<td>"+getMemberNo()+"</td>"+
+				"<td>"+getMemberId()+"</td>"+
+				"<td>"+getMemberName()+"</td>"+
+				"<td>"+getPhone()+"</td>"+
+				"<td>"+getAddress()+"</td>"+
+				"<td>"+getEnrollDate()+"</td>";
+//				"<td>"+"</td>";
+		return  td;
+		
+	}
 
 	@Override
 	public String toString() {

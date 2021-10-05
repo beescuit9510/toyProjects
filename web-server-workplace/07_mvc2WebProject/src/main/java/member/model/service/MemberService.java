@@ -1,6 +1,7 @@
 package member.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import member.model.dao.MemberDao;
@@ -96,6 +97,34 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 
 		return member;
+	}
+
+	public ArrayList<Member> selectAllMember() {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Member> members = new MemberDao().selectAllMember(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return members;
+	}
+
+	public int changeLevel(int memberNo, int memberLevel) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int r = new MemberDao().changeLevel(conn, memberNo, memberLevel);
+		
+		if(r>0) {
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			JDBCTemplate.rollback(conn);
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return r;
 	}
 
 }

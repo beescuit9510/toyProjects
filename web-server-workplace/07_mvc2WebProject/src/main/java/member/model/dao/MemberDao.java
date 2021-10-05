@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import member.model.vo.Member;
@@ -180,6 +181,46 @@ public class MemberDao {
 		}
 
 		return member;
+	}
+
+	
+	public ArrayList<Member> selectAllMember(Connection conn) {
+		String query = "select * from member";
+		ArrayList<Member> members = new ArrayList<>();
+
+		try (PreparedStatement pstmt = conn.prepareStatement(query);
+				ResultSet r = pstmt.executeQuery();) {
+
+			while (r.next()) {
+				int i = 1;
+				members.add(new Member(r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++),
+						r.getString(i++), r.getString(i++), r.getInt(i++), r.getString(i++)));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return members;
+	}
+
+	public int changeLevel(Connection conn, int memberNo, int memberLevel) {
+		String query = "update member set member_level = ? where member_no = ?";
+		int r = -1;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(query);){	
+			
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, memberLevel);
+			
+			r = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return r;
 	}
 
 }
