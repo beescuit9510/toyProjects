@@ -109,7 +109,7 @@ public class NoticeWriteServlet extends HttpServlet {
 			request.setAttribute("msg", "에러가 났어요! 찾아요 빨리!");			
 		}
 		
-		request.setAttribute("loc", "/noticeWrite?reqPage=1");
+		request.setAttribute("loc", "/noticeList?reqPage=1");
 		
 		view.forward(request, response);
 		

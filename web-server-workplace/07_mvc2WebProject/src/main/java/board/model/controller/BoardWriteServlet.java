@@ -87,7 +87,7 @@ public class BoardWriteServlet extends HttpServlet {
 			request.setAttribute("msg", "에러가 났어요! 찾아요 빨리!");			
 		}
 		
-		request.setAttribute("loc", "/boardWriteFrm");
+		request.setAttribute("loc", "/boardList");
 		
 		
 		view.forward(request, response);

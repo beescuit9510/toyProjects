@@ -67,10 +67,9 @@ public class NoticeDao {
 
 		String query = "select count(*) as cnt from notice";
 
-		try (PreparedStatement pstmt = conn.prepareStatement(query); 
-				ResultSet r = pstmt.executeQuery(); ) {
-			
-			if(r.next()) {
+		try (PreparedStatement pstmt = conn.prepareStatement(query); ResultSet r = pstmt.executeQuery();) {
+
+			if (r.next()) {
 				result = r.getInt("cnt");
 			}
 
@@ -79,5 +78,49 @@ public class NoticeDao {
 		}
 
 		return result;
+	}
+
+	public int updateReadCount(Connection conn, int noticeNo) {
+		String query = "update notice set read_count = read_count+1 where notice_no = ?";
+		int result = -1;
+
+		try (PreparedStatement pstmt = conn.prepareStatement(query);) {
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	public Notice selectOneMember(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		ResultSet r = null;
+		String query = "select * from notice where notice_no = ?";
+		Notice notice = null;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+
+			r = pstmt.executeQuery();
+
+			if (r.next()) {
+				int i = 1;
+				notice = new Notice(r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++), r.getInt(i++),
+						r.getString(i++), r.getString(i++), r.getString(i++));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(r);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return notice;
+
 	}
 }

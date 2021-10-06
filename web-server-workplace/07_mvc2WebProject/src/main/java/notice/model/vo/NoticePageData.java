@@ -1,12 +1,11 @@
-package notice.model.dao;
+package notice.model.vo;
 
 import java.util.ArrayList;
-
-import notice.model.vo.Notice;
 
 public class NoticePageData {
 	private ArrayList<Notice> notices;
 	private String pageNavi;
+	private int start;
 
 	public ArrayList<Notice> getNotices() {
 		return notices;
@@ -24,10 +23,20 @@ public class NoticePageData {
 		this.pageNavi = pageNavi;
 	}
 
-	public NoticePageData(ArrayList<Notice> notices, String pageNavi) {
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public NoticePageData(ArrayList<Notice> notices, String pageNavi, int start) {
 		super();
 		this.notices = notices;
 		this.pageNavi = pageNavi;
+		this.start = start;
 	}
 
 }

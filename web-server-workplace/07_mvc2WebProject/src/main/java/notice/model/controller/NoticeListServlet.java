@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.dao.NoticePageData;
 import notice.model.service.NoticeService;
+import notice.model.vo.NoticePageData;
 
 /**
  * Servlet implementation class NoticeListServlet
@@ -45,7 +45,10 @@ public class NoticeListServlet extends HttpServlet {
 		request.setAttribute("notices", noticePageData.getNotices());
 
 		request.setAttribute("pageNavi", noticePageData.getPageNavi());
+
+		request.setAttribute("start", noticePageData.getStart());
 		
+		request.setAttribute("noticePageData", noticePageData);
 		
 		view.forward(request, response);
 	}

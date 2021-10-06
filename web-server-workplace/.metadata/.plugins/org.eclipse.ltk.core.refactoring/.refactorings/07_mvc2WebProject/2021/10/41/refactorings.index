@@ -5,3 +5,6 @@
 1633412279365	Move 'noticeList.jsp' to 'notice'
 1633418291971	Rename resource 'note'
 1633421669935	Move compilation unit
+1633495146701	Move compilation unit
+1633506121255	Copy compilation unit
+1633506131976	Rename type 'NoticePageData'
