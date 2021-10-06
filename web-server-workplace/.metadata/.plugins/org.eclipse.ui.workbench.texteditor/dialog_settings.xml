@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="enrollDate"/>
+		<item key="selection" value="Output"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="Input"/>
+			<item value="input"/>
+			<item value="Notice"/>
+			<item value="notice"/>
+			<item value="resFileName"/>
+			<item value="noticeList"/>
+			<item value="regPage"/>
+			<item value="regCount"/>
+			<item value="reg"/>
+			<item value="&lt;/td&gt;"/>
+			<item value="&lt;td&gt;"/>
+			<item value="th"/>
 			<item value="enrollDdate"/>
 			<item value="address"/>
 			<item value="phone"/>
-			<item value="memberId"/>
-			<item value="member"/>
-			<item value="mberId"/>
-			<item value="memberName"/>
-			<item value="memberNo"/>
-			<item value="&quot;&amp;#9;&quot;"/>
-			<item value="&quot;/t&quot;"/>
-			<item value="patch"/>
-			<item value="private"/>
-			<item value="r"/>
-			<item value="pointer"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Output"/>
+			<item value="output"/>
+			<item value="Board"/>
+			<item value="board"/>
+			<item value="resultFileName"/>
+			<item value="boardList"/>
+			<item value="reqPage"/>
+			<item value="regDate"/>
+			<item value="req"/>
+			<item value="+&quot;&lt;/td&gt;&quot;+"/>
+			<item value="+&quot;&lt;td&gt;&quot;+"/>
+			<item value="td"/>
 			<item value="enrollDate"/>
 			<item value="memberId"/>
 			<item value="address"/>
-			<item value="phone"/>
-			<item value="mberName"/>
-			<item value="memberPw"/>
-			<item value="memberLevel"/>
-			<item value="memberName"/>
-			<item value="&quot;&lt;/td&gt;&lt;td&gt;&quot;"/>
-			<item value="&quot;&amp;#9;&quot;"/>
-			<item value="pattern"/>
-			<item value="public"/>
-			<item value="x"/>
-			<item value="ptr"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

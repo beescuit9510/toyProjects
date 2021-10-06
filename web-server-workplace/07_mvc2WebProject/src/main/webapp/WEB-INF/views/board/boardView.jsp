@@ -30,7 +30,7 @@
 				<th>
 					<%if(board.getFilename()!=null){ %>
 					<img src="/img/file.png" width="16px">
-					<a href='/fileDown?boardNo=<%=board.getBoardNo() %>'><%=board.getFilename() %></a>
+					<a href='/boardFileDown?boardNo=<%=board.getBoardNo() %>'><%=board.getFilename() %></a>
 					<%} %>
 				</th>
 				<th>조회수</th>

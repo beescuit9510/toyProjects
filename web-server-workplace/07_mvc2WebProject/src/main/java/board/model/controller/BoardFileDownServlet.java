@@ -3,7 +3,6 @@ package board.model.controller;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -20,14 +19,14 @@ import board.model.vo.Board;
 /**
  * Servlet implementation class FileDownServlet
  */
-@WebServlet(name = "fileDown", urlPatterns = { "/fileDown" })
-public class FileDownServlet extends HttpServlet {
+@WebServlet(name = "BoardFileDown", urlPatterns = { "/boardFileDown" })
+public class BoardFileDownServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public FileDownServlet() {
+	public BoardFileDownServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -48,7 +47,7 @@ public class FileDownServlet extends HttpServlet {
 
 		
 		String root = getServletContext().getRealPath("/");
-		String saveDirectory = root + "/upload/board";
+		String saveDirectory = root + "/upload/board/";
 		String file = saveDirectory + board.getFilepath();
 
 		
@@ -62,10 +61,14 @@ public class FileDownServlet extends HttpServlet {
 
 		String resultFileName = null;
 		
+		
+		
+		
 
 		boolean isInternetExplorer = request.getHeader("user-agent").indexOf("MSIE") != -1
 				|| request.getHeader("user-agent").indexOf("Trident") != -1;
 
+		
 		System.out.println("IE 여부 : "+isInternetExplorer);
 		
 		
