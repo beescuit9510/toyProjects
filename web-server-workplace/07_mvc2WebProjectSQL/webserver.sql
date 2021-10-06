@@ -56,3 +56,8 @@ commit;
 
 insert into board values(board_seq.nextval,'a','a','deathEater',0,to_char(sysdate,'yyyy-mm-dd'),'a','a');
 insert into notice values(notice_seq.nextval,'a','a','deathEater',0,to_char(sysdate,'yyyy-mm-dd'),'a','a');
+
+insert into notice values(notice_seq.nextval, notice_seq.currval||'공지','test','deathEater',0,to_char(sysdate,'yyyy-mm-dd'),null,null);
+
+
+select * from (select rownum as rnum, n.* from(select * from notice order by notice_no desc)n) where rnum between 1 and 10;

@@ -28,7 +28,7 @@
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="/noticeList">공지사항</a>
+					<a class="nav-link" href="/noticeList?reqPage=1">공지사항</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/boardList">자유게시판</a>

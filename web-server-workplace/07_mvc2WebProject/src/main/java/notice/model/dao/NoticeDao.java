@@ -2,8 +2,11 @@ package notice.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import common.JDBCTemplate;
 import notice.model.vo.Notice;
 
 public class NoticeDao {
@@ -20,9 +23,9 @@ public class NoticeDao {
 			pstmt.setString(i++, notice.getNoticeWriter());
 			pstmt.setString(i++, notice.getFilename());
 			pstmt.setString(i++, notice.getFilepath());
-			
+
 			r = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -30,4 +33,51 @@ public class NoticeDao {
 		return r;
 	}
 
+	public ArrayList<Notice> selectNoticeList(Connection conn, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet r = null;
+		String query = "select * from(select rownum as rnum, n.* from (select * from notice order by notice_no desc)n) where rnum between ? and ?";
+		ArrayList<Notice> notices = new ArrayList<>();
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+
+			r = pstmt.executeQuery();
+
+			while (r.next()) {
+				int i = 2;
+				notices.add(new Notice(r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++),
+						r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(r);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return notices;
+	}
+
+	public int selectTotalCount(Connection conn) {
+		int result = 0;
+
+		String query = "select count(*) as cnt from notice";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(query); 
+				ResultSet r = pstmt.executeQuery(); ) {
+			
+			if(r.next()) {
+				result = r.getInt("cnt");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 }

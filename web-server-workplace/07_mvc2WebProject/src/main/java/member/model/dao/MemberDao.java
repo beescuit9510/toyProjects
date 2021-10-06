@@ -183,13 +183,11 @@ public class MemberDao {
 		return member;
 	}
 
-	
 	public ArrayList<Member> selectAllMember(Connection conn) {
 		String query = "select * from member";
 		ArrayList<Member> members = new ArrayList<>();
 
-		try (PreparedStatement pstmt = conn.prepareStatement(query);
-				ResultSet r = pstmt.executeQuery();) {
+		try (PreparedStatement pstmt = conn.prepareStatement(query); ResultSet r = pstmt.executeQuery();) {
 
 			while (r.next()) {
 				int i = 1;
@@ -208,18 +206,18 @@ public class MemberDao {
 	public int changeLevel(Connection conn, int memberNo, int memberLevel) {
 		String query = "update member set member_level = ? where member_no = ?";
 		int r = -1;
-		
-		try(PreparedStatement pstmt = conn.prepareStatement(query);){	
-			
+
+		try (PreparedStatement pstmt = conn.prepareStatement(query);) {
+
 			pstmt.setInt(1, memberLevel);
 			pstmt.setInt(2, memberNo);
-			
+
 			r = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return r;
 	}
 

@@ -6,7 +6,7 @@ public class Notice {
 	private String noticeContent;
 	private String noticeWriter;
 	private int readCount;
-	private String regCount;
+	private String regDate;
     private String filename;
 	private String filepath;
 	
@@ -17,14 +17,14 @@ public class Notice {
 
 
 	public Notice(int noticeNo, String noticeTitle, String noticeContent, String noticeWriter, int readCount,
-			String regCount, String filename, String filepath) {
+			String regDate, String filename, String filepath) {
 		super();
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
 		this.noticeWriter = noticeWriter;
 		this.readCount = readCount;
-		this.regCount = regCount;
+		this.regDate = regDate;
 		this.filename = filename;
 		this.filepath = filepath;
 	}
@@ -89,13 +89,13 @@ public class Notice {
 	}
 
 
-	public String getRegCount() {
-		return regCount;
+	public String getRegDate() {
+		return regDate;
 	}
 
 
-	public void setRegCount(String regCount) {
-		this.regCount = regCount;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
 
@@ -122,7 +122,7 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", noticeWriter=" + noticeWriter + ", readCount=" + readCount + ", regCount=" + regCount
+				+ ", noticeWriter=" + noticeWriter + ", readCount=" + readCount + ", regDate=" + regDate
 				+ ", filename=" + filename + ", filepath=" + filepath + "]";
 	}
 	

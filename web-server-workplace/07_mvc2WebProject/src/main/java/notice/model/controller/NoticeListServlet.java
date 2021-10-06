@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import notice.model.dao.NoticePageData;
+import notice.model.service.NoticeService;
+
 /**
  * Servlet implementation class NoticeListServlet
  */
@@ -32,8 +35,18 @@ public class NoticeListServlet extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		request.setCharacterEncoding("utf-8");
+				
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		
+		NoticePageData noticePageData = new NoticeService().selectNoticeList(reqPage);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList.jsp");
+		
+		request.setAttribute("notices", noticePageData.getNotices());
+
+		request.setAttribute("pageNavi", noticePageData.getPageNavi());
+		
+		
 		view.forward(request, response);
 	}
 

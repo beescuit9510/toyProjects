@@ -6,7 +6,7 @@ public class Board {
 	private String boardContent;
 	private String boardWriter;
 	private int readCount;
-	private String regCount;
+	private String regDate;
     private String filename;
 	private String filepath;
 	
@@ -17,14 +17,14 @@ public class Board {
 	}
 
 	public Board(int boardNo, String boardTitle, String boardContent, String boardWriter, int readCount,
-			String regCount, String filename, String filepath) {
+			String regDate, String filename, String filepath) {
 		super();
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
 		this.boardWriter = boardWriter;
 		this.readCount = readCount;
-		this.regCount = regCount;
+		this.regDate = regDate;
 		this.filename = filename;
 		this.filepath = filepath;
 	}
@@ -78,12 +78,12 @@ public class Board {
 		this.readCount = readCount;
 	}
 
-	public String getRegCount() {
-		return regCount;
+	public String getRegDate() {
+		return regDate;
 	}
 
-	public void setRegCount(String regCount) {
-		this.regCount = regCount;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
 	public String getFilename() {
@@ -105,7 +105,7 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
-				+ ", boardWriter=" + boardWriter + ", readCount=" + readCount + ", regCount=" + regCount + ", filename="
+				+ ", boardWriter=" + boardWriter + ", readCount=" + readCount + ", regDate=" + regDate + ", filename="
 				+ filename + ", filepath=" + filepath + "]";
 	}
 
