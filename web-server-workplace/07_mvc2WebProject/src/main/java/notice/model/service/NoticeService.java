@@ -133,4 +133,16 @@ public class NoticeService {
 
 	}
 
+	public Notice getNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		Notice notice = new NoticeDao().selectOneMember(conn, noticeNo);
+				
+		JDBCTemplate.close(conn);
+		
+		return notice;
+		
+		
+	}
+
 }

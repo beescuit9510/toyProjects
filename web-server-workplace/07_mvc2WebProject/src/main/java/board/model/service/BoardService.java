@@ -36,50 +36,67 @@ public class BoardService {
 		
 //		reqPage => 1 start=1/end=10
 //		reqPage => 2 start=11/end=20
-		
-		int boardsPerPage = 10;
-		int start = reqPage*boardsPerPage;		
-		int end = boardsPerPage-9;
+		// 한 페이지당 게시물 수
+		int numPerPage = 10;
+		// reqPage = 1 start = 1/end =10, reqPage = 2 start=11/end=20
+
+		int end = reqPage * numPerPage;
+
+		int start = end - numPerPage + 1;
 
 		ArrayList<Board> boards = dao.selectNoticeList(conn, start, end);
 		
 		int totalCount = dao.selectTotalCount(conn);
-		
-		int totalPage = totalCount%boardsPerPage==0? totalCount/boardsPerPage:totalCount/boardsPerPage+1;
-				
+
+		// 전체 페이지수를 계산;
+		int totalPage = totalCount % numPerPage == 0 ? totalCount / numPerPage : totalCount / numPerPage + 1;
+
+//		지정해야 할 항목
+//		2.페이지 네비의 길이(네비게이션 숫자 최대 길이)
 		int pageNaviSize = 5;
+//		1~5페이지 요청시(reqPage 값) -
 		
-		int pageNo = end/boardsPerPage;
+		int pageNo = reqPage<=3? 1:totalPage-reqPage<=2? totalPage-5:reqPage-2;
 		
-		String pageNavi = "<ul><li>";
+		//req 1~3 = 1
+		//req 4 = 2
 		
-		if(reqPage!=1) {
-			pageNavi += "<li><a href='noticeList?reqPage="+(pageNo-1)+"'>";
-			pageNavi += "&lt;"+"</a></li>";
+		System.out.println(totalPage);
+		
+		String pageNavi = "<ul class='pagination pagination-lg'>";
+
+		// 이전 버튼
+		if (pageNo != 1) {
+			pageNavi += "<li class='page-item'>";
+			pageNavi += "<a class='page-link' href='/boardList?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "&lt</a></li>";
 		}
-		
-		for(int i=0; i<pageNaviSize; i++) {
-			if(reqPage==pageNo) {
-				pageNavi += "<li class='active'><a href='noticeList?reqPage="+pageNo+"'>";
-				pageNavi += pageNo+"</a></li>";
-			}else {
-				pageNavi += "<li><a href='noticeList?reqPage="+pageNo+"'>";
-				pageNavi += pageNo+"</a></li>";				
+
+		// 페이지 숫자
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (pageNo == reqPage) {
+				pageNavi += "<li class='page-item active'>";
+				pageNavi += "<a class='page-link' href='/boardList?reqPage=" + pageNo + "'>";
+				pageNavi += pageNo + "</a></li>";
+			} else {
+				pageNavi += "<li class='page-item '>";
+				pageNavi += "<a class='page-link' href='/boardList?reqPage=" + pageNo + "'>";
+				pageNavi += pageNo + "</a></li>";
 			}
-			if(pageNo > totalPage) {
+			if (pageNo > totalPage) {
 				break;
 			}
 			pageNo++;
 		}
-
-		if(pageNo <= totalPage) {
+		// 다음 버튼
+		if (pageNo <= totalPage) {
 			pageNavi += "<li class='page-item '>";
-			pageNavi += "<a class='page-link' href='/noticeList?reqPage="+pageNo+">";
-			pageNavi += "&gt;</a></li>";			
+			pageNavi += "<a class='page-link' href='/boardList?reqPage=" + pageNo + "'>";
+			pageNavi += "&gt;</a></li>";
 		}
 
-		
-		pageNavi += "</li>";
+		pageNavi += "</ul>";
+
 		
 		
 		

@@ -5,11 +5,11 @@
     <%
     	ArrayList<Board> boards = (ArrayList<Board>)request.getAttribute("boards");
     
-    	String start = (String)request.getAttribute("start");
+    	int start = (Integer)request.getAttribute("start");
     	
     	String pageNavi = (String)request.getAttribute("pageNavi");
 
-    	int i = 1;
+    	int i = 0;
     	
     %>
 <!DOCTYPE html>
