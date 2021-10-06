@@ -59,5 +59,11 @@ insert into notice values(notice_seq.nextval,'a','a','deathEater',0,to_char(sysd
 
 insert into notice values(notice_seq.nextval, notice_seq.currval||'공지','test','deathEater',0,to_char(sysdate,'yyyy-mm-dd'),null,null);
 
+commit;
+
+select * from board;
 
 select * from (select rownum as rnum, n.* from(select * from notice order by notice_no desc)n) where rnum between 1 and 10;
+select * from(select rownum as rnum, b.* from(select * from board order by board_no desc)b) where rnum between 1 and 10;
+select * from(select rownum as rnum, n.* from (select * from notice order by notice_no desc)n) where rnum between 1 and 10;
+update notice set read_count = read_count+1 where notice_no = 6;

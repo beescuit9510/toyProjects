@@ -1,8 +1,9 @@
-package notice.model.controller;
+package board.model.controller;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -13,13 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
+import board.model.service.BoardService;
+import board.model.vo.Board;
 
 /**
  * Servlet implementation class FileDownServlet
  */
-@WebServlet(name = "FileDown", urlPatterns = { "/fileDown" })
+@WebServlet(name = "fileDown", urlPatterns = { "/fileDown" })
 public class FileDownServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,67 +39,65 @@ public class FileDownServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		request.setCharacterEncoding("UTF-8");
 
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 
-		Notice notice = new NoticeService().getNotice(noticeNo);
+		Board board = new BoardService().getBoard(boardNo);
 
-		// 파일 위치 지정
+		
 		String root = getServletContext().getRealPath("/");
-		String saveDirectory = root + "upload/notice/";
-		String file = saveDirectory + notice.getFilepath();
+		String saveDirectory = root + "/upload/board";
+		String file = saveDirectory + board.getFilepath();
 
-		System.out.println("다운로드 파일 전체 경로 : " + file);
+		
+		
+		FileInputStream fileInputSream = new FileInputStream(file);
+		BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputSream);
 
-		// 서버의 물리공간에서 서블릿으로 파일을 읽어오는 객체
-		FileInputStream fis = new FileInputStream(file);
-		// 파일을 읽어오는 속도를 개선하기위한 보조스트림
-		BufferedInputStream bis = new BufferedInputStream(fis);
+		
+		ServletOutputStream servletOutputStream = response.getOutputStream();
+		BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(servletOutputStream);
 
-		// 클라이언트로 파일을 전송해주는 객체
-		ServletOutputStream sos = response.getOutputStream();
-		// 파일전송속도를 개선하기위한 보조스트림
-		BufferedOutputStream bos = new BufferedOutputStream(sos);
+		String resultFileName = null;
+		
 
-		// 브라우저에 따른 파일이름 처리
-		String resultFileName = ""; // 최종 다운로드 할 파일이름;
-
-		// 브라우저가 IE(internet explorer)인지 확인
 		boolean isInternetExplorer = request.getHeader("user-agent").indexOf("MSIE") != -1
 				|| request.getHeader("user-agent").indexOf("Trident") != -1;
 
 		System.out.println("IE 여부 : "+isInternetExplorer);
 		
-		if(isInternetExplorer) {// 브라우저가 IE인 경우
-			resultFileName = URLEncoder.encode(notice.getFilename(), "UTF-8");
+		
+		
+		if(isInternetExplorer) {
+			resultFileName = URLEncoder.encode(board.getFilename(), "UTF-8");
 			resultFileName = resultFileName.replaceAll("\\\\", "%20");
-		}else {//그외 다른 브라우저의 경우
-			resultFileName = new String(notice.getFilename().getBytes("UTF-8"), "ISO-8859-1");
+		}else {
+			resultFileName = new String(board.getFilename().getBytes("UTF-8"), "ISO-8859-1");
 		}
 		
-		// 파일 다운로드를 위한 HTTP headert설정 
-		//(사용자 브라우저에 파일다운로드임을 선언);
 		response.setContentType("application/octet-stream");
-		//다운로드 할 파일 이름 저장
+
 		response.setHeader("Content-Disposition", "attachment;filename="+resultFileName);
-		
-		//파일 전송
+
 		
 		while(true) {
-			int read = bis.read();
-			if(read != -1) {
-				bos.write(read);
+			
+			int read =bufferedInputStream.read();
+			
+			if(read != -1 ) {
+				bufferedOutputStream.write(read);
 			}else {
 				break;
 			}
 		}
 		
-		bis.close();
-		bos.close();
+		bufferedInputStream.close();
+		bufferedOutputStream.close();
 		
+		
+
 	}
 
 	/**
