@@ -9,3 +9,24 @@
 1633506121255	Copy compilation unit
 1633506131976	Rename type 'NoticePageData'
 1633523639875	Rename type 'FileDownServlet'
+1633568606099	Copy file
+1633568625242	Delete element
+1633586030020	Move 'Untitled 1' to 'webapp'
+1633586034097	Move 'Untitled 1' to 'notes'
+1633587937822	Rename resource 'Untitled 1'
+1633587958677	Rename resource '파일삭제HTML작성법'
+1633587967548	Rename resource '파일삭제및수정HTML작성법'
+1633588052019	Rename resource 'Untitled 2'
+1633588061543	Copy file
+1633588092765	Copy file
+1633588102245	Move 'index.jsp' to 'webapp'
+1633588155641	Rename resource '파일다운로드2'
+1633588218455	Rename resource '파일삭제servlet작성법2'
+1633593011852	Copy file
+1633597448947	Move folder
+1633597548876	Delete element
+1633597781568	Move compilation unit
+1633598226853	Move compilation unit
+1633598239713	Rename type 'DeleteNoticeServlet'
+1633676005188	Move '댓글만들기' to 'board'
+1633676010020	Move '댓글만들기' to 'notes'

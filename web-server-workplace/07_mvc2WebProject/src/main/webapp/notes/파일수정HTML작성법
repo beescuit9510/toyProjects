@@ -1,0 +1,28 @@
+<th>첨부파일</th>
+	<td style="text-align:left; width:350px; height:100px;">
+	<%-- <input value="file">에는 value를 설정할 수 없음 --%>
+		<input type="hidden" name="status" value=1>
+		<%if(notice.getFilename()!= null){ %>
+			<img src="/img/file.png" width="16px" class="delFile">
+			<span class="delFile"><%=notice.getFilename() %></span>
+			<button type="button" id="delBtn" class="btn btn-primary btn-sm delFile">삭제</button>
+			
+			<input type="file" name="upfile" style="display:none;">
+			
+			<input type="hidden" name="oldFilename" value=<%=notice.getFilename() %>>
+			<input type="hidden" name="oldFilepath" value=<%=notice.getFilepath() %>>
+		<%} else{%>
+			<input type="file" name="upfile">
+
+		<%} %>
+	</td>
+
+
+
+	<input type="hidden" name="noticeNo" value=<%=notice.getNoticeNo() %>>
+<%-- 
+
+	<form action="/noticeUpdate?noticeNo=" method="post" enctype="multipart/form-data">
+	action으로 넘기면 get방식이라서 method로 이미 post로 지정했기때문에 한번에 할수있게 input으로 넘겨주는 것임.
+--%>			
+		

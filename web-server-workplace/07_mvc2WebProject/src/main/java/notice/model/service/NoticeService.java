@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import notice.model.dao.NoticeDao;
 import notice.model.vo.Notice;
+import notice.model.vo.NoticeComment;
 import notice.model.vo.NoticePageData;
+import notice.model.vo.NoticeViewData;
 
 public class NoticeService {
 
@@ -71,7 +73,7 @@ public class NoticeService {
 		// 이전 버튼
 		if (pageNo != 1) {
 			pageNavi += "<li class='page-item'>";
-			pageNavi += "<a class='page-link' href='/noticeList?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<a class='page-link' href='/searchNotice?reqPage=" + (pageNo - 1) + "'>";
 			pageNavi += "&lt</a></li>";
 		}
 
@@ -79,11 +81,11 @@ public class NoticeService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (pageNo == reqPage) {
 				pageNavi += "<li class='page-item active'>";
-				pageNavi += "<a class='page-link' href='/noticeList?reqPage=" + pageNo + "'>";
+				pageNavi += "<a class='page-link' href='/searchNotice?reqPage=" + pageNo + "'>";
 				pageNavi += pageNo + "</a></li>";
 			} else {
 				pageNavi += "<li class='page-item '>";
-				pageNavi += "<a class='page-link' href='/noticeList?reqPage=" + pageNo + "'>";
+				pageNavi += "<a class='page-link' href='/searchNotice?reqPage=" + pageNo + "'>";
 				pageNavi += pageNo + "</a></li>";
 			}
 			pageNo++;
@@ -94,7 +96,7 @@ public class NoticeService {
 		// 다음 버튼
 		if (pageNo <= totalPage) {
 			pageNavi += "<li class='page-item '>";
-			pageNavi += "<a class='page-link' href='/noticeList?reqPage=" + pageNo + "'>";
+			pageNavi += "<a class='page-link' href='/searchNotice?reqPage=" + pageNo + "'>";
 			pageNavi += "&gt;</a></li>";
 		}
 
@@ -108,24 +110,40 @@ public class NoticeService {
 		return noticePageDate;
 	}
 
-	public Notice selectOneNotice(int noticeNo) {
+	public NoticeViewData selectOneNotice(int noticeNo) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		NoticeDao dao = new NoticeDao();
 
 		int result = dao.updateReadCount(conn, noticeNo);
 
-		Notice notice = null;
+		NoticeViewData noticeViewData = null;
 
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 
-			notice = dao.selectOneMember(conn, noticeNo);
+			Notice notice = dao.selectOneMember(conn, noticeNo);
+			
+			ArrayList<NoticeComment> noticeComments = dao.selectCommentList(conn, noticeNo);
 
+			noticeViewData = new NoticeViewData(noticeComments, notice);
+		
 		} else {
 			JDBCTemplate.rollback(conn);
 
 		}
+
+		
+		JDBCTemplate.close(conn);
+		
+		return noticeViewData;
+
+	}
+
+	public Notice getNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		Notice notice = new NoticeDao().selectOneMember(conn, noticeNo);
 
 		JDBCTemplate.close(conn);
 
@@ -133,16 +151,141 @@ public class NoticeService {
 
 	}
 
-	public Notice getNotice(int noticeNo) {
+	public int deleteNotice(int noticeNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		
-		Notice notice = new NoticeDao().selectOneMember(conn, noticeNo);
-				
+
+		int r = new NoticeDao().deleteNotice(conn, noticeNo);
+
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+
+		} else {
+			JDBCTemplate.rollback(conn);
+
+		}
 		JDBCTemplate.close(conn);
-		
-		return notice;
-		
-		
+
+		return r;
+	}
+
+	public int updateNotice(Notice notice) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int r = new NoticeDao().updateNotice(conn, notice);
+
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		return r;
+	}
+
+	public NoticePageData searchNotice(int reqPage, String type, String keyword) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		NoticeDao dao = new NoticeDao();
+
+		int noticePerPage = 10;
+
+		int end = noticePerPage * reqPage; // 10 20 30 40 50
+
+		int start = end - noticePerPage + 1;// 1 11 21 31 41
+
+		ArrayList<Notice> notices = dao.selectSearchNotice(conn, start, end, type, keyword);
+
+		int totalNotice = dao.selectTotalCount(conn, type, keyword);
+
+		int totalPage = totalNotice % noticePerPage == 0 ? totalNotice / noticePerPage
+				: totalNotice / noticePerPage + 1;
+
+		int maxNavi = 5;
+
+		int pageNo = reqPage <= 3 ? 1 : totalPage - 2 < reqPage ? totalPage - 4 : reqPage - 2;
+		pageNo = pageNo <= 0 ? 1 : pageNo;
+
+		String pageNavi = "<ul class='pagination pagination-lg'>";
+
+		if (pageNo != 1) {
+			pageNavi += "<li class='page-item'>";
+			pageNavi += "<a class='page-link' href='/searchNotice?type=" + type + "&keyword=" + keyword + "&reqPage="
+					+ (pageNo - 1) + "'>";
+			pageNavi += "&lt</a></li>";
+		}
+
+		for (int i = 0; i < maxNavi; i++) {
+
+			if (pageNo == reqPage) {
+				pageNavi += "<li class='page-item active'>";
+				pageNavi += "<a class='page-link' href='/searchNotice?type=" + type + "&keyword=" + keyword
+						+ "&reqPage=" + pageNo + "'>";
+				pageNavi += pageNo + "</a></li>";
+
+			} else {
+				pageNavi += "<li class='page-item '>";
+				pageNavi += "<a class='page-link' href='/searchNotice?type=" + type + "&keyword=" + keyword
+						+ "&reqPage=" + pageNo + "'>";
+				pageNavi += pageNo + "</a></li>";
+
+			}
+
+			pageNo++;
+
+			if (pageNo > totalPage) {
+				break;
+			}
+		}
+
+		if (pageNo <= totalPage) {
+			pageNavi += "<li class='page-item '>";
+			pageNavi += "<a class='page-link' href='/searchNotice?type=" + type + "&keyword=" + keyword + "&reqPage="
+					+ pageNo + "'>";
+			pageNavi += "&gt;</a></li>";
+
+		}
+
+		pageNavi += "</ul>";
+
+		NoticePageData noticePageDate = new NoticePageData(notices, pageNavi, start);
+
+		JDBCTemplate.close(conn);
+
+		return noticePageDate;
+	}
+
+	public int insertComment(NoticeComment nc) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int r = new NoticeDao().insertComment(conn, nc);
+
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+
+		return r;
+	}
+
+	public int deleteComment(int ncNo) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int r = new NoticeDao().deleteComment(conn, ncNo);
+
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+
+		} else {
+			JDBCTemplate.rollback(conn);
+
+		}
+		JDBCTemplate.close(conn);
+
+		return r;
 	}
 
 }

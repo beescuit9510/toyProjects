@@ -47,6 +47,8 @@ public class BoardService {
 		int naviSize = 5;
 
 		int pageNo = reqPage <= 3 ? 1 : (totalPage - 2) <= reqPage ? totalPage - 4 : reqPage - 2;
+		pageNo = pageNo<=0? 1:pageNo;
+		
 
 //		int pageNo = ((reqPage - 1) / naviSize) * naviSize + 1;
 
@@ -136,6 +138,11 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 
 		return board;
+	}
+
+	public int deleteBoard(int boardNo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

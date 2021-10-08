@@ -1,0 +1,19 @@
+	int r = service.deleteNotice(noticeNo);
+		
+		
+		//결과처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+
+		if (r > 0 ) {
+			//만약 첨부파일이 있다면
+			if(notice.getFilepath() != null) {
+				String root = getServletContext().getRealPath("/");
+				String savedDirectory = root+"/upload/notice/";
+				String file = savedDirectory+notice.getFilepath(); 
+				//fileName은 오리지널 이름 
+				//path는 DefaultFileRenamePolicy()이용해서 저장한 진짜 upload/notice 안 파일 이름;
+				
+				File delfile = new File(file);
+				delfile.delete();
+				
+			}

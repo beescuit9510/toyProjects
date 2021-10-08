@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Output"/>
+		<item key="selection" value="a"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="button"/>
+			<item value="REPLACEKEYWORD"/>
+			<item value="REPLACEWORD"/>
+			<item value="REPLACETYPE"/>
+			<item value="searchNotice?reqPage="/>
+			<item value="searchList?reqPage="/>
+			<item value="noticeList?reqPage="/>
+			<item value="searchNotice?reqPage=&quot;"/>
 			<item value="Input"/>
 			<item value="input"/>
 			<item value="Notice"/>
@@ -15,16 +23,14 @@
 			<item value="resFileName"/>
 			<item value="noticeList"/>
 			<item value="regPage"/>
-			<item value="regCount"/>
-			<item value="reg"/>
-			<item value="&lt;/td&gt;"/>
-			<item value="&lt;td&gt;"/>
-			<item value="th"/>
-			<item value="enrollDdate"/>
-			<item value="address"/>
-			<item value="phone"/>
 		</list>
 		<list key="replacehistory">
+			<item value="a"/>
+			<item value="**reaplceKEYWORD**"/>
+			<item value="**replaceTYPE**"/>
+			<item value="searchNotice?type=&quot;+type+&quot;&amp;keyword=&quot;+keyword+&quot;&amp;reqPage=&quot;"/>
+			<item value="searchNotice?reqPage="/>
+			<item value="searchNotice?"/>
 			<item value="Output"/>
 			<item value="output"/>
 			<item value="Board"/>
@@ -34,17 +40,11 @@
 			<item value="reqPage"/>
 			<item value="regDate"/>
 			<item value="req"/>
-			<item value="+&quot;&lt;/td&gt;&quot;+"/>
-			<item value="+&quot;&lt;td&gt;&quot;+"/>
-			<item value="td"/>
-			<item value="enrollDate"/>
-			<item value="memberId"/>
-			<item value="address"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="775"/>
-		<item key="DIALOG_Y_ORIGIN" value="203"/>
+		<item key="DIALOG_X_ORIGIN" value="451"/>
+		<item key="DIALOG_Y_ORIGIN" value="357"/>
 		<item key="DIALOG_WIDTH" value="393"/>
 		<item key="DIALOG_HEIGHT" value="523"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
