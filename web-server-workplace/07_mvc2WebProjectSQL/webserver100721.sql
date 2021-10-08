@@ -58,4 +58,20 @@ select * from board;
 select * from notice where notice_title like '%cuppy%';
 select * from member;
 select * from notice_comment;
+
 commit;
+rollback;
+
+
+-- 그룹함수를 사용을 못한다면 -> count =count,sum,avg
+
+--1.공지 사항 최신순 정렬(공지사항 번호 내림차순정렬)
+select * from notice order by notice_no desc;
+
+--2. 최신순으로 정렬된 공지사항에 순번을 붙여줌
+select nn.*, (select count(*) from notice_comment where notice_ref = nn.notice_no) as "nc_count" from(select rownum as rnum, n.* from (select * from notice order by notice_no desc)n)nn where rnum between 1 and 10;
+
+select count(*) from notice_comment where notice_ref=108;
+select rownum, nc.* from(select * from notice_comment where notice_ref=108 )nc ;
+
+(select nnn.*,(select * from NOTICE_COMMENT nc where nc.notice_ref=nn.notice_no) from (select rownum as rnum, n.* from (select * from notice order by notice_no desc)n)nn where nn.rnum between 1 and 10)nnn;

@@ -37,7 +37,9 @@ public class NoticeDao {
 	public ArrayList<Notice> selectNoticeList(Connection conn, int start, int end) {
 		PreparedStatement pstmt = null;
 		ResultSet r = null;
-		String query = "select * from(select rownum as rnum, n.* from (select * from notice order by notice_no desc)n) where rnum between ? and ?";
+//		String query = "select * from(select rownum as rnum, n.* from (select * from notice order by notice_no desc)n) where rnum between ? and ?";
+		
+		String query = "select nn.*, (select count(*) from notice_comment where notice_ref = nn.notice_no) as \"nc_count\" from(select rownum as rnum, n.* from (select * from notice order by notice_no desc)n)nn where rnum between ? and ?";
 		ArrayList<Notice> notices = new ArrayList<>();
 
 		try {
@@ -50,7 +52,7 @@ public class NoticeDao {
 			while (r.next()) {
 				int i = 2;
 				notices.add(new Notice(r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++),
-						r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++)));
+						r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++), r.getInt(i++)));
 			}
 
 		} catch (SQLException e) {
@@ -300,4 +302,20 @@ public class NoticeDao {
 
 		return r;
 		}
+
+	public int updateComment(Connection conn, int ncNo, String ncContent) {
+		String query = "update notice_comment set nc_content = ? where nc_no = ?";
+		int r = -1;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(query);) {
+			pstmt.setString(1, ncContent);
+			pstmt.setInt(2, ncNo);
+			r = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return r;
+	}
 }

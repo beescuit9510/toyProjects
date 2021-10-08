@@ -70,8 +70,8 @@
 			<td><%=start + (i++) %></td>
 			<%-- <td><%=notice.getNoticeNo() %></td>--%>
 			<td style="text-align:left;width:60%;">
-			<a href='/noticeView?noticeNo=<%=notice.getNoticeNo()%>'>
-			<%=notice.getNoticeTitle() %></a></td>
+			<a href='/noticeView?noticeNo=<%=notice.getNoticeNo()%>'>	
+			<%=notice.getNoticeTitle() %>[<%=notice.getNcCount() %>]</a></td>
 			<td><%=notice.getNoticeWriter() %></td>
 			<td><%=notice.getRegDate() %></td>
 			<td><%=notice.getReadCount() %></td>

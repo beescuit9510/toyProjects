@@ -288,4 +288,21 @@ public class NoticeService {
 		return r;
 	}
 
+	public int updateComment(int ncNo, String ncContent) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int r = new NoticeDao().updateComment(conn, ncNo, ncContent);
+		
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+			
+		} else {
+			JDBCTemplate.rollback(conn);
+			
+		}
+		JDBCTemplate.close(conn);
+		
+		return r;
+	}
+
 }

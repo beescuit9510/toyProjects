@@ -201,14 +201,25 @@
 	}
 
 	function modifyComplete(obj,ncNo,noticeNo){
-		alert("수정완료!");
+		//새로운 form태그를 생성
+		var form = $("<form action='/updateComment' method='post'></form>");
+		//form안에 수정댓글번호 설정
+		form.append($("<input type='text' name='ncNo' value='"+ncNo+"'>"));
+		//form안에 공지사항번호 설정
+		form.append($("<input type='text' name='noticeNo' value='"+noticeNo+"'>"));
+		//수정한 댓글 내용을 설정
+		form.append($(obj).parent().prev());
+		//전송할 form태그를 현재 페이지에 추가
+		$("body").append(form);
+		//form태그 전송
+		form.submit();
+		
 	}
 	
 	function deleteComment(obj,ncNo,noticeNo) {
 		if(confirm("댓글을 삭제하시겠습니까?")){
-			location.html="/deleteComment?ncNo="+ncNo+"&noticeNo="+noticeNo;
+			location.href="/deleteComment?ncNo="+ncNo+"&noticeNo="+noticeNo;
 		}
-		alert("삭제완료!");
 		
 	}
 	
