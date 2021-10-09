@@ -32,8 +32,8 @@ public class BoardDao {
 	}
 
 	public ArrayList<Board> selectBoardList(Connection conn, int start, int end) {
-		String query = "select * from(select rownum as rnum, b.* from(select * from board order by board_no desc)b) where rnum between ? and ?";
-
+//		String query = "select * from(select rownum as rnum, b.* from(select * from board order by board_no desc)b) where rnum between ? and ?";
+		String query = "select bb.*, (select count(*) from board_comment bc where bc.board_ref=bb.board_no) as \"bc_count\" from (select rownum as rnum, b.* from(select * from board order by board_no desc)b)bb where rnum between ? and ?";
 		ArrayList<Board> boards = new ArrayList<Board>();
 		PreparedStatement pstmt = null;
 		ResultSet r = null;
@@ -47,7 +47,7 @@ public class BoardDao {
 			while (r.next()) {
 				int i = 2;
 				boards.add(new Board(r.getInt(i++), r.getString(i++), r.getString(i++), r.getString(i++), r.getInt(i++),
-						r.getString(i++), r.getString(i++), r.getString(i++)));
+						r.getString(i++), r.getString(i++), r.getString(i++), r.getInt(i++)));
 			}
 
 		} catch (SQLException e) {
@@ -112,6 +112,23 @@ public class BoardDao {
 			pstmt.setInt(1, boardNo);
 			r = pstmt.executeUpdate();
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return r;
+	}
+
+	public int deleteBoard(Connection conn, int boardNo) {
+		String query = "delete from board where board_no = ?";
+
+		int r = -1;
+
+		try (PreparedStatement pstmt = conn.prepareStatement(query);) {
+			int i = 1;
+			pstmt.setInt(i++, boardNo);
+
+			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -7,17 +7,38 @@ public class Board {
 	private String boardWriter;
 	private int readCount;
 	private String regDate;
-    private String filename;
+	private String filename;
 	private String filepath;
-	
-	
-	
+	private int bcCount;
+
+	public Board(int boardNo, String boardTitle, String boardContent, String boardWriter, int readCount, String regDate,
+			String filename, String filepath, int bcCount) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.readCount = readCount;
+		this.regDate = regDate;
+		this.filename = filename;
+		this.filepath = filepath;
+		this.bcCount = bcCount;
+	}
+
+	public int getBcCount() {
+		return bcCount;
+	}
+
+	public void setBcCount(int bcCount) {
+		this.bcCount = bcCount;
+	}
+
 	public Board() {
 		super();
 	}
 
-	public Board(int boardNo, String boardTitle, String boardContent, String boardWriter, int readCount,
-			String regDate, String filename, String filepath) {
+	public Board(int boardNo, String boardTitle, String boardContent, String boardWriter, int readCount, String regDate,
+			String filename, String filepath) {
 		super();
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
@@ -28,7 +49,7 @@ public class Board {
 		this.filename = filename;
 		this.filepath = filepath;
 	}
-	
+
 	public Board(String boardTitle, String boardContent, String boardWriter, String filename, String filepath) {
 		super();
 		this.boardTitle = boardTitle;
@@ -57,7 +78,7 @@ public class Board {
 	public String getBoardContent() {
 		return boardContent;
 	}
-	
+
 	public String getBoardContentBr() {
 		return boardContent.replaceAll("\r\n", "<br>");
 
@@ -113,8 +134,5 @@ public class Board {
 				+ ", boardWriter=" + boardWriter + ", readCount=" + readCount + ", regDate=" + regDate + ", filename="
 				+ filename + ", filepath=" + filepath + "]";
 	}
-
-	
-	
 
 }

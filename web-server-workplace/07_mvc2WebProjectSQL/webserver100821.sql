@@ -79,3 +79,30 @@ select nn.*,(select count(*) from NOTICE_COMMENT nc where nc.notice_ref=nn.notic
 n.* from (select * from notice order by notice_no desc)n
 )nn 
 where nn.rnum between 1 and 10;
+
+
+create table board_comment(
+    bc_no number primary key,
+    bc_level number, --댓글인지 대댓글인지 구분하는 컬럼(1:일반댓글,2:댓글의 댓글)
+    bc_writer varchar2(20) references member(member_id) on delete cascade,
+    bc_content varchar2(500) not null,
+    bc_date char(10),
+    board_ref number references board(board_no) on delete cascade, --어떤 공지사항의 댓글인지 기록
+    bc_ref number references board_comment(bc_no) on delete cascade --어떤 댓글의 댓글인지
+);
+
+create sequence bc_seq;
+
+drop table board_comment;
+
+
+insert into board_comment values(bc_seq.nextval,1,'deathEater','contentcontent',to_char(sysdate, 'yyyy-mm-dd'),146,null);
+
+select bb.*, (select count(*) from board_comment bc where bc.board_ref=bb.board_no) as "bc_count" from (select rownum as rnum, b.* from(select * from board order by board_no desc)b)bb where rnum between 1 and 10;
+
+select nn.*,(select count(*) from NOTICE_COMMENT nc where nc.notice_ref=nn.notice_no) as "nc_count" from 
+(select rownum as rnum, 
+n.* from (select * from notice order by notice_no desc)n
+)nn 
+where nn.rnum between 1 and 10;
+
