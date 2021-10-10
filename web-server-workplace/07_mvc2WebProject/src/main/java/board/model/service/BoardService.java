@@ -156,4 +156,20 @@ public class BoardService {
 
 	}
 
+	public int updateBoard(Board board) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int r = new BoardDao().updateBoard(conn, board);
+
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+
+		return r;
+	}
+
 }

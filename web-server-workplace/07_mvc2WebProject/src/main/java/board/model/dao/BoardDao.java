@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import board.model.vo.Board;
+import common.JDBCTemplate;
 
 public class BoardDao {
 
@@ -131,6 +132,33 @@ public class BoardDao {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+
+		return r;
+	}
+
+	public int updateBoard(Connection conn, Board board) {
+		String query = "update board set board_title = ?, board_content = ?, filename = ?, filepath = ? where board_no = ?";
+
+		PreparedStatement pstmt = null;
+
+		int r = -1;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			int i = 1;
+			pstmt.setString(i++, board.getBoardTitle());
+			pstmt.setString(i++, board.getBoardContent());
+			pstmt.setString(i++, board.getFilename());
+			pstmt.setString(i++, board.getFilepath());
+			pstmt.setInt(i++, board.getBoardNo());
+			r = pstmt.executeUpdate();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
 		}
 
 		return r;

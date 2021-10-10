@@ -44,7 +44,7 @@
 				<th colspan="4" style="text-align:center;">
 					<button class="btn btn-info" onclick="history.go(-1);">이전화면</button>
 					<% if(member!=null && member.getMemberId().equals(board.getBoardWriter())) {%>
-					<a href="/updateBoard?boardNo=<%=board.getBoardNo() %>" class="btn btn-info" >수정하기</a>
+					<a href="/updateBoardFrm?boardNo=<%=board.getBoardNo() %>" class="btn btn-info" >수정하기</a>
 					<a href="/deleteBoard?boardNo=<%=board.getBoardNo() %>" class="btn btn-info" >삭제하기</a>
 					<%} %>
 				</th>
