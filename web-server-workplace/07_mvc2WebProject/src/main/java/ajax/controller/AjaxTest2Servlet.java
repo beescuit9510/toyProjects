@@ -1,4 +1,4 @@
-package notice.model.controller;
+package ajax.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,22 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
-import member.model.service.MemberService;
-import member.model.vo.Member;
-
 /**
- * Servlet implementation class AjaxTest8Servlet
+ * Servlet implementation class AjaxTest2Servlet
  */
-@WebServlet(name = "AjaxTest8", urlPatterns = { "/ajaxTest8" })
-public class AjaxTest8Servlet extends HttpServlet {
+@WebServlet(name = "AjaxTest2", urlPatterns = { "/ajaxTest2" })
+public class AjaxTest2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxTest8Servlet() {
+    public AjaxTest2Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +28,17 @@ public class AjaxTest8Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		// 1.인코딩
+		// 2.값추출
+		// 3.비지니스 로직
+		// 4.결과처리
 		
-		String memberId = request.getParameter("memberId");
-		
-		Member m = new MemberService().selectOneMember(memberId);
-		
-		// 결과 처리
-		
-		response.setContentType("application/json");
-		//되돌려주는 데이터의 타입이 json임을 명시
-		
-		response.setCharacterEncoding("UTF-8");
+		String str = "서버에서 보내는 데이터 입니다!!!!";
+		//보내주는 데이터 인코딩;
+		response.setCharacterEncoding("UTF-8"); 
 		PrintWriter out = response.getWriter();
+		out.print(str);//str이 ajax function(data) 매개변수로 들어감		
 		
-		new Gson().toJson(m,out);
 	}
 
 	/**

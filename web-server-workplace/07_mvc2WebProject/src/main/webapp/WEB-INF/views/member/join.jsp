@@ -15,7 +15,7 @@
 		<form action="/join" method="post" name="joinFrm">
 			<legend>회원가입</legend>
 			<div class="from-group">
-				<label class="control-label" for="memberId" style="display:block;">아이디</label>
+				<label class="control-label" for="memberId" style="display:block;">아이디<span id="ajaxCheck"></span></label>
 				<input type="text" name="memberId" id="memberId" class="form-control" 
 				style="width:90%; display:inline-block;">
 				<button type="button" id="idChk" class="btn btn-secondary">중복체크</button>
@@ -66,6 +66,35 @@
 		//form 태그를 submit;
 		$("[name=checkIdFrm]").submit();
 
+	})
+	
+	
+	$("[name=memberId]").eq(1).keyup(function () {
+		var memberId = $(this).val();
+		var regExp = /[a-z0-9]{4,}/;
+		// 유효성 검사와 중복체크 중 유효성 검사를 먼저해야함
+		// 유효성 검사에서 통과하지 못하면 어처피 데이터베이스 없어 찾아도 없기때문
+		if(regExp.test(memberId)){
+			//중복검사
+			$.ajax({
+				url : "/ajaxIdCheck",
+				data :{memberId:memberId},
+				type :"POST",
+				success : function (data) {
+					if(data==1){
+						$("#ajaxCheck").html("사용중인 아이디 입니다");
+						$("#ajaxCheck").css("color","red");
+					}else{
+						$("#ajaxCheck").html("사용가능한 아이디 입니다");
+						$("#ajaxCheck").css("color","blue");						
+					}
+				}
+			})
+		}else{
+			$("#ajaxCheck").html("아이디는 영문+숫자 글자 이상입니다.");
+			$("#ajaxCheck").css("color","red");
+			
+		}
 	})
 </script>
 </html>

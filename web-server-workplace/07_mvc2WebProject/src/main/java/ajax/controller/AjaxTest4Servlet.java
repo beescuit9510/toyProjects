@@ -1,8 +1,6 @@
-package notice.model.controller;
+package ajax.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AjaxTest2Servlet
+ * Servlet implementation class AjaxTest4Servlet
  */
-@WebServlet(name = "AjaxTest2", urlPatterns = { "/ajaxTest2" })
-public class AjaxTest2Servlet extends HttpServlet {
+@WebServlet(name = "AjaxTest4", urlPatterns = { "/ajaxTest4" })
+public class AjaxTest4Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxTest2Servlet() {
+    public AjaxTest4Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,17 +26,15 @@ public class AjaxTest2Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1.인코딩
-		// 2.값추출
-		// 3.비지니스 로직
-		// 4.결과처리
+		request.setCharacterEncoding("UTF-8");
 		
-		String str = "서버에서 보내는 데이터 입니다!!!!";
-		//보내주는 데이터 인코딩;
-		response.setCharacterEncoding("UTF-8"); 
-		PrintWriter out = response.getWriter();
-		out.print(str);//str이 ajax function(data) 매개변수로 들어감		
+		String studentName = request.getParameter("name");
+		String studentAge = request.getParameter("age");
+		String studentAddr = request.getParameter("addr");
 		
+		System.out.println("이름 : "+studentName);
+		System.out.println("나이 : "+studentAge);
+		System.out.println("주소 : "+studentAddr);
 	}
 
 	/**

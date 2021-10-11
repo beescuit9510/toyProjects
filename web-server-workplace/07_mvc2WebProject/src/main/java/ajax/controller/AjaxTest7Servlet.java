@@ -1,8 +1,8 @@
-package notice.model.controller;
+package ajax.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,22 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+import org.json.simple.JSONObject;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class AjaxTest10Servlet
+ * Servlet implementation class AjaxTest7Servlet
  */
-@WebServlet(name = "AjaxTest10", urlPatterns = { "/ajaxTest10" })
-public class AjaxTest10Servlet extends HttpServlet {
+@WebServlet(name = "AjaxTest7", urlPatterns = { "/ajaxTest7" })
+public class AjaxTest7Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxTest10Servlet() {
+    public AjaxTest7Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +34,31 @@ public class AjaxTest10Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		request.setCharacterEncoding("UTF-8");
 		
-		ArrayList<Member> members = new MemberService().selectAllMember();
+		ArrayList<Member> list = new MemberService().selectAllMember();
 		
-		HashMap<String, Member> map = new HashMap<>();
-		for(Member m : members) {
-			map.put(m.getMemberId(), m);
+		JSONObject map = new JSONObject();
+//		HashMap<String, Member> map2 = new HashMap<>();
+		
+		for(Member m: list) {
+//			map2.put(m.getMemberId(), m);
+
+			JSONObject obj = new JSONObject();
+			obj.put("memberNo", m.getMemberNo());
+			obj.put("memberName", m.getMemberName());
+			obj.put("phone", m.getPhone());
+			map.put(m.getMemberId(),obj);
 		}
-		
 		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		new Gson().toJson(map,response.getWriter());
+		
+		PrintWriter out = response.getWriter();
+		out.print(map);
+		
+		
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

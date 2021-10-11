@@ -1,6 +1,7 @@
-package notice.model.controller;
+package ajax.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -9,22 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class AjaxTest9Servlet
+ * Servlet implementation class AjaxTest6Servlet
  */
-@WebServlet(name = "AjaxTest9", urlPatterns = { "/ajaxTest9" })
-public class AjaxTest9Servlet extends HttpServlet {
+@WebServlet(name = "AjaxTest6", urlPatterns = { "/ajaxTest6" })
+public class AjaxTest6Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxTest9Servlet() {
+    public AjaxTest6Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +35,33 @@ public class AjaxTest9Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
-		
-		ArrayList<Member> members = new MemberService().selectAllMember();
+		ArrayList<Member> list = new MemberService().selectAllMember();
 		
 		response.setCharacterEncoding("UTF-8");
+		
+		
+		// 4. 결과
+//		PrintWriter out = response.getWriter();
+		
+		JSONObject result = null;
+		JSONArray memberArray = new JSONArray();
+		
+		if(!list.isEmpty()) {
+			for(Member m : list) {
+				JSONObject obj = new JSONObject();
+				obj.put("memberNo", m.getMemberNo());
+				obj.put("memberName", m.getMemberName());
+				obj.put("phone", m.getPhone());
+				memberArray.add(obj);
+			}
+		}
+		
 		response.setContentType("application/json");
-		
-		new Gson().toJson(members, response.getWriter());
-		
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print(memberArray);
 	}
 
 	/**

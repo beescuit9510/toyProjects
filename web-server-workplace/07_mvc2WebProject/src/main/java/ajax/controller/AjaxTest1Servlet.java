@@ -1,8 +1,6 @@
-package notice.model.controller;
+package ajax.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AjaxTest3Servlet
+ * Servlet implementation class AjaxTest1Servlet
  */
-@WebServlet(name = "AjaxTest3", urlPatterns = { "/ajaxTest3" })
-public class AjaxTest3Servlet extends HttpServlet {
+@WebServlet(name = "AjaxTest1", urlPatterns = { "/ajaxTest1" })
+public class AjaxTest1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxTest3Servlet() {
+    public AjaxTest1Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,18 +26,13 @@ public class AjaxTest3Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1.인코딩
 		request.setCharacterEncoding("UTF-8");
-		
-		int num1 = Integer.parseInt(request.getParameter("num1"));
-		int num2 = Integer.parseInt(request.getParameter("num2"));
-		
-		
-		response.setCharacterEncoding("UTF-8");
-
-		PrintWriter out = response.getWriter();
-		
-		out.print(num1+num2);
-		
+		//2. 값추출
+		String msg = request.getParameter("msg");
+		System.out.println(msg);
+		//3.비지니스 로직
+		//4.결과처리
 		
 	}
 

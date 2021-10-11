@@ -1,23 +1,32 @@
-package notice.model.controller;
+package ajax.controller;
+
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import member.model.service.MemberService;
+import member.model.vo.Member;
+
 /**
- * Servlet implementation class AjaxTest4Servlet
+ * Servlet implementation class AjaxTest10Servlet
  */
-@WebServlet(name = "AjaxTest4", urlPatterns = { "/ajaxTest4" })
-public class AjaxTest4Servlet extends HttpServlet {
+@WebServlet(name = "AjaxTest10", urlPatterns = { "/ajaxTest10" })
+public class AjaxTest10Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxTest4Servlet() {
+    public AjaxTest10Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +35,17 @@ public class AjaxTest4Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		
-		String studentName = request.getParameter("name");
-		String studentAge = request.getParameter("age");
-		String studentAddr = request.getParameter("addr");
+		ArrayList<Member> members = new MemberService().selectAllMember();
 		
-		System.out.println("이름 : "+studentName);
-		System.out.println("나이 : "+studentAge);
-		System.out.println("주소 : "+studentAddr);
+		HashMap<String, Member> map = new HashMap<>();
+		for(Member m : members) {
+			map.put(m.getMemberId(), m);
+		}
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		new Gson().toJson(map,response.getWriter());
 	}
 
 	/**
