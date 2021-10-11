@@ -114,9 +114,9 @@ public class Member {
 		
 	}
 
-	@Override
-	public String toString() {
-		return memberNo + memberId + memberPw + memberName + phone + address + memberLevel + enrollDate;
-	}
+//	@Override
+//	public String toString() {
+//		return memberNo + memberId + memberPw + memberName + phone + address + memberLevel + enrollDate;
+//	}
 
 }

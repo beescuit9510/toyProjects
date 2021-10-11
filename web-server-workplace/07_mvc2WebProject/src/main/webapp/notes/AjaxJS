@@ -1,0 +1,25 @@
+<input type="text" id="ajax1">
+<button class="btn btn-info" onclick="jsAjax();">보내기(JS)</button>
+
+
+	//자바스크립트 방식
+function jsAjax(){
+	// 1.XMLHttpRequest() 객체 생성
+	var xhttp = new XMLHttpRequest();
+	var msg = document.getElementById("ajax1").value;
+	
+	// 2. 요청 정보 설정
+	xhttp.open("GET","ajaxTest1?msg="+msg,true);
+	//method, url, 비동기처리
+	
+	//3. 데이터처리에 따라 동작할 함수 설정
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			//서버에 정상응답이 왔을떄
+			console.log("서버 전송 성공");
+		}else if(this.readyState == 4 && this.status == 404){
+			//요청페이지가 없을떄 
+			console.log("서블릿 없음");
+		}
+	}
+	

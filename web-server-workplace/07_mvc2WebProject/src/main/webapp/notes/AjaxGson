@@ -1,0 +1,134 @@
+			<div>
+				<h3>8. 서버로 기본형 데이터 보내고, 결과로 객체 받기(GSON 사용)</h3>
+				<input type="text" id="ajax8"><br>
+				<button class="btn btn-danger" id="jQ8">조회</button>
+				<p class="ajaxResult"></p>
+			</div>
+			<div>
+				<h3>9. 서버에서 리스트타입 결과 받기(JSON 사용)</h3>
+				<button class="btn btn-danger" id="jQ9">조회</button>
+				<p class="ajaxResult"></p>
+			</div>
+			<div>
+				<h3>10. 서버에서 map타입 결과 받기(JSON 사용)</h3>
+				<button class="btn btn-danger" id="jQ10">조회</button>
+				<p class="ajaxResult"></p>
+			</div>
+
+	
+	
+<script>
+	$("#jQ8").click(function () {
+		var memberId = $("#ajax8").val();
+		var result = $(this).next();
+		
+		$.ajax({
+			url : "/ajaxTest8",
+			type : "POST",
+			data : {memberId : memberId},
+			success : function (data) {
+				if(data != null){
+					result.empty();
+					//이전 출력내용 삭제;
+					console.log(data);
+					result.append("아이디 : "+data.memberId+"<br>");
+					result.append("비밀번호 : "+data.memberPw+"<br>");
+					result.append("이름 : "+data.memberName);
+					
+				}else{
+					result.html("회원 정보를 조회할 수 없습니다.")
+				}
+			}
+		});
+	});
+
+	
+	$("#jQ9").click(function () {
+		var result = $(this).next();
+		$.ajax({
+			url : "/ajaxTest9",
+			type : "GET",
+			success : function(data) {
+				result.empty();
+				for(var i=0;i<data.length;i++){
+					var html = data[i].memberNo+"/"+data[i].memberName+"/"+data[i].phone+"<br>";
+					result.append(html);
+				}
+			}
+		})
+	})
+	
+	$("#jQ10").click(function () {
+		var result = $(this).next();
+		$.ajax({
+			url : "/ajaxTest10",
+			type : "GET",
+			success : function (data) {
+				// data : key : 아이디, value : object 인 object
+				var keys = Object.keys(data); //객체의 키값을 전부 가져옴(배열);
+				for(var i=0;i<keys.length;i++){
+//					console.log(data["deathEater"])
+					var memberNo = data[keys[i]].memberNo;
+					var memberName = data[keys[i]].memberName;
+					var phone = data[keys[i]].phone;
+					result.append(memberNo+"/"+memberName+"/"+phone+"<br>");
+				}
+			}
+			
+			
+		})
+	})
+
+</script>
+
+
+
+//Gson 8
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		String memberId = request.getParameter("memberId");
+		
+		
+		Member m = new MemberService().selectOneMember(memberId);
+		
+		// 결과 처리
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json"); //되돌려주는 데이터의 타입이 json임을 명시		
+		PrintWriter out = response.getWriter();
+		
+		new Gson().toJson(m,out);
+	}
+	
+	
+	
+//Gson 9
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ArrayList<Member> members = new MemberService().selectAllMember();
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json"); //되돌려주는 데이터의 타입이 json임을 명시
+		
+		new Gson().toJson(members, response.getWriter());
+		
+	}
+
+
+
+//Gson 10
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ArrayList<Member> members = new MemberService().selectAllMember();
+		
+		HashMap<String, Member> map = new HashMap<>();
+		for(Member m : members) {
+			map.put(m.getMemberId(), m);
+		}
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json"); //되돌려주는 데이터의 타입이 json임을 명시
+		
+		new Gson().toJson(map,response.getWriter());
+	}
+

@@ -1,0 +1,276 @@
+<div>
+	<h3>2. 서버에서 기본형 데이터 받기</h3>
+	<button class="btn btn-danger" id="jQ2">데이터받기</button>
+	<p class="ajaxResult"></p>
+</div>
+<div>
+	<h3>3. 서버에서 기본형 데이터 보내고 기본형 데이터 받기</h3>
+	<input type="text" id="firstNum">
+	<input type="text" id="secondNum">
+	<button class="btn btn-danger" id="jQ3">두 수 데이터 보내고 두 수의 합 받기</button>
+	<p class="ajaxResult"></p>
+</div>
+<div>
+	<h3>4. 서버로 객체 데이터 보내기</h3>
+	<input type="text" id="name"><br>
+	<input type="text" id="age"><br>
+	<input type="text" id="addr"><br>
+	<button class="btn btn-danger" id="jQ4">객체보내기</button>
+</div>
+<div>
+	<h3>5. 서버로 기본형 데이터 보내고, 결과로 객체 받기</h3>
+	<input type="text" id="ajax5"><br>
+	<button class="btn btn-danger" id="jQ5">조회</button>
+	<p class="ajaxResult"></p>
+</div>
+<div>
+	<h3>6. 서버에서 리스트타입 결과 받기</h3>
+	<button class="btn btn-danger" id="jQ6">조회</button>
+	<p class="ajaxResult"></p>
+</div>
+<div>
+	<h3>7. 서버에서 map타입 결과 받기</h3>
+	<button class="btn btn-danger" id="jQ7">조회</button>
+	<p class="ajaxResult"></p>
+</div>
+<div>
+
+
+
+
+<script>
+	$("#jQ2").click(function () {
+		var result = $(this).next();
+		$.ajax({
+			url : "/ajaxTest2",
+			type : "GET",
+			success : function (data) {
+			//ajaxTest에서 보내는 데이터를 매개변수로 받을것임
+				result.html(data);
+				console.log(data);
+			},
+			error : function () {
+				result.html("실패");
+			}
+		})
+	})
+	
+	$("#jQ3").click(function () {
+		var firstNum = $("#firstNum").val();
+		var secondNum = $("#secondNum").val();
+		console.log(firstNum);
+		console.log(secondNum);
+		
+		$.ajax({
+			url : "/ajaxTest3",
+			method : "GET",
+			data : {num1:firstNum, num2:secondNum},
+			success : function (data) {
+				$("#jQ3").next().html(data);
+				console.log(data);
+			},
+			error : function () {
+				console.log("에러발생");
+				$("#jQ3").next().html("에러발생");
+			}
+		})
+	})
+	
+	$("#jQ4").click(function () {
+		var name = $("#name").val();
+		var age = $("#age").val();
+		var addr = $("#addr").val();
+		
+		//객체 생성
+		var student = {name:name, age:age, addr:addr};
+		
+		$.ajax({
+			url : "/ajaxTest4",
+			type : "GET",
+			data : student,
+			success : function () {
+				console.log("성공");
+			}
+		});
+	});
+
+	$("#jQ5").click(function () {
+		var memberId = $("#ajax5").val();
+		var result = $(this).next();
+		
+		$.ajax({
+			url : "/ajaxTest5",
+			type : "POST",
+			data : {memberId : memberId},
+			success : function (data) {
+				if(data != null){
+					result.empty();
+					console.log(data);
+					console.log(typeof(data));
+					//이전 출력내용 삭제;
+					var memberId = data.memberId;
+					result.append("아이디 : "+memberId+"<br>");
+					result.append("비밀번호 : "+data.memberPw+"<br>");
+					result.append("이름 : "+data.memberName);
+					
+				}else{
+					result.html("회원 정보를 조회할 수 없습니다.")
+				}
+			}
+		});
+	});
+	
+	$("#jQ6").click(function () {
+		var result = $(this).next();
+		$.ajax({
+			url : "/ajaxTest6",
+			type : "GET",
+			success : function(data) {
+				result.empty();
+				for(var i=0;i<data.length;i++){
+					var html = data[i].memberNo+"/"+data[i].memberName+"/"+data[i].phone+"<br>";
+					result.append(html);
+				}
+			}
+		})
+	})
+	
+	$("#jQ7").click(function () {
+		var result = $(this).next();
+		$.ajax({
+			url : "/ajaxTest7",
+			type : "GET",
+			success : function (data) {
+				// data : key : 아이디, value : object 인 object
+				var keys = Object.keys(data); //객체의 키값을 전부 가져옴(배열);
+				for(var i=0;i<keys.length;i++){
+//					console.log(data["deathEater"])
+					var memberNo = data[keys[i]].memberNo;
+					var memberName = data[keys[i]].memberName;
+					var phone = data[keys[i]].phone;
+					result.append(memberNo+"/"+memberName+"/"+phone+"<br>");
+				}
+			}
+			
+			
+		})
+	})
+
+</script>
+
+// AJAX 2
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1.인코딩
+		// 2.값추출
+		// 3.비지니스 로직
+		// 4.결과처리
+		
+		String str = "서버에서 보내는 데이터 입니다!!!!";
+		//보내주는 데이터 인코딩;
+		response.setCharacterEncoding("UTF-8"); 
+		PrintWriter out = response.getWriter();
+		out.print(str);//str이 ajax function(data) 매개변수로 들어감		
+		
+	}
+
+
+// AJAX 5
+		protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+
+		// 비지니스 로직
+		String memberId =request.getParameter("memberId");
+		
+		Member member = new MemberService().selectOneMember(memberId);
+		
+		JSONObject result = null;
+		
+		if(member != null) {
+			// 자바스크립트 객체로 변환!
+			result = new JSONObject();
+			result.put("memberId", member.getMemberId());
+			result.put("memberPw", member.getMemberPw());
+			result.put("memberName", member.getMemberName());
+		}		 
+		
+		
+		// 결과 처리
+		response.setContentType("application/json");
+		//되돌려주는 데이터 타입이 json임을 명시
+
+		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		System.out.println(member);
+		System.out.println(result);
+		
+		out.print(result);
+	}
+	
+	
+	
+// AJAX 6
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		ArrayList<Member> list = new MemberService().selectAllMember();
+		
+		response.setCharacterEncoding("UTF-8");
+		
+		
+		// 4. 결과
+//		PrintWriter out = response.getWriter();
+		
+		JSONObject result = null;
+		JSONArray memberArray = new JSONArray();
+		
+		if(!list.isEmpty()) {
+			for(Member m : list) {
+				JSONObject obj = new JSONObject();
+				obj.put("memberNo", m.getMemberNo());
+				obj.put("memberName", m.getMemberName());
+				obj.put("phone", m.getPhone());
+				memberArray.add(obj);
+			}
+		}
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print(memberArray);
+	}
+	
+	
+	
+// AJAX 7
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		request.setCharacterEncoding("UTF-8");
+		
+		ArrayList<Member> list = new MemberService().selectAllMember();
+		
+		JSONObject map = new JSONObject();
+//		HashMap<String, Member> map2 = new HashMap<>();
+		
+		for(Member m: list) {
+//			map2.put(m.getMemberId(), m);
+
+			JSONObject obj = new JSONObject();
+			obj.put("memberNo", m.getMemberNo());
+			obj.put("memberName", m.getMemberName());
+			obj.put("phone", m.getPhone());
+			map.put(m.getMemberId(),obj);
+		}
+		response.setContentType("application/json");
+		
+		PrintWriter out = response.getWriter();
+		out.print(map);
+		
+		
+	}
+	
+
+	
+	

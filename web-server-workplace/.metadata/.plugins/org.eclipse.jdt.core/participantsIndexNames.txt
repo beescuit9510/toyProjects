@@ -29,6 +29,8 @@ C:\Users\82104\Desktop\workplaces\web-server-workplace\.metadata\.plugins\org.ec
 \07_mvc2WebProject\src\main\java
 C:\Users\82104\Desktop\javaToyProjects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1194752549.index
 \04_jspProject\src\main\java
+C:\Users\82104\Desktop\workplaces\web-server-workplace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1982306236.index
+\07_mvc2WebProject\src\main\java
 C:\Users\82104\Desktop\javaToyProjects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2178491999.index
 \07_mvc2WebProject\src\main\java
 C:\Users\82104\Desktop\workplaces\web-server-workplace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2178491999.index
