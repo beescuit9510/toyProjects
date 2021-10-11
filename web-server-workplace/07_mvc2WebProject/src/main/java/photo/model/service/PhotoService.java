@@ -23,5 +23,15 @@ public class PhotoService {
 
 		return r;
 	}
+	
+	public int selectTotalCount() {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int totalCount = new PhotoDao().selectTotalCount(conn);
+				
+		JDBCTemplate.close(conn);
+		
+		return totalCount;
+	}
 
 }
