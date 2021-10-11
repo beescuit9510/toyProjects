@@ -34,6 +34,9 @@
 					<a class="nav-link" href="/boardList?reqPage=1">자유게시판</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="/photoList">사진게시판</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="/ajax">AJAX</a>
 				</li>
 				<li class="nav-item dropdown">

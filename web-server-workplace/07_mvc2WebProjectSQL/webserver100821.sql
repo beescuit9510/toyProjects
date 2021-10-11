@@ -106,3 +106,17 @@ n.* from (select * from notice order by notice_no desc)n
 )nn 
 where nn.rnum between 1 and 10;
 
+
+commit;
+
+select * from board order by board_no desc;
+delete from board where board_no = 145;
+
+
+create table photo(
+    photo_no number primary key,
+    photo_writer varchar2(20) references member(member_id) on delete cascade,
+    photo_comment varchar2(100) not null, --사진에 대한 설명
+    photo_date char(10), 
+    filepath varchar2(100) --이미지파일업로드경로
+);
