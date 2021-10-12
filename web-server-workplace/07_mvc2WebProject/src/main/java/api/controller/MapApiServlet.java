@@ -1,26 +1,23 @@
-package photo.model.controller;
+package api.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import photo.model.service.PhotoService;
-
 /**
- * Servlet implementation class PhotoServlet
+ * Servlet implementation class MapApiServlet
  */
-@WebServlet(name = "PhotoList", urlPatterns = { "/photoList" })
-public class PhotoListServlet extends HttpServlet {
+@WebServlet(name = "MapApi", urlPatterns = { "/mapApi" })
+public class MapApiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PhotoListServlet() {
+    public MapApiServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,13 +26,10 @@ public class PhotoListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-		int totalCount = new PhotoService().selectTotalCount();
+//		request.setCharacterEncoding("UTF-8");
 		
-		request.setAttribute("totalCount", totalCount);
+		request.getRequestDispatcher("/WEB-INF/views/etc/map.jsp").forward(request, response);
 		
-		request.getRequestDispatcher("/WEB-INF/views/photo/photoList.jsp").forward(request, response);
 	}
 
 	/**

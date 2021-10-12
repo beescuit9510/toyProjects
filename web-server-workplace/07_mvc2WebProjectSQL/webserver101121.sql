@@ -122,3 +122,7 @@ create table photo(
 );
 
 create sequence photo_seq;
+
+commit;
+
+select * from photo order by photo_no desc;

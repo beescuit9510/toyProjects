@@ -61,4 +61,10 @@ public class Photo {
 		this.filepath = filepath;
 	}
 
+	@Override
+	public String toString() {
+		return "Photo [photoNo=" + photoNo + ", photoWriter=" + photoWriter + ", photoComment=" + photoComment
+				+ ", photoDate=" + photoDate + ", filepath=" + filepath + "]";
+	}
+	
 }
