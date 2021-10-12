@@ -34,9 +34,12 @@ public class MailSender {
 		//이메일 설정
 		 Properties prop = System.getProperties();
 		 prop.put("mail.smtp.host", "smtp.gmail.com");
-		 prop.put("mail.smtp.port", 465);
+//		 prop.put("mail.smtp.port", 465);
+		 prop.put("mail.smtp.port", 587);
 		 prop.put("mail.smtp.auth", "true");
-		 prop.put("mail.smtp.ssl.enable", "true");
+		 prop.put("mail.smtp.starttls.enable", "true");
+		 prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
+//		 prop.put("mail.smtp.ssl.enable", "true");
 		 prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		 
 		 //인증정보설정(gmail 로그인)
