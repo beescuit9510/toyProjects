@@ -47,6 +47,7 @@
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 <script>
+
 	$(".count>button").click(function(){
 		var currAmount = $(".amount").html();
 		var newAmount = eval(currAmount+$(this).html()+1);
@@ -94,6 +95,7 @@
 			}
 			
 		});
+		
 		*/
 	});
 </script>
