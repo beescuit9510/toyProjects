@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+	<html>
 <head>
 <meta charset="UTF-8">
 <title>결제창</title>
@@ -13,7 +13,7 @@
 		<hr>
 		<div class="shopping">
 			<div>
-				<img id="goods" src="/img/mintChoco.jpg">
+				<img id="goods" src="/img/mintchoco.jpg">
 			</div>
 			<div>
 				<h4>민트초코</h4>
@@ -44,4 +44,15 @@
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
+<script>
+	$(".count>button").click(function(){
+		var currAmount = $(".amount").html();
+		var newAmount = eval(currAmount+$(this).html()+1);
+		$(".amount").html(newAmount);
+
+		var price = $(".price>span").first().html();
+		$("#totalPrice").html(price*newAmount);
+		
+	})
+</script>
 </html>
