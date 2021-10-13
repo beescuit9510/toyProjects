@@ -35,17 +35,24 @@ public class SendMailServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String emailContent = request.getParameter("emailContent");
 		String emailTitle = request.getParameter("emailTitle");
-		
-		boolean result = new MailSender().mailSend(email, emailTitle, emailContent);
 
+		boolean result = false;
+
+		int howMany = 1;
+
+		for (int i = 0; i < howMany; i++) {
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if(result) {
-			request.setAttribute("msg", "메일전송 성공");
-		}else {
-			request.setAttribute("msg", "메일전송 실패");			
+			result = new MailSender().mailSend(email, emailTitle, emailContent);
+
 		}
-		
+
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		if (result) {
+			request.setAttribute("msg", "메일전송 성공");
+		} else {
+			request.setAttribute("msg", "메일전송 실패");
+		}
+
 		request.setAttribute("loc", "/mailApi");
 		view.forward(request, response);
 	}

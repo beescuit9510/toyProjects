@@ -46,7 +46,7 @@
 						<a class="dropdown-item" href="/mapApi">지도API</a>
 						<a class="dropdown-item" href="/mailApi">메일API</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">sub-3</a>
+						<a class="dropdown-item" href="/payApi">결제API</a>
 						<a class="dropdown-item" href="#">sub-4</a>
 					</div>
 				</li>
