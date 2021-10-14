@@ -26,7 +26,15 @@ public class ForwardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("forward 서블릿 안");
+		System.out.println("forward 서블릿 시작");
+		
+//		String path = request.getParameter("path");
+//
+//		System.out.println("forward 서블릿 path :"+path);
+//		
+//		request.getRequestDispatcher(path).forward(request, response);
+//
+		System.out.println("forward 서블릿 끝");
 	}
 
 	/**

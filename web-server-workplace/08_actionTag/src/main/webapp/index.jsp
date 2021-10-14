@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>메인페이지</h1>
-	<h3><a class="a" href="/test1">1. test 페이지 가기</a></h3>
+	<h3><a href="/test1">1. test 페이지 가기</a></h3>
 
 	<hr />
 	<br />
@@ -17,7 +17,7 @@
 	
 	<hr />
 	<br />
-	<h3><a href="/forwardTest">jsp:forword테스트</a></h3>
+	<h3><a class="a" href="/forwardTest">jsp:forword테스트</a></h3>
 	<hr/>
 	<h3><a href="/elTest1">eltest1(기본형)</a></h3>
 	<h3><a href="/elTest2">eltest2(객체)</a></h3>
@@ -40,14 +40,15 @@
 	var hrefs = [];
 	
 	$(".a").click(function(){
-		alert("/forward?href="+hrefs[$(this).index()]);
-		location.href ="/forward?href="+hrefs[$(this).index()];
+		location.href ="/forward?href="+hrefs[$(".a").index(this)];
 	})
+	
 	
 	for(var i=0;i<$(".a").length;i++){
         hrefs.push($(".a").eq(i).attr("href"));
-        $(".a").attr({"href":""});    
     }
-	
+    
+	$(".a").removeAttr("href"); 
+
 </script>
 </html>

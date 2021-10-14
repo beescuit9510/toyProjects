@@ -17,5 +17,4 @@
   	<filter-name>Forward</filter-name>
 	<url-pattern>/forward</url-pattern>  	
   </filter-mapping>
-  
 </web-app>

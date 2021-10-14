@@ -39,16 +39,17 @@ public class ForwardFilter implements Filter {
 		// pass the request along the filter chain
 		
 		System.out.println("filter 시작");
+
 		
 		String href = request.getParameter("href");
-		
 		String path = "/WEB-INF/views"+href+".jsp";
 		
 		System.out.println(path);
-
-		chain.doFilter(request, response);
 		
 		request.getRequestDispatcher(path).forward(request, response);
+		
+		chain.doFilter(request, response);
+		
 		
 		System.out.println("filter 끝");
 	}

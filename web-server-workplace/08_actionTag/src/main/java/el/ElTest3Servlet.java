@@ -37,10 +37,9 @@ public class ElTest3Servlet extends HttpServlet {
 			members.add(member);
 		}
 		
-		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/elTest3.jsp");
-		
 		request.setAttribute("members", members);
+				
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/elTest3.jsp");
 		
 		view.forward(request, response);
 		

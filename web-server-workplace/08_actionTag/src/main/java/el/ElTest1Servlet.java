@@ -30,7 +30,6 @@ public class ElTest1Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/elTest1.jsp");
 		
 		request.setAttribute("name", "byunduck");
 		request.setAttribute("age", "22");
@@ -44,8 +43,11 @@ public class ElTest1Servlet extends HttpServlet {
 		session.setAttribute("addr", "서울222"); 
 		request.setAttribute("str2", "테스트2");
 		
-		view.forward(request, response);
 		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/elTest1.jsp");
+
+		view.forward(request, response);
+
 	}
 
 	/**

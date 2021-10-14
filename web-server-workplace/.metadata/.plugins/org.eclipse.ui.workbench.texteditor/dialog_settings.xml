@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="members"/>
+		<item key="selection" value="h2"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="h1"/>
+			<item value="h3"/>
+			<item value="empty"/>
+			<item value="=="/>
+			<item value="num"/>
+			<item value="1"/>
+			<item value="2"/>
 			<item value="list"/>
 			<item value="reset"/>
 			<item value="TotalCount"/>
@@ -16,15 +23,15 @@
 			<item value="board"/>
 			<item value="Notice"/>
 			<item value="notice"/>
-			<item value="request"/>
-			<item value="button"/>
-			<item value="REPLACEKEYWORD"/>
-			<item value="REPLACEWORD"/>
-			<item value="REPLACETYPE"/>
-			<item value="searchNotice?reqPage="/>
-			<item value="searchList?reqPage="/>
 		</list>
 		<list key="replacehistory">
+			<item value="h2"/>
+			<item value="p"/>
+			<item value="not empty"/>
+			<item value="!="/>
+			<item value="str"/>
+			<item value="2"/>
+			<item value="3"/>
 			<item value="members"/>
 			<item value="rset"/>
 			<item value="MorePhoto"/>
@@ -33,18 +40,11 @@
 			<item value="photo"/>
 			<item value="Board"/>
 			<item value="board"/>
-			<item value="multipartRe"/>
-			<item value="a"/>
-			<item value="**reaplceKEYWORD**"/>
-			<item value="**replaceTYPE**"/>
-			<item value="searchNotice?type=&quot;+type+&quot;&amp;keyword=&quot;+keyword+&quot;&amp;reqPage=&quot;"/>
-			<item value="searchNotice?reqPage="/>
-			<item value="searchNotice?"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="451"/>
-		<item key="DIALOG_Y_ORIGIN" value="357"/>
+		<item key="DIALOG_X_ORIGIN" value="710"/>
+		<item key="DIALOG_Y_ORIGIN" value="206"/>
 		<item key="DIALOG_WIDTH" value="393"/>
 		<item key="DIALOG_HEIGHT" value="523"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

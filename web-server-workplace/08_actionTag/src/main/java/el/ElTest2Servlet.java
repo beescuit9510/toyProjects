@@ -31,9 +31,10 @@ public class ElTest2Servlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Member member = new Member("변덕",20,"서울");
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/elTest2.jsp");
 		
 		request.setAttribute("member", member);
+
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/elTest2.jsp");
 		
 		view.forward(request, response);
 		

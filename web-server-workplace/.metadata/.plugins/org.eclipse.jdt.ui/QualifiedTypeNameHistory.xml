@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.time.zone.ZoneRulesException"/>
     <fullyQualifiedTypeName name="member.model.dao.MemberDao"/>
     <fullyQualifiedTypeName name="notice.model.dao.NoticePageData"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
@@ -59,5 +58,6 @@
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="el.Member"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
