@@ -30,7 +30,7 @@
 	$(".a").click(function(){
 		var href = $(this).attr("href");
 		console.log(href);
-		$("<a href='/forward?href="+href+"'").click();
+		$("<a href='/forward'></a>").click();
 	})
 </script>
 </html>
