@@ -1,23 +1,27 @@
-package common;
+package jstl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import el.Member;
+
 /**
- * Servlet implementation class ForwardServlet
+ * Servlet implementation class JstlTset1Servlet
  */
-@WebServlet(name = "Forward", urlPatterns = { "/forward" })
-public class ForwardServlet extends HttpServlet {
+@WebServlet(name = "JstlTest5", urlPatterns = { "/jstlTest5" })
+public class JstlTset5Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ForwardServlet() {
+    public JstlTset5Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +30,15 @@ public class ForwardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("forward 서블릿 안");
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		String str = request.getParameter("data");
+		
+		request.setAttribute("str", str);
+		
+		request.getRequestDispatcher("/WEB-INF/views/jstlTest5.jsp").forward(request, response);
+		
 	}
 
 	/**

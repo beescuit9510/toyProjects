@@ -1,4 +1,4 @@
-package common;
+package jstl;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ForwardServlet
+ * Servlet implementation class JstlTset1Servlet
  */
-@WebServlet(name = "Forward", urlPatterns = { "/forward" })
-public class ForwardServlet extends HttpServlet {
+@WebServlet(name = "JstlTest1", urlPatterns = { "/jstlTest1" })
+public class JstlTset1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ForwardServlet() {
+    public JstlTset1Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,8 @@ public class ForwardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("forward 서블릿 안");
+		request.getRequestDispatcher("/WEB-INF/views/jstlTest1.jsp").forward(request, response);
+		
 	}
 
 	/**

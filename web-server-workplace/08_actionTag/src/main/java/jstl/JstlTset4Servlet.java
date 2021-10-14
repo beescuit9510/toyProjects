@@ -1,23 +1,27 @@
-package common;
+package jstl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import el.Member;
+
 /**
- * Servlet implementation class ForwardServlet
+ * Servlet implementation class JstlTset1Servlet
  */
-@WebServlet(name = "Forward", urlPatterns = { "/forward" })
-public class ForwardServlet extends HttpServlet {
+@WebServlet(name = "JstlTest4", urlPatterns = { "/jstlTest4" })
+public class JstlTset4Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ForwardServlet() {
+    public JstlTset4Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +30,18 @@ public class ForwardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("forward 서블릿 안");
+		
+		ArrayList<Member> members = new ArrayList<Member>();
+		
+		for(int i=0;i<6;i++) {
+			Member member = new Member("변덕",20,"서울");		
+			members.add(member);
+		}
+		
+		request.setAttribute("members", members);
+		
+		request.getRequestDispatcher("/WEB-INF/views/jstlTest4.jsp").forward(request, response);
+		
 	}
 
 	/**
