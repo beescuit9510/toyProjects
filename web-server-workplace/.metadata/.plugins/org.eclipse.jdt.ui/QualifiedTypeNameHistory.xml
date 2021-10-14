@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="member.controller.FindPwServlet"/>
-    <fullyQualifiedTypeName name="java.util.stream.Stream"/>
-    <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
     <fullyQualifiedTypeName name="java.time.zone.ZoneRulesException"/>
-    <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.FileRenamePolicy"/>
     <fullyQualifiedTypeName name="member.model.dao.MemberDao"/>
     <fullyQualifiedTypeName name="notice.model.dao.NoticePageData"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
@@ -32,15 +27,10 @@
     <fullyQualifiedTypeName name="notice.model.vo.NoticeViewData"/>
     <fullyQualifiedTypeName name="board.model.vo.Board"/>
     <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="member.model.service.MemberService"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="member.model.vo.Member"/>
-    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
-    <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="photo.model.vo.Photo"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="photo.model.service.PhotoService"/>
     <fullyQualifiedTypeName name="common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
@@ -54,10 +44,20 @@
     <fullyQualifiedTypeName name="javax.mail.Message"/>
     <fullyQualifiedTypeName name="javax.mail.Message.RecipientType"/>
     <fullyQualifiedTypeName name="com.sun.jdi.connect.Transport"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="org.jsoup.Jsoup"/>
     <fullyQualifiedTypeName name="com.google.gson.JsonParser"/>
     <fullyQualifiedTypeName name="jdk.internal.org.jline.reader.Parser.ParseContext"/>
     <fullyQualifiedTypeName name="com.google.gson.JsonArray"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.FileRenamePolicy"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.xalan.internal.xsltc.dom.Filter"/>
+    <fullyQualifiedTypeName name="javax.servlet.Filter"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

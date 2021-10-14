@@ -33,6 +33,13 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("2. 로그인 서블릿 시작");
+		
+		Member memberFilter = (Member)request.getAttribute("memberFilter");
+		
+		System.out.println(memberFilter);
+		
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		//1. 인코딩
@@ -75,6 +82,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		
+		System.out.println("3. 로그인 서블릿 끝");
 	}
 
 	/**
