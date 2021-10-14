@@ -87,6 +87,11 @@
 	
 	//https://navermaps.github.io/maps.js/docs/index.html
 	//샘플코드 볼수있는 곳 ! 
+	
+	// 네이버 ncloud application 삭제로 작동안될것임.
+	// 다시 이용하고 싶을땐 네이버 nclound 콘솔로 가서 다시 map 전체 재발급후
+	// ncpClientId=q8ruutisf3
+	// ncpClinetId 부분을 재발급받고 스크립트 부분 변경후 사용해야함.
 </script>
 <meta charset="UTF-8">
 <title>MAP API</title>
