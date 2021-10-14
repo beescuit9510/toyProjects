@@ -42,7 +42,10 @@
 			</tr>
 			<tr class="table-light">
 				<th>내용</th>
+				<%-- 서머노트 덕분에 notice.getNoticeContentBr() 안써도됨 
 				<th colspan="3"><%=notice.getNoticeContentBr() %></th>
+				--%>
+				<th colspan="3"><%=notice.getNoticeContent() %></th>
 			</tr>
 			<tr class="table-light">
 				<th colspan="4" style="text-align:center;">

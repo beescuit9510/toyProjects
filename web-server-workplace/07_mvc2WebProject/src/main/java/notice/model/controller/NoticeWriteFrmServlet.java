@@ -30,7 +30,7 @@ public class NoticeWriteFrmServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		request.getRequestDispatcher("/WEB-INF/views/notice/noticeWriteFrm.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/notice/noticeWriteFrmEditor.jsp").forward(request, response);
 	}
 
 	/**

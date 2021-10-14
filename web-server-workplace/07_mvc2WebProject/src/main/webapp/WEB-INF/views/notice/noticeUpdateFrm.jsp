@@ -58,7 +58,7 @@
 					<tr class="table-active">
 						<th>내용</th>
 						<td colspan="3">
-							<textarea name="noticeContent" class="form-control"><%=notice.getNoticeContent() %></textarea>
+							<textarea id="noticeContent" name="noticeContent" class="form-control"><%=notice.getNoticeContent() %></textarea>
 						</td>
 					</tr>
 					<tr class="table-active">
@@ -83,11 +83,24 @@
 
 
 </body>
+<script src="/summernote/jquery-3.3.1.js"></script>
+<script src="/summernote/summernote-lite.js"></script>
+<script src="/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/summernote/summernote-lite.css">
 <script>
 	$(".delFile").click(function () {
 		$(".delFile").hide();
 		$(this).next().show();
 		$("[name=status]").val(2);
 	})
+	
+	$(function(){
+		$("#noticeContent").summernote({
+			height: 400,
+			lang : "ko-KR"
+		});
+	});
+	
+
 </script>
 </html>
