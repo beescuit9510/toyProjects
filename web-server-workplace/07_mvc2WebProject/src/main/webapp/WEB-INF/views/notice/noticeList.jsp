@@ -32,7 +32,7 @@
 <%@include file="/WEB-INF/views/common/header.jsp" %>
 <div class="container">
 	<fieldset>
-		<legend>공지사항</legend>
+		<legend>공지사항(original)</legend>
 		<%if(member != null && member.getMemberLevel() == 1 ) {%>
 			<div>
 				<a class="btn btn-info writeBtn" href="/noticeWriteFrm">글쓰기</a>
