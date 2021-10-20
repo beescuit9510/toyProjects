@@ -1,48 +1,38 @@
 기본멤버/펀더 둘다 이메일 인증 받음
 
-펀딩 카테고리 테이블(
-펀딩 상품 varchar2(50)
-)
-
-펀더 카테고리 테이블(
-펀더 업종 varchar2(50)
-)
-
 멤버 테이블(
 멤버No number primary key
-회원등급 number //(관리자1/일반회원2/일반펀더3/신고된 펀더4)
+회원등급 number //(관리자1/일반회원2/일반펀더3)
 이름  varchar2(20) not null
 이메일   varchar2(100) not null unique
 비밀번호  varchar2(50) not null
 전화번호  char(13) not null
 가입일자  char(10) not null 
-결제이력 number 
 )
 
 사업자 등록 table(
-멤버No number primary key
+멤버No number primary key reference 회원(회원No)
 법인명 varchar2(50) not null
 사업자등록번호 char(12) not null
 담당자명 varchar2(20) not null
 )
 
 
-
 기본정보->리워드->제작자/부가정보
 
 기본정보 table (
 프로젝트No number primary key number
-프로젝트 펀더 number not null reference 회원(회원No)
+프로젝트 펀더 number not null reference 사업자 등록(멤버No) on delete cascade
 프로젝트 제목 varchar2(120) not null
 목표금액 number not null
-진행기간 일수계산 varchar2(10) not null
+프로젝트 마감일 varchar2(10) not null
 프로젝트 대표 이미지 varchar2(1500)
 카테고리 varchar2(30) not null reference 카테고리(펀딩_상품)
 프로젝트 스토리 varchar(4000) not null
 )
 
 리워드 table( 
-리워드No number reference 기본정보(프로젝트No)
+리워드No number primary key reference 기본정보(프로젝트No)
 리워드금액 number not null
 리워드 제목  varchar2(500) not null
 리워드 내용 varchar2(4000) not null
@@ -53,8 +43,8 @@
 )
 
 제작자/부가정보(
-제작자/부가정보No number not null reference 기본정보(프로젝트No)
-거래은행 number not null //(셀렉트박스 처리) / varchar2 (50) -> 셀렉트박스 처리유무에 따라 다를듯
+제작자/부가정보No number primary key reference 기본정보(프로젝트No)
+거래은행 varchar2(50) not null 
 계좌번호 number not null
 예금주 varchar2(20) not null
 )
@@ -70,7 +60,7 @@ filepath varchar2(1500)
 )
 
 이벤트 table(
-이벤트No number not null primary key
+이벤트No number primary key
 제목 varchar2(500) not null
 내용 varchar2(4000) not null
 작성자 number not null reference 회원(회원No) delete on cascade
@@ -80,16 +70,17 @@ filepath varchar2(1500)
 
 
 펀더 게시판 테이블 (
-프로필 이미지 varchar2(1500) not null
-작성자 number primary key reference 사업자 등록(법인명) delete on cascade
+작성자 number primary key reference 사업자 등록(사업자 등록No) delete on cascade
+법인명 varchar(50) reference 사업자 등록(법인명)
 업종 reference not null 펀더_카테고리(펀더 업종)
 설립입자 char(10)
-이메일 varchar2(50) reference 기본정보(이메일) delete on cascade
+이메일 varchar2(50) 
 검색 태그 varchar2(500)
 기술 정보 varchar2(500)
 스킬 레벨 varchar2(500)
 회사주소 varchar2(500)
 회사 소개글 varchar2(4000) not null
+프로필 이미지filepath varchar2(1500) not null
 )
 
 펀딩 댓글 테이블(
@@ -97,27 +88,30 @@ filepath varchar2(1500)
 작성자 varchar(50) not null reference 멤버(멤버No) delete on cascade
 내용 varchar(1500) not null
 작성일자 char(10)
-펀딩No number not null reference 펀딩(펀딩No)
+펀딩No number not null reference 펀딩(펀딩No) delete on cascade
 댓글 등급 number not null //(일반 댓글1/ 펀딩게시물 작성자의 대댓글은2)
-댓글_참조 number reference 댓글(댓글No)
+댓글_참조 number reference 댓글(댓글No) delete on cascade
 )
 
 
 
 펀더 좋아요 테이블(
 좋아요누른멤버 number not null reference 회원(회원No)
-좋아요된 펀더 number not null reference 회원(회원No) 
+좋아요된 펀더 number not null reference 사업자 등록(사업자 등록No) 
+primary key(좋아요 누른 멤버,좋아요된 펀더)
 )
+
 펀딩 좋아요 테이블(
 좋아요누른멤버 number not null reference 회원(회원No)
-좋아요된 펀딩게시물 rnumber not null reference 기본정보(프로젝트No)
+좋아요된 펀딩게시물 number not null reference 기본정보(프로젝트No)
+primary key(좋아요 누른 멤버,좋아요된 펀딩게시물)
 )
 
 
 
 주문목록(펀딩한 프로젝트) 테이블(
 주문번호 varchar(30) primary key //주문번호(날짜+번호)
-프로젝트No not null number reference 펀딩(펀딩No)
+프로젝트No not null number reference 기본정보(프로젝트No)
 주문일자 char(10) not null
 수량 number not null
 받는 사람 varchar2(50) not null
@@ -125,3 +119,17 @@ filepath varchar2(1500)
 주소 varchar2(1500) not null
 회원No number not null reference 회원(회원No)
 )
+
+
+펀딩 카테고리 테이블(
+펀딩 상품 varchar2(50) primary key
+)
+
+펀더 카테고리 테이블(
+펀더 업종 varchar2(50) primary key
+)
+
+
+시퀸스 멤버(회원No) 기본정보(프로젝트No) 
+공지사항(공지사항No) 이벤트(이벤트No)
+펀딩 댓글(댓글No)
