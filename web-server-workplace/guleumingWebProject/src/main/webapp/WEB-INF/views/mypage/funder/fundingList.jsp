@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>aaaaa</div>
+	<div>펀더 펀더리스트</div>
 </body>
 </html>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<div>멤버 -> 마이페이지</div>
 </body>
 </html>

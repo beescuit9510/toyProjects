@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>fun딩LIST</div>
+	<div>adminPage/funderList</div>
 </body>
 </html>

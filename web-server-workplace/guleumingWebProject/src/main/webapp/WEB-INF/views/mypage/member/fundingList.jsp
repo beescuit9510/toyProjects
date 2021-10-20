@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<div>멤버 -> 펀딩리스트</div>
 </body>
 </html>
