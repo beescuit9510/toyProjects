@@ -4,3 +4,8 @@ jre System Library를 찾을수 없음.
 접속할때마다 404가 에러가남.
 
 해결:
+프로젝트 마우스 오른쪽 버튼 눌러서 properties 연 다음 
+1. Project Facets에서 java version을 현재 사용하고있는 자바버전으로 맞춘다.
+2. Java Build Path 에서 add library 로 JRE System Library 를 추가하는데 Alternate JRE 를 본인 버전에 맞춰 추가
+3. ㄴ> web App Libraries 수정 눌러서 프로젝트 맞춰주면됨
+4. Java Compiler 에서 Use default compliance settings 체크 (위의 레벨 자바버전 본인버전으로 맞춰야함)
