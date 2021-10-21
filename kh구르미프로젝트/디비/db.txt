@@ -12,7 +12,7 @@
 
 사업자 등록 table(
 멤버No number primary key reference 회원(회원No)
-법인명 varchar2(50) not null
+법인명 varchar2(50) not null unique
 사업자등록번호 char(12) not null
 담당자명 varchar2(20) not null
 )
@@ -29,6 +29,7 @@
 프로젝트 대표 이미지 varchar2(1500)
 카테고리 varchar2(30) not null reference 카테고리(펀딩_상품)
 프로젝트 스토리 varchar(4000) not null
+start_date char(10) not null
 )
 
 리워드 table( 
@@ -81,6 +82,8 @@ filepath varchar2(1500)
 회사주소 varchar2(500)
 회사 소개글 varchar2(4000) not null
 프로필 이미지filepath varchar2(1500) not null
+maker_board_no number not null unique
+write_date char(10) not null 
 )
 
 펀딩 댓글 테이블(
@@ -96,12 +99,14 @@ filepath varchar2(1500)
 
 
 펀더 좋아요 테이블(
+like_no number unique not null
 좋아요누른멤버 number not null reference 회원(회원No)
 좋아요된 펀더 number not null reference 사업자 등록(사업자 등록No) 
 primary key(좋아요 누른 멤버,좋아요된 펀더)
 )
 
 펀딩 좋아요 테이블(
+like_no number unique not null
 좋아요누른멤버 number not null reference 회원(회원No)
 좋아요된 펀딩게시물 number not null reference 기본정보(프로젝트No)
 primary key(좋아요 누른 멤버,좋아요된 펀딩게시물)
@@ -112,7 +117,8 @@ primary key(좋아요 누른 멤버,좋아요된 펀딩게시물)
 주문목록(펀딩한 프로젝트) 테이블(
 주문번호 varchar(30) primary key //주문번호(날짜+번호)
 프로젝트No not null number reference 기본정보(프로젝트No)
-주문일자 char(10) not null
+주문일자 char(19) not null
+--to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS') 형식으로
 수량 number not null
 받는 사람 varchar2(50) not null
 연락처 char(13) not null
@@ -130,6 +136,11 @@ primary key(좋아요 누른 멤버,좋아요된 펀딩게시물)
 )
 
 
-시퀸스 멤버(회원No) 기본정보(프로젝트No) 
-공지사항(공지사항No) 이벤트(이벤트No)
-펀딩 댓글(댓글No)
+시퀸스 
+멤버(회원No) 
+기본정보(프로젝트No) 
+공지사항(공지사항No) 
+이벤트(이벤트No)
+펀딩 댓글(댓글No) 
+like_seq(펀딩 펀더 라이크 테이블 like_no);
+maker_board_seq(maker_board maker_board_no);
