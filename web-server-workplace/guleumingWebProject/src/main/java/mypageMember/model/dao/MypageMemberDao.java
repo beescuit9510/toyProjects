@@ -1,0 +1,412 @@
+package mypageMember.model.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.JDBCTemplate;
+import mypageFunderFunding.model.vo.FundedFunding;
+import mypageFunderFunding.model.vo.Funding;
+import mypageFunderFunding.model.vo.Like;
+import mypageFunderFunding.model.vo.LikedFunder;
+import mypageFunderFunding.model.vo.LikedFunding;
+import mypageFunderFunding.model.vo.MyOwnProject;
+import mypageFunderFunding.model.vo.MyOwnProjectCustomer;
+import table.model.vo.FundingComment;
+import table.model.vo.MakerBoard;
+import table.model.vo.MakerInfo;
+import table.model.vo.Member;
+import table.model.vo.PaymentInfo;
+import table.model.vo.ProjectBasicInfo;
+import table.model.vo.Reward;
+
+public class MypageMemberDao {
+
+	public ArrayList<FundedFunding> selectFundedFunding(Connection conn, int cMemberNo) {
+		String query = "select * \r\n" + "from payment_info p\r\n" + "join project_basic_info pbi\r\n"
+				+ "on p.project_no = pbi.project_no\r\n" + "join reward r\r\n" + "on pbi.project_no = r.reward_no\r\n"
+				+ "join maker_info m\r\n" + "on pbi.project_no = m.maker_info_no\r\n" + "where p.c_member_no = ?\r\n"
+				+ "order by shipping_date desc\r\n";
+
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		ArrayList<FundedFunding> fundings = new ArrayList<>();
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				ProjectBasicInfo projectBasicInfo = new ProjectBasicInfo();
+				Reward reward = new Reward();
+				MakerInfo makerInfo = new MakerInfo();
+				PaymentInfo paymentInfo = new PaymentInfo();
+
+				projectBasicInfo.setProjectNo(rset.getInt("project_no"));
+				projectBasicInfo.setBusinessNo(rset.getInt("business_no"));
+				projectBasicInfo.setProjectTitle(rset.getString("project_title"));
+				projectBasicInfo.setTargetPrice(rset.getInt("target_price"));
+				projectBasicInfo.setFilepath(rset.getString("filepath"));
+				projectBasicInfo.setEndDate(rset.getString("end_date"));
+				projectBasicInfo.setProjectStory(rset.getString("project_story"));
+				projectBasicInfo.setFundingCategory(rset.getString("funding_category"));
+				projectBasicInfo.setStartDate(rset.getString("start_date"));
+
+				reward.setRewardNo(rset.getInt("reward_no"));
+				reward.setRewardPrice(rset.getInt("reward_price"));
+				reward.setRewardTitle(rset.getString("reward_title"));
+				reward.setRewardContent(rset.getString("reward_content"));
+				reward.setShippingDate(rset.getString("shipping_date"));
+				reward.setCancelPolicy(rset.getString("cancel_policy"));
+				reward.setqEmail(rset.getString("q_email"));
+				reward.setqPhone(rset.getString("q_phone"));
+
+				makerInfo.setMakerInfoNo(rset.getInt("maker_info_no"));
+				makerInfo.setTradeBank(rset.getString("trade_bank"));
+				makerInfo.setAccountNumber(rset.getInt("account_number"));
+				makerInfo.setDepositName(rset.getString("deposit_name"));
+
+				paymentInfo.setPaymentNo(rset.getLong("payment_no"));
+				paymentInfo.setQuantity(rset.getInt("quantity"));
+				paymentInfo.setReceiveAddr(rset.getString("receive_addr"));
+				paymentInfo.setOrderDate(rset.getString("order_date"));
+				paymentInfo.setReceiveName(rset.getString("receive_name"));
+				paymentInfo.setReceivePhone(rset.getString("receive_phone"));
+				paymentInfo.setProjectNo(rset.getInt("project_no"));
+				paymentInfo.setcMemberNo(rset.getInt("c_member_no"));
+
+				FundedFunding funding = new FundedFunding(projectBasicInfo, reward, makerInfo, paymentInfo);
+
+				fundings.add(funding);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return fundings;
+	}
+
+	public void selectLikedFunder(Connection conn, int cMemberNo, ArrayList<Like> likeList) {
+		String query = "select fl.like_no, mb.*\r\n" + "from member m\r\n" + "join funder_like fl\r\n"
+				+ "on m.c_member_no = fl.c_member_no\r\n" + "join member fm\r\n"
+				+ "on fl.liked_business_no = fm.c_member_no\r\n" + "join maker_board mb\r\n"
+				+ "on fl.liked_business_no = mb.writer_no\r\n" + "where m.c_member_no = ?\r\n"
+				+ "order by fl.like_no desc\r\n";
+
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+
+				MakerBoard makerBoard = new MakerBoard();
+
+				makerBoard.setWriterNo(rset.getInt("writer_no"));
+				makerBoard.setBusinessName(rset.getString("business_name"));
+				makerBoard.setOpenDate(rset.getString("open_date"));
+				makerBoard.setBoardEmail(rset.getString("board_email"));
+				makerBoard.setSearchTag(rset.getString("search_tag"));
+				makerBoard.setSkillName(rset.getString("skill_name"));
+				makerBoard.setSkillLevel(rset.getString("skill_level"));
+				makerBoard.setCompanyAddr(rset.getString("company_addr"));
+				makerBoard.setCompanyIntro(rset.getString("company_intro"));
+				makerBoard.setProfileFilepath(rset.getString("profile_filepath"));
+				makerBoard.setFunderCategory(rset.getString("funder_category"));
+
+				LikedFunder likedFunder = new LikedFunder(rset.getInt("like_no"), makerBoard);
+
+				likeList.add(likedFunder);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return;
+	}
+
+	public void selectLikedFunding(Connection conn, int cMemberNo, ArrayList<Like> likeList) {
+		String query = "select fl.like_no, pbi.*,r.*,mi.* \r\n" + "from member m\r\n" + "join funding_like fl\r\n"
+				+ "on m.c_member_no = fl.c_member_no\r\n" + "join project_basic_info pbi\r\n"
+				+ "on fl.liked_project_no = pbi.project_no\r\n" + "join reward r\r\n"
+				+ "on fl.liked_project_no = r.reward_no\r\n" + "join maker_info mi\r\n"
+				+ "on fl.liked_project_no = mi.maker_info_no\r\n" + "where m.c_member_no = ?\r\n"
+				+ "order by fl.like_no desc\r\n";
+
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+
+				ProjectBasicInfo projectBasicInfo = new ProjectBasicInfo();
+				Reward reward = new Reward();
+				MakerInfo makerInfo = new MakerInfo();
+
+				projectBasicInfo.setProjectNo(rset.getInt("project_no"));
+				projectBasicInfo.setBusinessNo(rset.getInt("business_no"));
+				projectBasicInfo.setProjectTitle(rset.getString("project_title"));
+				projectBasicInfo.setTargetPrice(rset.getInt("target_price"));
+				projectBasicInfo.setFilepath(rset.getString("filepath"));
+				projectBasicInfo.setEndDate(rset.getString("end_date"));
+				projectBasicInfo.setProjectStory(rset.getString("project_story"));
+				projectBasicInfo.setFundingCategory(rset.getString("funding_category"));
+				projectBasicInfo.setStartDate(rset.getString("start_date"));
+
+				reward.setRewardNo(rset.getInt("reward_no"));
+				reward.setRewardPrice(rset.getInt("reward_price"));
+				reward.setRewardTitle(rset.getString("reward_title"));
+				reward.setRewardContent(rset.getString("reward_content"));
+				reward.setShippingDate(rset.getString("shipping_date"));
+				reward.setCancelPolicy(rset.getString("cancel_policy"));
+				reward.setqEmail(rset.getString("q_email"));
+				reward.setqPhone(rset.getString("q_phone"));
+
+				makerInfo.setMakerInfoNo(rset.getInt("maker_info_no"));
+				makerInfo.setTradeBank(rset.getString("trade_bank"));
+				makerInfo.setAccountNumber(rset.getInt("account_number"));
+				makerInfo.setDepositName(rset.getString("deposit_name"));
+
+				Funding funding = new Funding(projectBasicInfo, reward, makerInfo);
+
+				LikedFunding likedFunding = new LikedFunding(rset.getInt("like_no"), funding);
+
+				likeList.add(likedFunding);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return;
+	}
+
+	public void selectMyOwnProjectFunding(Connection conn, int cMemberNo, ArrayList<MyOwnProject> myOwnProjects) {
+		String query = "select pbi.*, r.*, mi.*\r\n" + "from member m\r\n" + "join project_basic_info pbi\r\n"
+				+ "on m.c_member_no = pbi.business_no\r\n" + "join reward r\r\n" + "on pbi.project_no = r.reward_no\r\n"
+				+ "join maker_info mi\r\n" + "on pbi.project_no = mi.maker_info_no\r\n" + "where m.c_member_no = ?\r\n"
+				+ "order by pbi.project_no desc\r\n";
+
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				ProjectBasicInfo projectBasicInfo = new ProjectBasicInfo();
+				Reward reward = new Reward();
+				MakerInfo makerInfo = new MakerInfo();
+
+				projectBasicInfo.setProjectNo(rset.getInt("project_no"));
+				projectBasicInfo.setBusinessNo(rset.getInt("business_no"));
+				projectBasicInfo.setProjectTitle(rset.getString("project_title"));
+				projectBasicInfo.setTargetPrice(rset.getInt("target_price"));
+				projectBasicInfo.setFilepath(rset.getString("filepath"));
+				projectBasicInfo.setEndDate(rset.getString("end_date"));
+				projectBasicInfo.setProjectStory(rset.getString("project_story"));
+				projectBasicInfo.setFundingCategory(rset.getString("funding_category"));
+				projectBasicInfo.setStartDate(rset.getString("start_date"));
+
+				reward.setRewardNo(rset.getInt("reward_no"));
+				reward.setRewardPrice(rset.getInt("reward_price"));
+				reward.setRewardTitle(rset.getString("reward_title"));
+				reward.setRewardContent(rset.getString("reward_content"));
+				reward.setShippingDate(rset.getString("shipping_date"));
+				reward.setCancelPolicy(rset.getString("cancel_policy"));
+				reward.setqEmail(rset.getString("q_email"));
+				reward.setqPhone(rset.getString("q_phone"));
+
+				makerInfo.setMakerInfoNo(rset.getInt("maker_info_no"));
+				makerInfo.setTradeBank(rset.getString("trade_bank"));
+				makerInfo.setAccountNumber(rset.getInt("account_number"));
+				makerInfo.setDepositName(rset.getString("deposit_name"));
+
+				Funding funding = new Funding(projectBasicInfo, reward, makerInfo);
+
+				MyOwnProject myOwnProject = new MyOwnProject();
+
+				myOwnProject.setFunding(funding);
+
+				myOwnProjects.add(myOwnProject);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return;
+	}
+
+	public void selectMyOwnProjectComment(Connection conn, int projectNo, MyOwnProject myOwnProject) {
+		String query = "select fc.* \r\n"
+				+ "from project_basic_info pbi\r\n"
+				+ "join funding_comment fc\r\n"
+				+ "on pbi.project_no = fc.project_ref_no\r\n"
+				+ "where pbi.project_no = ?\r\n"
+				+ "order by fc.comment_no desc\r\n";
+		
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, projectNo);
+			rset = pstmt.executeQuery();
+
+//			ArrayList<FundingComment> fundingComments = null;
+			ArrayList<FundingComment> fundingComments = new ArrayList<FundingComment>();
+
+			while (rset.next()) {
+
+//				fundingComments = new ArrayList<FundingComment>();
+
+				FundingComment fundingComment = new FundingComment();
+
+				fundingComment.setCommentNo(rset.getInt("comment_no"));
+				fundingComment.setCommentContent(rset.getString("comment_content"));
+				fundingComment.setWriteDate(rset.getString("write_date"));
+				fundingComment.setCommentLevel(rset.getInt("comment_level"));
+				fundingComment.setProjectRefNo(rset.getInt("project_ref_no"));
+				fundingComment.setCommentRefNo(rset.getInt("comment_ref_no"));
+				fundingComment.setCommentWriter(rset.getInt("comment_writer"));
+
+				fundingComments.add(fundingComment);
+
+			}
+
+			myOwnProject.setComments(fundingComments);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return;
+
+	}
+
+	public void selectMyOwnProjectPaymentInfo(Connection conn, int projectNo, MyOwnProject myOwnProject) {
+		String query = "select pi.*, m.*\r\n"
+				+ "from project_basic_info pbi\r\n"
+				+ "join payment_info pi\r\n"
+				+ "on pbi.project_no = pi.project_no\r\n"
+				+ "join member m\r\n"
+				+ "on pi.c_member_no = m.c_member_no\r\n"
+				+ "where pbi.project_no = ?\r\n"
+				+ "order by pi.order_date desc\r\n";
+
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, projectNo);
+			rset = pstmt.executeQuery();
+
+//			ArrayList<PaymentInfo> paymentInfos = null;
+			ArrayList<MyOwnProjectCustomer>  myOwnProjectCustomers = new ArrayList<MyOwnProjectCustomer>();
+
+
+			while (rset.next()) {
+
+				PaymentInfo paymentInfo = new PaymentInfo();
+
+				paymentInfo.setPaymentNo(rset.getLong("payment_no"));
+				paymentInfo.setQuantity(rset.getInt("quantity"));
+				paymentInfo.setReceiveAddr(rset.getString("receive_addr"));
+				paymentInfo.setOrderDate(rset.getString("order_date"));
+				paymentInfo.setReceiveName(rset.getString("receive_name"));
+				paymentInfo.setReceivePhone(rset.getString("receive_phone"));
+				paymentInfo.setProjectNo(rset.getInt("project_no"));
+				paymentInfo.setcMemberNo(rset.getInt("c_member_no"));
+
+				Member member = new Member();
+
+				member.setcMemberNo(rset.getInt("c_member_no"));
+				member.setcName(rset.getString("c_name"));
+				member.setcPassword(rset.getString("c_password"));
+				member.setcPhone(rset.getString("c_phone"));
+				member.setcEnrollDate(rset.getString("c_enroll_date"));
+				member.setcEmail(rset.getString("c_email"));
+				member.setcLevel(rset.getInt("c_level"));
+
+				MyOwnProjectCustomer myOwnProjectCustomer = new MyOwnProjectCustomer();
+				
+				myOwnProjectCustomer.setMember(member);				
+				
+				myOwnProjectCustomer.setPaymentInfo(paymentInfo);
+				
+				
+				myOwnProjectCustomers.add(myOwnProjectCustomer);
+			}
+
+			myOwnProject.setMyOwnProjectCustomers(myOwnProjectCustomers);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return;
+
+	}
+
+}

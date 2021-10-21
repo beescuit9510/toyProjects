@@ -1,86 +1,169 @@
-package table.member.model.vo;
-
-import java.sql.Date;
+package table.model.vo;
 
 public class Member {
-	private int memberNo;
-	private int memberLevel;
-	private String memberName;
-	private String memberEmail;
-	private String memberPhone;
-	private Date memberEnrollDate;
-	
-	
+	//일반
+	private int cMemberNo;
+	private String cName;
+	private String cPassword;
+	private String cPhone;
+	private String cEnrollDate;
+	private String cEmail;
+	private int cLevel;
+	//펀더
+	private int businessNo;
+	private String businessName;
+	private String businessCode;
+	private String managerName;
+
+//	멤버 테이블(
+//			멤버No number primary key
+//			이름  varchar2(20) not null
+//			비밀번호  varchar2(50) not null
+//			전화번호  char(13) not null
+//			가입일자  char(10) not null 
+//			이메일   varchar2(100) not null unique
+//			회원등급 number //(관리자1/일반회원2/일반펀더3)
+//			)
+
+//	+++
+
+//	
+//	사업자 등록 table(
+//			멤버No number primary key reference 회원(회원No)
+//			법인명 varchar2(50) not null unique
+//			사업자등록번호 char(12) not null
+//			담당자명 varchar2(20) not null
+//			)
 
 	public Member() {
 		super();
 	}
 
-	public Member(int memberNo, int memberLevel, String memberName, String memberEmail, String memberPhone,
-			Date memberEnrollDate) {
+	public Member(int cMemberNo, String cName, String cPassword, String cPhone, String cEnrollDate, String cEmail,
+			int cLevel) {
 		super();
-		this.memberNo = memberNo;
-		this.memberLevel = memberLevel;
-		this.memberName = memberName;
-		this.memberEmail = memberEmail;
-		this.memberPhone = memberPhone;
-		this.memberEnrollDate = memberEnrollDate;
+		this.cMemberNo = cMemberNo;
+		this.cName = cName;
+		this.cPassword = cPassword;
+		this.cPhone = cPhone;
+		this.cEnrollDate = cEnrollDate;
+		this.cEmail = cEmail;
+		this.cLevel = cLevel;
 	}
 
-	public int getMemberNo() {
-		return memberNo;
+	public Member(int cMemberNo, String cName, String cPassword, String cPhone, String cEnrollDate, String cEmail,
+			int cLevel, int businessNo, String businessName, String businessCode, String managerName) {
+		super();
+		this.cMemberNo = cMemberNo;
+		this.cName = cName;
+		this.cPassword = cPassword;
+		this.cPhone = cPhone;
+		this.cEnrollDate = cEnrollDate;
+		this.cEmail = cEmail;
+		this.cLevel = cLevel;
+		this.businessNo = businessNo;
+		this.businessName = businessName;
+		this.businessCode = businessCode;
+		this.managerName = managerName;
 	}
 
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+
+	public int getcMemberNo() {
+		return cMemberNo;
 	}
 
-	public int getMemberLevel() {
-		return memberLevel;
+	public void setcMemberNo(int cMemberNo) {
+		this.cMemberNo = cMemberNo;
 	}
 
-	public void setMemberLevel(int memberLevel) {
-		this.memberLevel = memberLevel;
+	public String getcName() {
+		return cName;
 	}
 
-	public String getMemberName() {
-		return memberName;
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public String getcPassword() {
+		return cPassword;
 	}
 
-	public String getMemberEmail() {
-		return memberEmail;
+	public void setcPassword(String cPassword) {
+		this.cPassword = cPassword;
 	}
 
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
+	public String getcPhone() {
+		return cPhone;
 	}
 
-	public String getMemberPhone() {
-		return memberPhone;
+	public void setcPhone(String cPhone) {
+		this.cPhone = cPhone;
 	}
 
-	public void setMemberPhone(String memberPhone) {
-		this.memberPhone = memberPhone;
+	public String getcEnrollDate() {
+		return cEnrollDate;
 	}
 
-	public Date getMemberEnrollDate() {
-		return memberEnrollDate;
+	public void setcEnrollDate(String cEnrollDate) {
+		this.cEnrollDate = cEnrollDate;
 	}
 
-	public void setMemberEnrollDate(Date memberEnrollDate) {
-		this.memberEnrollDate = memberEnrollDate;
+	public String getcEmail() {
+		return cEmail;
+	}
+
+	public void setcEmail(String cEmail) {
+		this.cEmail = cEmail;
+	}
+
+	public int getcLevel() {
+		return cLevel;
+	}
+
+	public void setcLevel(int cLevel) {
+		this.cLevel = cLevel;
+	}
+
+	public int getBusinessNo() {
+		return businessNo;
+	}
+
+	public void setBusinessNo(int businessNo) {
+		this.businessNo = businessNo;
+	}
+
+	public String getBusinessName() {
+		return businessName;
+	}
+
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
+	}
+
+	public String getBusinessCode() {
+		return businessCode;
+	}
+
+	public void setBusinessCode(String businessCode) {
+		this.businessCode = businessCode;
+	}
+
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
 	}
 
 	@Override
 	public String toString() {
-		return "member [memberNo=" + memberNo + ", memberLevel=" + memberLevel + ", memberName=" + memberName
-				+ ", memberEmail=" + memberEmail + ", memberPhone=" + memberPhone + ", memberEnrollDate="
-				+ memberEnrollDate + "]";
+		return "Member [cMemberNo=" + cMemberNo + ", cName=" + cName + ", cPassword=" + cPassword + ", cPhone=" + cPhone
+				+ ", cEnrollDate=" + cEnrollDate + ", cEmail=" + cEmail + ", cLevel=" + cLevel + ", businessNo="
+				+ businessNo + ", businessName=" + businessName + ", businessCode=" + businessCode + ", managerName="
+				+ managerName + "]";
 	}
+	
 	
 	
 

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="table.member.model.vo.Member"%>
+<%@page import="table.model.vo.Member"%>
 <%
 Member m = new Member();
-	m.setMemberLevel(2);
+	m.setcLevel(2);
 	session.setAttribute("member", m);
 %>
 	
@@ -39,7 +39,7 @@ Member m = new Member();
                     </ul>
                 </li>
                 <li>
-                    <a class="a" href="/project/projectFrm" class="nav_point a"><span>프로젝트 만들기</span></a>
+                    <a href="/project/projectFrm" class="nav_point a"><span>프로젝트 만들기</span></a>
                 </li>
             </ul>
             <ul class="nav_right">
@@ -69,7 +69,7 @@ Member m = new Member();
     <!-- 로그인 하고 마이페이지 누를경우 오른쪽에서 나타나는 슬라이딩 메뉴 -->
     <c:choose>
     	<%-- 회원등급 일반 회원 일 시 --%>
-    	<c:when test="${sessionScope.member.memberLevel eq 2}">
+    	<c:when test="${sessionScope.member.cLevel eq 2}">
 			<nav id="sidenav">
 		        <span id="close_sidenav">&times;</span>
 		        <header>
@@ -86,7 +86,7 @@ Member m = new Member();
 		    </nav>	
 		</c:when>
 		<%-- 펀더 일 시 --%>
-		<c:when test="${sessionScope.member.memberLevel eq 3}">
+		<c:when test="${sessionScope.member.cLevel eq 3}">
 			<nav id="sidenav">
 		        <span id="close_sidenav">&times;</span>
 		        <header>
@@ -103,7 +103,7 @@ Member m = new Member();
 		    </nav>	
 		</c:when>
 		<%-- 관리자 일 시 --%>
-		<c:when test="${sessionScope.member.memberLevel eq 1}">
+		<c:when test="${sessionScope.member.cLevel eq 1}">
 			<nav id="sidenav">
 		        <span id="close_sidenav">&times;</span>
 		        <header>

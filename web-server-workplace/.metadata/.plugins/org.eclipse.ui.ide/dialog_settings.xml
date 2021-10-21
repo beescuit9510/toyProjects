@@ -15,6 +15,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\82104\Desktop\workplaces\web-server-workplace\07_mvc2WebProject"/>
 			<item value="C:\Users\82104\Desktop\workplaces\web-server-workplace\08_actionTag"/>
 			<item value="C:\Users\82104\Desktop\workplaces\web-server-workplace\06_mvc2Project"/>
 			<item value="C:\Users\82104\Desktop\javaToyProjects"/>
