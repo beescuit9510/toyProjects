@@ -2,8 +2,8 @@
 
 멤버 테이블(
 멤버No number primary key
-회원등급 number //(관리자1/일반회원2/일반펀더3)
 이름  varchar2(20) not null
+회원등급 number //(관리자1/일반회원2/일반펀더3)
 이메일   varchar2(100) not null unique
 비밀번호  varchar2(50) not null
 전화번호  char(13) not null
@@ -25,7 +25,7 @@
 프로젝트 펀더 number not null reference 사업자 등록(멤버No) on delete cascade
 프로젝트 제목 varchar2(120) not null
 목표금액 number not null
-프로젝트 마감일 varchar2(10) not null
+프로젝트 마감일 char(10) not null
 프로젝트 대표 이미지 varchar2(1500)
 카테고리 varchar2(30) not null reference 카테고리(펀딩_상품)
 프로젝트 스토리 varchar(4000) not null
@@ -71,8 +71,8 @@ filepath varchar2(1500)
 
 펀더 게시판 테이블 (
 작성자 number primary key reference 사업자 등록(사업자 등록No) delete on cascade
-법인명 varchar(50) reference 사업자 등록(법인명)
-업종 reference not null 펀더_카테고리(펀더 업종)
+법인명 varchar2(50) reference 사업자 등록(법인명)
+업종 varchar2(50) reference not null 펀더_카테고리(펀더 업종)
 설립입자 char(10)
 이메일 varchar2(50) 
 검색 태그 varchar2(500)
@@ -122,11 +122,11 @@ primary key(좋아요 누른 멤버,좋아요된 펀딩게시물)
 
 
 펀딩 카테고리 테이블(
-펀딩 상품 varchar2(50) primary key
+펀딩 상품 varchar2(50)
 )
 
 펀더 카테고리 테이블(
-펀더 업종 varchar2(50) primary key
+펀더 업종 varchar2(50)
 )
 
 
