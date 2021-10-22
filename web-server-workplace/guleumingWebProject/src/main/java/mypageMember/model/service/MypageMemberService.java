@@ -5,13 +5,10 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import mypageFunderFunding.model.vo.FundedFunding;
-import mypageFunderFunding.model.vo.Funding;
 import mypageFunderFunding.model.vo.Like;
 import mypageFunderFunding.model.vo.MyOwnProject;
-import mypageFunderFunding.model.vo.MyOwnProjectCustomer;
 import mypageMember.model.dao.MypageMemberDao;
 import table.model.vo.FundingComment;
-import table.model.vo.PaymentInfo;
 
 public class MypageMemberService {
 
@@ -71,7 +68,21 @@ public class MypageMemberService {
 //			}
 //			
 //		}
+		
+//		int r =unLikeFunder(5,3);
+//		System.out.println(r);
+//
+//		int r2 =unLikeFunding(5,6);
+//		System.out.println(r2);
 
+		
+		FundingComment fc = new FundingComment();
+		fc.setCommentContent("댓글댓글내용내용3333");
+		fc.setProjectRefNo(1);
+		fc.setCommentRefNo(4);
+		fc.setCommentWriter(3);
+		int r3 = replyComment(fc);
+		System.out.println(r3);
 	}
 
 	public static ArrayList<FundedFunding> selectFundedFunding(int cMemberNo) {
@@ -164,5 +175,25 @@ public class MypageMemberService {
 
 		return r;
 	}
+	
+	public static int replyComment(FundingComment fundingComment) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int r = new MypageMemberDao().replyComment(conn, fundingComment);
+		
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return r;
+	}
+	
+	
+	
+	
 
 }

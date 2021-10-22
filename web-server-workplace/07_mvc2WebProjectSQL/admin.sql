@@ -35,8 +35,6 @@ where p.c_member_no = 5;
 
 commit;
 
-insert into funding_like values(5, 2);
-insert into funder_like values(5, 6);
 select * from member;
 select * from ;
 select * from project_basic_info;
@@ -135,16 +133,22 @@ FUNDCOMM_SEQ;
 
 -- 펀딩 좋아요 취소하기
 delete from funding_like
-where liked_project_no = 0;
+where c_member_no = 5 and liked_project_no = 1;
+
+commit;
+insert into funding_like values(5, 1, like_seq.nextval);
+insert into funder_like values(5, 3,like_seq.nextval);
+select * from funder_like;
+select * from funding_like;
+select * from project_basic_info;
+select * from maker_board;
 
 -- 펀더 좋아요 취소하기
 delete from funder_like
-where liked_business_no = 6;
+where c_member_no = 5 and liked_business_no = 6;
 
 
 -- 좋아요한 펀딩 펀더
-
-
 insert into funder_like values(5,6,like_seq.nextval);
 insert into funding_like values(5,2,like_seq.nextval);
 select * from maker_board;
@@ -154,6 +158,13 @@ delete from funder_like;
 
 
 
+insert into funding_comment values(FUNDCOMM_SEQ.nextval,'일반댓글1111',to_char(sysdate,'yyyy-mm-dd'),1,1,null,7);
+
+insert into funding_comment values(FUNDCOMM_SEQ.nextval,'대댓글2222',to_char(sysdate,'yyyy-mm-dd'),2,?,?,?);
+select * from funding_comment;
+select * from project_basic_info;
+
+commit;
 
 
 

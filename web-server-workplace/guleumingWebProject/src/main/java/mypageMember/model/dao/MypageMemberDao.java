@@ -409,4 +409,100 @@ public class MypageMemberDao {
 
 	}
 
+	public int unlikeFunder(Connection conn, int cMemberNo, int likedBusinessNo) {
+		String query = "delete from funder_like\r\n"
+				+ "where c_member_no = ? and liked_business_no = ?\r\n";
+
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = -1;
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			pstmt.setInt(2, likedBusinessNo);
+			
+			r = pstmt.executeUpdate();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return r;
+
+	}
+
+	public int unlikeFunding(Connection conn, int cMemberNo, int likedProjectNo) {
+		String query = "delete from funding_like\r\n"
+				+ "where c_member_no = ? and liked_project_no = ?\r\n";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = -1;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			pstmt.setInt(2, likedProjectNo);
+			
+			r = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r;
+		
+	}
+
+	public int replyComment(Connection conn, FundingComment fundingComment) {
+		String query = "insert into funding_comment values(FUNDCOMM_SEQ.nextval,?,to_char(sysdate,'yyyy-mm-dd'),2,?,?,?)\r\n";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = -1;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fundingComment.getCommentContent());
+			pstmt.setInt(2, fundingComment.getProjectRefNo());
+			pstmt.setInt(3, fundingComment.getCommentRefNo());
+			pstmt.setInt(4, fundingComment.getCommentWriter());
+			
+			r = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r;
+	}
+
 }

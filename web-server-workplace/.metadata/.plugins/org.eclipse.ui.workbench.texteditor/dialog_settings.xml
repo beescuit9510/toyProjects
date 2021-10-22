@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="int"/>
+		<item key="selection" value="Long"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="Double"/>
+			<item value="dobule"/>
+			<item value=");"/>
+			<item value=")"/>
+			<item value="Liked_busuness_no"/>
+			<item value="liked_busuness_no"/>
+			<item value="liked_business_no"/>
+			<item value="Like_member_no"/>
+			<item value="like_member_no"/>
+			<item value="Like_no"/>
+			<item value="like_no"/>
+			<item value="Board"/>
+			<item value="board"/>
+			<item value="Date"/>
 			<item value="String "/>
-			<item value="getN"/>
-			<item value=")%&gt;"/>
-			<item value="&lt;%=n"/>
-			<item value="&lt;%="/>
-			<item value="( )%&gt;"/>
-			<item value="getNo"/>
-			<item value="getNc"/>
-			<item value="%&gt;"/>
-			<item value="&lt;%"/>
-			<item value="Nc"/>
-			<item value="get"/>
-			<item value="="/>
-			<item value="( )"/>
-			<item value="No"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Long"/>
+			<item value="));"/>
+			<item value="))"/>
+			<item value="LikedBusinessNo"/>
+			<item value="likedBusinessNo"/>
+			<item value="LikedBusiness_no"/>
+			<item value="LikeMemberNo"/>
+			<item value="likeMemberNo"/>
+			<item value="LikeNo"/>
+			<item value="likeNo"/>
+			<item value="Member"/>
+			<item value="member"/>
+			<item value="String"/>
 			<item value="int"/>
 			<item value="n"/>
-			<item value="}"/>
-			<item value="${n"/>
-			<item value="${"/>
-			<item value="no"/>
-			<item value="nc"/>
-			<item value=""/>
-			<item value="a"/>
-			<item value="  "/>
-			<item value="notice"/>
-			<item value="&quot;&quot;"/>
-			<item value=" "/>
-			<item value="h2"/>
-			<item value="p"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
