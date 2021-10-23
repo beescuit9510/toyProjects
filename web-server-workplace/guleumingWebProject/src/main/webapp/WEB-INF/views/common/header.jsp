@@ -4,9 +4,9 @@
 <%
 Member m = new Member();
 	m.setcLevel(2);
+	m.setcMemberNo(5);
 	session.setAttribute("member", m);
-%>
-	
+%>	
 <!DOCTYPE html>
 <html>
 <!-- 기본 CSS -->

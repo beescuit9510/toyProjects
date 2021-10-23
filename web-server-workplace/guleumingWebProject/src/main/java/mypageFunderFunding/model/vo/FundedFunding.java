@@ -6,6 +6,8 @@ import table.model.vo.ProjectBasicInfo;
 import table.model.vo.Reward;
 
 public class FundedFunding {
+	// 펀딩 판매갯수
+	int total;
 	// project_basic_info
 	ProjectBasicInfo projectBasicInfo;
 	// reward
@@ -46,20 +48,32 @@ public class FundedFunding {
 	public void setPaymentInfo(PaymentInfo paymentInfo) {
 		this.paymentInfo = paymentInfo;
 	}
+	
+	
+	public int getTotal() {
+		return total;
+	}
 
-	public FundedFunding(ProjectBasicInfo projectBasicInfo, Reward reward, MakerInfo makerInfo,
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	@Override
+	public String toString() {
+		return "FundedFunding [total=" + total + ", projectBasicInfo=" + projectBasicInfo + ", reward=" + reward
+				+ ", makerInfo=" + makerInfo + ", paymentInfo=" + paymentInfo + "]";
+	}
+
+	public FundedFunding(int total, ProjectBasicInfo projectBasicInfo, Reward reward, MakerInfo makerInfo,
 			PaymentInfo paymentInfo) {
 		super();
+		this.total = total;
 		this.projectBasicInfo = projectBasicInfo;
 		this.reward = reward;
 		this.makerInfo = makerInfo;
 		this.paymentInfo = paymentInfo;
 	}
 
-	@Override
-	public String toString() {
-		return "FundedFunding [projectBasicInfo=" + projectBasicInfo + ", reward=" + reward + ", makerInfo=" + makerInfo
-				+ ", paymentInfo=" + paymentInfo + "]";
-	}
+
 
 }

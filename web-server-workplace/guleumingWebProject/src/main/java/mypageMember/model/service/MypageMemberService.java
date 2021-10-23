@@ -68,27 +68,26 @@ public class MypageMemberService {
 //			}
 //			
 //		}
-		
+
 //		int r =unLikeFunder(5,3);
 //		System.out.println(r);
 //
 //		int r2 =unLikeFunding(5,6);
 //		System.out.println(r2);
 
-		
-		FundingComment fc = new FundingComment();
-		fc.setCommentContent("댓글댓글내용내용3333");
-		fc.setProjectRefNo(1);
-		fc.setCommentRefNo(4);
-		fc.setCommentWriter(3);
-		int r3 = replyComment(fc);
-		System.out.println(r3);
+//		FundingComment fc = new FundingComment();
+//		fc.setCommentContent("댓글댓글내용내용3333");
+//		fc.setProjectRefNo(1);
+//		fc.setCommentRefNo(4);
+//		fc.setCommentWriter(3);
+//		int r3 = replyComment(fc);
+//		System.out.println(r3);
 	}
 
-	public static ArrayList<FundedFunding> selectFundedFunding(int cMemberNo) {
+	public ArrayList<FundedFunding> selectFundedFunding(int cMemberNo, int start, int end) {
 		Connection conn = JDBCTemplate.getConnection();
 
-		ArrayList<FundedFunding> fundings = new MypageMemberDao().selectFundedFunding(conn, cMemberNo);
+		ArrayList<FundedFunding> fundings = new MypageMemberDao().selectFundedFunding(conn, cMemberNo, start, end);
 
 		JDBCTemplate.close(conn);
 
@@ -97,7 +96,7 @@ public class MypageMemberService {
 		return fundings;
 	}
 
-	public static ArrayList<Like> selectLikeList(int cMemberNo) {
+	public ArrayList<Like> selectLikeList(int cMemberNo) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		ArrayList<Like> likeList = new ArrayList<>();
@@ -113,7 +112,7 @@ public class MypageMemberService {
 		return likeList;
 	}
 
-	public static ArrayList<MyOwnProject> selectMyOwnProject(int cMemberNo) {
+	public ArrayList<MyOwnProject> selectMyOwnProject(int cMemberNo) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		ArrayList<MyOwnProject> myOwnProjects = new ArrayList<MyOwnProject>();
@@ -144,7 +143,7 @@ public class MypageMemberService {
 		return myOwnProjects;
 	}
 
-	public static int unLikeFunder(int cMemberNo, int likedBusinessNo) {
+	public int unLikeFunder(int cMemberNo, int likedBusinessNo) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		int r = new MypageMemberDao().unlikeFunder(conn, cMemberNo, likedBusinessNo);
@@ -160,7 +159,7 @@ public class MypageMemberService {
 		return r;
 	}
 
-	public static int unLikeFunding(int cMemberNo, int likedProjectNo) {
+	public int unLikeFunding(int cMemberNo, int likedProjectNo) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		int r = new MypageMemberDao().unlikeFunding(conn, cMemberNo, likedProjectNo);
@@ -175,25 +174,31 @@ public class MypageMemberService {
 
 		return r;
 	}
-	
-	public static int replyComment(FundingComment fundingComment) {
+
+	public int replyComment(FundingComment fundingComment) {
 		Connection conn = JDBCTemplate.getConnection();
-		
+
 		int r = new MypageMemberDao().replyComment(conn, fundingComment);
-		
+
 		if (r > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		
+
 		JDBCTemplate.close(conn);
-		
+
 		return r;
 	}
-	
-	
-	
-	
+
+	public int getTotalFundedFunding(int cMemberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int total = new MypageMemberDao().getTotalFundedFunding(conn, cMemberNo);
+
+		JDBCTemplate.close(conn);
+
+		return total;
+	}
 
 }

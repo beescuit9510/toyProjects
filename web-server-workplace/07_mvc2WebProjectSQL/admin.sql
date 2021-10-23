@@ -7,8 +7,13 @@ update member set c_enroll_date = to_char(sysdate,'yyyy-mm-dd') where c_member_n
 insert into member values(member_seq.nextval,'펀더변덕3','123456789','010-8888-7868',to_char(sysdate,'yyyy-mm-dd'),'bunny@gmail.com',3);
 insert into member values(member_seq.nextval,'일반변덕','1234','010-7777-8767',to_char(sysdate,'yyyy-mm-dd'),'byunduck@gmail.com',2);
 select * from member;
-insert into payment_info values(to_char(sysdate,'yyyymmdd')||999999, 2, '강남', to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),'변변덕','010-4444-4444',2,5);
+insert into payment_info values(to_char(sysdate,'yyyymmdd')||test_sql.nextval||test_sql.nextval||test_sql.nextval, 2, '강남'||test_sql.nextval, to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),'변변덕'||test_sql.currval,'010-4444-4444',2,5);
+commit;
+create sequence test_sql;
+
 select * from payment_info;
+
+
 insert into business values(7,'법인명333','123456789012','담당자명333');
 select * from business;
 insert into project_basic_info values(project_seq.nextval,3,'프로젝트이름222','200',null,'2022-12-21','프로젝트이야기2222','반려동물',to_char(sysdate,'yyyy-dd-mm'));
@@ -46,7 +51,9 @@ insert into maker_board values(6,'법인명333','1888-12-21','bunny@gmail.com','
 select * from business;
 
 -- 펀딩한 프로젝트 불러오기
-select * 
+select * from
+(select rownum, t.* from 
+(select *
 from payment_info p
 join project_basic_info pbi
 on p.project_no = pbi.project_no
@@ -55,12 +62,89 @@ on pbi.project_no = r.reward_no
 join maker_info m
 on pbi.project_no = m.maker_info_no
 where p.c_member_no = 5
-order by shipping_date desc;
+order by order_date desc) t)
+where rownum between 1 and 2;
+
+
+select * from
+(select rownum, t.* from 
+(select *
+from payment_info p
+join project_basic_info pbi
+on p.project_no = pbi.project_no
+join reward r
+on pbi.project_no = r.reward_no
+join maker_info m
+on pbi.project_no = m.maker_info_no
+where p.c_member_no = 5
+order by order_date desc) t)
+where rownum between 1 and 2;
+
+(select count(*) from  payment_info p2
+where p2.project_no = 2) p;
 
 
 
+
+select *
+from(
+select rownum,
+t.* 
+from (select 
+(select count(*) from payment_info pi
+where pi.project_no = p.project_no) as total,
+p.payment_no,p.quantity,p.receive_addr,p.order_date,p.receive_name,p.receive_phone,p.c_member_no,
+pbi.*,r.*,m.*
+from payment_info p
+join project_basic_info pbi
+on p.project_no = pbi.project_no
+join reward r
+on p.project_no = r.reward_no
+join maker_info m
+on p.project_no = m.maker_info_no
+where p.c_member_no = 5
+order by order_date desc) t)
+where rownum between 1 and 10;
+
+select * from member;
+select * from business;
+select * from project_basic_info;
+select * from reward;
+select * from maker_info;
+select * from payment_info;
+
+
+
+
+--- 내가 주문한 펀딩
+select *
+from(
+select rownum,
+t.* 
+from (select 
+(select count(*) from payment_info pi
+where pi.project_no = p.project_no) as total,
+pbi.*,r.*,m.*
+from project_basic_info pbi
+join payment_info p
+on p.project_no = pbi.project_no
+join reward r
+on p.project_no = r.reward_no
+join maker_info m
+on p.project_no = m.maker_info_no 
+where p.c_member_no = 5
+order by order_date desc) t)
+where rownum between 1 and 10;
+
+
+commit;
+
+
+
+
+   
 -- 좋아요한 펀딩
-select fl.like_no, pbi.*,r.*,mi.* 
+select rownum, fl.like_no, pbi.*,r.*,mi.* 
 from member m
 join funding_like fl
 on m.c_member_no = fl.c_member_no
@@ -170,7 +254,6 @@ commit;
 
 
 
-create sequence maker_board_seq;
 alter table maker_board add maker_board_no number;
 alter table maker_board modify maker_board_no number not null;
 alter table maker_board modify maker_board_no number unique;
@@ -178,7 +261,6 @@ alter table maker_board modify maker_board_no number unique;
 alter table maker_board add write_date char(10);
 update maker_board set write_date = to_char(sysdate,'yyyy-mm-dd');
 alter table maker_board modify write_date char(10) not null;
-commit;
 
 alter table payment_info modify order_date char(19);
 alter table payment_info modify order_date char(19) not null;
@@ -191,7 +273,9 @@ alter table funder_like add like_no number;
 alter table funding_like add like_no number;
 alter table funder_like modify like_no number unique not null;
 alter table funding_like modify like_no number unique not null;
+
 create sequence like_seq;
+create sequence maker_board_seq;
 
 
 commit;

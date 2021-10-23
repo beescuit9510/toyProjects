@@ -24,11 +24,26 @@ import table.model.vo.Reward;
 
 public class MypageMemberDao {
 
-	public ArrayList<FundedFunding> selectFundedFunding(Connection conn, int cMemberNo) {
-		String query = "select * \r\n" + "from payment_info p\r\n" + "join project_basic_info pbi\r\n"
-				+ "on p.project_no = pbi.project_no\r\n" + "join reward r\r\n" + "on pbi.project_no = r.reward_no\r\n"
-				+ "join maker_info m\r\n" + "on pbi.project_no = m.maker_info_no\r\n" + "where p.c_member_no = ?\r\n"
-				+ "order by shipping_date desc\r\n";
+	public ArrayList<FundedFunding> selectFundedFunding(Connection conn, int cMemberNo, int start, int end) {
+		String query = "select *\r\n"
+				+ "from(\r\n"
+				+ "select rownum as rnum,\r\n"
+				+ "t.* \r\n"
+				+ "from (select \r\n"
+				+ "(select count(*) from payment_info pi\r\n"
+				+ "where pi.project_no = p.project_no) as total,\r\n"
+				+ "p.payment_no,p.quantity,p.receive_addr,p.order_date,p.receive_name,p.receive_phone,p.c_member_no,\r\n"
+				+ "pbi.*,r.*,m.*\r\n"
+				+ "from payment_info p\r\n"
+				+ "join project_basic_info pbi\r\n"
+				+ "on p.project_no = pbi.project_no\r\n"
+				+ "join reward r\r\n"
+				+ "on p.project_no = r.reward_no\r\n"
+				+ "join maker_info m\r\n"
+				+ "on p.project_no = m.maker_info_no\r\n"
+				+ "where p.c_member_no = ?\r\n"
+				+ "order by order_date desc) t)\r\n"
+				+ "where rnum between ? and ?\r\n";
 
 		query.replaceAll("\r\n", " ");
 
@@ -41,6 +56,8 @@ public class MypageMemberDao {
 
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, cMemberNo);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
@@ -48,6 +65,7 @@ public class MypageMemberDao {
 				Reward reward = new Reward();
 				MakerInfo makerInfo = new MakerInfo();
 				PaymentInfo paymentInfo = new PaymentInfo();
+				int total = 0;
 
 				projectBasicInfo.setProjectNo(rset.getInt("project_no"));
 				projectBasicInfo.setBusinessNo(rset.getInt("business_no"));
@@ -82,9 +100,12 @@ public class MypageMemberDao {
 				paymentInfo.setProjectNo(rset.getInt("project_no"));
 				paymentInfo.setcMemberNo(rset.getInt("c_member_no"));
 
-				FundedFunding funding = new FundedFunding(projectBasicInfo, reward, makerInfo, paymentInfo);
+				total = rset.getInt("total");
+
+				FundedFunding funding = new FundedFunding(total, projectBasicInfo, reward, makerInfo, paymentInfo);
 
 				fundings.add(funding);
+				
 			}
 
 		} catch (SQLException e) {
@@ -284,13 +305,10 @@ public class MypageMemberDao {
 	}
 
 	public void selectMyOwnProjectComment(Connection conn, int projectNo, MyOwnProject myOwnProject) {
-		String query = "select fc.* \r\n"
-				+ "from project_basic_info pbi\r\n"
-				+ "join funding_comment fc\r\n"
-				+ "on pbi.project_no = fc.project_ref_no\r\n"
-				+ "where pbi.project_no = ?\r\n"
+		String query = "select fc.* \r\n" + "from project_basic_info pbi\r\n" + "join funding_comment fc\r\n"
+				+ "on pbi.project_no = fc.project_ref_no\r\n" + "where pbi.project_no = ?\r\n"
 				+ "order by fc.comment_no desc\r\n";
-		
+
 		query.replaceAll("\r\n", " ");
 
 		PreparedStatement pstmt = null;
@@ -338,13 +356,9 @@ public class MypageMemberDao {
 	}
 
 	public void selectMyOwnProjectPaymentInfo(Connection conn, int projectNo, MyOwnProject myOwnProject) {
-		String query = "select pi.*, m.*\r\n"
-				+ "from project_basic_info pbi\r\n"
-				+ "join payment_info pi\r\n"
-				+ "on pbi.project_no = pi.project_no\r\n"
-				+ "join member m\r\n"
-				+ "on pi.c_member_no = m.c_member_no\r\n"
-				+ "where pbi.project_no = ?\r\n"
+		String query = "select pi.*, m.*\r\n" + "from project_basic_info pbi\r\n" + "join payment_info pi\r\n"
+				+ "on pbi.project_no = pi.project_no\r\n" + "join member m\r\n"
+				+ "on pi.c_member_no = m.c_member_no\r\n" + "where pbi.project_no = ?\r\n"
 				+ "order by pi.order_date desc\r\n";
 
 		query.replaceAll("\r\n", " ");
@@ -359,8 +373,7 @@ public class MypageMemberDao {
 			rset = pstmt.executeQuery();
 
 //			ArrayList<PaymentInfo> paymentInfos = null;
-			ArrayList<MyOwnProjectCustomer>  myOwnProjectCustomers = new ArrayList<MyOwnProjectCustomer>();
-
+			ArrayList<MyOwnProjectCustomer> myOwnProjectCustomers = new ArrayList<MyOwnProjectCustomer>();
 
 			while (rset.next()) {
 
@@ -386,12 +399,11 @@ public class MypageMemberDao {
 				member.setcLevel(rset.getInt("c_level"));
 
 				MyOwnProjectCustomer myOwnProjectCustomer = new MyOwnProjectCustomer();
-				
-				myOwnProjectCustomer.setMember(member);				
-				
+
+				myOwnProjectCustomer.setMember(member);
+
 				myOwnProjectCustomer.setPaymentInfo(paymentInfo);
-				
-				
+
 				myOwnProjectCustomers.add(myOwnProjectCustomer);
 			}
 
@@ -410,14 +422,13 @@ public class MypageMemberDao {
 	}
 
 	public int unlikeFunder(Connection conn, int cMemberNo, int likedBusinessNo) {
-		String query = "delete from funder_like\r\n"
-				+ "where c_member_no = ? and liked_business_no = ?\r\n";
+		String query = "delete from funder_like\r\n" + "where c_member_no = ? and liked_business_no = ?\r\n";
 
 		query.replaceAll("\r\n", " ");
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		int r = -1;
 
 		try {
@@ -425,9 +436,8 @@ public class MypageMemberDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, cMemberNo);
 			pstmt.setInt(2, likedBusinessNo);
-			
-			r = pstmt.executeUpdate();
 
+			r = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -442,67 +452,97 @@ public class MypageMemberDao {
 	}
 
 	public int unlikeFunding(Connection conn, int cMemberNo, int likedProjectNo) {
-		String query = "delete from funding_like\r\n"
-				+ "where c_member_no = ? and liked_project_no = ?\r\n";
-		
+		String query = "delete from funding_like\r\n" + "where c_member_no = ? and liked_project_no = ?\r\n";
+
 		query.replaceAll("\r\n", " ");
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		int r = -1;
-		
+
 		try {
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, cMemberNo);
 			pstmt.setInt(2, likedProjectNo);
-			
+
 			r = pstmt.executeUpdate();
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		} finally {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
-		
+
 		return r;
-		
+
 	}
 
 	public int replyComment(Connection conn, FundingComment fundingComment) {
 		String query = "insert into funding_comment values(FUNDCOMM_SEQ.nextval,?,to_char(sysdate,'yyyy-mm-dd'),2,?,?,?)\r\n";
-		
+
 		query.replaceAll("\r\n", " ");
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		int r = -1;
-		
+
 		try {
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, fundingComment.getCommentContent());
 			pstmt.setInt(2, fundingComment.getProjectRefNo());
 			pstmt.setInt(3, fundingComment.getCommentRefNo());
 			pstmt.setInt(4, fundingComment.getCommentWriter());
-			
+
 			r = pstmt.executeUpdate();
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		} finally {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
-		
+
 		return r;
+	}
+
+	public int getTotalFundedFunding(Connection conn, int cMemberNo) {
+		String query = "select count(*) as total from payment_info\r\n"
+				+ "where c_member_no = ?\r\n";
+
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		int r = 0;
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				r = rset.getInt("total");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return r;
+
 	}
 
 }

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.mail.Authenticator"/>
-    <fullyQualifiedTypeName name="java.net.PasswordAuthentication"/>
-    <fullyQualifiedTypeName name="javax.mail.internet.MimeMessage"/>
     <fullyQualifiedTypeName name="javax.mail.internet.InternetAddress"/>
     <fullyQualifiedTypeName name="javax.mail.Message"/>
     <fullyQualifiedTypeName name="javax.mail.Message.RecipientType"/>
@@ -17,9 +14,7 @@
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="com.sun.org.apache.xalan.internal.xsltc.dom.Filter"/>
     <fullyQualifiedTypeName name="javax.servlet.Filter"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="member.model.vo.Member"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="el.Member"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
@@ -30,7 +25,6 @@
     <fullyQualifiedTypeName name="table.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="com.sun.tools.javac.launcher.Main"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="mypageMember.model.service.MypageMemberService"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
@@ -46,13 +40,10 @@
     <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.LikedFunder"/>
     <fullyQualifiedTypeName name="java.util.Collection"/>
     <fullyQualifiedTypeName name="java.util.Collections"/>
-    <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.FundedFunding"/>
     <fullyQualifiedTypeName name="table.model.vo.ProjectBasicInfo"/>
     <fullyQualifiedTypeName name="java.math.BigDecimal"/>
-    <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.MyOwnProject"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="table.model.vo.PaymentInfo"/>
-    <fullyQualifiedTypeName name="table.model.vo.Member"/>
     <fullyQualifiedTypeName name="sun.nio.cs.ext.AbstractCharsetProvider"/>
     <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.MyOwnProjectCustomers"/>
     <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.MyOwnProjectCustomer"/>
@@ -60,4 +51,13 @@
     <fullyQualifiedTypeName name="common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="table.model.vo.FundingComment"/>
     <fullyQualifiedTypeName name="com.google.gson.Gson"/>
+    <fullyQualifiedTypeName name="javax.mail.Session"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="mypageMember.model.service.MypageMemberService"/>
+    <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.MyOwnProject"/>
+    <fullyQualifiedTypeName name="org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="table.model.vo.Member"/>
+    <fullyQualifiedTypeName name="java.util.stream.Stream"/>
+    <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.FundedFunding"/>
 </qualifiedTypeNameHistroy>
