@@ -26,7 +26,7 @@
 			</div>
 			<c:if test="${totalCount == 0}">
 				<div>
-					<p class="totalCounEqualsZero">펀딩중인 프로젝트가 없습니다.<p>
+					<p class="totalCounEqualsZero">제작중인 프로젝트가 없습니다.<p>
 				</div>
 			</c:if>
 			<div class="readMore-div">
@@ -107,9 +107,6 @@
                     </div>
                 </div>
               <div class="paging">
-                  <p>1</p>
-                  <p>2</p>
-                  <p>3</p>
               </div>
             </div>
 	            <p class="modal-small modal-customer-last" >예상배송일 <span class="shipping-date">2010-12-31</span> ~</p>
@@ -124,7 +121,7 @@
 	var currCount = 0;
 	var perPost = 3;
 
-	$(".fundedFundings").attr("id","active-navi")
+	$(".myOwnProjects").attr("id","active-navi")
 	$("#inputs").hide();
 	totalCount == 0 && $(".readMore-div").hide();
 
@@ -141,14 +138,13 @@
 				start = currCount;
 				currCount = currCount+perPost; 
 				
-				
-				
+				console.log(ffs);
 				var html = "";
 				
 				for(var i=0;i<ffs.length;i++){
 					var ff = ffs[i];
 					fundedFundings.push(ff);
-					console.log(ff);
+//					console.log(ff);
 					
 					html += "<section class='project-box moving-top'>";
 					html += "<div class='project-profile'>"
@@ -168,7 +164,7 @@
 					html +=	"<div class='target-price'>목표 금액 <span>"+ff.funding.projectBasicInfo.targetPrice+"</span>원</div>";	
 					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.funding.projectBasicInfo.targetPrice*ff.funding.total+"</span>원</div>";
 					html += "<div class='buttons'>";
-					html += "<button onclick='openList("+(start+i)+")' class='btn_sm btn_out involved-members'>참여 회원 보기</button>";
+					html += "<button onclick='openList("+(start+i)+","+1+")' class='btn_sm btn_out involved-members'>참여 회원 보기</button>";
 					html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'>댓글 보기</button>";
 					html += "</div>";
 					html += "</section>";
@@ -188,35 +184,121 @@
 	};
 	
 
-	function openList(n) {
+	function openList(n, currPage) {
+
 		
+	        $("#simpleModal").css("display","none");
 	        $("#simpleModal2").css("display","block");
 	        window.addEventListener('click',clickModal);
 	        
+	        $(".customer-list").find("p").remove();
+	        $(".paging").find("p").remove();
+	        $(".backward").remove();
 	        
-	        for(int i=0; i<10;i++){
-		        var payinfo = fundedFundings[n].myOwnProjectCustomers[i].paymentInfo;
-		        var m = fundedFundings[n].myOwnProjectCustomers[i].member;
-				var html = "<p onclick'openSpeci("+i+")'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+payinfo.paymentNo+"</span><span class='customer-order-date'>"+payinfo.orderDate+"</span></p>";
+
+			var html = "";
+			var page = ""
+
+			if(fundedFundings[n].myOwnProjectCustomers == null){
+				$(".customer-list").append($("<p>참여회원이 없습니다.</p>"));
+				$(".customer-list").first().css("color","#EAEBED");
 	        }
-	     	   
-	        
-	     	   
+			else{
+				var start = currPage==0? 0:(currPage-1)*10;
+				var end = ((currPage)*10);
+		        for(var i=start; i<end; i++){
+		        	if(fundedFundings[n].myOwnProjectCustomers[i] != null ){
+				        var payinfo = fundedFundings[n].myOwnProjectCustomers[i].paymentInfo;
+				        var m = fundedFundings[n].myOwnProjectCustomers[i].member;
+						html += "<p onclick='openSpeci("+n+","+i+")'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+payinfo.paymentNo+"</span><span class='customer-order-date'>"+payinfo.orderDate+"</span></p>";
+				    	console.log(payinfo.paymentNo);
+
+		        	} 
+				
+				
+		        }
+		        
+		        
+		        var pageNum = Math.ceil(fundedFundings[n].myOwnProjectCustomers.length/10);
+		        
+		        if(pageNum > 10){
+		        	if(currPage > 5){
+			        	
+		        		var startPage = currPage-4;
+			        	var endPage = currPage+4;
+			        	
+			        	endPage = endPage >= pageNum? pageNum:endPage;
+			        	startPage = 1>endPage-9? endPage-9:startPage;
+			        	startPage = (endPage-9)<startPage? endPage-9:startPage
+
+			        			if(startPage > 1){			        	
+				        	page += "<p onclick='openList("+n+","+(startPage-1)+")''>"+"<"+"</p>";
+			        	}
+			        	
+			        	var i = 0;
+				        for(var j=startPage;j<=endPage;j++){
+				        	page += "<p class='paing-no"+(j)+"' onclick='openList("+n+","+j+")''>"+j+"</p>";
+				        }
+			        	
+			        	if(endPage < pageNum){
+				        	page += "<p onclick='openList("+n+","+(endPage+1)+")''>"+">"+"</p>";
+			        		
+			        	}
+			        	
+		        	}
+		        	else{
+				        for(var j=1;j<=10;j++){
+				        	page += "<p class='paing-no"+(j)+"' onclick='openList("+n+","+j+")''>"+j+"</p>";
+				        }
+			        	page += "<p onclick='openList("+n+","+11+")''>"+">"+"</p>";
+		        		
+		        	}
+		        	
+		        }else{		        	
+			        for(var j=1;j<=pageNum;j++){
+			        	page += "<p class='paing-no"+(j)+"' onclick='openList("+n+","+j+")''>"+j+"</p>";
+			        }
+		        }
+		        
+				$(".paging").append(page);
+				$(".customer-list").append(html);
+				activePage(currPage);
+
+			}
+		        //댓글 0/참여회원 0인 거.
 	    }		
+	
 			
-	function openSpeci() {
+	
+	
+	
+	
+	function activePage(currPage) {
+		$(".paing-no"+currPage).css("font-size", "12px");
+		$(".paing-no"+currPage).css("line-height", "14px");
+
+		
+	}
+	function openSpeci(n,j) {
+	        $("#simpleModal2").css("display","none");
+	        $("#simpleModal").css("display","block");
+	        $(".backward").remove();
+	        $(".closeBtn").before("<span class='backward' onclick='openList("+n+","+(Math.ceil((j+1)/10))+")'>"+"<"+"</span>");
+	        $(".backward").css("padding-left","14px");
+	        
+	        
 	        var ff = fundedFundings[n];
-	        var j = 0;
 	        var payinfo = fundedFundings[n].myOwnProjectCustomers[j].paymentInfo;
 	        
 	        var m = fundedFundings[n].myOwnProjectCustomers[j].member;
 	        var pbi = fundedFundings[n].funding.projectBasicInfo;
 	        var r = fundedFundings[n].funding.reward;
 	        
-	        
 	        var quantity = payinfo.quantity;
 	        var price = r.rewardPrice;
 	        var totalPrice = quantity*price;
+	        
+
 	        
 	        $(".start-date").html(pbi.startDate);
 	        $(".end-date").html(pbi.endDate);
@@ -242,15 +324,18 @@
 	
     $(".closeBtn").click(function () {
         $(".modal2").css("display","none");
+        $(".modal").css("display","none");
     })
     
     function clickModal(e) {
         if(e.target == document.getElementById("simpleModal2")){
             $(".closeBtn").click();
-        }else{
-            window.addEventListener('click',clickModal);
+            return;
         }
-        
+        if(e.target == document.getElementById("simpleModal")){
+            $(".closeBtn").click();
+            return;
+        }
     }
     
 	isThereMorePosts();	
@@ -451,14 +536,18 @@
         animation: modalOpen 0.1s;
     }
     
-    .closeBtn{
+    .closeBtn, .backward{
         float: right;
         font-size: 19px;
         color: white;
         padding-right: 13px;
     }
+    
+    .backward{
+        float: left;
+    }
 
-    .closeBtn:hover, .closeBtn:focus{
+    .closeBtn:hover, .closeBtn:focus , .backward:hover, .backward:focus{
         cursor: pointer;
         text-decoration: none;
         color: #000;

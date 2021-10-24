@@ -257,9 +257,6 @@ public class MypageMemberDao {
 				+ "order by pbi.project_no desc)t\r\n"
 				+ "where rnum between ? and ?\r\n";
 
-		System.out.println(cMemberNo);
-		System.out.println(start);
-		System.out.println(end);
 		query.replaceAll("\r\n", " ");
 
 		PreparedStatement pstmt = null;
@@ -428,7 +425,9 @@ public class MypageMemberDao {
 				myOwnProjectCustomer.setPaymentInfo(paymentInfo);
 
 				myOwnProjectCustomers.add(myOwnProjectCustomer);
+			
 			}
+			
 
 			myOwnProject.setMyOwnProjectCustomers(myOwnProjectCustomers);
 

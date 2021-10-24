@@ -119,6 +119,7 @@ public class MypageMemberService {
 
 		new MypageMemberDao().selectMyOwnProjectFunding(conn, cMemberNo, myOwnProjects, start, end);
 		
+		
 		if (myOwnProjects.size() <= 0) {
 			return null;
 		}
