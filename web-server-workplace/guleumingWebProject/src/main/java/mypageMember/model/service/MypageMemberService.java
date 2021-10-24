@@ -138,7 +138,7 @@ public class MypageMemberService {
 		}
 
 		JDBCTemplate.close(conn);
-
+		
 		myOwnProjects = myOwnProjects.size() <= 0 ? null : myOwnProjects;
 
 		return myOwnProjects;

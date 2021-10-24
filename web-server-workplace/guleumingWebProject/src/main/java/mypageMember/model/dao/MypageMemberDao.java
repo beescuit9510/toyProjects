@@ -13,6 +13,7 @@ import mypageFunderFunding.model.vo.Like;
 import mypageFunderFunding.model.vo.LikedFunder;
 import mypageFunderFunding.model.vo.LikedFunding;
 import mypageFunderFunding.model.vo.MyOwnProject;
+import mypageFunderFunding.model.vo.MyOwnProjectComment;
 import mypageFunderFunding.model.vo.MyOwnProjectCustomer;
 import table.model.vo.FundingComment;
 import table.model.vo.MakerBoard;
@@ -325,9 +326,14 @@ public class MypageMemberDao {
 	}
 
 	public void selectMyOwnProjectComment(Connection conn, int projectNo, MyOwnProject myOwnProject) {
-		String query = "select fc.* \r\n" + "from project_basic_info pbi\r\n" + "join funding_comment fc\r\n"
-				+ "on pbi.project_no = fc.project_ref_no\r\n" + "where pbi.project_no = ?\r\n"
-				+ "order by fc.comment_no desc\r\n";
+		String query = "select fc.*, m.*\r\n"
+				+ "from project_basic_info pbi\r\n"
+				+ "join funding_comment fc\r\n"
+				+ "on pbi.project_no = fc.project_ref_no\r\n"
+				+ "join member m\r\n"
+				+ "on m.c_member_no = fc.comment_writer\r\n"
+				+ "where pbi.project_no = ?\r\n"
+				+ "order by fc.comment_no desc ";
 
 		query.replaceAll("\r\n", " ");
 
@@ -340,12 +346,10 @@ public class MypageMemberDao {
 			pstmt.setInt(1, projectNo);
 			rset = pstmt.executeQuery();
 
-//			ArrayList<FundingComment> fundingComments = null;
-			ArrayList<FundingComment> fundingComments = new ArrayList<FundingComment>();
-
+			ArrayList<MyOwnProjectComment> myOwnProjectComments = new ArrayList<>();
+			
 			while (rset.next()) {
 
-//				fundingComments = new ArrayList<FundingComment>();
 
 				FundingComment fundingComment = new FundingComment();
 
@@ -356,12 +360,24 @@ public class MypageMemberDao {
 				fundingComment.setProjectRefNo(rset.getInt("project_ref_no"));
 				fundingComment.setCommentRefNo(rset.getInt("comment_ref_no"));
 				fundingComment.setCommentWriter(rset.getInt("comment_writer"));
+				
+				Member member = new Member();
 
-				fundingComments.add(fundingComment);
+				member.setcMemberNo(rset.getInt("c_member_no"));
+				member.setcName(rset.getString("c_name"));
+				member.setcPassword(rset.getString("c_password"));
+				member.setcPhone(rset.getString("c_phone"));
+				member.setcEnrollDate(rset.getString("c_enroll_date"));
+				member.setcEmail(rset.getString("c_email"));
+				member.setcLevel(rset.getInt("c_level"));
 
+
+				MyOwnProjectComment myOwnProjectComment = new MyOwnProjectComment(fundingComment, member);
+			
+				myOwnProjectComments.add(myOwnProjectComment);
 			}
 
-			myOwnProject.setComments(fundingComments);
+			myOwnProject.setMyOwnProjectComment(myOwnProjectComments);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -392,7 +408,6 @@ public class MypageMemberDao {
 			pstmt.setInt(1, projectNo);
 			rset = pstmt.executeQuery();
 
-//			ArrayList<PaymentInfo> paymentInfos = null;
 			ArrayList<MyOwnProjectCustomer> myOwnProjectCustomers = new ArrayList<MyOwnProjectCustomer>();
 
 			while (rset.next()) {

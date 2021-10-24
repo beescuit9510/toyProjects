@@ -88,31 +88,66 @@
             </div>
         </div>
     </button>
-    	 <button id="simpleModal2" class="modal2"> 
+	<button id="simpleModal2" class="modal2"> 
         <div class="modal-content">
             <span class="closeBtn">x</span>
             <div class="modal-header">
             </div>
             <div class="modal-body">
-                <p class="modal-small"><span class="start-date">2021-12-30</span><span> ~ </span><span class="end-date">2022-12-30</span></p>
+                <p class="modal-small"><span class="start-date"></span><span> ~ </span><span class="end-date"></span></p>
                 <div class="reward-info">
                     <div>
-                        <p class="reward-title">키르시 미들<span class="funding-category">푸드</span></p>
-                        <p class="reward-content">상품 설명 설명...</p>
+                        <p class="reward-title"><span class="funding-category"></span></p>
+                        <p class="reward-content"></p>
                     </div>
                 </div>
                 <div class="maker-info default-modal-css">
-                    <div>펀딩 참여 회원 목록</div>
-                    <div class="customer-list">
-                    </div>
+                    <div class="modal2-title"></div>
+                    <div class="customer-list"></div>
                 </div>
               <div class="paging">
               </div>
             </div>
-	            <p class="modal-small modal-customer-last" >예상배송일 <span class="shipping-date">2010-12-31</span> ~</p>
+	            <p class="modal-small modal-customer-last" >예상배송일 <span class="shipping-date"></span> ~</p>
             <div class="modal-footer">
             </div>
         </div>
+    </button>
+     <button id="simpleModal3" class="modal3"> 
+     	        <div class="modal-content">
+            <span class="closeBtn">x</span>
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <p class="modal-small"><span class="start-date"></span><span> ~ </span><span class="end-date"></span></p>
+                <div class="reward-info">
+                    <div>
+                        <p><span class="reward-title"></span><span class="funding-category"></span></p>
+                        <p class="reward-content"></p>
+                    </div>
+                </div>
+                <div class="modal-divs">
+	                <div class="maker-info default-modal-css">
+	                    <div>[ <span class="comment-writer-name"></span> ] 님의 댓글</div>
+	                    <div class="comment-wrap">
+	                        <p class="comment-content comment-body"/><p>
+	                    </div>
+	                </div>
+	                <div class="payment-info default-modal-css">
+	                    <div>나의 답변</div>
+	                    <div class="comment-wrap comment-body2">
+	                    </div>
+	                </div>
+	                <div class="buyer-info default-modal-css">
+	                </div>
+                </div>
+            </div>
+            <div class="modal-last">
+	            <p class="modal-small" >예상배송일 <span class="shipping-date"></span> ~</p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>     	
     </button>
 </body>
 <script>
@@ -144,7 +179,6 @@
 				for(var i=0;i<ffs.length;i++){
 					var ff = ffs[i];
 					fundedFundings.push(ff);
-//					console.log(ff);
 					
 					html += "<section class='project-box moving-top'>";
 					html += "<div class='project-profile'>"
@@ -165,7 +199,7 @@
 					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.funding.projectBasicInfo.targetPrice*ff.funding.total+"</span>원</div>";
 					html += "<div class='buttons'>";
 					html += "<button onclick='openList("+(start+i)+","+1+")' class='btn_sm btn_out involved-members'>참여 회원 보기</button>";
-					html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'>댓글 보기</button>";
+					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>댓글 보기</button>";
 					html += "</div>";
 					html += "</section>";
 				}
@@ -191,6 +225,20 @@
 	        $("#simpleModal2").css("display","block");
 	        window.addEventListener('click',clickModal);
 	        
+	        var r = fundedFundings[n].funding.reward;
+	        var pbi = fundedFundings[n].funding.projectBasicInfo;
+	        $(".modal2-title").html("펀딩 참여 회원 목록");
+	        $(".reward-title").html(r.rewardTitle);
+	        $(".reward-content").html(r.rewardContent);
+	        $(".start-date").html(pbi.startDate);
+	        $(".shipping-date").html(r.shippingDate);
+	        $(".end-date").html(pbi.endDate);
+	        $(".funding-category").html(pbi.fundingCategory);
+
+
+
+
+
 	        $(".customer-list").find("p").remove();
 	        $(".paging").find("p").remove();
 	        $(".backward").remove();
@@ -199,7 +247,7 @@
 			var html = "";
 			var page = ""
 
-			if(fundedFundings[n].myOwnProjectCustomers == null){
+			if(fundedFundings[n].myOwnProjectCustomers.length == 0){
 				$(".customer-list").append($("<p>참여회원이 없습니다.</p>"));
 				$(".customer-list").first().css("color","#EAEBED");
 	        }
@@ -211,8 +259,6 @@
 				        var payinfo = fundedFundings[n].myOwnProjectCustomers[i].paymentInfo;
 				        var m = fundedFundings[n].myOwnProjectCustomers[i].member;
 						html += "<p onclick='openSpeci("+n+","+i+")'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+payinfo.paymentNo+"</span><span class='customer-order-date'>"+payinfo.orderDate+"</span></p>";
-				    	console.log(payinfo.paymentNo);
-
 		        	} 
 				
 				
@@ -269,7 +315,113 @@
 	    }		
 	
 			
+	function openComment(n, currPage) {
+		
+			
+	        $("#simpleModal").css("display","none");
+	        $("#simpleModal3").css("display","none");
+	        $("#simpleModal2").css("display","block");
+	        window.addEventListener('click',clickModal);
+	        
+	        var pbi = fundedFundings[n].funding.projectBasicInfo;
+	        var r = fundedFundings[n].funding.reward;
+
+	        $(".modal2-title").html("댓글 모음");
+	        $(".start-date").html(pbi.startDate);
+	        $(".end-date").html(pbi.endDate);
+	        $(".shipping-date").html(r.shippingDate);
+	        $(".reward-title").html(pbi.projectTitle);
+	        $(".reward-content").html("");
+	        $(".funding-category").html("");
+
+	        
+	        
+	        
+	        $(".customer-list").find("p").remove();
+	        $(".paging").find("p").remove();
+	        $(".backward").remove();
+	        
+
 	
+			var html = "";
+			var page = ""
+	
+			if(fundedFundings[n].myOwnProjectComment.length == 0){
+				$(".customer-list").append($("<p>달린 댓글이 없습니다.</p>"));
+				$(".customer-list").first().css("color","#EAEBED");
+	        }
+			else{
+				var start = currPage==0? 0:(currPage-1)*10;
+				var end = ((currPage)*10);
+		        for(var i=start; i<end; i++){
+		        	if(fundedFundings[n].myOwnProjectComment[i] != null ){
+				        var fc = fundedFundings[n].myOwnProjectComment[i].fundingComment;
+				        var m = fundedFundings[n].myOwnProjectComment[i].member;
+				        var date = fc.writeDate;
+				        var content = fc.commentContent.substring(0,7);
+				        content = fc.commentContent.length > 6 ? content+" ...":content;
+				        date = date.replace(/-/,"년 ").replace(/-/,"월 ");
+				        if(fc.commentLevel <2){
+							html += "<p onclick='openSpeci2("+n+","+i+")'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></p>";
+				        	
+				        }
+	
+		        	} 
+				
+				
+		        }
+		        
+		        
+		        var pageNum = Math.ceil(fundedFundings[n].myOwnProjectComment.length/10);
+		        
+		        if(pageNum > 10){
+		        	if(currPage > 5){
+			        	
+		        		var startPage = currPage-4;
+			        	var endPage = currPage+4;
+			        	
+			        	endPage = endPage >= pageNum? pageNum:endPage;
+			        	startPage = 1>endPage-9? endPage-9:startPage;
+			        	startPage = (endPage-9)<startPage? endPage-9:startPage
+	
+			        			if(startPage > 1){			        	
+				        	page += "<p onclick='openComment("+n+","+(startPage-1)+")''>"+"<"+"</p>";
+			        	}
+			        	
+			        	var i = 0;
+				        for(var j=startPage;j<=endPage;j++){
+				        	page += "<p class='paing-no"+(j)+"' onclick='openComment("+n+","+j+")''>"+j+"</p>";
+				        }
+			        	
+			        	if(endPage < pageNum){
+				        	page += "<p onclick='openList("+n+","+(endPage+1)+")''>"+">"+"</p>";
+			        		
+			        	}
+			        	
+		        	}
+		        	else{
+				        for(var j=1;j<=10;j++){
+				        	page += "<p class='paing-no"+(j)+"' onclick='openComment("+n+","+j+")''>"+j+"</p>";
+				        }
+			        	page += "<p onclick='openList("+n+","+11+")''>"+">"+"</p>";
+		        		
+		        	}
+		        	
+		        }else{		        	
+			        for(var j=1;j<=pageNum;j++){
+			        	page += "<p class='paing-no"+(j)+"' onclick='openComment("+n+","+j+")''>"+j+"</p>";
+			        }
+		        }
+		        
+				$(".paging").append(page);
+				$(".customer-list").append(html);
+				activePage(currPage);
+	
+			}
+		        //댓글 0/참여회원 0인 거.
+	    }		
+	
+
 	
 	
 	
@@ -304,7 +456,8 @@
 	        $(".end-date").html(pbi.endDate);
 	        $(".reward-title").html(r.rewardTitle);
 	        $(".reward-content").html(r.rewardContent);
-	        $(".funding-category").html(pbi.fundingCategory);
+//	        $(".funding-category").html(pbi.fundingCategory);
+	        $(".funding-category").remove();
 
 	        $(".deposit-name").html(m.cName);
 	        $(".q-email").html(m.cEmail);
@@ -321,14 +474,63 @@
 	        $(".shipping-date").html(r.shippingDate);
 		
 	}
+
+	function openSpeci2(n,j) {
+	        $("#simpleModal2").css("display","none");
+	        $("#simpleModal").css("display","none");
+	        $("#simpleModal3").css("display","block");
+	        $(".backward").remove();
+	        $(".comment-body").find(".comment-reply").remove();
+	        $(".comment-body2").find(".comment-reply").remove();
+	        $(".closeBtn").before("<span class='backward' onclick='openComment("+n+","+(Math.ceil((j+1)/10))+")'>"+"<"+"</span>");
+	        $(".backward").css("padding-left","14px");
+
+	        
+	        	        
+	        var fc = fundedFundings[n].myOwnProjectComment[j].fundingComment;
+	        var m = fundedFundings[n].myOwnProjectComment[j].member;
+
+	        var pbi = fundedFundings[n].funding.projectBasicInfo;
+	        var r = fundedFundings[n].funding.reward;
+
+	        
+	        $(".start-date").html(pbi.startDate);
+	        $(".end-date").html(pbi.endDate);
+	        $(".reward-title").html(pbi.projectTitle);
+
+	        $(".comment-writer-name").html(m.cName);
+//	        $(".comment-content").html(fc.commentContent);
+	        $(".comment-body").append($("<p class='comment-reply comment-body'><span>질문 </span>"+fc.commentContent+"</p>"));
+	        $(".comment-content").next().remove();
+	        
+	        var comments = fundedFundings[n].myOwnProjectComment;
+	        var j = 1;
+	        for(var i = 0; i<comments.length;i++){
+	        	if(comments[i].fundingComment.commentRefNo == fc.commentNo){
+			        $(".comment-body2").append($("<p class='comment-reply comment-body'><span>답변 "+(j++)+" </span>"+comments[i].fundingComment.commentContent+"</p>"));
+	        	}
+	        		
+	        }
+//		        $(".comment-reply").html("답변중");
+	        
+	        
+	        $(".shipping-date").html(r.shippingDate);
+	        $(".comment-body2").append("<p><span class='comment-btn'>댓글달기</span><input class='comment-reply comment-body comment-input-input' type='text' placeholder='질문에 대한 답변을 적어보세요'></></p>")
+	        
+	}
 	
     $(".closeBtn").click(function () {
         $(".modal2").css("display","none");
+        $(".modal3").css("display","none");
         $(".modal").css("display","none");
     })
     
     function clickModal(e) {
         if(e.target == document.getElementById("simpleModal2")){
+            $(".closeBtn").click();
+            return;
+        }
+        if(e.target == document.getElementById("simpleModal3")){
             $(".closeBtn").click();
             return;
         }
@@ -515,7 +717,7 @@
         font-weight: 600;
     }
     
-    .modal, .modal2{
+    .modal, .modal2, .modal3{
     	display:none;
         position: fixed;
         z-index: 3;
@@ -622,6 +824,45 @@
 	display:block;
 	margin:0;
 	margin-bottom:-42px !important;
+}
+
+.comment-writer-name{
+	font-size:20px;
+    color:#00B9CE;
+
+}
+
+.comment-wrap{
+	display:flex !important;
+	justify-content:center !important;
+}
+
+.comment-reply{
+    outline: none;
+	border:none;
+}
+.comment-btn{
+     color:#00B9CE;
+     font-family: "logo";
+	font-size:13px !important;
+
+}
+.comment-btn:hover{
+    cursor: pointer;
+
+}
+
+.comment-input-input::placeholder{
+	font-size:12px;
+	color:#00B9CE !important;
+	font-weight:600px;
+
+}
+.comment-input-input{
+	font-size:12px;
+	color:#00B9CE !important;
+	font-weight:600px;
+
 }
 </style>
     
