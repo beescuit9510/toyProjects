@@ -37,24 +37,19 @@ public class FundedFundingListServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
-
+		
 		Member m = new Member();
 		m.setcMemberNo(5);
 		session.setAttribute("member", m);
 
-		
-		
 		Member member = (Member) session.getAttribute("member");
 		
 		int cMemberNo = member.getcMemberNo();
 		
 		int totalCount = new MypageMemberService().getTotalFundedFunding(cMemberNo);
 		
-		ArrayList<FundedFunding> fundedFundings = new MypageMemberService().selectFundedFunding(cMemberNo, 0, 6);
-
-		request.setAttribute("fundedFundings", fundedFundings);
 		request.setAttribute("totalCount", totalCount);
-		request.setAttribute("currCount", 6);
+
 		
 		
 		request.getRequestDispatcher("/WEB-INF/views/mypage/funder/fundingList.jsp").forward(request, response);

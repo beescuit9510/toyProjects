@@ -22,52 +22,21 @@
 			</div>
 		</div>
 		<div class="project-wrap">
-			<c:if test="${not empty fundedFundings}">
 			<div class="project-row">
-			<c:forEach items="${fundedFundings}" var="ff">
-				<section class="project-box moving-top">
-					<div class="project-profile">
-						<c:choose>
-							<c:when test="${not empty ff.projectBasicInfo.filepath}">
-								<a href="/한솔님 페이지 이동">
-									<div id="background-url" style="background:url('${ff.projectBasicInfo.filepath}');" ></div>
-									<p class="project-title">${ff.projectBasicInfo.projectTitle}</p>
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/한솔님 페이지 이동">구르밍
-									<p class="project-title">${ff.projectBasicInfo.projectTitle}</p>
-								</a>						
-							</c:otherwise>
-						</c:choose>
-					</div>
-					<div class="rate">
-						달성률 <span class="percent point"><fmt:formatNumber value="${ff.projectBasicInfo.targetPrice*ff.total/ff.projectBasicInfo.targetPrice*100}" pattern="#"></fmt:formatNumber>%</span>
-					</div>
-					<div class="target-price">
-						목표 금액 <span>${ff.projectBasicInfo.targetPrice }</span>원
-					</div>
-					<div class="acc-price">
-						현재 달성 금액 <span>${ff.projectBasicInfo.targetPrice*ff.total}</span>원
-					</div>
-					<div class="buttons">
-						<button id="${fundedFundings.indexOf(ff)}" class="btn_sm btn_out involved-members ">결제 내역</button>
-						<button id="${fundedFundings.indexOf(ff)}" class="btn_sm btn_out funding-comments">펀딩</button>
-					</div>
-				</section>
-			</c:forEach>
 			</div>
+			<c:if test="${totalCount == 0}">
+				<div>
+					<p class="totalCounEqualsZero">펀딩중인 프로젝트가 없습니다.<p>
+				</div>
+			</c:if>
 			<div class="readMore-div">
 				<button class="readMore btn btn-sm">더 보기</button>
 			</div>
-			</c:if>
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 	<div id="inputs">
 		<div id="totalCount">${totalCount }</div>
-		<div id="currCount">${currCount }</div>
-		<div id="cMemberNo">${sessionScope.member.cMemberNo }</div>
 	</div>
 	 
 	 <button id="simpleModal" class="modal"> 
@@ -87,9 +56,9 @@
 	                <div class="maker-info default-modal-css">
 	                    <div>판매자 정보</div>
 	                    <div>
-	                        <p><span>이름</span> <span class="tradebank"></span></p>
-	                        <p><span>은행</span> <span class="account-number"></span></p>
-	                        <p><span>계좌번호</span> <span class="deposit-name"></span></p>
+	                        <p><span>이름</span> <span class="deposit-name"></span></p>
+	                        <p><span>은행</span> <span class="tradebank"></span></p>
+	                        <p><span>계좌번호</span> <span class="account-number"></span></p>
 	                        <p><span>Email</span> <span class="q-email"></span></p>
 	                        <p><span>전화번화</span> <span class="q-phone"></span></p>
 	                    </div>
@@ -122,50 +91,34 @@
         </div>
     </button>	
 </body>
-<script language="javaScript">
-</script>
 <script>
-	var fundedFundingList= [];
-	$(function() {
-		isThereMorePosts();
-		addFunc();
-		
-	});
-	
-
-	$(".fundedFundings").attr("id","active-navi")
-
-	var cMemberNo = Number($("#cMemberNo").html());
-	var currCount = Number($("#currCount").html());
+	var fundedFundings= [];
 	var totalCount = Number($("#totalCount").html());
+	var currCount = 0;
 	var perPost = 3;
 
+	$(".fundedFundings").attr("id","active-navi")
 	$("#inputs").hide();
+	totalCount == 0 && $(".readMore-div").hide();
+
 
 	$(".readMore").click(function () {
 
 		$.ajax({
 			url:"/getMoreFundedList",
-			data:{cMemberNo:cMemberNo,currCount:currCount,perPost:perPost},
+			data:{currCount:currCount,perPost:perPost},
 			method:"POST",
-			success:function(fundedFundings){
+			success:function(ffs){
 				
-				<c:forEach var="ff" items="${fundedFundings}">
-					fundedFundingList.push(${ff});
-				</c:forEach>
-				console.log(fundedFundingList);
-
 				start = currCount;
 				currCount = currCount+perPost; 
 				
-				
 				var html = "";
 				
-				for(var i=0;i<fundedFundings.length;i++){
-					var ff = fundedFundings[i];
-					fundedFundingList.push(ff);
+				for(var i=0;i<ffs.length;i++){
+					var ff = ffs[i];
+					fundedFundings.push(ff);
 					
-					console.log(ff.paymentInfo.receiveName);
 					html += "<section class='project-box moving-top'>";
 					html += "<div class='project-profile'>"
 
@@ -184,7 +137,7 @@
 					html +=	"<div class='target-price'>목표 금액 <span>"+ff.projectBasicInfo.targetPrice+"</span>원</div>";	
 					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.projectBasicInfo.targetPrice*ff.total+"</span>원</div>";
 					html += "<div class='buttons'>";
-					html += "<button id='"+(start+i)+"' class='btn_sm btn_out involved-members'>결제 내역</button>";
+					html += "<button onclick='openList("+(start+i)+")' class='btn_sm btn_out involved-members'>결제 내역</button>";
 					html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'>펀딩</button>";
 					html += "</div>";
 					html += "</section>";
@@ -193,67 +146,45 @@
 			    $(".project-wrap").find(".project-row").append(html);
 			    
 			    isThereMorePosts();
-			    addFunc();
 				
 			}
 		})
 	})
-	
+		
 	function isThereMorePosts() {
 		currCount>=totalCount && $(".readMore-div").hide();
 		currCount>=totalCount && $(".project-wrap").css("margin-bottom","120px");
-		
 	};
 	
-	function addFunc() {
-	    $(".involved-members").click(function(){
-	        $("#simpleModal").css("display","block");
-	        window.addEventListener('click',clickModal);
-	        $.ajax({
-				url:"/openPage",
-				data:{i},
-				method:"POST",
-				success:function(fundedFundings){
-					
-				}
+	
+	function openList(n) {
+	    	$("#simpleModal").css("display","block");
 
-	        })
-	        if(true){
-	        	var n = $(this).attr("id");
-		        $(".reward-title").html();
-		        $(".funding-category").html();
-		        $(".tradebank").html();
-		        $(".account-number").html();
-		        $(".deposit-name").html();
-		        $(".q-email").html();
-		        $(".q-phone").html();
-		        $(".order-date").html();
-		        $(".payment-no").html();
-		        $(".reward-price").html();
-		        $(".total-price").html();
-		        $(".receive-name").html();
-		        $(".receive-phone").html();
-		        $(".receive-addr").html();
-		        $(".shipping-date").html();
-	        }else{
-		        $(".reward-title").html();
-		        $(".funding-category").html();
-		        $(".tradebank").html();
-		        $(".account-number").html();
-		        $(".deposit-name").html();
-		        $(".q-email").html();
-		        $(".q-phone").html();
-		        $(".order-date").html();
-		        $(".payment-no").html();
-		        $(".reward-price").html();
-		        $(".total-price").html();
-		        $(".receive-name").html();
-		        $(".receive-phone").html();
-		        $(".receive-addr").html();
-		        $(".shipping-date").html();	
-	        }
-	     	        
-	    })		
+	        window.addEventListener('click',clickModal);
+	        
+	        var quantity = fundedFundings[n].paymentInfo.quantity;
+	        var price = fundedFundings[n].reward.rewardPrice;
+	        var totalPrice = quantity*price;
+	        
+	        $(".start-date").html(fundedFundings[n].projectBasicInfo.startDate);
+	        $(".end-date").html(fundedFundings[n].projectBasicInfo.endDate);
+	        $(".reward-title").html(fundedFundings[n].reward.rewardTitle);
+	        $(".reward-content").html(fundedFundings[n].reward.rewardContent);
+	        $(".funding-category").html(fundedFundings[n].projectBasicInfo.fundingCategory);
+	        $(".tradebank").html(fundedFundings[n].makerInfo.tradeBank);
+	        $(".account-number").html(fundedFundings[n].makerInfo.accountNumber);
+	        $(".deposit-name").html(fundedFundings[n].makerInfo.depositName);
+	        $(".q-email").html(fundedFundings[n].reward.qEmail);
+	        $(".q-phone").html(fundedFundings[n].reward.qPhone);
+	        $(".order-date").html(fundedFundings[n].paymentInfo.orderDate);
+	        $(".payment-no").html(fundedFundings[n].paymentInfo.paymentNo);
+	        $(".reward-price").html(fundedFundings[n].reward.rewardPrice);
+	        $(".quantity").html(fundedFundings[n].paymentInfo.quantity);
+	        $(".total-price").html(totalPrice);
+	        $(".receive-name").html(fundedFundings[n].paymentInfo.receiveName);
+	        $(".receive-phone").html(fundedFundings[n].paymentInfo.receivePhone);
+	        $(".receive-addr").html(fundedFundings[n].paymentInfo.receiveAddr);
+	        $(".shipping-date").html(fundedFundings[n].reward.shippingDate);
 			
 	}
 	
@@ -269,6 +200,10 @@
         }
         
     }
+
+	
+	isThereMorePosts();	
+	$(".readMore").click();
 
 	
 </script>
@@ -338,12 +273,18 @@
 	}
 	
 	
+	
 </style>
 <style>
     .reward-info > div > p:first-child > span:last{
         padding-left: 5px;
         font-size: 12px;
         color:#00B9CE;
+    }
+    .reward-info > div > p:first-child > span{
+        color:#00B9CE;
+        padding-left:5px;
+        font-family: "logo";
     }
     .reward-info > div > p{
         font-weight:200;
@@ -493,6 +434,17 @@
 	.modal-divs > div{
 		margin-top:35px !important;
 	}
+	
+	.totalCounEqualsZero{
+		text-align:center;
+		font-size:20px;
+		color:#EAEBED ;
+		font-weight:600;
+		font-family:"logo";
+		margin-bottom: 150px;
+		
+	}
+	
 	
     @keyframes modalOpen {
         from{opacity: 0;}

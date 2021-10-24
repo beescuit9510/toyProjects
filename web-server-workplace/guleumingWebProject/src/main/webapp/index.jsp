@@ -15,7 +15,7 @@
 		<div class="navi-wrap">
 			<div class="navi">
 				<a href="/fundedFundingList" id="active-navi">펀딩한 프로젝트</a> 
-				<a href="#">제작한 프로젝트</a>
+				<a href="/myOwnProject">제작한 프로젝트</a>
 				<a href="#">관심 펀더 및 펀더</a> <a href="#">설정</a>
 			</div>
 		</div>

@@ -14,20 +14,21 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import mypageFunderFunding.model.vo.FundedFunding;
+import mypageFunderFunding.model.vo.MyOwnProject;
 import mypageMember.model.service.MypageMemberService;
 import table.model.vo.Member;
 
 /**
  * Servlet implementation class GetMoreFundedListServlet
  */
-@WebServlet(name = "GetMoreFundedList", urlPatterns = { "/getMoreFundedList" })
-public class GetMoreFundedListServlet extends HttpServlet {
+@WebServlet(name = "GetMoreMyOwnProjectList", urlPatterns = { "/getMoreMyOwnProjectList" })
+public class GetMoreMyOwnProjectListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public GetMoreFundedListServlet() {
+	public GetMoreMyOwnProjectListServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,26 +40,34 @@ public class GetMoreFundedListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
+		
 		HttpSession session = request.getSession(false);
 
+		Member m = new Member();
+		m.setcMemberNo(3);
+		session.setAttribute("member", m);
+		
+		
 		Member member= (Member)session.getAttribute("member");
 		
 		int cMemberNo =member.getcMemberNo();
-	
+		
 		int currCount = Integer.parseInt(request.getParameter("currCount"));
 
 		int perPost = Integer.parseInt(request.getParameter("perPost"));
 		
 		
-		ArrayList<FundedFunding> fundedFundings = new MypageMemberService().selectFundedFunding(cMemberNo, currCount+1, currCount+perPost);
+		ArrayList<MyOwnProject> myOwnProjects = new MypageMemberService().selectMyOwnProject(cMemberNo, currCount+1, currCount+perPost);
 
+		System.out.println(myOwnProjects);
 		
 		response.setCharacterEncoding("UTF-8");
 	    response.setContentType("application/json");
 
 		PrintWriter out = response.getWriter();
 
-		new Gson().toJson(fundedFundings, out);
+		new Gson().toJson(myOwnProjects, out);
 		
 	}
 

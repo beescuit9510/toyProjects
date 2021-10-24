@@ -112,13 +112,13 @@ public class MypageMemberService {
 		return likeList;
 	}
 
-	public ArrayList<MyOwnProject> selectMyOwnProject(int cMemberNo) {
+	public ArrayList<MyOwnProject> selectMyOwnProject(int cMemberNo, int start, int end) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		ArrayList<MyOwnProject> myOwnProjects = new ArrayList<MyOwnProject>();
 
-		new MypageMemberDao().selectMyOwnProjectFunding(conn, cMemberNo, myOwnProjects);
-
+		new MypageMemberDao().selectMyOwnProjectFunding(conn, cMemberNo, myOwnProjects, start, end);
+		
 		if (myOwnProjects.size() <= 0) {
 			return null;
 		}
@@ -198,6 +198,16 @@ public class MypageMemberService {
 
 		JDBCTemplate.close(conn);
 
+		return total;
+	}
+
+	public int getTotalMyOwnProjcet(int cMemberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int total = new MypageMemberDao().getTotalMyOwnProject(conn, cMemberNo);
+		
+		JDBCTemplate.close(conn);
+		
 		return total;
 	}
 

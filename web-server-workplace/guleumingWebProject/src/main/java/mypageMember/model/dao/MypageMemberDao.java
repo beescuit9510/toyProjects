@@ -186,6 +186,7 @@ public class MypageMemberDao {
 
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, cMemberNo);
+
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
@@ -193,6 +194,7 @@ public class MypageMemberDao {
 				ProjectBasicInfo projectBasicInfo = new ProjectBasicInfo();
 				Reward reward = new Reward();
 				MakerInfo makerInfo = new MakerInfo();
+				int total = 0;
 
 				projectBasicInfo.setProjectNo(rset.getInt("project_no"));
 				projectBasicInfo.setBusinessNo(rset.getInt("business_no"));
@@ -218,7 +220,9 @@ public class MypageMemberDao {
 				makerInfo.setAccountNumber(rset.getInt("account_number"));
 				makerInfo.setDepositName(rset.getString("deposit_name"));
 
-				Funding funding = new Funding(projectBasicInfo, reward, makerInfo);
+				total = rset.getInt("total");
+
+				Funding funding = new Funding(total,projectBasicInfo, reward, makerInfo);
 
 				LikedFunding likedFunding = new LikedFunding(rset.getInt("like_no"), funding);
 
@@ -237,12 +241,25 @@ public class MypageMemberDao {
 		return;
 	}
 
-	public void selectMyOwnProjectFunding(Connection conn, int cMemberNo, ArrayList<MyOwnProject> myOwnProjects) {
-		String query = "select pbi.*, r.*, mi.*\r\n" + "from member m\r\n" + "join project_basic_info pbi\r\n"
-				+ "on m.c_member_no = pbi.business_no\r\n" + "join reward r\r\n" + "on pbi.project_no = r.reward_no\r\n"
-				+ "join maker_info mi\r\n" + "on pbi.project_no = mi.maker_info_no\r\n" + "where m.c_member_no = ?\r\n"
-				+ "order by pbi.project_no desc\r\n";
+	public void selectMyOwnProjectFunding(Connection conn, int cMemberNo, ArrayList<MyOwnProject> myOwnProjects, int start, int end) {
+		String query = "select t.* from(\r\n"
+				+ "select (select count(*) from payment_info where pbi.project_no = project_no ) \r\n"
+				+ "as total, \r\n"
+				+ "rownum as rnum, pbi.*, r.*, mi.*\r\n"
+				+ "from member m\r\n"
+				+ "join project_basic_info pbi\r\n"
+				+ "on m.c_member_no = pbi.business_no\r\n"
+				+ "join reward r\r\n"
+				+ "on pbi.project_no = r.reward_no\r\n"
+				+ "join maker_info mi\r\n"
+				+ "on pbi.project_no = mi.maker_info_no\r\n"
+				+ "where m.c_member_no = ?\r\n"
+				+ "order by pbi.project_no desc)t\r\n"
+				+ "where rnum between ? and ?\r\n";
 
+		System.out.println(cMemberNo);
+		System.out.println(start);
+		System.out.println(end);
 		query.replaceAll("\r\n", " ");
 
 		PreparedStatement pstmt = null;
@@ -252,12 +269,16 @@ public class MypageMemberDao {
 
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, cMemberNo);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
 				ProjectBasicInfo projectBasicInfo = new ProjectBasicInfo();
 				Reward reward = new Reward();
 				MakerInfo makerInfo = new MakerInfo();
+				int total = 0;
 
 				projectBasicInfo.setProjectNo(rset.getInt("project_no"));
 				projectBasicInfo.setBusinessNo(rset.getInt("business_no"));
@@ -283,7 +304,9 @@ public class MypageMemberDao {
 				makerInfo.setAccountNumber(rset.getInt("account_number"));
 				makerInfo.setDepositName(rset.getString("deposit_name"));
 
-				Funding funding = new Funding(projectBasicInfo, reward, makerInfo);
+				total = rset.getInt("total");
+
+				Funding funding = new Funding(total, projectBasicInfo, reward, makerInfo);
 
 				MyOwnProject myOwnProject = new MyOwnProject();
 
@@ -515,6 +538,39 @@ public class MypageMemberDao {
 	public int getTotalFundedFunding(Connection conn, int cMemberNo) {
 		String query = "select count(*) as total from payment_info\r\n"
 				+ "where c_member_no = ?\r\n";
+
+		query.replaceAll("\r\n", " ");
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		int r = 0;
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				r = rset.getInt("total");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+
+		return r;
+
+	}
+
+	public int getTotalMyOwnProject(Connection conn, int cMemberNo) {
+		String query = "select count(*) as total from project_basic_info\r\n"
+				+ "where business_no = ?\r\n";
 
 		query.replaceAll("\r\n", " ");
 

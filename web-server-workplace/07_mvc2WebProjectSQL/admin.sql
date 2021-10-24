@@ -7,12 +7,13 @@ update member set c_enroll_date = to_char(sysdate,'yyyy-mm-dd') where c_member_n
 insert into member values(member_seq.nextval,'펀더변덕3','123456789','010-8888-7868',to_char(sysdate,'yyyy-mm-dd'),'bunny@gmail.com',3);
 insert into member values(member_seq.nextval,'일반변덕','1234','010-7777-8767',to_char(sysdate,'yyyy-mm-dd'),'byunduck@gmail.com',2);
 select * from member;
-insert into payment_info values(to_char(sysdate,'yyyymmdd')||test_sql.nextval||test_sql.nextval||test_sql.nextval, 2, '강남'||test_sql.nextval, to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),'변변덕'||test_sql.currval,'010-4444-4444',2,5);
+insert into payment_info values(to_char(sysdate,'yyyymmdd')||test_sql.nextval||test_sql.nextval||test_sql.nextval, 2, '강남'||test_sql.nextval, to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),'변변덕'||test_sql.currval,'010-4444-4444',1,5);
 commit;
+select * from payment_info where c_member_no = 5 order by order_date desc;
 create sequence test_sql;
 
 select * from payment_info;
-
+select *from project_basic_info;
 
 insert into business values(7,'법인명333','123456789012','담당자명333');
 select * from business;
@@ -119,29 +120,42 @@ select * from payment_info;
 --- 내가 주문한 펀딩
 select *
 from(
-select rownum,
+select rownum as rnum,
 t.* 
 from (select 
 (select count(*) from payment_info pi
 where pi.project_no = p.project_no) as total,
+p.payment_no,p.quantity,p.receive_addr,p.order_date,p.receive_name,p.receive_phone,p.c_member_no,
 pbi.*,r.*,m.*
-from project_basic_info pbi
-join payment_info p
+from payment_info p
+join project_basic_info pbi
 on p.project_no = pbi.project_no
 join reward r
 on p.project_no = r.reward_no
 join maker_info m
-on p.project_no = m.maker_info_no 
+on p.project_no = m.maker_info_no
 where p.c_member_no = 5
 order by order_date desc) t)
-where rownum between 1 and 10;
-
+where rnum between 7 and 10;
 
 commit;
 
+select * from payment_info;
+
+-- 내가 펀딩한 프로젝트 갯수
+select count(*) as total from payment_info
+where c_member_no = 5;
 
 
+--내가 제작한 프로젝트 갯수
+select count(*) as total from project_basic_info
+where business_no = 3;
 
+select * from project_basic_info;
+
+   
+   
+   
    
 -- 좋아요한 펀딩
 select rownum, fl.like_no, pbi.*,r.*,mi.* 
@@ -171,9 +185,14 @@ where m.c_member_no = 5
 order by fl.like_no desc;
 ;
 
-select * from maker_board;
+select * from payment_info where project_no =2;
+
+commit;
 -- 진행중인 프로젝트 가져오기
-select pbi.*, r.*, mi.*
+select t.* from(
+select (select count(*) from payment_info where pbi.project_no = project_no ) 
+as total, 
+rownum as rnum, pbi.*, r.*, mi.*
 from member m
 join project_basic_info pbi
 on m.c_member_no = pbi.business_no
@@ -182,7 +201,8 @@ on pbi.project_no = r.reward_no
 join maker_info mi
 on pbi.project_no = mi.maker_info_no
 where m.c_member_no = 3
-order by pbi.project_no desc
+order by pbi.project_no desc)t
+where rnum between 1 and 3;
 ;
 
 
