@@ -2,6 +2,7 @@ package mypageMember.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import common.JDBCTemplate;
 import mypageFunderFunding.model.vo.FundedFunding;
@@ -12,77 +13,6 @@ import table.model.vo.FundingComment;
 
 public class MypageMemberService {
 
-	public static void main(String[] args) {
-//		ArrayList<Like> like = selectLikeList(5);
-
-//		Collections.sort(like);
-////	    Collections.sort(like, (like1, like2) -> like2.getLikeNo()-like1.getLikeNo());
-//		for(Like likeM : like) {
-//			
-//			System.out.println(likeM.getLikeNo());
-//			
-//			if(likeM instanceof LikedFunder) {
-//				LikedFunder obj = (LikedFunder)likeM;
-//				System.out.println(obj.getMakerboard());
-//			}
-//
-//			if(likeM instanceof LikedFunding) {
-//				
-//				LikedFunding obj = (LikedFunding)likeM;
-//				System.out.println(obj.getFunding());
-//			}
-//		}
-
-//		ArrayList<FundedFunding> fundedFundings = selectFundedFunding(5);
-//		
-//		for(FundedFunding fundedFunding : fundedFundings) {
-//			System.out.println(fundedFunding);
-//			
-//		}
-
-//		ArrayList<MyOwnProject> myOwnProjects = selectMyOwnProject(3);
-//		
-//		int i = 0;
-//		int j = 0;
-//		for(MyOwnProject myOwnProject : myOwnProjects) {
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//
-//			System.out.println(++i+"번째 프로젝트");
-//			System.out.println(myOwnProject.getFunding().toString());
-//
-//			System.out.println(i+"번째 프로젝트의 댓글");
-//			j = 0;
-//			for(FundingComment fc : myOwnProject.getComments()) {
-//				System.out.println(++j+"번째 댓글!");
-//				System.out.println(fc);
-//			}
-//
-//			System.out.println(i+"번째 프로젝트의 주문목록");
-//			j = 0;
-//			for(MyOwnProjectCustomer mc : myOwnProject.getMyOwnProjectCustomers()) {
-//				System.out.println(++j+"번째 주문목록!");
-//				System.out.println(mc.getPaymentInfo());
-//				System.out.println(mc.getMember());
-//			}
-//			
-//		}
-
-//		int r =unLikeFunder(5,3);
-//		System.out.println(r);
-//
-//		int r2 =unLikeFunding(5,6);
-//		System.out.println(r2);
-
-//		FundingComment fc = new FundingComment();
-//		fc.setCommentContent("댓글댓글내용내용3333");
-//		fc.setProjectRefNo(1);
-//		fc.setCommentRefNo(4);
-//		fc.setCommentWriter(3);
-//		int r3 = replyComment(fc);
-//		System.out.println(r3);
-	}
 
 	public ArrayList<FundedFunding> selectFundedFunding(int cMemberNo, int start, int end) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -96,7 +26,7 @@ public class MypageMemberService {
 		return fundings;
 	}
 
-	public ArrayList<Like> selectLikeList(int cMemberNo) {
+	public ArrayList<Like> selectLikeList(int cMemberNo, int start, int end) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		ArrayList<Like> likeList = new ArrayList<>();
@@ -107,9 +37,29 @@ public class MypageMemberService {
 
 		JDBCTemplate.close(conn);
 
+		System.out.println(likeList);
+		
 		likeList = likeList.size() <= 0 ? null : likeList;
+		
+		ArrayList<Like> likeListToReturn = new ArrayList<Like>();
+		
 
-		return likeList;
+		if(likeList != null) {
+			System.out.println(likeListToReturn);
+			Collections.sort(likeList);
+			
+			int endI = likeList.size()>end? end:likeList.size();
+				
+			for(int i=start-1;i<endI;i++) {
+				likeListToReturn.add(likeList.get(i));
+			}
+		}
+		
+		
+		
+
+
+		return likeListToReturn;
 	}
 
 	public ArrayList<MyOwnProject> selectMyOwnProject(int cMemberNo, int start, int end) {
@@ -210,6 +160,36 @@ public class MypageMemberService {
 		JDBCTemplate.close(conn);
 		
 		return total;
+	}
+
+	public int getTotalLikeList(int cMemberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int totalFunding = new MypageMemberDao().getTotalLikedFunding(conn, cMemberNo);
+		int totalFunder = new MypageMemberDao().getTotalLikedFunder(conn, cMemberNo);
+		
+		
+		int total = totalFunding+totalFunder;
+
+		JDBCTemplate.close(conn);
+		
+		return total;
+	}
+
+	public int updateMember(int cMemberNo, String phone, String pw) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int r = new MypageMemberDao().updateMember(conn, cMemberNo, phone, pw);
+
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+
+		return r;
 	}
 
 }

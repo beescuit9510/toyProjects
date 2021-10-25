@@ -12,9 +12,13 @@ commit;
 select * from payment_info where c_member_no = 5 order by order_date desc;
 create sequence test_sql;
 
-select * from payment_info;
+select * from payment_info order by order_date desc;
+select * from payment_info where project_no = 1 order by order_date desc;
 select *from project_basic_info;
+select * from payment_info where business_no = 1 order by order_date desc;
 
+9223372036854775807
+20211024179179179
 insert into business values(7,'법인명333','123456789012','담당자명333');
 select * from business;
 insert into project_basic_info values(project_seq.nextval,3,'프로젝트이름222','200',null,'2022-12-21','프로젝트이야기2222','반려동물',to_char(sysdate,'yyyy-dd-mm'));
@@ -214,6 +218,25 @@ on pbi.project_no = fc.project_ref_no
 where pbi.project_no = 1
 order by fc.comment_no desc;
 
+-- 진행중인 ?번째 프로젝트의 댓글
+select fc.*, m.*
+from project_basic_info pbi
+join funding_comment fc
+on pbi.project_no = fc.project_ref_no
+join member m
+on m.c_member_no = fc.comment_writer
+where pbi.project_no = 1
+order by fc.comment_no desc;
+
+select * from funding_comment ;
+delete * from 
+
+
+
+select payment_no from payment_info where project_no = 1 order by order_date desc;
+
+
+select * from project_basic_info;
 
 -- 진행중인 ?몇째 프로젝트의 주문목록
 select pi.*, m.*
@@ -301,3 +324,34 @@ create sequence maker_board_seq;
 commit;
 
 select * from maker_board;
+
+
+--일단그냥더봐볼게요
+-- 왜조회결과가 달라요?
+-- 이게 펀딩이구..
+-- 그냥 지금 저페이지에서 새로고침하면 프로젝트번호가 1번이에요?
+--아니요 제가 디비문 할때 생각없이 해서 한페이지에 프로젝트가 다 나와야지! 하고 이거예요 저거 저 결과가  그렇게 짜고 대신 vo를 많이 만들어서 많이 복잡하게 되어버렸어요 그런데 설명하면
+--그건 만든 윤영씨는아는데 지금데이터흐름보려고하는건데 
+--같은쿼리를 디비에서치면 왜 순서가다르냐구요 
+select pi.*, m.* from project_basic_info pbi join payment_info pi on pbi.project_no = pi.project_no join member m on pi.c_member_no = m.c_member_no 
+where pbi.project_no = 1
+order by pi.order_date desc;
+
+delete from funding_comment where comment_no like 37;
+
+select * from funding_comment;
+
+commit;
+
+-- 좋아요 펀딩 수 
+select count(*) from funding_like
+where c_member_no = 5;
+-- 좋아요 펀더 수 
+select count(*) from funder_like
+where c_member_no = 5 and liked_business_no = 1;
+
+
+
+
+
+insert into funding_comment values(FUNDCOMM_SEQ.nextval,'일반댓글인데 길이가 조금 긴 일반댓글입니다. 길이가 조금 긴 일반 댓글 입니다. 길이가 조금 긴 일반 댓글 입니다.',to_char(sysdate,'yyyy-mm-dd'),1,1,null,1);

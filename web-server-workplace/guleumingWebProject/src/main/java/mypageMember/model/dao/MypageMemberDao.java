@@ -121,10 +121,15 @@ public class MypageMemberDao {
 	}
 
 	public void selectLikedFunder(Connection conn, int cMemberNo, ArrayList<Like> likeList) {
-		String query = "select fl.like_no, mb.*\r\n" + "from member m\r\n" + "join funder_like fl\r\n"
-				+ "on m.c_member_no = fl.c_member_no\r\n" + "join member fm\r\n"
-				+ "on fl.liked_business_no = fm.c_member_no\r\n" + "join maker_board mb\r\n"
-				+ "on fl.liked_business_no = mb.writer_no\r\n" + "where m.c_member_no = ?\r\n"
+		String query = "select fl.like_no, mb.*\r\n"
+				+ "from member m\r\n"
+				+ "join funder_like fl\r\n"
+				+ "on m.c_member_no = fl.c_member_no\r\n"
+				+ "join member fm\r\n"
+				+ "on fl.liked_business_no = fm.c_member_no\r\n"
+				+ "join maker_board mb\r\n"
+				+ "on fl.liked_business_no = mb.writer_no\r\n"
+				+ "where m.c_member_no = ?\r\n"
 				+ "order by fl.like_no desc\r\n";
 
 		query.replaceAll("\r\n", " ");
@@ -171,11 +176,17 @@ public class MypageMemberDao {
 	}
 
 	public void selectLikedFunding(Connection conn, int cMemberNo, ArrayList<Like> likeList) {
-		String query = "select fl.like_no, pbi.*,r.*,mi.* \r\n" + "from member m\r\n" + "join funding_like fl\r\n"
-				+ "on m.c_member_no = fl.c_member_no\r\n" + "join project_basic_info pbi\r\n"
-				+ "on fl.liked_project_no = pbi.project_no\r\n" + "join reward r\r\n"
-				+ "on fl.liked_project_no = r.reward_no\r\n" + "join maker_info mi\r\n"
-				+ "on fl.liked_project_no = mi.maker_info_no\r\n" + "where m.c_member_no = ?\r\n"
+		String query = "select rownum as total, fl.like_no, pbi.*,r.*,mi.* \r\n"
+				+ "from member m\r\n"
+				+ "join funding_like fl\r\n"
+				+ "on m.c_member_no = fl.c_member_no\r\n"
+				+ "join project_basic_info pbi\r\n"
+				+ "on fl.liked_project_no = pbi.project_no\r\n"
+				+ "join reward r\r\n"
+				+ "on fl.liked_project_no = r.reward_no\r\n"
+				+ "join maker_info mi\r\n"
+				+ "on fl.liked_project_no = mi.maker_info_no\r\n"
+				+ "where m.c_member_no = ?\r\n"
 				+ "order by fl.like_no desc\r\n";
 
 		query.replaceAll("\r\n", " ");
@@ -191,7 +202,7 @@ public class MypageMemberDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-
+				
 				ProjectBasicInfo projectBasicInfo = new ProjectBasicInfo();
 				Reward reward = new Reward();
 				MakerInfo makerInfo = new MakerInfo();
@@ -226,8 +237,13 @@ public class MypageMemberDao {
 				Funding funding = new Funding(total,projectBasicInfo, reward, makerInfo);
 
 				LikedFunding likedFunding = new LikedFunding(rset.getInt("like_no"), funding);
+			
 
 				likeList.add(likedFunding);
+				
+				System.out.println(likedFunding);
+				
+				
 
 			}
 
@@ -531,6 +547,12 @@ public class MypageMemberDao {
 		try {
 
 			pstmt = conn.prepareStatement(query);
+			System.out.println(fundingComment.getCommentContent());
+			System.out.println(fundingComment.getProjectRefNo());
+			System.out.println(fundingComment.getCommentRefNo());
+			System.out.println(fundingComment.getCommentWriter());
+
+			
 			pstmt.setString(1, fundingComment.getCommentContent());
 			pstmt.setInt(2, fundingComment.getProjectRefNo());
 			pstmt.setInt(3, fundingComment.getCommentRefNo());
@@ -612,6 +634,104 @@ public class MypageMemberDao {
 		}
 
 		return r;
+
+	}
+
+	public int getTotalLikedFunding(Connection conn, int cMemberNo) {
+		String query = "select count(*) as total from funding_like\r\n"
+				+ "where c_member_no = ?\r\n";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				r = rset.getInt("total");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r;
+	}
+
+	public int getTotalLikedFunder(Connection conn, int cMemberNo) {
+		String query = "select count(*) as total from funder_like\r\n"
+				+ "where c_member_no = ?";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				r = rset.getInt("total");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r;
+	}
+
+	public int updateMember(Connection conn, int cMemberNo, String phone, String pw) {
+		
+		String query = "update member set c_password = ? , c_phone = ? where c_member_no = ?";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pw);
+			pstmt.setString(2, phone);
+			pstmt.setInt(3, cMemberNo);
+			r = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r;
+
+		
+
 
 	}
 

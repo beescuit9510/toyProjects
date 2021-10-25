@@ -12,7 +12,7 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	<div class="container">
-		<div class="title">펀딩한 프로젝트</div>
+		<div class="title">제작한 프로젝트</div>
 		<div class="navi-wrap">
 			<div class="navi">
 				<a class="fundedFundings" href="/fundedFundingList">펀딩한 프로젝트</a> 
@@ -173,7 +173,6 @@
 				start = currCount;
 				currCount = currCount+perPost; 
 				
-				console.log(ffs);
 				var html = "";
 				
 				for(var i=0;i<ffs.length;i++){
@@ -345,15 +344,38 @@
 	
 			var html = "";
 			var page = ""
+			var postsNum = 0;
 	
+			
+			
 			if(fundedFundings[n].myOwnProjectComment.length == 0){
 				$(".customer-list").append($("<p>달린 댓글이 없습니다.</p>"));
 				$(".customer-list").first().css("color","#EAEBED");
 	        }
 			else{
+				for(var count=0;count<=fundedFundings[n].myOwnProjectComment.length;count++){
+		        	if(fundedFundings[n].myOwnProjectComment[count] != null ){
+				        var fc = fundedFundings[n].myOwnProjectComment[count].fundingComment;
+						if(fc.commentLevel <2){
+				        	postsNum++;
+				        }		        		
+		        	}
+				}
+				
+
+
+				var limits = postsNum;
 				var start = currPage==0? 0:(currPage-1)*10;
+				
+
 				var end = ((currPage)*10);
-		        for(var i=start; i<end; i++){
+				var startstart = start;
+				console.log("limits"+limits);
+				console.log("start"+start);
+				console.log("startstart"+startstart);
+				
+				var endend = 10;
+		        for(var i=start; limits>0&&endend>0; i++){
 		        	if(fundedFundings[n].myOwnProjectComment[i] != null ){
 				        var fc = fundedFundings[n].myOwnProjectComment[i].fundingComment;
 				        var m = fundedFundings[n].myOwnProjectComment[i].member;
@@ -362,6 +384,14 @@
 				        content = fc.commentContent.length > 6 ? content+" ...":content;
 				        date = date.replace(/-/,"년 ").replace(/-/,"월 ");
 				        if(fc.commentLevel <2){
+				        	limits--;
+				        	endend--;
+				        	if(limits <=0 ){
+				        		break;
+				        	}
+				        	if(endend <=0){
+				        		break;
+				        	}
 							html += "<p onclick='openSpeci2("+n+","+i+")'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></p>";
 				        	
 				        }
@@ -370,9 +400,10 @@
 				
 				
 		        }
+				console.log("limits:"+limits);
+				console.log("endend:"+endend);
 		        
-		        
-		        var pageNum = Math.ceil(fundedFundings[n].myOwnProjectComment.length/10);
+		        var pageNum = Math.ceil(postsNum/10);
 		        
 		        if(pageNum > 10){
 		        	if(currPage > 5){
@@ -500,22 +531,27 @@
 
 	        $(".comment-writer-name").html(m.cName);
 //	        $(".comment-content").html(fc.commentContent);
-	        $(".comment-body").append($("<p class='comment-reply comment-body'><span>질문 </span>"+fc.commentContent+"</p>"));
+	        $(".comment-body").append($("<p class='comment-reply comment-body'><span>질문 </span><span class='classssss'><a href=''>"+fc.commentContent+"</a><span/></p>"));
 	        $(".comment-content").next().remove();
 	        
 	        var comments = fundedFundings[n].myOwnProjectComment;
 	        var j = 1;
 	        for(var i = 0; i<comments.length;i++){
 	        	if(comments[i].fundingComment.commentRefNo == fc.commentNo){
-			        $(".comment-body2").append($("<p class='comment-reply comment-body'><span>답변 "+(j++)+" </span>"+comments[i].fundingComment.commentContent+"</p>"));
-	        	}
-	        		
+	        		var cccc = comments[i].fundingComment.commentContent;
+	        		cccc = 	cccc.substring(0,14);
+	        		cccc = 	cccc+"....";
+			        $(".comment-body2").prepend($("<p class='comment-reply comment-body'><span class='reply-order'></span><span ><a href=''>"+cccc+"</a></span></p>"));
+	        	}	
+	        }
+	        
+	        for(var i = 0; i<$(".reply-order").length;i++){
+	       		$(".reply-order").eq(i).html("답변 "+(i+1));
 	        }
 //		        $(".comment-reply").html("답변중");
 	        
-	        
 	        $(".shipping-date").html(r.shippingDate);
-	        $(".comment-body2").append("<p><span class='comment-btn'>댓글달기</span><input class='comment-reply comment-body comment-input-input' type='text' placeholder='질문에 대한 답변을 적어보세요'></></p>")
+	        $(".comment-body2").append("<p class='comment-reply'><span onclick='replyComment("+n+","+fc.commentNo+")' class='comment-btn'>댓글달기</span><input class='reply-comment-css comment-reply comment-body comment-input-input' type='text' placeholder='질문에 대한 답변을 적어보세요'></></p>")
 	        
 	}
 	
@@ -525,20 +561,48 @@
         $(".modal").css("display","none");
     })
     
+    function eventPrevent(e) {
+    	event.stopPropagation();
+	}
+    
+    document.addEventListener("click",eventPrevent);
+    
     function clickModal(e) {
-        if(e.target == document.getElementById("simpleModal2")){
-            $(".closeBtn").click();
-            return;
-        }
-        if(e.target == document.getElementById("simpleModal3")){
-            $(".closeBtn").click();
-            return;
-        }
-        if(e.target == document.getElementById("simpleModal")){
-            $(".closeBtn").click();
-            return;
-        }
+	       if(e.target == document.getElementById("simpleModal2")){
+	           $(".closeBtn").click();
+	           return;
+	       }
+	       if(e.target == document.getElementById("simpleModal3")){
+	           $(".closeBtn").click();
+	           return;
+	       }
+	       if(e.target == document.getElementById("simpleModal")){
+	           $(".closeBtn").click();
+	           return;
+	       }
     }
+    
+    function replyComment(n,j) {
+    	
+    	var input = $(".comment-input-input").val();
+    	console.log(input);
+		$.ajax({			
+		url:"/insertComment",
+		data:{comment:input,projectNo:n,commentRefNo:j, currCount:currCount},
+		method:"POST",
+		success:function(ffs){
+				alert("댓글 달기 성공");
+				fundedFundings = new Array();
+				for(var i=0;i<ffs.length;i++){
+					var ff = ffs[i];
+					fundedFundings.push(ff);
+				}
+				console.log(fundedFundings)
+					
+
+			}
+		})		
+	}
     
 	isThereMorePosts();	
 	$(".readMore").click();
@@ -864,6 +928,13 @@
 	font-weight:600px;
 
 }
+.comment-reply .comment-body{
+}
+
+.reply-comment-css{
+	margin-right:0;
+}
+
 </style>
     
 </html>

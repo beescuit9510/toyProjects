@@ -60,8 +60,6 @@ public class GetMoreMyOwnProjectListServlet extends HttpServlet {
 		
 		ArrayList<MyOwnProject> myOwnProjects = new MypageMemberService().selectMyOwnProject(cMemberNo, currCount+1, currCount+perPost);
 
-		System.out.println(myOwnProjects.get(1).getMyOwnProjectCustomers().get(0).getPaymentInfo().getPaymentNo());
-		
 		response.setCharacterEncoding("UTF-8");
 	    response.setContentType("application/json");
 

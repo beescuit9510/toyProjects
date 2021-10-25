@@ -1,8 +1,6 @@
 package mypageMember.model.controller;
 
 import java.io.IOException;
-
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mypageMember.model.service.MypageMemberService;
 import table.model.vo.Member;
 
 /**
- * Servlet implementation class MyPage
+ * Servlet implementation class ChangeMemberInfoServlet
  */
-@WebServlet(name = "Mypage", urlPatterns = { "/mypage" })
-public class MypageServlet extends HttpServlet {
+@WebServlet(name = "ChangeMemberInfo", urlPatterns = { "/changeMemberInfo" })
+public class ChangeMemberInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MypageServlet() {
+    public ChangeMemberInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,24 +31,29 @@ public class MypageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session2 = request.getSession(true);
+		HttpSession session = request.getSession(false);
+
+		Member member = (Member) session.getAttribute("member");
 		
-		Member m = new Member();
-		m.setcMemberNo(3);
-		m.setcName("펀더변덕");
-		m.setcPassword("1234");
-		m.setcPhone("010-9999-9999");
-		m.setcEmail("penpeong2312@");
-		m.setBusinessNo(123123);
-		m.setBusinessCode("123123-312312-312312");
-		m.setManagerName("매니저 메닝");
+		int cMemberNo = member.getcMemberNo();
 		
-		session2.setAttribute("member", m);
+		String phone = request.getParameter("phone");
+		String pw = request.getParameter("pw");
 		
 
-
-		request.getRequestDispatcher("/WEB-INF/views/mypage/funder/mypage.jsp").forward(request, response);
+		System.out.println(phone);
+		System.out.println(pw);
+		System.out.println(cMemberNo);
 		
+		int r = new MypageMemberService().updateMember(cMemberNo,phone,pw);
+		
+		if( r > 0) {
+			member.setcPhone(phone);
+			member.setcPassword(pw);
+			
+		}
+
+	
 	}
 
 	/**

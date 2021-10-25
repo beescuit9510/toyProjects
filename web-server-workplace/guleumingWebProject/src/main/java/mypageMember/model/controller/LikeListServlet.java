@@ -36,16 +36,22 @@ public class LikeListServlet extends HttpServlet {
 	
 		HttpSession session = request.getSession(false);
 
+		Member m = new Member();
+		m.setcMemberNo(5);
+		session.setAttribute("member", m);
+		
 		Member member = (Member) session.getAttribute("member");
 
 		int cMemberNo = member.getcMemberNo();
 
-		ArrayList<Like> likeList = new MypageMemberService().selectLikeList(cMemberNo);
+		int totalCount = new MypageMemberService().getTotalLikeList(cMemberNo);
 
-		request.setAttribute("likeList", likeList);
-
+				
+		request.setAttribute("totalCount", totalCount);
 		
-		request.getRequestDispatcher("/WEB-INF/views/mypage/funder/bookmark");
+		
+		request.getRequestDispatcher("/WEB-INF/views/mypage/funder/bookmark.jsp").forward(request, response);
+
 		
 	}
 
