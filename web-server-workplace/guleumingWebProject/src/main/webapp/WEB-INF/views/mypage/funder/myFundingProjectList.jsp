@@ -177,6 +177,8 @@
 				
 				var html = "";
 				
+				console.log(ffs);
+				
 				for(var i=0;i<ffs.length;i++){
 					var ff = ffs[i];
 					fundedFundings.push(ff);
@@ -200,8 +202,8 @@
 					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.funding.projectBasicInfo.targetPrice*ff.funding.total+"</span>원</div>";
 					html += "<div class='buttons'>";
 					html += "<button onclick='openList("+(start+i)+","+1+")' class='btn_sm btn_out involved-members'>참여 회원 보기</button>";
-//					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>댓글 보기</button>";
-					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>프로젝트 보러가기</button>";
+					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>댓글 보기</button>";
+//					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>프로젝트 보러가기</button>";
 					html += "</div>";
 					html += "</section>";
 				}
@@ -339,7 +341,7 @@
 	        
 	        
 	        
-	        $(".customer-list").find("p").remove();
+	        $(".customer-list").find("a").remove();
 	        $(".paging").find("p").remove();
 	        $(".backward").remove();
 	        
@@ -356,29 +358,30 @@
 				$(".customer-list").first().css("color","#EAEBED");
 	        }
 			else{
-				for(var count=0;count<=fundedFundings[n].myOwnProjectComment.length;count++){
-		        	if(fundedFundings[n].myOwnProjectComment[count] != null ){
-				        var fc = fundedFundings[n].myOwnProjectComment[count].fundingComment;
-						if(fc.commentLevel <2){
-				        	postsNum++;
-				        }		        		
-		        	}
-				}
+//				for(var count=0;count<=fundedFundings[n].myOwnProjectComment.length;count++){
+//		        	if(fundedFundings[n].myOwnProjectComment[count] != null ){
+//				        var fc = fundedFundings[n].myOwnProjectComment[count].fundingComment;
+//						if(fc.commentLevel <2){
+//				        	postsNum++;
+//				        }		        		
+//		        	}
+//				}
 				
 
 
-				var limits = postsNum;
+	//			var limits = postsNum;
 				var start = currPage==0? 0:(currPage-1)*10;
 				
 
 				var end = ((currPage)*10);
-				var startstart = start;
-				console.log("limits"+limits);
-				console.log("start"+start);
-				console.log("startstart"+startstart);
+//				var startstart = start;
+		//		console.log("limits"+limits);
+		//		console.log("start"+start);
+		//		console.log("startstart"+startstart);
 				
 				var endend = 10;
-		        for(var i=start; limits>0&&endend>0; i++){
+//		        for(var i=start; limits>0&&endend>0; i++){
+		        for(var i=start; i<end; i++){
 		        	if(fundedFundings[n].myOwnProjectComment[i] != null ){
 				        var fc = fundedFundings[n].myOwnProjectComment[i].fundingComment;
 				        var m = fundedFundings[n].myOwnProjectComment[i].member;
@@ -386,28 +389,36 @@
 				        var content = fc.commentContent.substring(0,7);
 				        content = fc.commentContent.length > 6 ? content+" ...":content;
 				        date = date.replace(/-/,"년 ").replace(/-/,"월 ");
-				        if(fc.commentLevel <2){
-				        	limits--;
-				        	endend--;
-				        	if(limits <=0 ){
-				        		break;
-				        	}
-				        	if(endend <=0){
-				        		break;
-				        	}
-							html += "<p onclick='openSpeci2("+n+","+i+")'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></p>";
+				        if(fc.commentLevel ==2){
+							html += "<a href='한솔님 페이지 이동장소'><span class='customer-name my-comment'>나의 댓글</span><span class='customer-payment-no my-comment'>"+content+"</span><span class='customer-order-date my-comment'>"+fc.writeDate+"</span></a>";
+				        	
+				        }else{
+							html += "<a href='한솔님 페이지 이동장소'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></a>";
+				        	
 				        	
 				        }
+				//        	limits--;
+			//	        	endend--;
+			//	        	if(limits <=0 ){
+			//	        		break;
+			//	        	}
+			//	        	if(endend <=0){
+			//	        		break;
+			//	        	}
+//							html += "<p onclick='openSpeci2("+n+","+i+")'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></p>";
+				        	
+			//	        }
 	
 		        	} 
 				
 				
 		        }
-				console.log("limits:"+limits);
-				console.log("endend:"+endend);
+	//			console.log("limits:"+limits);
+//				console.log("endend:"+endend);
 		        
-		        var pageNum = Math.ceil(postsNum/10);
-		        
+//		        var pageNum = Math.ceil(postsNum/10);
+		        var pageNum = Math.ceil(fundedFundings[n].myOwnProjectComment.length/10);
+
 		        if(pageNum > 10){
 		        	if(currPage > 5){
 			        	
@@ -938,6 +949,10 @@
 	margin-right:0;
 }
 
+.my-comment{
+	color:#00B9CE !important;
+
+}
 </style>
     
 </html>

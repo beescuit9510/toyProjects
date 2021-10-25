@@ -45,7 +45,7 @@
                 </div>
                 <button class="myinfo-btn btn btn-sm update-myinfo-btn">설정 수정하기</button>
             </div>
-            <c:if test="${not empty sessionScope.member.businessNo}">
+            <c:if test="${sessionScope.member.cLevel >2}">
             <div class="myinfo-business">
                 <div class="big-logo-title">사업자 등록 정보</div>
                 <div>

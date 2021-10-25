@@ -35,10 +35,10 @@ public class MyOwnProjectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	
 
-//		HttpSession session = request.getSession(false);
-
-		HttpSession session = request.getSession(true);
+		
+		HttpSession session = request.getSession(false);
 
 		Member member = (Member) session.getAttribute("member");
 		
@@ -47,7 +47,9 @@ public class MyOwnProjectServlet extends HttpServlet {
 		int totalCount = new MypageMemberService().getTotalMyOwnProjcet(cMemberNo);
 		
 		request.setAttribute("totalCount", totalCount);
-
+		System.out.println(member);
+		
+		System.out.println(totalCount);
 		
 		request.getRequestDispatcher("/WEB-INF/views/mypage/funder/myFundingProjectList.jsp").forward(request, response);
 	}

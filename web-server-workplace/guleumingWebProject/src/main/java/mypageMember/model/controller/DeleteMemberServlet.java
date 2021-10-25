@@ -41,8 +41,6 @@ public class DeleteMemberServlet extends HttpServlet {
 
 		int cMemberNo =member.getcMemberNo();
 		
-		cMemberNo = 55;
-		System.out.println(cMemberNo);
 		int r = new MypageMemberService().deleteMember(cMemberNo);
 		
 		
