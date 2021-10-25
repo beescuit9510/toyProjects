@@ -120,17 +120,18 @@
 				for(var i=0;i<ffs.length;i++){
 					var ff = ffs[i];
 					fundedFundings.push(ff);
+					console.log(ff.projectBasicInfo.projectNo);
 					
 					html += "<section class='project-box moving-top'>";
 					html += "<div class='project-profile'>"
 
 					if(ff.projectBasicInfo.filepath){
-						html += "<a href='/한솔님 페이지 이동'>"
+						html += "<a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"'>"
 						html += "<div id='background-url' style='background:url('"+ff.projectBasicInfo.filepath+"');></div>";
 						html += "<p class='project-title'>"+ff.projectBasicInfo.projectTitle+"</p>";
 						html += "</a>"
 					}else{
-						html += "<a href='/한솔님 페이지 이동'>구르밍"
+						html += "<a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"'>구르밍"
 						html += "<p class='project-title'>"+ff.projectBasicInfo.projectTitle+"</p>";
 						html += "</a>"
 					}
@@ -140,7 +141,7 @@
 					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.projectBasicInfo.targetPrice*ff.total+"</span>원</div>";
 					html += "<div class='buttons'>";
 					html += "<button onclick='openList("+(start+i)+")' class='btn_sm btn_out involved-members'>결제 내역</button>";
-					html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'>펀딩 보러가기</button>";
+					html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'><a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"' class='point fudnig-gogo'>펀딩 보러가기</a></button>";
 					html += "</div>";
 					html += "</section>";
 				}
@@ -445,6 +446,9 @@
 		font-family:"logo";
 		margin-bottom: 150px;
 		
+	}
+	.fudnig-gogo:hover{
+		color:white;
 	}
 	
 	

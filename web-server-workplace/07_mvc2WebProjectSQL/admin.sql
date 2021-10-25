@@ -369,11 +369,13 @@ insert into funding_comment values(FUNDCOMM_SEQ.nextval,'일반댓글인데 길�
 delete from member where c_member_no = 6;
 ;
 select * from project_basic_info where p_no = 6;
-select * from maker_board where writer_no = 6;
+select count(*) as total from maker_board where writer_no = 6;
 
-
-
+select * from payment_info w;
+select * from project_basic_info;
 commit;
+select * from payment_info order by order_date desc;
+select * from funding_comment order by comment_no desc;
 select * from member order by c_member_no desc;
 insert into member values(member_seq.nextval,'김토끼','123456789','010-8888-7868',to_char(sysdate,'yyyy-mm-dd'),'bun@gmail.com',3);
 

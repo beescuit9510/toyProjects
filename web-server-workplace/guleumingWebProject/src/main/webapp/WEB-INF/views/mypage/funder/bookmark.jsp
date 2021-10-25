@@ -123,17 +123,19 @@
 
 					
 					if(fundedFundings[i].makerboard != null){
+						///funderView?writerNo=
+							
 						html += "<section class='project-box moving-top'>";
 						html += "<div class='project-profile'>"
 
-						ff = ff.makerboard;
-						if(ff.profileFilepath != null){
-							html += "<a href='/한솔님 페이지 이동'>"
+						ff = ff.makerboard;						
+						if(ff.Filepath != null){
+							html += "<a href='/funderView?writerNo="+ff.writerNo+"'>"
 							html += "<div id='background-url' style='background:url('"+ff.profileFilepath+"');></div>";
 							html += "<p class='project-title'> 창립일자 "+ff.openDate.replace("-","년 ").replace("-","월 ")+"일 </p>";
 							html += "</a>"
 						}else{
-							html += "<a href='/한솔님 페이지 이동'>구르밍"
+							html += "<a href='/funderView?writerNo="+ff.writerNo+"'>구르밍"
 							html += "<p class='project-title'>"+ff.businessName+"</p>";
 							html += "</a>"
 						}
@@ -143,7 +145,7 @@
 						html += "<div class='acc-price'>이메일 <span>"+ff.boardEmail+"</span></div>";
 						html += "<div class='buttons'>";
 						html += "<button onclick='unlike("+i+")' class='btn_sm btn_out involved-members'>좋아요 취소</button>";
-						html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'>펀더 보러가기</button>";
+						html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'><a href='/funderView?writerNo="+ff.writerNo+"' class='point fudnig-gogo'>펀더 보러가기</a></button>";
 						html += "</div>";
 						html += "</section>";
 						
@@ -153,12 +155,12 @@
 						html += "<div class='project-profile'>"
 	
 						if(ff.projectBasicInfo.filepath){
-							html += "<a href='/한솔님 페이지 이동'>"
+							html += "<a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"'>"
 							html += "<div id='background-url' style='background:url('"+ff.projectBasicInfo.filepath+"');></div>";
 							html += "<p class='project-title'>"+ff.projectBasicInfo.projectTitle+"</p>";
 							html += "</a>"
 						}else{
-							html += "<a href='/한솔님 페이지 이동'>구르밍"
+							html += "<a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"'>구르밍"
 							html += "<p class='project-title'>"+ff.projectBasicInfo.projectTitle+"</p>";
 							html += "</a>"
 						}
@@ -168,7 +170,7 @@
 						html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.projectBasicInfo.targetPrice*ff.total+"</span>원</div>";
 						html += "<div class='buttons'>";
 						html += "<button onclick='unlike("+i+")' class='btn_sm btn_out involved-members'>좋아요 취소</button>";
-						html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'>펀딩 보러가기</button>";
+						html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'><a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"' class='point fudnig-gogo'>펀딩 보러가기</a></button>";
 						html += "</div>";
 						html += "</section>";
 						
@@ -506,7 +508,9 @@
 		margin-bottom: 150px;
 		
 	}
-	
+	.fudnig-gogo:hover{
+		color:white;
+	}
 	
     @keyframes modalOpen {
         from{opacity: 0;}

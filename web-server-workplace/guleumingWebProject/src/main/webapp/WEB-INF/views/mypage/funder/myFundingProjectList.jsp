@@ -187,12 +187,13 @@
 					html += "<div class='project-profile'>"
 
 					if(ff.funding.projectBasicInfo.filepath){
-						html += "<a href='/한솔님 페이지 이동'>"
+						html += "<a href='/fundingView?projectNo="+ff.funding.projectBasicInfo.projectNo+"'>"
+							///fundingView?projectNo=
 						html += "<div id='background-url' style='background:url('"+ff.funding.projectBasicInfo.filepath+"');></div>";
 						html += "<p class='project-title'>"+ff.funding.projectBasicInfo.projectTitle+"</p>";
 						html += "</a>"
 					}else{
-						html += "<a href='/한솔님 페이지 이동'>구르밍"
+						html += "<a href='/fundingView?projectNo="+ff.funding.projectBasicInfo.projectNo+"'>구르밍"
 						html += "<p class='project-title'>"+ff.funding.projectBasicInfo.projectTitle+"</p>";
 						html += "</a>"
 					}
@@ -390,10 +391,10 @@
 				        content = fc.commentContent.length > 6 ? content+" ...":content;
 				        date = date.replace(/-/,"년 ").replace(/-/,"월 ");
 				        if(fc.commentLevel ==2){
-							html += "<a href='한솔님 페이지 이동장소'><span class='customer-name my-comment'>나의 댓글</span><span class='customer-payment-no my-comment'>"+content+"</span><span class='customer-order-date my-comment'>"+fc.writeDate+"</span></a>";
+							html += "<a href='/fundingView?projectNo="+fc.projectRefNo+"'><span class='customer-name my-comment'>나의 댓글</span><span class='customer-payment-no my-comment'>"+content+"</span><span class='customer-order-date my-comment'>"+fc.writeDate+"</span></a>";
 				        	
 				        }else{
-							html += "<a href='한솔님 페이지 이동장소'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></a>";
+							html += "<a href='/fundingView?projectNo="+fc.projectRefNo+"'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></a>";
 				        	
 				        	
 				        }
@@ -576,7 +577,7 @@
     })
     
     function eventPrevent(e) {
-    	event.stopPropagation();
+//    	event.stopPropagation();
 	}
     
     document.addEventListener("click",eventPrevent);

@@ -71,7 +71,6 @@
     	</div>
 		
 	</div>
-	<a class="moveJSP" href="/move"></a> 	
 	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 </body>
 <style></style>
@@ -85,10 +84,10 @@
 	   		method:"post",
 	   		success:function(data){
 	   			alert(data);
-	   			if(data = "펀더로 활동 및 프로젝트 제작 혹은 펀딩 참여중입니다."){
-	   				return;
+	   			if(data === "펀더로 활동 및 프로젝트 제작 혹은 펀딩 참여중입니다."){
+					return;
 	   			}else{
-		   			$(".moveJSP").click();				
+		   			 location.replace("/login")
 	   			}
 	   		}
 	   	})
@@ -100,6 +99,11 @@
 		
 		console.log(phone);
 		console.log(pw);
+		if(phone == "" || pw == ""){
+			
+			alert("전화번호 및 비밀번호를 입력후 수정이 가능합니다.")
+			return;
+		}
 	    if (/^[0-9]{3}-[0-9]{4}-[0-9]{4}/.test(phone)) {
 	    	
 	    	if(/^[a-zA-Z0-9]{4,}$/.test(pw)){
@@ -121,6 +125,7 @@
 	    	alert("전화번호는 000-0000-0000 형식으로 넣어주세요.")
 	    }
 	})
+	
 </script>
 <style>
     .changable{
