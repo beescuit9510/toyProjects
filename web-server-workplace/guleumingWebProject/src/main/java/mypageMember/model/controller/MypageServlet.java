@@ -31,22 +31,7 @@ public class MypageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session2 = request.getSession(true);
-		
-		Member m = new Member();
-		m.setcMemberNo(3);
-		m.setcName("펀더변덕");
-		m.setcPassword("1234");
-		m.setcPhone("010-9999-9999");
-		m.setcEmail("penpeong2312@");
-		m.setBusinessNo(123123);
-		m.setBusinessCode("123123-312312-312312");
-		m.setManagerName("매니저 메닝");
-		
-		session2.setAttribute("member", m);
-		
-
+	
 
 		request.getRequestDispatcher("/WEB-INF/views/mypage/funder/mypage.jsp").forward(request, response);
 		

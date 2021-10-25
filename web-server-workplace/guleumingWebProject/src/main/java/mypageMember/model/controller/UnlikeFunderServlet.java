@@ -41,7 +41,6 @@ public class UnlikeFunderServlet extends HttpServlet {
 
 		int cMemberNo =member.getcMemberNo();		
 
-		
 		int likeBusinessNo = Integer.parseInt(request.getParameter("likeBusinessNo"));
 		
 		int r = new MypageMemberService().unLikeFunder(cMemberNo, likeBusinessNo);

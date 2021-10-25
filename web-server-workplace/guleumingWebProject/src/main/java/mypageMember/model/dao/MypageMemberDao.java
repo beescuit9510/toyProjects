@@ -735,4 +735,135 @@ public class MypageMemberDao {
 
 	}
 
+	public int doseMemberFund(Connection conn, int cMemberNo) {
+		
+		String query = "select count(*) as total from payment_info where c_member_no = ?";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = rset.getInt("total");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r ;
+
+	}
+	public int doseMemberhaveProject(Connection conn, int cMemberNo) {
+		
+		String query = "select count(*) as total from project_basic_info where business_no = ?";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = rset.getInt("total");
+			}
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r ;
+
+
+	}
+
+	public int deleteMember(Connection conn, int cMemberNo) {
+		
+		String query = "delete from member where c_member_no = ?";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			r = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r;
+
+	}
+
+	public int doseMemberhaveFunderPost(Connection conn, int cMemberNo) {
+		
+		String query = "select count(*) as total from maker_board where writer_no = ? \r\n";
+		
+		query.replaceAll("\r\n", " ");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int r = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = rset.getInt("total");
+			}
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return r ;
+
+
+	}
+
 }

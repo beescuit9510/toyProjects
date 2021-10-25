@@ -35,10 +35,6 @@ public class LikeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session = request.getSession(false);
-
-		Member m = new Member();
-		m.setcMemberNo(5);
-		session.setAttribute("member", m);
 		
 		Member member = (Member) session.getAttribute("member");
 

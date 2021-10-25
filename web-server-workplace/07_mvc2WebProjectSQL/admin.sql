@@ -162,7 +162,7 @@ select * from project_basic_info;
    
    
 -- 좋아요한 펀딩
-select rownum, fl.like_no, pbi.*,r.*,mi.* 
+select rownum as total , fl.like_no, pbi.*,r.*,mi.* 
 from member m
 join funding_like fl
 on m.c_member_no = fl.c_member_no
@@ -173,7 +173,9 @@ on fl.liked_project_no = r.reward_no
 join maker_info mi
 on fl.liked_project_no = mi.maker_info_no
 where m.c_member_no = 5
-order by fl.like_no desc;
+order by fl.like_no desc
+
+;
 ;
 
 -- 좋아요한 펀더
@@ -185,8 +187,9 @@ join member fm
 on fl.liked_business_no = fm.c_member_no
 join maker_board mb
 on fl.liked_business_no = mb.writer_no
-where m.c_member_no = 5
-order by fl.like_no desc;
+where m.c_member_no = 3
+order by fl.like_no desc
+;
 ;
 
 select * from payment_info where project_no =2;
@@ -275,14 +278,15 @@ delete from funder_like
 where c_member_no = 5 and liked_business_no = 6;
 
 
+select * from maker_board;
 -- 좋아요한 펀딩 펀더
 insert into funder_like values(5,6,like_seq.nextval);
 insert into funding_like values(5,2,like_seq.nextval);
 select * from maker_board;
 select * from project_basic_info;
-select * from funding_like;
+select * from funder_like;
 delete from funder_like;
-
+commit;
 
 
 insert into funding_comment values(FUNDCOMM_SEQ.nextval,'일반댓글1111',to_char(sysdate,'yyyy-mm-dd'),1,1,null,7);
@@ -344,14 +348,35 @@ select * from funding_comment;
 commit;
 
 -- 좋아요 펀딩 수 
-select count(*) from funding_like
+select count(*) as total from funding_like
 where c_member_no = 5;
 -- 좋아요 펀더 수 
-select count(*) from funder_like
-where c_member_no = 5 and liked_business_no = 1;
+select count(*) as total from funder_like
+where c_member_no = 5;
+
+select * from funding_like;
+select * from funder_like;
+select * from business;
+
+commit;
 
 
+select * from project_basic_info;
 
-
+update member set c_password = ? , c_phone = ? where c_member_no = ?;
 
 insert into funding_comment values(FUNDCOMM_SEQ.nextval,'일반댓글인데 길이가 조금 긴 일반댓글입니다. 길이가 조금 긴 일반 댓글 입니다. 길이가 조금 긴 일반 댓글 입니다.',to_char(sysdate,'yyyy-mm-dd'),1,1,null,1);
+delete from member where c_member_no = 6;
+;
+select * from project_basic_info where p_no = 6;
+select * from maker_board where writer_no = 6;
+
+
+
+commit;
+select * from member order by c_member_no desc;
+insert into member values(member_seq.nextval,'김토끼','123456789','010-8888-7868',to_char(sysdate,'yyyy-mm-dd'),'bun@gmail.com',3);
+
+
+select count(*) as total from project_basic_info where business_no = 6;
+select count(*) as total from payment_info where c_member_no = 6;

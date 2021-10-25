@@ -43,11 +43,6 @@ public class GetMoreMyOwnProjectListServlet extends HttpServlet {
 		
 		
 		HttpSession session = request.getSession(false);
-
-		Member m = new Member();
-		m.setcMemberNo(3);
-		session.setAttribute("member", m);
-		
 		
 		Member member= (Member)session.getAttribute("member");
 		

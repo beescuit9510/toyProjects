@@ -1,5 +1,24 @@
+<%@page import="table.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+		HttpSession session2 = request.getSession(false);
+		
+		Member m = new Member();
+		m.setcMemberNo(3);
+		m.setcName("펀더변덕");
+		m.setcPassword("1234");
+		m.setcPhone("010-9999-9999");
+		m.setcEmail("penpeong2312@");
+		m.setBusinessNo(123123);
+		m.setBusinessCode("123123-312312-312312");
+		m.setManagerName("매니저 메닝");
+		
+		session2.setAttribute("member", m);
+
+	
+	%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +35,7 @@
 			<div class="navi">
 				<a href="/fundedFundingList" id="active-navi">펀딩한 프로젝트</a> 
 				<a href="/myOwnProject">제작한 프로젝트</a>
-				<a href="#">관심 펀더 및 펀더</a> <a href="#">설정</a>
+				<a href="#">관심 펀더 및 펀더</a> <a href="/mypage">설정</a>
 			</div>
 		</div>
 		<div class="project-wrap">

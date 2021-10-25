@@ -6,22 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import mypageMember.model.service.MypageMemberService;
-import table.model.vo.Member;
 
 /**
- * Servlet implementation class ChangeMemberInfoServlet
+ * Servlet implementation class MoveServlet
  */
-@WebServlet(name = "ChangeMemberInfo", urlPatterns = { "/changeMemberInfo" })
-public class ChangeMemberInfoServlet extends HttpServlet {
+@WebServlet(name = "Move", urlPatterns = { "/move" })
+public class MoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChangeMemberInfoServlet() {
+    public MoveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,25 +26,7 @@ public class ChangeMemberInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession(false);
-
-		Member member = (Member) session.getAttribute("member");
-		
-		int cMemberNo = member.getcMemberNo();
-		
-		String phone = request.getParameter("phone");
-		String pw = request.getParameter("pw");
-		
-		int r = new MypageMemberService().updateMember(cMemberNo,phone,pw);
-		
-		if( r > 0) {
-			member.setcPhone(phone);
-			member.setcPassword(pw);
-			
-		}
-
-	
+		request.getRequestDispatcher("").forward(request, response);
 	}
 
 	/**

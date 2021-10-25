@@ -1,4 +1,3 @@
-<%@page import="table.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +16,10 @@
 		<div class="navi-wrap">
 			<div class="navi">
 				<a class="fundedFundings" href="/fundedFundingList">펀딩한 프로젝트</a> 
+				<c:if test="${sessionScope.member.cLevel > 2}">
 				<a class="myOwnProjects" href="/myOwnProject">제작한 프로젝트</a>
+				</c:if>
+
 				<a class="likeList" href="/likeList">관심 펀더 및 펀더</a>
 				<a class="mypage" href="/mypage">설정</a>
 			</div>
@@ -69,20 +71,25 @@
     	</div>
 		
 	</div>
+	<a class="moveJSP" href="/move"></a> 	
 	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 </body>
 <style></style>
 <script>
 	$(".mypage").attr("id","active-navi")
+	$(".indexJSP").attr("display","none");
 	
 	$(".myinfo-sign-out-btn").click(function () {
 	   	$.ajax({
 	   		url:"/deleteMember",
 	   		method:"post",
-	   		data:{pw:pw,phone:phone},
-	   		success:function(){
-	   			alert("개인 정보 수정 성공");
-	   			location.reload();
+	   		success:function(data){
+	   			alert(data);
+	   			if(data = "펀더로 활동 및 프로젝트 제작 혹은 펀딩 참여중입니다."){
+	   				return;
+	   			}else{
+		   			$(".moveJSP").click();				
+	   			}
 	   		}
 	   	})
 	})

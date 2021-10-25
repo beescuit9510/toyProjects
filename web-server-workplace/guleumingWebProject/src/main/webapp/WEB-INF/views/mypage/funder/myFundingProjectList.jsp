@@ -16,7 +16,9 @@
 		<div class="navi-wrap">
 			<div class="navi">
 				<a class="fundedFundings" href="/fundedFundingList">펀딩한 프로젝트</a> 
+				<c:if test="${sessionScope.member.cLevel > 2}">
 				<a class="myOwnProjects" href="/myOwnProject">제작한 프로젝트</a>
+				</c:if>
 				<a class="likeList" href="/likeList">관심 펀더 및 펀더</a>
 				<a class="mypage" href="/mypage">설정</a>
 			</div>
@@ -198,7 +200,8 @@
 					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.funding.projectBasicInfo.targetPrice*ff.funding.total+"</span>원</div>";
 					html += "<div class='buttons'>";
 					html += "<button onclick='openList("+(start+i)+","+1+")' class='btn_sm btn_out involved-members'>참여 회원 보기</button>";
-					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>댓글 보기</button>";
+//					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>댓글 보기</button>";
+					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>프로젝트 보러가기</button>";
 					html += "</div>";
 					html += "</section>";
 				}

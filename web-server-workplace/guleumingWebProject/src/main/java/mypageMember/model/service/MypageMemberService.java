@@ -192,4 +192,26 @@ public class MypageMemberService {
 		return r;
 	}
 
+	public int deleteMember(int cMemberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int r = -1;
+		MypageMemberDao dao = new MypageMemberDao();
+		
+		if(dao.doseMemberFund(conn, cMemberNo)<=0&&dao.doseMemberhaveProject(conn, cMemberNo)<=0&&dao.doseMemberhaveFunderPost(conn, cMemberNo)<=0) {
+			r = dao.deleteMember(conn, cMemberNo);			
+		}
+		
+		
+		if (r > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return r;
+	}
+
 }

@@ -38,11 +38,6 @@ public class FundedFundingListServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		
-		Member m = new Member();
-		m.setcMemberNo(5);
-		
-		session.setAttribute("member", m);
-
 		Member member = (Member) session.getAttribute("member");
 		
 		int cMemberNo = member.getcMemberNo();
