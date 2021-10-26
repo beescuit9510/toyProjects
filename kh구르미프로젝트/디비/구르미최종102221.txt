@@ -41,6 +41,7 @@ CREATE TABLE project_basic_info (
 	end_date			char(10)			NOT NULL,
 	project_story		varchar2(4000)		NOT NULL,
 	funding_category	varchar2(50)		NOT NULL  REFERENCES funding_category(funding_category)
+----	start_date		char(10)		not null;
 );
 
 -- 프로젝트 만들기 - 기본정보 시퀀스
@@ -80,7 +81,8 @@ CREATE TABLE maker_board (
 	company_intro	    varchar2(4000)  NOT NULL,
 	profile_filepath	varchar2(1500)  NOT NULL,
 	funder_category	    varchar2(50)    REFERENCES funder_category(funder_category)
-	
+----	maker_board_no	number 	not null unique
+----	write_date		char(10) 	not null
 );
 
 -- 펀딩댓글 테이블
@@ -135,6 +137,7 @@ CREATE TABLE funder_like (
 	c_member_no	        number		NOT NULL  REFERENCES MEMBER(c_member_no),
 	liked_business_no	number		NOT NULL  REFERENCES BUSINESS(business_no),
     CONSTRAINT unique_constraint_funder_like UNIQUE(c_member_no, liked_business_no)
+----	like_no number unique not null;
 );
 
 -- 주문목록 테이블
@@ -147,8 +150,9 @@ CREATE TABLE payment_info (
 	receive_phone	char(13)		    NOT NULL,
 	project_no	    number		        NOT NULL  REFERENCES project_basic_info(project_no),
 	c_member_no	    number		        NOT NULL  REFERENCES MEMBER(c_member_no)
+	order_date 	char(19) 		not null
+----	to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS') 형식
 );
-
 
 alter table maker_board add maker_board_no number;
 alter table maker_board modify maker_board_no number not null;

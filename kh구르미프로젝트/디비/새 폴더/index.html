@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="default.css">
+<!-- 폰트 CSS -->
+<link rel="stylesheet" href="font.css">
+<!-- 적용방법 2 : cdn -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- 적용방법 3 -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="title">펀딩한 프로젝트</div>
+            <div class="navi-wrap">
+                <div class="navi">
+                    <a href="" id="active-navi" >펀딩한 프로젝트</a >
+                    <a href="#" >제작한 프로젝트</a >
+                    <a href="#" >관심 펀더 및 펀더</a >
+                    <a href="#" >설정</a >
+                </div>
+            </div>
+        <div class="project-wrap">
+            <div class="project-row">
+                <section class="project-box moving-top">
+                    <div class="project-profile"><a href="#"><div id="background-url" style="background:url('https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2');" ></div><p class="project-title">프로젝트 제목칸</p></a></div>
+
+                    <div class="rate">달성률 <span class="percent point">0%</span></div>
+                    <div class="target-price">목표 금액 <span>0</span></div>
+                    <div class="buttons">
+                        <button class="btn_sm btn_out involved-members">참가된 회원</button>
+                        <button class="btn_sm btn_out funding-comments">문의 댓글</button>
+                    </div>
+                </section>
+                <section class="project-box moving-top">
+                    <div class="project-profile"></div>
+                    <div class="rate">달성률 <span>0 %</span></div>
+                    <div class="target-price">목표 금액 <span>0</span></div>
+                    <div class="buttons">
+                        <button class="btn_sm btn_out involved-members">참가된 회원</button>
+                        <button class="btn_sm btn_out funding-comments">문의 댓글</button>
+                    </div>
+                </section>
+                <section class="project-box moving-top">
+                    <div class="project-profile"></div>
+                    <div class="rate">달성률 <span>0 %</span></div>
+                    <div class="target-price">목표 금액 <span>0</span></div>
+                    <div class="buttons">
+                        <button class="btn_sm btn_out involved-members">참가된 회원</button>
+                        <button class="btn_sm btn_out funding-comments">문의 댓글</button>
+                    </div>
+                </section>
+            </div>
+            <div class="project-row">
+                <section class="project-box moving-top">
+                    <div class="project-profile"></div>
+                    <div class="rate">달성률 <span>0 %</span></div>
+                    <div class="target-price">목표 금액 <span>0</span></div>
+                    <div class="buttons">
+                        <button class="btn_sm btn_out involved-members">참가된 회원</button>
+                        <button class="btn_sm btn_out funding-comments">문의 댓글</button>
+                    </div>
+                </section>
+                <section class="project-box moving-top">
+                    <div class="project-profile"></div>
+                    <div class="rate">달성률 <span>0 %</span></div>
+                    <div class="target-price">목표 금액 <span>0</span></div>
+                    <div class="buttons">
+                        <button class="btn_sm btn_out involved-members">참가된 회원</button>
+                        <button class="btn_sm btn_out funding-comments">문의 댓글</button>
+                    </div>
+                </section>
+                <!-- <section class="project-box moving-top">
+                    <div class="project-profile"></div>
+                    <div class="rate">달성률 <span>0 %</span></div>
+                    <div class="target-price">목표 금액 <span>0</span></div>
+                    <div class="buttons">
+                        <button class="btn_sm btn_out involved-members">참가된 회원</button>
+                        <button class="btn_sm btn_out funding-comments">문의 댓글</button>
+                    </div>
+                </section> -->
+
+            </div>
+        <div class="readMore-div">
+            <button class="readMore btn btn-sm">더 보기</button>
+        </div>
+
+        </div>
+        
+    </div>
+</body>
+</html>
+<style>
+    :root {
+    --main-color: #00B9CE;
+    }
+    
+    .project-box {
+        width: 270px;
+        height: 350px;
+        border: solid 1px #EAEBED;
+        margin: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: "logo";
+        border-radius: 10px;
+    }
+
+    .project-profile > a{
+        font-size: 60px;
+        text-align: center;
+        line-height: 200px;
+        color: whitesmoke;
+        font-weight: 900;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .project-profile > a:hover::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0, 15%);
+        left: 0;
+        top: 0;
+        position: absolute;
+        z-index: 1;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .project-box> *{
+        color:#333;
+    }
+    .project-row{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+    }
+
+    .rate > span{
+        font-size: 15px;
+        color: var(--main-color);
+    }
+    .project-wrap{
+        width: 900px;
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+        margin: 0 auto;
+    }
+
+    .buttons{
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin: 13px;
+        margin-bottom: 0px;
+    }
+    
+    .project-box{
+        position: relative;
+    }
+    .moving-top{
+        transition: transform 0.4s ease;
+        transform: translateY(0px);
+    }
+    
+    .moving-top:hover{
+        transform: translateY(-5px);
+        box-shadow: 2px 2px 5px rgb(0, 0, 0, 15%);      
+        border: solid 0.5px var(--main-color);
+        box-sizing: border-box;
+        
+    }
+    
+
+    .project-box> div:not(div:last-child):not(div:first-child){
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 5%;
+        width: 90%;
+        border-bottom: solid 1px #EAEBED;
+    }
+
+    .project-profile{
+        padding:0;
+        border: 0;
+        box-sizing: border-box;
+        width: 100%;
+        height: 60%;
+        background-color: var(--main-color);
+        box-sizing: border-box;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .navi-wrap{
+        display: grid;
+        position: relative;
+    }
+    /* .navi-wrap::after{
+        content: "";
+        position: absolute;
+        border: solid 1px #464646;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 43%;
+    } */
+    .navi{
+        
+        width: 100%;
+        border-left: 0;
+        border-right: 0;
+        margin: auto auto;
+        grid-column: 2;
+        margin-bottom: 50px;
+    }
+    .navi > a{
+        display: inline-block;
+        width: 130px;
+        height: 30px;
+        text-align: center;
+        box-sizing: border-box;
+        font-size: 15px;
+        font-weight: 800;
+        color: #333;
+        display: inline-block;
+    }
+    #active-navi{
+        display: inline-block;
+        color: var(--main-color);
+        border-bottom: solid 5px var(--main-color);
+    }
+    .title{
+        text-align: center;
+        font-size: 65px;
+        margin-bottom: 50px;
+        color: var(--main-color);
+        font-family: "logo";
+
+    }
+
+    .readMore-div{
+        display: grid;
+        grid-template-columns: 3;
+    }
+    .readMore-div > .readMore{
+        margin-top: 100px;
+        grid-column: 2;
+    }
+
+
+    #background-url{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        width: 100%;
+        height: 100%;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
+
+    .project-title{
+		position:absolute;
+        bottom:-80px;
+		padding-left:12px;
+		font-size:15px;
+		z-index:1;
+        color:white;
+        font-size: 17px;
+        display: none;
+	}
+	
+	.moving-top:hover > .project-profile > a > p{
+        display: block;
+	}
+
+</style>
+<script>
+    var html = $("<h1>haha</h1>");
+    html.css("backgorund-color","red")
+    // console.log(
+
+    // )
+;
+    $(".project-wrap").find(".project-row").after(html);
+				
+</script>

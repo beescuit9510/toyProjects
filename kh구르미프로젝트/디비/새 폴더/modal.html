@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<link rel="stylesheet" href="default.css">
+<!-- 폰트 CSS -->
+<link rel="stylesheet" href="font.css">
+
+<!-- 적용방법 2 : cdn -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- 적용방법 3 -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<body>
+    <button id="modalBtn" class="button"> click here</button>
+
+	 <button id="simpleModal" class="modal"> 
+        <div class="modal-content">
+            <span class="closeBtn" onclick="">x</span>
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <p class="modal-small"><span class="start-date">2021-12-30</span><span> ~ </span><span class="end-date">2022-12-30</span></p>
+                <div class="reward-info">
+                    <div>
+                        <p class="reward-title">키르시 미들<span class="funding-category">푸드</span></p>
+                        <p class="reward-content">상품 설명 설명...</p>
+                    </div>
+                </div>
+                <div class="maker-info default-modal-css">
+                    <div>펀딩 참여 회원 목록</div>
+                    <div class="customer-list">
+                        <p>1<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>2<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>3<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>4<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>5<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>6<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>7<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>8<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>9<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>10<span class="">변변덕</span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                    </div>
+                </div>
+                <div class="maker-info default-modal-css">
+                    <div>펀딩 참여 회원 목록</div>
+                    <div class="customer-list">
+                        <p>1<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>2<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>3<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>4<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>5<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>6<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>7<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>8<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>9<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>10<span class="">변변덕</span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                    </div>
+                </div>
+                <div class="maker-info default-modal-css">
+                    <div>펀딩 참여 회원 목록</div>
+                    <div class="customer-list">
+                        <p>1<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>2<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>3<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>4<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>5<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>6<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>7<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>8<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>9<span class="writer-name"></span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                        <p>10<span class="">변변덕</span><span class="customer-payment-no">13123123123123</span> <span class="customer-order-date">2021-10-2 23:20:02</span></p>
+                    </div>
+                </div>
+                <div class="paging">
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                </div>
+            </div>
+            <p class="modal-small" >예상배송일 <span class="shipping-date">2010-12-31</span> ~</p>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </button>	
+
+
+</body>
+<script>
+    
+    var a =[];
+    a.push
+    
+    $("#modalBtn").click(function(){
+        $("#simpleModal").css("display","block");
+        window.addEventListener('click',clickModal);
+    })
+    $(".closeBtn").click(function () {
+        $(".modal").css("display","none");
+    })
+    
+    function clickModal(e) {
+        if(e.target == document.getElementById("simpleModal")){
+            $(".closeBtn").click();
+        }else{
+
+            window.addEventListener('click',clickModal);
+        }
+        
+    }
+    
+</script>
+<style>
+    .customer-order-date{
+        float: right;
+        display: block;
+        padding-right: 7px;
+    }
+    .paging{
+        display: flex;
+        justify-content: center;
+    }
+    .paging > p{
+        padding: 5px;
+        font-size: 9px;
+        font-weight: 600;
+        color: #00B9CE;
+    }
+    .paging > p:hover{
+        cursor: pointer;
+    }
+</style>
+<style>
+    .reward-info > div > p:first-child{
+        font-size: 25px;
+        font-weight: bolder;
+        color: #00B9CE;
+    }
+    .reward-info > div > p:first-child > span{
+        padding-left: 5px;
+        font-size: 12px;
+        color:#00B9CE;
+    }
+    .reward-info{
+        font-family: "logo";
+    }
+    .default-modal-css{
+        margin-bottom: 17px;
+    }
+    .default-modal-css > div:first-child{
+        color: #00B9CE;
+        font-size: 15px;
+        font-family: "logo";
+        padding-left: 10px;
+
+    }
+    .default-modal-css > div:last-child{
+        display: flex;
+        flex-direction: column;
+    
+        border-top: 2px solid #00B9CE;
+        border-bottom: 2px solid #00B9CE;
+    }
+    
+    .default-modal-css > div:last-child > *{
+        border-bottom: 0.2px dotted #EAEBED;
+        text-align: left;
+        font-size: 12px;
+        padding-left: 10px;
+    }
+    .default-modal-css > div:last-child > * span:first-child{
+        display: inline-block;
+        width: 80px;
+        font-size: 11px;
+    }
+    .default-modal-css > div:last-child > * span:{
+        color: violet;
+        padding-left: 20px;
+    }
+    .default-modal-css > *:first-child{
+        border-bottom: 0.2px dotted #EAEBED;
+        text-align: left;        
+    }
+    .modal-header{
+        background-color: #00B9CE;
+        padding: 15px;
+        color: #fff;
+        
+    }
+    
+    .modal-header, .modal-footer{
+        margin: 0;
+        height: 30px;
+    }
+    .modal-header{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    .modal-footer{
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .modal-content{
+        border-radius: 10px;
+    }
+        
+    .modal-body{
+        padding: 10px 20px;
+    }
+    
+    .modal-footer{
+        background-color: #00B9CE;
+        padding: 10px;
+        color: white;
+        text-align: center;
+    }
+
+
+    .modal-small{
+        font-family: "logo";
+        font-size: 10px;
+        line-height: 25px;
+        color: rgb(85, 85, 85);
+        border:none;
+        margin-top: -10px;
+    }
+    
+    .big{
+        font-size: 15px;
+        font-weight: 600;
+    }
+    
+    .modal{
+        position: fixed;
+        z-index: 3;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0,0,0,.5);
+        overflow: auto;
+        line-height: 1.6;
+    }
+    
+    .modal-content{
+        background-color: white;
+        margin: 20% auto;
+        width: 400px;
+        box-shadow: 0 5px 8px 0 rgb(0,0,0,.2), 0 7px 20px 0 rgb(0,0,0,.2);
+        animation: modalOpen 0.1s;
+    }
+    
+    .closeBtn{
+        float: right;
+        font-size: 19px;
+        color: white;
+        padding-right: 13px;
+    }
+
+    .closeBtn:hover, .closeBtn:focus{
+        cursor: pointer;
+        text-decoration: none;
+        color: #000;
+    }
+
+    @keyframes modalOpen {
+        from{opacity: 0;}
+        to{opacity: 1;}
+    }
+    </style>
+</html>
