@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import mypageMember.model.dao.MypageMemberDao;
 import mypageMember.model.service.MypageMemberService;
 import table.model.vo.Member;
 

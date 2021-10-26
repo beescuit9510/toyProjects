@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import mypageFunderFunding.model.vo.Funding;
 import mypageFunderFunding.model.vo.MyOwnProject;
 import mypageMember.model.service.MypageMemberService;
 import table.model.vo.FundingComment;

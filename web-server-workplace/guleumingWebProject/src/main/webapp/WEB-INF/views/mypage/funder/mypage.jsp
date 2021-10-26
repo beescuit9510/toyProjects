@@ -10,7 +10,7 @@
 </head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><head>
 <body>
-	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container">
 		<div class="title">설정</div>
 		<div class="navi-wrap">

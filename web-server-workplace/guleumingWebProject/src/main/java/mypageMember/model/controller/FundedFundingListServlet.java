@@ -1,7 +1,6 @@
 package mypageMember.model.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mypageFunderFunding.model.vo.FundedFunding;
 import mypageMember.model.service.MypageMemberService;
 import table.model.vo.Member;
 

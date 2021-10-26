@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container">
 		<div class="title">제작한 프로젝트</div>
 		<div class="navi-wrap">
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</div>
-	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	<div id="inputs">
 		<div id="totalCount">${totalCount }</div>
 	</div>
