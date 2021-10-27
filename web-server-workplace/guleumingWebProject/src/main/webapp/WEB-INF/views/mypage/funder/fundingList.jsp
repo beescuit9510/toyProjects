@@ -271,10 +271,6 @@
         display: block;
 	}
 	
-	.navi-wrap{
-		height:30px;
-	}
-	
 	
 	
 </style>

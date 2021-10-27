@@ -44,7 +44,6 @@
     <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.MyOwnProjectCustomers"/>
     <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.MyOwnProjectCustomer"/>
     <fullyQualifiedTypeName name="common.JDBCTemplate"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport"/>
     <fullyQualifiedTypeName name="java.util.stream.Stream"/>
     <fullyQualifiedTypeName name="mypageFunderFunding.model.vo.FundedFunding"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="mypageMember.model.controller.MypageServlet"/>
     <fullyQualifiedTypeName name="mypageMember.model.service.MypageMemberService"/>
     <fullyQualifiedTypeName name="mypageMember.model.dao.MypageMemberDao"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>

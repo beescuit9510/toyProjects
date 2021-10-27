@@ -1,9 +1,10 @@
 package mypageFunderFunding.model.vo;
 
-import table.model.vo.MakerInfo;
 import table.model.vo.ProjectBasicInfo;
 import table.model.vo.Reward;
-
+import table.model.vo.MakerInfo;
+/*import table.model.vo.PaymentInfo;
+*/
 public class Funding {
 	// 펀딩 판매갯수
 	int total;

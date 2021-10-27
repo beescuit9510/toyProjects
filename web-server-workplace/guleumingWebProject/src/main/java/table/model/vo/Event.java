@@ -1,12 +1,12 @@
 package table.model.vo;
 
 public class Event {
-	private int evnetNo;
+	private int eventNo;			//
 	private String eventTitle;
-	private String evnetContent;
+	private String eventContent;	//
 	private String writeDate;
 	private String filepath;
-	private int evnetWriter;
+	private int eventWriter;		//
 
 	
 	
@@ -23,23 +23,23 @@ public class Event {
 		super();
 	}
 
-	public Event(int evnetNo, String eventTitle, String evnetContent, String writeDate, String filepath,
-			int evnetWriter) {
+	public Event(int eventNo, String eventTitle, String eventContent, String writeDate, String filepath,
+			int eventWriter) {
 		super();
-		this.evnetNo = evnetNo;
+		this.eventNo = eventNo;
 		this.eventTitle = eventTitle;
-		this.evnetContent = evnetContent;
+		this.eventContent = eventContent;
 		this.writeDate = writeDate;
 		this.filepath = filepath;
-		this.evnetWriter = evnetWriter;
+		this.eventWriter = eventWriter;
 	}
 
-	public int getEvnetNo() {
-		return evnetNo;
+	public int getEventNo() {
+		return eventNo;
 	}
 
-	public void setEvnetNo(int evnetNo) {
-		this.evnetNo = evnetNo;
+	public void setEventNo(int eventNo) {
+		this.eventNo = eventNo;
 	}
 
 	public String getEventTitle() {
@@ -50,12 +50,12 @@ public class Event {
 		this.eventTitle = eventTitle;
 	}
 
-	public String getEvnetContent() {
-		return evnetContent;
+	public String getEventContent() {
+		return eventContent;
 	}
 
-	public void setEvnetContent(String evnetContent) {
-		this.evnetContent = evnetContent;
+	public void setEventContent(String eventContent) {
+		this.eventContent = eventContent;
 	}
 
 	public String getWriteDate() {
@@ -74,18 +74,18 @@ public class Event {
 		this.filepath = filepath;
 	}
 
-	public int getEvnetWriter() {
-		return evnetWriter;
+	public int getEventWriter() {
+		return eventWriter;
 	}
 
-	public void setEvnetWriter(int evnetWriter) {
-		this.evnetWriter = evnetWriter;
+	public void setEventWriter(int eventWriter) {
+		this.eventWriter = eventWriter;
 	}
 
 	@Override
 	public String toString() {
-		return "Event [evnetNo=" + evnetNo + ", eventTitle=" + eventTitle + ", evnetContent=" + evnetContent
-				+ ", writeDate=" + writeDate + ", filepath=" + filepath + ", evnetWriter=" + evnetWriter + "]";
+		return "Event [eventNo=" + eventNo + ", eventTitle=" + eventTitle + ", eventContent=" + eventContent
+				+ ", writeDate=" + writeDate + ", filepath=" + filepath + ", eventWriter=" + eventWriter + "]";
 	}
 
 	

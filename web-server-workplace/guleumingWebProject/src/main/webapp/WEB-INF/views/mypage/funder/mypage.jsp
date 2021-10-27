@@ -36,12 +36,12 @@
                     <div><p class="email"></p>${sessionScope.member.cEmail}</div>
                 </div>
                 <div>
-                    <div class="gray-title">비밀번호<span class="changable gray-title">변경가능</span></div>
-                    <input class="pw-to-change" type="text" placeholder="${sessionScope.member.cPassword}">
+                    <div class="gray-title">비밀번호<span class="changable line-css gray-title">*</span></div>
+                    <input class="pw-to-change" type="password" placeholder="${sessionScope.member.cPassword}">
                 </div>
                 <div>
-                    <div class="gray-title">전화번호<span class="changable gray-title">변경가능</span></div>
-                    <input class="phone-to-change" type="text" placeholder="${sessionScope.member.cPhone}">
+                    <div class="gray-title">전화번호<span class="changable line-css gray-title">*</span></div>
+                    <input class="phone-to-change line-css" type="text" placeholder="${sessionScope.member.cPhone}">
                 </div>
                 <button class="myinfo-btn btn btn-sm update-myinfo-btn">설정 수정하기</button>
             </div>
@@ -75,6 +75,19 @@
 </body>
 <style></style>
 <script>
+	var pwBeforeChange = $(".pw-to-change").attr("placeholder")+"";
+	var phoneBeforeChange = $(".phone-to-change").attr("placeholder");
+	var placeholder = "•"
+	
+	console.log(pwBeforeChange);
+	console.log(phoneBeforeChange);
+	
+	for(var i = 1; i<pwBeforeChange.length;i++){
+		placeholder += "•";
+	};
+	
+	$(".pw-to-change").attr("placeholder",placeholder);
+	
 	$(".mypage").attr("id","active-navi")
 	$(".indexJSP").attr("display","none");
 	
@@ -97,13 +110,24 @@
 		var phone = $(".phone-to-change").val();
 		var pw = $(".pw-to-change").val();
 		
-		console.log(phone);
-		console.log(pw);
-		if(phone == "" || pw == ""){
-			
-			alert("전화번호 및 비밀번호를 입력후 수정이 가능합니다.")
+		if(phone == "" && pw == ""){			
+			alert("전화번호 혹은 비밀번호를 입력후 수정이 가능합니다.")
 			return;
 		}
+		
+		if(phone == ""){
+			phone = phoneBeforeChange;
+			
+		}
+		
+		if(pw == ""){
+			pw = pwBeforeChange;
+		}
+		
+		
+		console.log("phone"+phone);
+		console.log(pw);
+		
 	    if (/^[0-9]{3}-[0-9]{4}-[0-9]{4}/.test(phone)) {
 	    	
 	    	if(/^[a-zA-Z0-9]{4,}$/.test(pw)){
@@ -128,9 +152,6 @@
 	
 </script>
 <style>
-    .changable{
-        font-size: 5px;
-    }
     .myinfo-wrap >div >*{
         padding-left: 5px;
         font-size:19px;
@@ -206,6 +227,24 @@
     .warning-sign-out{
     	font-size:12px !important;
     }
+/*    .changable{
+	    display:inline-block;
+	    text-align:center;
+        font-size: 16px;
+    }
+*/    
+    .line-css{
+    	display:table-cel;
+    	font-size:19px;    	
+    	vertical-align:middle;
+    	
+    }
+    .line-css::placeholder{
+    	display:table-cel;
+    	vertical-align:baseline !important;
+    	
+    }
+    
 </style>
 
 </html>

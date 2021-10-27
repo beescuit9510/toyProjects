@@ -683,12 +683,7 @@
 	.moving-top:hover > .project-profile:hover > a > p{
         display: block;
 	}
-	
-	.navi-wrap{
-		height:30px;
-	}
-	
-	
+
 	
 </style>
 <style>

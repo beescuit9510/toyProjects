@@ -15,22 +15,23 @@ public class MakerBoard {
 	private String businessName;
 	private int makerBoardNo;
 	private String writeDate;
+	private int funderCount;
 
-//	펀더 게시판 테이블 (
-//			작성자 number primary key reference 사업자 등록(사업자 등록No) delete on cascade
-//			설립입자 char(10)
-//			이메일 varchar2(50) 
-//			검색 태그 varchar2(500)
-//			기술 정보 varchar2(500)
-//			스킬 레벨 varchar2(500)
-//			회사주소 varchar2(500)
-//			회사 소개글 varchar2(4000) not null
-//			프로필 이미지filepath varchar2(1500) not null
-//			업종 varchar2(50) reference not null 펀더_카테고리(펀더 업종)
-//			법인명 varchar(50) reference 사업자 등록(법인명)
-//			maker_board_no number not null unique
-//			write_date char(10) not null 
-//			)
+		/*펀더 게시판 테이블 (
+			작성자 number 				writer_no
+			설립입자 char(10)				open_date
+			이메일 varchar2(50) 			board_email
+			검색 태그 varchar2(500)			search_tag
+			기술 정보 varchar2(500)			skill_name
+			스킬 레벨 varchar2(500)			skill_level
+			회사주소 varchar2(500)			company_addr
+			회사 소개글 varchar2(4000)			company_intro
+			프로필 이미지filepath varchar2(1500)		profile_filepath
+			업종 varchar2(50) 				funder_category
+			법인명 varchar(50)				business_name
+			maker_board_no				maker_board_no
+			write_date char(10)				write_date
+		)*/
 
 	public MakerBoard() {
 		super();
@@ -38,7 +39,7 @@ public class MakerBoard {
 
 	public MakerBoard(int writerNo, String openDate, String boardEmail, String searchTag, String skillName,
 			String skillLevel, String companyAddr, String companyIntro, String profileFilepath, String funderCategory,
-			String businessName, int makerBoardNo, String writeDate) {
+			String businessName, int makerBoardNo, String writeDate, int funderCount) {
 		super();
 		this.writerNo = writerNo;
 		this.openDate = openDate;
@@ -53,6 +54,15 @@ public class MakerBoard {
 		this.businessName = businessName;
 		this.makerBoardNo = makerBoardNo;
 		this.writeDate = writeDate;
+		this.funderCount = funderCount;
+	}
+
+	public int getFunderCount() {
+		return funderCount;
+	}
+
+	public void setFunderCount(int funderCount) {
+		this.funderCount = funderCount;
 	}
 
 	public int getWriterNo() {
@@ -110,7 +120,11 @@ public class MakerBoard {
 	public void setCompanyAddr(String companyAddr) {
 		this.companyAddr = companyAddr;
 	}
-
+	
+	public String getCompanyIntroBr() {
+		return companyIntro.replace("\r\n", "<br>");
+	}
+	
 	public String getCompanyIntro() {
 		return companyIntro;
 	}
@@ -167,7 +181,4 @@ public class MakerBoard {
 				+ profileFilepath + ", funderCategory=" + funderCategory + ", businessName=" + businessName
 				+ ", makerBoardNo=" + makerBoardNo + ", writeDate=" + writeDate + "]";
 	}
-	
-	
-
 }

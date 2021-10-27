@@ -1,23 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="table.model.vo.Member"%>
-<%
-	HttpSession session2 = request.getSession(true);
-	
-	Member m = new Member();
-	m.setcMemberNo(5);
-	m.setcName("펀더변덕");
-	m.setcPassword("1234");
-	m.setcPhone("010-9999-9999");
-	m.setcEmail("penpeong2312@");
-	m.setBusinessNo(123123);
-	m.setcLevel(2);
-	m.setBusinessCode("123123-312312-312312");
-	m.setManagerName("매니저 메닝");
-	
-	session2.setAttribute("member", m);
 
-%>
 <!DOCTYPE html>
 <html>
 <!-- 기본 CSS -->
@@ -37,31 +21,33 @@
             </div>
             <ul class="nav_left">
                 <li>
-                    <a class="a" href="/funding/fundingList">펀딩</a>
+                    <a href="/fundingList">펀딩</a>
                 </li>
                 <li>
-                    <a class="a" href="/funder/funderList">펀더찾기</a>
+                    <a href="/funder/funderList?reqPage=1&funderCategory=전체">펀더찾기</a>
                 </li>
                 <li class="nav_more">
-                    <a href="#">더보기 메뉴</a>
+                    <a href="#a">더보기 메뉴</a>
                     <ul class="submenu">
-                        <li><a class="a" href="/readMore/notice/noticeList">공지사항</a></li>
-                        <li><a class="a" href="/readMore/event/eventList">이벤트</a></li>
+                        <li><a href="/noticeList?reqPage=1">공지사항</a></li>
+                        <li><a href="/eventList?reqPage=1">이벤트</a></li>
                     </ul>
                 </li>
+                <c:if test="${not empty sessionScope.member && sessionScope.member.cLevel eq 1 || sessionScope.membermcLevel eq 3 }">
                 <li>
-                    <a href="/project/projectFrm" class="nav_point a"><span>프로젝트 만들기</span></a>
+                    <a href="/projectFrm" class="nav_point a"><span>프로젝트 만들기</span></a>
                 </li>
+                </c:if>
             </ul>
             <ul class="nav_right">
                 <c:choose>
                 	<%-- 로그아웃 시 --%>
                 	<c:when test="${empty sessionScope.member}">
 		                <li>
-		                    <a class="a" href="/login/login">로그인</a>
+		                    <a class="a" href="login">로그인</a>
 		                </li>
 		                <li>
-		                    <a class="a" href="/signUp/signUp">회원가입</a>
+		                    <a class="a" href="/join">회원가입</a>
 		                </li>
                 	</c:when>
                 	<c:otherwise>                	
@@ -84,15 +70,19 @@
 			<nav id="sidenav">
 		        <span id="close_sidenav">&times;</span>
 		        <header>
-		            <img src="img/icon/user.png">
-		            <p class="name"></p>
-		            <p class="id"></p>
+		            <img src="/img/icon/user.png">
+		            <p class="name">${sessionScope.member.cName}</p>
+		            <p class="id">${sessionScope.member.cEmail}</p>
 		        </header>
 		        <ul>
-		          <li><a class="a" href="/mypage/member/fundingList">펀딩한 프로젝트</a></li>
-		          <li><a class="a" href="/mypage/member/bookmark">북마크</a></li>
-		          <li><a class="a" href="/mypage/member/mypage">설정</a></li>
-		          <li><a class="a" href="#">로그아웃</a></li>
+		          <li><a class="fundedFundings" href="/fundedFundingList">펀딩한 프로젝트</a></li>
+		          <li><c:if test="${sessionScope.member.cLevel > 2}">
+			            <a class="myOwnProjects" href="/myOwnProject">제작한 프로젝트</a>
+			           </c:if>
+			       </li>
+			       <li><a class="likeList" href="/likeList">관심 펀더 및 펀더</a></li>
+		          <li><a class="mypage" href="/mypage">설정</a></li>
+		          <li><a href="#">로그아웃</a></li>
 		        </ul>
 		    </nav>	
 		</c:when>
@@ -101,15 +91,15 @@
 			<nav id="sidenav">
 		        <span id="close_sidenav">&times;</span>
 		        <header>
-		            <img src="img/icon/user.png">
-		            <p class="name"></p>
-		            <p class="id"></p>
+		            <img src="/img/icon/user.png">
+		            <p class="name">${sessionScope.member.cName}</p>
+		            <p class="id">${sessionScope.member.cEmail}</p>
 		        </header>
 		        <ul>
-			      <li><a class="a" href="/mypage/funder/myFundingProjectList">제작한 프로젝트</a></li>	        
-		          <li><a class="a" href="/mypage/funder/fundingList">펀딩한 프로젝트</a></li>
-		          <li><a class="a" href="/mypage/funder/mypage">설정</a></li>
-		          <li><a class="a" href="#">로그아웃</a></li>
+			      <li><a href="/mypage/funder/myFundingProjectList">제작한 프로젝트</a></li>	        
+		          <li><a href="/mypage/funder/fundingList">펀딩한 프로젝트</a></li>
+		          <li><a href="/mypage/funder/mypage">설정</a></li>
+		          <li><a href="#">로그아웃</a></li>
 		        </ul>
 		    </nav>	
 		</c:when>
@@ -118,66 +108,65 @@
 			<nav id="sidenav">
 		        <span id="close_sidenav">&times;</span>
 		        <header>
-		            <img src="img/icon/user.png">
-		            <p class="name">admin</p>
-		            <p class="id">admin@guleming.com</p>
+		            <img src="/img/icon/user.png">
+		            <p class="name">${sessionScope.member.cName}</p>
+		            <p class="id">${sessionScope.member.cEmail}</p>
 		        </header>
 		        <ul>
-		          <li><a class="a" href="/adminPage/fundingList">펀딩 목록</a></li>
-		          <li><a class="a" href="/adminPage/funderList">펀더 목록</a></li>
-		          <li><a class="a" href="/adminPage/memberList">회원 목록</a></li>
-		          <li><a class="a" href="#">로그아웃</a></li>
+		          <li><a href="/adminPageFundingList?reqPage=1">펀딩 목록</a></li>
+		          <li><a href="/adminPageFunderList?reqPage=1">펀더 목록</a></li>
+		          <li><a href="/adminPageMemberList?reqPage=1&type=1">회원 목록</a></li>
+		          <li><a href="#">로그아웃</a></li>
 		        </ul>
 		    </nav>
 		</c:when>
     </c:choose>
-      <a href="#" class="top"><img src="img/icon/top.png"></a>
-    </c:if>
-      
-<script>
-  $("#nav_mypage").click(function() {
-      $("#sidenav").css("right", "0");
-    $(".back_dark").show();
-  });
-  $("#close_sidenav").click(function() {
-      $("#sidenav").css("right", "-350px");
-    $(".back_dark").hide();
-  });
-  // 백그라운드 클릭 시 메뉴 닫기 
-  $(".back_dark").click(function(){
-      $('#sidenav').css("right", "-350px");
-      $(".back_dark").hide();
-  }); 
-  $(function(){
-      $(".submenu").prev().append("<span class='more'><img src='img/icon/nav_icon.png'></span>");
-      $(".more").parent().click(function(){
-          $(this).next().slideToggle();
-          $(this).children(".more").toggleClass("active");
-      });
-  });
-  // top 버튼 
-  $( document ).ready( function() {
-      // 처음에는 안보이게 숨기기
-      $(".top").hide();
-      //  스크롤 탑 + fadein 효과 
-      $(window).scroll(function(){
-      if(	$(this).scrollTop() > 200){	
-          $(".top").fadeIn();	
-      }
-      else{	
-          $(".top").fadeOut();	
-      }			
-      });
-      //클릭했을 때 스르륵 올라가도록 애니메이션 효과
-      $(".top").click(function(){
-      $('body,html').animate({
-          scrollTop:0 
-      },400 );
-      return false;
-      });
-  });
+      <a href="#" class="top"><img src="/img/icon/top.png"></a>
+    </c:if>  
+	<script>
+	  $("#nav_mypage").click(function() {
+	      $("#sidenav").css("right", "0");
+	    $(".back_dark").show();
+	  });
+	  $("#close_sidenav").click(function() {
+	      $("#sidenav").css("right", "-350px");
+	    $(".back_dark").hide();
+	  });
+	  // 백그라운드 클릭 시 메뉴 닫기 
+	  $(".back_dark").click(function(){
+	      $('#sidenav').css("right", "-350px");
+	      $(".back_dark").hide();
+	  }); 
+	  $(function(){
+	      $(".submenu").prev().append("<span class='more'><img src='/img/icon/nav_icon.png'></span>");
+	      $(".more").parent().click(function(){
+	          $(this).next().slideToggle();
+	          $(this).children("span").toggleClass("more_active");
+	      });
+	  });
+	  // top 버튼 
+	  $( document ).ready( function() {
+	      // 처음에는 안보이게 숨기기
+	      $(".top").hide();
+	      //  스크롤 탑 + fadein 효과 
+	      $(window).scroll(function(){
+	      if(	$(this).scrollTop() > 200){	
+	          $(".top").fadeIn();	
+	      }
+	      else{	
+	          $(".top").fadeOut();	
+	      }			
+	      });
+	      //클릭했을 때 스르륵 올라가도록 애니메이션 효과
+	      $(".top").click(function(){
+	      $('body,html').animate({
+	          scrollTop:0 
+	      },400 );
+	      return false;
+	      });
+	  });
   </script>
-  <script>
+  <!-- <script>
   		//필터 사용을 위해 넣어둠
 	   var hrefs = [];
 	   $(".a").click(function(){
@@ -187,5 +176,5 @@
 	        hrefs.push($(".a").eq(i).attr("href"));
 	    }
 	   $(".a").removeAttr("href"); 
-	</script>
+	</script> -->
   
