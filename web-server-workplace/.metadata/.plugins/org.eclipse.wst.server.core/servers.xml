@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <servers>
-  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Byunduck Server-config" deployDir="wtpwebapps" hostname="localhost" id="Byunduck Server" name="Byunduck Server" runtime-id="Apache Tomcat v8.5" serveModulesWithoutPublish="true" server-type="org.eclipse.jst.server.tomcat.85" server-type-id="org.eclipse.jst.server.tomcat.85" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="29">
-    <list key="modules" value0="guleumingWebProjectTEST::org.eclipse.jst.jee.server:guleumingWebProjectTEST::jst.web::3.1"/>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Byunduck Server-config" deployDir="wtpwebapps" hostname="localhost" id="Byunduck Server" name="Byunduck Server" runtime-id="Apache Tomcat v8.5" serveModulesWithoutPublish="true" server-type="org.eclipse.jst.server.tomcat.85" server-type-id="org.eclipse.jst.server.tomcat.85" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="34">
+    <list key="modules" value0="guleumingWebProject::org.eclipse.jst.jee.server:guleumingWebProject::jst.web::3.1"/>
   </server>
 </servers>

@@ -43,15 +43,14 @@ public class GetMoreFundedListServlet extends HttpServlet {
 
 		Member member= (Member)session.getAttribute("member");
 		
+		
 		int cMemberNo =member.getcMemberNo();
 	
 		int currCount = Integer.parseInt(request.getParameter("currCount"));
 
 		int perPost = Integer.parseInt(request.getParameter("perPost"));
-		
-		
-		ArrayList<FundedFunding> fundedFundings = new MypageMemberService().selectFundedFunding(cMemberNo, currCount+1, currCount+perPost);
 
+		ArrayList<FundedFunding> fundedFundings = new MypageMemberService().selectFundedFunding(cMemberNo, currCount+1, currCount+perPost);
 		
 		response.setCharacterEncoding("UTF-8");
 	    response.setContentType("application/json");

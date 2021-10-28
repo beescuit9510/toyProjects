@@ -278,9 +278,23 @@ public class MypageMemberDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-
 		try {
 
+//select t.* from(
+//select (select count(*) from payment_info where pbi.project_no = project_no ) 
+//as total,
+//rownum as rnum, pbi.*, r.*, mi.*
+//from member m
+//join project_basic_info pbi
+//on m.c_member_no = pbi.business_no
+//join reward r
+//on pbi.project_no = r.reward_no
+//join maker_info mi
+//on pbi.project_no = mi.maker_info_no
+//where m.c_member_no = ?
+//order by pbi.project_no desc)t
+//where rnum between ? and ?
+			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, cMemberNo);
 			pstmt.setInt(2, start);
@@ -293,7 +307,8 @@ public class MypageMemberDao {
 				Reward reward = new Reward();
 				MakerInfo makerInfo = new MakerInfo();
 				int total = 0;
-
+				
+				
 				projectBasicInfo.setProjectNo(rset.getInt("project_no"));
 				projectBasicInfo.setBusinessNo(rset.getInt("business_no"));
 				projectBasicInfo.setProjectTitle(rset.getString("project_title"));
@@ -315,11 +330,13 @@ public class MypageMemberDao {
 
 				makerInfo.setMakerInfoNo(rset.getInt("maker_info_no"));
 				makerInfo.setTradeBank(rset.getString("trade_bank"));
-				makerInfo.setAccountNumber(rset.getInt("account_number"));
+				makerInfo.setAccountNumber((int)(rset.getLong("account_number")));
 				makerInfo.setDepositName(rset.getString("deposit_name"));
-
+				
+				
 				total = rset.getInt("total");
-
+				
+				
 				Funding funding = new Funding(total, projectBasicInfo, reward, makerInfo);
 
 				MyOwnProject myOwnProject = new MyOwnProject();

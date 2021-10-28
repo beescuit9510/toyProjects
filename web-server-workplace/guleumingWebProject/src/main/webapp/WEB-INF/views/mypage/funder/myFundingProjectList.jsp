@@ -212,7 +212,7 @@
 			    $(".project-wrap").find(".project-row").append(html);
 			    
 			    isThereMorePosts();
-				
+			    
 			}
 		})
 	})
@@ -243,7 +243,7 @@
 
 
 
-
+	        $(".customer-list").find("a").remove();
 	        $(".customer-list").find("p").remove();
 	        $(".paging").find("p").remove();
 	        $(".backward").remove();
@@ -341,7 +341,7 @@
 
 	        
 	        
-	        
+	        $(".customer-list").find("p").remove();
 	        $(".customer-list").find("a").remove();
 	        $(".paging").find("p").remove();
 	        $(".backward").remove();
@@ -387,14 +387,14 @@
 				        var fc = fundedFundings[n].myOwnProjectComment[i].fundingComment;
 				        var m = fundedFundings[n].myOwnProjectComment[i].member;
 				        var date = fc.writeDate;
-				        var content = fc.commentContent.substring(0,7);
-				        content = fc.commentContent.length > 6 ? content+" ...":content;
+				        var content = fc.commentContent.substring(0,17);
+				        content = fc.commentContent.length > 17 ? content+" ...":content;
 				        date = date.replace(/-/,"년 ").replace(/-/,"월 ");
 				        if(fc.commentLevel ==2){
-							html += "<a href='/fundingView?projectNo="+fc.projectRefNo+"'><span class='customer-name my-comment'>나의 댓글</span><span class='customer-payment-no my-comment'>"+content+"</span><span class='customer-order-date my-comment'>"+fc.writeDate+"</span></a>";
+							html += "<a href='/fundingView?projectNo="+fc.projectRefNo+"&showComment=true#comment"+fc.commentNo+"'><span class='customer-name my-comment'>나의 댓글</span><span class='customer-payment-no my-comment'>"+content+"</span><span class='customer-order-date my-comment'>"+fc.writeDate+"</span></a>";
 				        	
 				        }else{
-							html += "<a href='/fundingView?projectNo="+fc.projectRefNo+"'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></a>";
+							html += "<a href='/fundingView?projectNo="+fc.projectRefNo+"&showComment=true#comment"+fc.commentNo+"'><span class='customer-name'>"+m.cName+"</span><span class='customer-payment-no'>"+content+"</span><span class='customer-order-date'>"+fc.writeDate+"</span></a>";
 				        	
 				        	
 				        }
@@ -948,6 +948,10 @@
 .my-comment{
 	color:#00B9CE !important;
 
+}
+
+.modal-footer{
+	margin-top:50px;
 }
 </style>
     
