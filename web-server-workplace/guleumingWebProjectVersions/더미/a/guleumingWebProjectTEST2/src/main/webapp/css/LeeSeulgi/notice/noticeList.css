@@ -1,0 +1,32 @@
+@charset "UTF-8";
+.container{
+	
+}
+fieldset{
+	border : none;
+}
+legend{
+	margin-left: 500px;
+	font-size: 35px;
+	margin-bottom: 70px;
+	font-weight: 900;
+}
+.notice-main{
+	width: 800px;
+	margin-top: 200px;
+	margin:0 auto;
+}
+
+.notice-footer{
+    width: 800px;
+    margin: 0 auto;
+}
+
+select{
+    width: 70px;
+    height: 36px;
+}
+
+#searchBox{
+    text-align: center;
+}
