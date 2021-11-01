@@ -265,6 +265,11 @@
         color:white;
         font-size: 17px;
         display: none;
+        text-overflow: ellipsis;
+		white-space: nowrap;
+		word-wrap: normal;
+		overflow: hidden;
+        
 	}
 	
 	.moving-top:hover > .project-profile:hover > a > p{

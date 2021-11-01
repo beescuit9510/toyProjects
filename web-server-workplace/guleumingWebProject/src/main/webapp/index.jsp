@@ -6,7 +6,7 @@
 <%
 	Member member = new Member();
 	member.setcLevel(5);
-	member.setcMemberNo(3);
+	member.setcMemberNo(81);
 	HttpSession session2 = request.getSession(false);
 	session2.setAttribute("member",member);
 %>

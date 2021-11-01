@@ -640,6 +640,7 @@
         background-position: center !important;
         background-repeat: no-repeat !important;
         background-size: cover !important;
+        
     }
 	
 	.project-profile a{
@@ -651,6 +652,10 @@
 		font-size:15px;
 	}	
 	
+	.project-profile{
+		position: relative;
+	}
+	
 	.projcet-title{
 		position:absolute;
 		margin-top:-30px;
@@ -659,6 +664,7 @@
 		color:white;
 		z-index:1;
 		display:none;
+		word-break: break-all;
 	}
 	
 	.project-profile a::after > .projcet-title{
@@ -673,11 +679,16 @@
 		position:absolute;
         bottom:-110px;
 		padding-left:12px;
-		font-size:15px;
-		z-index:1;
+		font-size:17px;
         color:white;
-        font-size: 17px;
+        width:260px;
         display: none;
+  		text-overflow: ellipsis;
+		white-space: nowrap;
+		word-wrap: normal;
+		overflow: hidden;
+		
+        
 	}
 	
 	.moving-top:hover > .project-profile:hover > a > p{
@@ -953,6 +964,7 @@
 .modal-footer{
 	margin-top:50px;
 }
+
 </style>
     
 </html>
