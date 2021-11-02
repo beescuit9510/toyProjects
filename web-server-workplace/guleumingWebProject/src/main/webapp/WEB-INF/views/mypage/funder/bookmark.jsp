@@ -320,19 +320,21 @@
 	
     .project-title{
 		position:absolute;
+        bottom:-110px;
 		padding-left:12px;
-		padding-right:12px;
-		font-size:15px;
-		z-index:1;
+		font-size:17px;
         color:white;
-        font-size: 8px;
+        width:260px;
         display: none;
-        text-overflow: ellipsis;
+  		text-overflow: ellipsis;
 		white-space: nowrap;
 		word-wrap: normal;
 		overflow: hidden;
+		text-align:left;
+		
         
 	}
+
 	
 		
 	.moving-top:hover > .project-profile:hover > a > p{

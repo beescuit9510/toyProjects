@@ -687,9 +687,11 @@
 		white-space: nowrap;
 		word-wrap: normal;
 		overflow: hidden;
+		text-align:left;
 		
         
 	}
+
 	
 	.moving-top:hover > .project-profile:hover > a > p{
         display: block;
