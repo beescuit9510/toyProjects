@@ -19,7 +19,7 @@
 				<c:if test="${sessionScope.member.cLevel > 2}">
 				<a class="myOwnProjects" href="/myOwnProject">제작한 프로젝트</a>
 				</c:if>
-				<a class="likeList" href="/likeList">관심 펀더 및 펀더</a>
+				<a class="likeList" href="/likeList">관심 펀더 및 펀딩</a>
 				<a class="mypage" href="/mypage">설정</a>
 			</div>
 		</div>
@@ -111,7 +111,7 @@
 			data:{currCount:currCount,perPost:perPost},
 			method:"POST",
 			success:function(ffs){
-				
+
 				start = currCount;
 				currCount = currCount+perPost; 
 				
@@ -126,8 +126,9 @@
 					html += "<div class='project-profile'>"
 
 					if(ff.projectBasicInfo.filepath){
+						console.log(ff.projectBasicInfo.filepath);
 						html += "<a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"'>"
-						html += "<div id='background-url' style='background:url('"+ff.projectBasicInfo.filepath+"');></div>";
+						html += "<div id='background-url' style='background:url(/"+"upload/project"+"/"+ff.projectBasicInfo.filepath+")';></div>";
 						html += "<p class='project-title'>"+ff.projectBasicInfo.projectTitle+"</p>";
 						html += "</a>"
 					}else{
@@ -136,9 +137,10 @@
 						html += "</a>"
 					}
 					
-					html += "</div><div class='rate'>달성률 <span class='percent point'>"+Math.floor(ff.projectBasicInfo.targetPrice*ff.total/ff.projectBasicInfo.targetPrice*100)+"%</span></div>";
+					
+					html += "</div><div class='rate'>달성률 <span class='percent point'>"+Math.floor(ff.reward.rewardPrice*ff.total/ff.projectBasicInfo.targetPrice*100)+"%</span></div>";
 					html +=	"<div class='target-price'>목표 금액 <span>"+ff.projectBasicInfo.targetPrice+"</span>원</div>";	
-					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.projectBasicInfo.targetPrice*ff.total+"</span>원</div>";
+					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.reward.rewardPrice*ff.total+"</span>원</div>";
 					html += "<div class='buttons'>";
 					html += "<button onclick='openList("+(start+i)+")' class='btn_sm btn_out involved-members'>결제 내역</button>";
 					html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'><a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"' class='point fudnig-gogo'>펀딩 보러가기</a></button>";

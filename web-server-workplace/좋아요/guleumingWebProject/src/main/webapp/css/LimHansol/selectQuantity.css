@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.amount{
+	 width: 35px;
+    display: inline-block;
+    text-align: center;
+}
+.count_btn1{
+	width: 35px;
+    align-self: center;
+    border: 1px solid #eee;
+}
+.btn{
+	float :right;
+	margin-right: 100px;
+}
+legend{
+	padding-left: 30px;
+	font-size: 45px;
+	margin-bottom: 50px;
+	color: #00B9CE;
+	font-family: "logo";
+}
+.quantity-data{
+	width: 1000px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 20px 30px;
+}
+.reward-price{
+	font-size: 30px;
+	font-weight : 900; 
+}
+.subscrip, .subscrip>span{
+	color: gray;
+	font-size: 14px;
+}
+.subscrip>span{
+	color: gray;
+}
+.rewardTitle{
+	margin-bottom: 5px;
+}
+.rewardTitle>span{
+	font-size: 20px;
+	font-weight: 900;
+}
+.count{
+	margin-top: 20px;
+}
+.count>button{
+	width: 42px;
+	height: 42px;
+}

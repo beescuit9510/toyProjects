@@ -20,7 +20,7 @@
 				<a class="myOwnProjects" href="/myOwnProject">제작한 프로젝트</a>
 				</c:if>
 
-				<a class="likeList" href="/likeList">관심 펀더 및 펀더</a>
+				<a class="likeList" href="/likeList">관심 펀더 및 펀딩</a>
 				<a class="mypage" href="/mypage">설정</a>
 			</div>
 		</div>

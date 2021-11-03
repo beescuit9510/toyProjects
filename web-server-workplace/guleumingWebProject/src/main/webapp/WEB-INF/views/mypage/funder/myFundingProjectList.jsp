@@ -19,7 +19,7 @@
 				<c:if test="${sessionScope.member.cLevel > 2}">
 				<a class="myOwnProjects" href="/myOwnProject">제작한 프로젝트</a>
 				</c:if>
-				<a class="likeList" href="/likeList">관심 펀더 및 펀더</a>
+				<a class="likeList" href="/likeList">관심 펀더 및 펀딩</a>
 				<a class="mypage" href="/mypage">설정</a>
 			</div>
 		</div>
@@ -177,19 +177,24 @@
 				
 				var html = "";
 				
-				console.log(ffs);
+				console.log(start);
+				console.log(currCount);
 				
 				for(var i=0;i<ffs.length;i++){
 					var ff = ffs[i];
-					fundedFundings.push(ff);
+					
+					fundedFundings.push(ff.funding.projectBasicInfo.filepath);
+					console.log(fundedFundings)
 					
 					html += "<section class='project-box moving-top'>";
 					html += "<div class='project-profile'>"
-
+					
+					var path = "/upload/project/";
+					var a = path+ff.funding.projectBasicInfo.filepath;
 					if(ff.funding.projectBasicInfo.filepath){
 						html += "<a href='/fundingView?projectNo="+ff.funding.projectBasicInfo.projectNo+"'>"
 							///fundingView?projectNo=
-						html += "<div id='background-url' style='background:url('"+ff.funding.projectBasicInfo.filepath+"');></div>";
+						html += "<div id='background-url' style='background:url("+a+")';></div>";
 						html += "<p class='project-title'>"+ff.funding.projectBasicInfo.projectTitle+"</p>";
 						html += "</a>"
 					}else{
@@ -198,9 +203,20 @@
 						html += "</a>"
 					}
 					
-					html += "</div><div class='rate'>달성률 <span class='percent point'>"+Math.floor((ff.funding.projectBasicInfo.targetPrice)*(ff.funding.total)/(ff.funding.projectBasicInfo.targetPrice)*100)+"%</span></div>";
+					console.log(ff.funding.reward.rewardPrice);
+					console.log(ff.total);
+					console.log(ff);
+					
+					console.log("start")
+						console.log("Price1 : "+ff.funding.reward.rewardPrice)
+	console.log("total1 : "+ff.funding.total)
+	console.log("target : "+ff.funding.projectBasicInfo.targetPrice)
+					console.log(ff.funding.reward.rewardPrice*ff.funding.total/ff.funding.projectBasicInfo.targetPrice*100);
+					console.log("end")
+
+					html += "</div><div class='rate'>달성률 <span class='percent point'>"+Math.floor(ff.funding.reward.rewardPrice*ff.funding.total/ff.funding.projectBasicInfo.targetPrice*100)+"%</span></div>";
 					html +=	"<div class='target-price'>목표 금액 <span>"+ff.funding.projectBasicInfo.targetPrice+"</span>원</div>";	
-					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.funding.projectBasicInfo.targetPrice*ff.funding.total+"</span>원</div>";
+					html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.funding.reward.rewardPrice*ff.funding.total+"</span>원</div>";
 					html += "<div class='buttons'>";
 					html += "<button onclick='openList("+(start+i)+","+1+")' class='btn_sm btn_out involved-members'>참여 회원 보기</button>";
 					html += "<button onclick='openComment("+(start+i)+","+1+")' class='btn_sm btn_out funding-comments'>댓글 보기</button>";

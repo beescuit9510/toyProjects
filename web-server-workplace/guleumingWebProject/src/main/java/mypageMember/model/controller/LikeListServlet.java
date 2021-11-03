@@ -40,6 +40,8 @@ public class LikeListServlet extends HttpServlet {
 
 		int totalCount = new MypageMemberService().getTotalLikeList(cMemberNo);
 
+		
+		System.out.println(totalCount);
 				
 		request.setAttribute("totalCount", totalCount);
 		

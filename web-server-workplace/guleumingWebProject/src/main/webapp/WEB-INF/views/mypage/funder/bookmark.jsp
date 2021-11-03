@@ -12,14 +12,14 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container">
-		<div class="title">관심 펀더 및 펀더</div>
+		<div class="title">관심 펀더 및 펀딩</div>
 		<div class="navi-wrap">
 			<div class="navi">
 				<a class="fundedFundings" href="/fundedFundingList">펀딩한 프로젝트</a> 
 				<c:if test="${sessionScope.member.cLevel > 2}">
 				<a class="myOwnProjects" href="/myOwnProject">제작한 프로젝트</a>
 				</c:if>
-				<a class="likeList" href="/likeList">관심 펀더 및 펀더</a>
+				<a class="likeList" href="/likeList">관심 펀더 및 펀딩</a>
 				<a class="mypage" href="/mypage">설정</a>
 			</div>
 		</div>
@@ -112,19 +112,19 @@
 			data:{currCount:currCount,perPost:perPost},
 			method:"POST",
 			success:function(ffs){
+				console.log(ffs);
 				
 				start = currCount;
 				currCount = currCount+perPost; 
 				
 				var html = "";
-				
 				for(var i=0;i<ffs.length;i++){
+					
 					var ff = ffs[i];
 					fundedFundings.push(ff);
-
+					console.log(i);
 					
-					if(fundedFundings[i].makerboard != null){
-						///funderView?writerNo=
+					if('makerboard' in ff){
 							
 						html += "<section class='project-box moving-top'>";
 						html += "<div class='project-profile'>"
@@ -132,7 +132,7 @@
 						ff = ff.makerboard;						
 						if(ff.Filepath != null){
 							html += "<a href='/funderView?writerNo="+ff.writerNo+"'>"
-							html += "<div id='background-url' style='background:url('"+ff.profileFilepath+"');></div>";
+							html += "<div id='background-url' style='background:url(/upload/funder/"+ff.funding.projectBasicInfo.filepath+")';></div>";
 							html += "<p class='project-title'> 창립일자 "+ff.openDate.replace("-","년 ").replace("-","월 ")+"일 </p>";
 							html += "</a>"
 						}else{
@@ -157,7 +157,7 @@
 	
 						if(ff.projectBasicInfo.filepath){
 							html += "<a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"'>"
-							html += "<div id='background-url' style='background:url('"+ff.projectBasicInfo.filepath+"');></div>";
+							html += "<div id='background-url' style='background:url(/upload/project/"+ff.projectBasicInfo.filepath+")';></div>";
 							html += "<p class='project-title'>"+ff.projectBasicInfo.projectTitle+"</p>";
 							html += "</a>"
 						}else{
@@ -166,9 +166,12 @@
 							html += "</a>"
 						}
 						
-						html += "</div><div class='rate'>달성률 <span class='percent point'>"+Math.floor(ff.projectBasicInfo.targetPrice*ff.total/ff.projectBasicInfo.targetPrice*100)+"%</span></div>";
+						console.log("start")
+						console.log(ff)
+						console.log("end")
+						html += "</div><div class='rate'><span class='percent point'>"+"펀딩 마감일 "+ "  " +ff.projectBasicInfo.endDate.replace("-","년 ").replace("-","월 ")+"일 </span></div>";
 						html +=	"<div class='target-price'>목표 금액 <span>"+ff.projectBasicInfo.targetPrice+"</span>원</div>";	
-						html += "<div class='acc-price'>현재 달성 금액 <span>"+ff.projectBasicInfo.targetPrice*ff.total+"</span>원</div>";
+						html += "<div class='acc-price'>펀딩 가격 <span>"+ff.reward.rewardPrice+"</span>원</div>";
 						html += "<div class='buttons'>";
 						html += "<button onclick='unlike("+i+")' class='btn_sm btn_out involved-members'>좋아요 취소</button>";
 						html += "<button id='"+(start+i)+"' class='btn_sm btn_out funding-comments'><a href='/fundingView?projectNo="+ff.projectBasicInfo.projectNo+"' class='point fudnig-gogo'>펀딩 보러가기</a></button>";
