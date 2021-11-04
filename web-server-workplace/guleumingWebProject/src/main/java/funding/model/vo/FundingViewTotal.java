@@ -16,7 +16,16 @@ public class FundingViewTotal {
 	private int total;
 	private String payDateS;
 	private int totalPrice;
-	private int percent;
+	private double percent;
+	private String rewardTitle;
+	private String rewardContent;
+	private String shippingDate;
+	private String cancelPolicy;
+	private String qEmail;
+	private String qPhone;
+	private int cnt;
+	private int likeCount;
+	private String likeCheck;
 	public int getProjectNo() {
 		return projectNo;
 	}
@@ -77,29 +86,6 @@ public class FundingViewTotal {
 	public void setBusinessName(String businessName) {
 		this.businessName = businessName;
 	}
-	
-	public FundingViewTotal(int projectNo, String projectTitle, int targetPrice, String filepath, String endDate,
-			String projectStory, int businessNo, String fundingCategory, String startDate, String businessName,
-			int rewardPrice, long period, int total, String payDateS, int totalPrice, int percent) {
-		super();
-		this.projectNo = projectNo;
-		this.projectTitle = projectTitle;
-		this.targetPrice = targetPrice;
-		this.filepath = filepath;
-		this.endDate = endDate;
-		this.projectStory = projectStory;
-		this.businessNo = businessNo;
-		this.fundingCategory = fundingCategory;
-		this.startDate = startDate;
-		this.businessName = businessName;
-		this.rewardPrice = rewardPrice;
-		this.period = period;
-		this.total = total;
-		this.payDateS = payDateS;
-		this.totalPrice = totalPrice;
-		this.percent = percent;
-	}
-	
 	public int getRewardPrice() {
 		return rewardPrice;
 	}
@@ -130,14 +116,101 @@ public class FundingViewTotal {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public int getPercent() {
+	public double getPercent() {
 		return percent;
 	}
-	public void setPercent(int percent) {
+	public void setPercent(double percent) {
 		this.percent = percent;
+	}
+	public String getRewardTitle() {
+		return rewardTitle;
+	}
+	public void setRewardTitle(String rewardTitle) {
+		this.rewardTitle = rewardTitle;
+	}
+	public String getRewardContent() {
+		return rewardContent;
+	}
+	public void setRewardContent(String rewardContent) {
+		this.rewardContent = rewardContent;
+	}
+	public String getShippingDate() {
+		return shippingDate;
+	}
+	public void setShippingDate(String shippingDate) {
+		this.shippingDate = shippingDate;
+	}
+	public String getCancelPolicy() {
+		return cancelPolicy;
+	}
+	public void setCancelPolicy(String cancelPolicy) {
+		this.cancelPolicy = cancelPolicy;
+	}
+	public String getqEmail() {
+		return qEmail;
+	}
+	public void setqEmail(String qEmail) {
+		this.qEmail = qEmail;
+	}
+	public String getqPhone() {
+		return qPhone;
+	}
+	public void setqPhone(String qPhone) {
+		this.qPhone = qPhone;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public int getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+	public String getLikeCheck() {
+		return likeCheck;
+	}
+	public void setLikeCheck(String likeCheck) {
+		this.likeCheck = likeCheck;
 	}
 	public FundingViewTotal() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-}
+	public FundingViewTotal(int projectNo, String projectTitle, int targetPrice, String filepath, String endDate,
+			String projectStory, int businessNo, String fundingCategory, String startDate, String businessName,
+			int rewardPrice, long period, int total, String payDateS, int totalPrice, double percent, String rewardTitle,
+			String rewardContent, String shippingDate, String cancelPolicy, String qEmail, String qPhone, int cnt,
+			int likeCount, String likeCheck) {
+		super();
+		this.projectNo = projectNo;
+		this.projectTitle = projectTitle;
+		this.targetPrice = targetPrice;
+		this.filepath = filepath;
+		this.endDate = endDate;
+		this.projectStory = projectStory;
+		this.businessNo = businessNo;
+		this.fundingCategory = fundingCategory;
+		this.startDate = startDate;
+		this.businessName = businessName;
+		this.rewardPrice = rewardPrice;
+		this.period = period;
+		this.total = total;
+		this.payDateS = payDateS;
+		this.totalPrice = totalPrice;
+		this.percent = percent;
+		this.rewardTitle = rewardTitle;
+		this.rewardContent = rewardContent;
+		this.shippingDate = shippingDate;
+		this.cancelPolicy = cancelPolicy;
+		this.qEmail = qEmail;
+		this.qPhone = qPhone;
+		this.cnt = cnt;
+		this.likeCount = likeCount;
+		this.likeCheck = likeCheck;
+	}
+	
+}	

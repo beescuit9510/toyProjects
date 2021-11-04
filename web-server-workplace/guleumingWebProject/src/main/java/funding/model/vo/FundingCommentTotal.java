@@ -12,6 +12,9 @@ public class FundingCommentTotal {
 	public int getCommentNo() {
 		return commentNo;
 	}
+	public String getCommentContentBr() {
+		return commentContent.replace("\r\n", "<br>");
+	}
 	public void setCommentNo(int commentNo) {
 		this.commentNo = commentNo;
 	}

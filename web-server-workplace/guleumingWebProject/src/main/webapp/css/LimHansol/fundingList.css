@@ -1,0 +1,138 @@
+@charset "UTF-8";
+.category a{
+	border: 1px solid #eee;
+    padding: 10px 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+.on a{
+	border: 1px solid #00B9CE;
+    color: #00B9CE;
+}
+
+.on_img img{
+	border-width: 2px;
+    border-color: rgba(0,178,178,.99);
+}
+.on_img span{
+	color:red;
+}
+    .menu_wrap{ 
+    margin-top: 100px;
+    }
+    .mainmenu{ 
+        margin: 0 auto;
+        overflow: hidden;
+    }
+   .fundingList {
+    width: 300px;
+    height: 400px;
+    margin-left: 60px;
+    margin-top :30px;
+    margin-bottom:30px;
+    list-style: none;
+    float: left;
+    padding: 0;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 0.5px
+   
+    }
+    .fundingList>li{
+    	overflow: hidden;
+    	border-radius: 10px;
+    }
+    .text{
+        color: rgb(52, 152, 219);
+    }
+    .fundingList img{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        height : 300px;
+        width: 304px;
+    }
+    .fundingList:hover{
+    	 box-shadow :2px 2px 2px 2px rgb(214, 212, 212);
+    }
+
+    #plus{
+        margin: 0 auto;
+        display: block;
+    }
+    #more-btn{
+        margin-top : 100px;
+    }
+    .projectTitle{
+        text-align: center;
+    }
+    .firstLi{
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+    .secondLi{
+        margin-left: 10px;
+    }
+    .d-day{
+     color : gray;
+    }
+    .left{
+        float: right;
+        margin-right:5px;
+    }
+
+.on_img img{
+	border-width: 2px;
+    border-color: rgba(0,178,178,.99);
+}
+.on_img span{
+	color:red;
+}
+/* 검색 */
+.search{
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0 0 0;
+}
+.search_bar{
+    display: flex;
+    align-items: center;
+    border-bottom:2px solid #00B9CE;
+    transition: 0.5s;
+    padding: 5px;
+    width: 480px;
+}
+.search_bar input{
+    outline: none;
+    border: none;
+    width: 450px;
+}
+.search_bar img{
+    width: 30px;
+}
+.search_btn{
+	outline:none;
+	border:none;
+	background:none;
+	cursor: pointer;
+}
+.buttonArea{
+	margin-top:30px;
+}
+.btn{
+	margin-left:60px
+}
+.nonebox{
+	width: 100%;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+.nonebox h3{
+	font-size:28px;
+}
+.nonebox img{
+	width: 600px;
+}

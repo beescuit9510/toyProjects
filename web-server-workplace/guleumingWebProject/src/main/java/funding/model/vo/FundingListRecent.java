@@ -14,12 +14,12 @@ public class FundingListRecent {
 	private int rewardPrice;
 	private long period;
 	private int totalPrice;
-	private int percent;
-	public int getPercent() {
-		return percent;
-	}
-	public void setPercent(int percent) {
+	private double percent;
+	public void setPercent(double percent) {
 		this.percent = percent;
+	}
+	public double getPercent() {
+		return percent;
 	}
 	public int getTotalPrice() {
 		return totalPrice;
@@ -44,7 +44,7 @@ public class FundingListRecent {
 		// TODO Auto-generated constructor stub
 	}
 	public FundingListRecent(int projectNo, String projectTitle, int targetPrice, String filepath, String endDate,
-			String projectStory, int businessNo, String fundingCategory, String startDate, int total, int rewardPrice, long period, int totalPrice, int percent) {
+			String projectStory, int businessNo, String fundingCategory, String startDate, int total, int rewardPrice, long period, int totalPrice, double percent) {
 		super();
 		this.projectNo = projectNo;
 		this.projectTitle = projectTitle;

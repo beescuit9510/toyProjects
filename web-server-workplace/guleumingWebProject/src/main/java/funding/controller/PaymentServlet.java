@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import funding.model.service.fundingService;
+import table.model.vo.Member;
 import table.model.vo.PaymentInfo;
 
 /**
@@ -31,17 +33,10 @@ public class PaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*int rewardPrice = Integer.parseInt(request.getParameter("rewardPrice")); //결제에 필요
-		int quantity = Integer.parseInt(request.getParameter("amount")); // update 에 필요
-		int projectNo = Integer.parseInt(request.getParameter("projectNo"));// update 에 필요
-		String receiveName = request.getParameter("receiveName");
-		String receivePhone = request.getParameter("receivePhone");
-		String roadAddr = request.getParameter("roadAddr");
-		String detailAddr = request.getParameter("detailAddr");
-		String receiveAddr = roadAddr + detailAddr;*/
-		//RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/funding/fundingList.jsp");
-		//view.forward(request, response);
 		System.out.println("서블릿 들어옴");
+		HttpSession session = request.getSession(false);
+		Member member = (Member)session.getAttribute("member");
+		int cMemberNo = member.getcMemberNo();
 		Long paymentNo = Long.parseLong(request.getParameter("merchant_uid"));
 		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
 		String roadAddr = request.getParameter("roadAddr");
@@ -50,9 +45,7 @@ public class PaymentServlet extends HttpServlet {
 		String addr = roadAddr + detailAddr;
 		String receivePhone = request.getParameter("receivePhone");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		int cMemberNo =3;
 		PaymentInfo pi = new PaymentInfo();
-		pi.setcMemberNo(1);
 		pi.setPaymentNo(paymentNo);
 		pi.setProjectNo(projectNo);
 		pi.setQuantity(quantity);
@@ -62,17 +55,6 @@ public class PaymentServlet extends HttpServlet {
 		pi.setcMemberNo(cMemberNo);
 		int result = new fundingService().insertPaymentInfo(pi);
 		System.out.println(result);
-//		System.out.println(paymentNo);
-//		System.out.println(projectNo);
-//		System.out.println(roadAddr);
-//		System.out.println(detailAddr);
-//		System.out.println(addr);
-//		System.out.println(receiveName);
-//		System.out.println(receivePhone);
-//		System.out.println(quantity);
-		//System.out.println(projectNo);
-		//System.out.println(formValues);
-		
 	}
 
 	/**

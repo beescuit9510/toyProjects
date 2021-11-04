@@ -39,10 +39,11 @@ public class SelectQuantityServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
+		int cMemberNo = Integer.parseInt(request.getParameter("cMemberNo"));
 		//ArrayList<FundingCommentTotal> commentList = fundingService.selectFundingCommentList(projectNo);
-		Reward r = new fundingService().selectReward(projectNo);// reward 잘받아옴
+		//Reward r = new fundingService().selectReward(projectNo);// reward 잘받아옴
 		//ProjectBasicInfo pbi = new fundingService().selectProjectBasicInfo(projectNo);//pbi 잘받아옴
-		FundingViewTotal fvt = new fundingService().selectFundingViewTotal(projectNo);
+		FundingViewTotal fvt = new fundingService().selectFundingViewTotal(projectNo,cMemberNo);
 		//MakerInfo mi = new fundingService().selectMakerInfo(projectNo);//잘받아 옴
 		//int total = new fundingService().totalQuantity(projectNo);// 합 잘받아오
 		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -57,7 +58,7 @@ public class SelectQuantityServlet extends HttpServlet {
 		//System.out.println(formatedNow);
 	    //long period = ChronoUnit.DAYS.between(now, date);
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/funding/selectQuantity.jsp");
-		request.setAttribute("r", r);
+		//request.setAttribute("r", r);
 		//request.setAttribute("pbi", pbi);
 		//request.setAttribute("total", total);
 		//request.setAttribute("mi", mi);

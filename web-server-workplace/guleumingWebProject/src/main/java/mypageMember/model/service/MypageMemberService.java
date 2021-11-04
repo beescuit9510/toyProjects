@@ -171,8 +171,6 @@ public class MypageMemberService {
 		
 		int total = totalFunding+totalFunder;
 
-		System.out.println("totalFunder: "+totalFunder);
-		System.out.println("totalFunding: "+totalFunding);
 		JDBCTemplate.close(conn);
 		
 		return total;

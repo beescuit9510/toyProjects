@@ -58,6 +58,7 @@ public class GetMoreMyOwnProjectListServlet extends HttpServlet {
 	    response.setContentType("application/json");
 
 		PrintWriter out = response.getWriter();
+
 		new Gson().toJson(myOwnProjects, out);
 		
 	}

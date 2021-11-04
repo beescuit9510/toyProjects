@@ -11,10 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import funding.model.service.fundingService;
-import funding.model.vo.FundingListRecent;
-import table.model.vo.ProjectBasicInfo;
-import table.model.vo.Reward;
-
+import table.model.vo.FundingCategory;
 
 /**
  * Servlet implementation class FundingListServlet
@@ -35,14 +32,12 @@ public class FundingListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//int reqPage = 1;
-		//ArrayList<FundingListRecent> list = new fundingService().selectFundingListRecent(reqPage);
 		int count = new fundingService().countFunding();
+		ArrayList<FundingCategory> fcList = new fundingService().selectFundingCategory();
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/funding/fundingList.jsp");
-		//request.setAttribute("list", list);
 		request.setAttribute("count", count);
+		request.setAttribute("fcList", fcList);
 		view.forward(request, response);
-		
 	}
 
 	/**

@@ -16,6 +16,8 @@ public class MakerBoard {
 	private int makerBoardNo;
 	private String writeDate;
 	private int funderCount;
+	private String likedCheck;
+	private int proCount;
 
 		/*펀더 게시판 테이블 (
 			작성자 number 				writer_no
@@ -39,7 +41,7 @@ public class MakerBoard {
 
 	public MakerBoard(int writerNo, String openDate, String boardEmail, String searchTag, String skillName,
 			String skillLevel, String companyAddr, String companyIntro, String profileFilepath, String funderCategory,
-			String businessName, int makerBoardNo, String writeDate, int funderCount) {
+			String businessName, int makerBoardNo, String writeDate, int funderCount, String likedCheck, int proCount) {
 		super();
 		this.writerNo = writerNo;
 		this.openDate = openDate;
@@ -55,6 +57,24 @@ public class MakerBoard {
 		this.makerBoardNo = makerBoardNo;
 		this.writeDate = writeDate;
 		this.funderCount = funderCount;
+		this.likedCheck = likedCheck;
+		this.proCount = proCount;
+	}
+
+	public int getProCount() {
+		return proCount;
+	}
+
+	public void setProCount(int proCount) {
+		this.proCount = proCount;
+	}
+
+	public String getLikedCheck() {
+		return likedCheck;
+	}
+
+	public void setLikedCheck(String likedCheck) {
+		this.likedCheck = likedCheck;
 	}
 
 	public int getFunderCount() {

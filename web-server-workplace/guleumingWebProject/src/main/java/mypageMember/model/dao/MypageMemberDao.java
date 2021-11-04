@@ -31,7 +31,7 @@ public class MypageMemberDao {
 				+ "select rownum as rnum,\r\n"
 				+ "t.* \r\n"
 				+ "from (select \r\n"
-				+ "(select count(*) from payment_info pi\r\n"
+				+ "(select sum(pi.quantity) from payment_info pi\r\n"
 				+ "where pi.project_no = p.project_no) as total,\r\n"
 				+ "p.payment_no,p.quantity,p.receive_addr,p.order_date,p.receive_name,p.receive_phone,p.c_member_no,\r\n"
 				+ "pbi.*,r.*,m.*\r\n"
@@ -50,7 +50,6 @@ public class MypageMemberDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-
 		ArrayList<FundedFunding> fundings = new ArrayList<>();
 
 		try {
@@ -260,7 +259,7 @@ public class MypageMemberDao {
 
 	public void selectMyOwnProjectFunding(Connection conn, int cMemberNo, ArrayList<MyOwnProject> myOwnProjects, int start, int end) {
 		String query = "select t.* from(\r\n"
-				+ "select (select count(*) from payment_info where pbi.project_no = project_no ) \r\n"
+				+ "select (select NVL(sum(quantity),0) from payment_info where pbi.project_no = project_no ) \r\n"
 				+ "as total, \r\n"
 				+ "rownum as rnum, pbi.*, r.*, mi.*\r\n"
 				+ "from member m\r\n"

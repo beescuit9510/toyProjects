@@ -1,0 +1,220 @@
+@charset "UTF-8";
+
+.rewardImg{
+            width: 750px;
+            float: left;
+}
+.shopping{
+	        width: 450px;
+            float: left;
+}
+    
+.comments,.recomments{
+	list-style-type: none;
+	padding : 0;
+	display: flex;
+	background-color: #f2f2f2;
+}
+.comments>li>p,.recomments>li>p{
+	margin: 0;
+}
+.comments>li:first-child{
+	display: flex;
+	flex-flow:column;
+	justify-content: flex-start;
+	align-items: center;
+	width:15%;
+	padding : 5px 0px 5px 0px;
+}
+
+.comments>li:last-child{
+	padding : 5px 0px 5px 0px;
+	width : 85%;
+	display:flex;
+	flex-flow:column;
+	justify-content: space-between;	
+	
+}
+.recoment{
+	display: none;	
+	justify-content: space-around;
+}
+.recoment>textarea{
+	width: 85%;
+	resize: none;
+}
+textarea.form-control{
+	height:100%;
+	resize:none;
+}
+.recoment>div{
+	width:10%;
+}
+.recomments>li:first-child{
+	display: flex;
+	flex-flow:column;
+	justify-content: flex-start;
+	align-items: center;
+	width:15%;
+	padding : 5px 0px 5px 0px;
+}
+.recomments>li:nth-child(2){
+	display: flex;
+	flex-flow:column;	
+	justify-content: center;
+	align-items: center;
+	width:10%;
+	padding : 5px 0px 5px 0px;
+}
+.recomments>li:last-child{
+	padding : 5px 0px 5px 0px;
+	width : 85%;
+	display:flex;
+	flex-flow:column;
+	justify-content: space-between;	
+	
+}
+
+.inputCommentBox ul{
+	list-style-type: none;
+	padding : 10px;
+	display: flex;
+}
+.inputCommentBox textarea[name=commentContent]{
+	height:100%;
+	width:100%;
+	resize: none;
+}
+
+.inputCommentBox ul>li:first-child,.inputCommentBox ul>li:last-child {
+	width:15%;
+	text-align: center;
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+}
+.inputCommentBox ul>li:nth-child(2) {
+	width:70%;
+}
+.like{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.like p, .like_wr p{
+    color: #666;
+    margin-left: 8px;
+    font-size: 14px;
+    
+}
+.margin_b{
+	margin-bottom:30px;
+}
+
+.gray{
+    color: grey;
+    padding-left: 30px;
+}
+.bold{
+    font-size: 25px;
+    font-weight: 600;
+    padding-left: 30px;
+}
+.date {
+    /*width: 50px;
+    height: 70px;*/
+    margin-left: 60px;
+    list-style: none;
+    float: left;
+    padding: 0;
+    /*border-radius: 10px;*/
+    box-shadow :0px 2px 0px 0px rgb(214, 212, 212);
+}
+.date li{
+    text-align: center;
+}
+.dateinfo{
+    overflow: hidden;
+}
+.select_menu{
+ 	text-align: center;
+}
+.select_menu a{
+ 	margin-left: 70px;
+}
+.select_menu a:hover{
+	text-decoration: underline;
+}
+.shoppingbtn{
+	margin-left: 30px;
+}
+.commentsBtn{	
+	text-align: right;	
+}
+.grayLong{
+	 color: gray;
+}
+.explain{
+	padding-left: 30px;
+}
+.rewardImg{
+ text-align: center;
+}
+.rewardImg img{
+	margin-top: 35.2px;
+	width: 600px;
+	height: 450px;
+}
+/*.likebtn{
+	margin-top: 5px;
+	margin-bottom: 5px
+}*/
+.pay{
+	margin-top: 5px;
+	margin-bottom: 5px
+}
+.large{
+	font-size: 40px;
+	font-
+}
+.heart {
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    background-image:url("/img/Parksowon/web_heart_animation.png");
+    background-position: left;
+    background-repeat:no-repeat;
+    background-size:2900%;
+ }
+  
+ .heart:hover {
+    background-position:right;
+ }
+ .is_animating {
+    animation: heart-burst .8s steps(28) 1;
+ }
+ ._click{
+    background-position:right;
+ }
+ @keyframes heart-burst {
+    from {background-position:left;}
+    to { background-position:right;}
+ }
+ .heartReverse {
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    background-image:url("/img/Parksowon/web_heart_animation.png");
+    background-position: right;
+    background-repeat:no-repeat;
+    background-size:2900%;
+ }
+  
+ .heartReverse:hover {
+    background-position:left;
+}
+

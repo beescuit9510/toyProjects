@@ -10,6 +10,9 @@ import common.JDBCTemplate;
 import funding.model.vo.FundingCommentTotal;
 import funding.model.vo.FundingListRecent;
 import funding.model.vo.FundingViewTotal;
+import funding.model.vo.LikeCount;
+import table.model.vo.FundingCategory;
+import table.model.vo.FundingComment;
 import table.model.vo.MakerInfo;
 import table.model.vo.PaymentInfo;
 import table.model.vo.ProjectBasicInfo;
@@ -130,7 +133,7 @@ public class fundingDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<FundingCommentTotal> list = new ArrayList<FundingCommentTotal>();
-		String query ="select a.*,b.c_name from FUNDING_COMMENT a join member b on a.COMMENT_WRITER = b.c_member_no where project_ref_no=? order by 1";
+		String query ="select a.*,b.c_name from FUNDING_COMMENT a join member b on a.COMMENT_WRITER = b.c_member_no where project_ref_no= ? order by 1";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, projectNo);
@@ -250,17 +253,22 @@ public class fundingDao {
 		return count;
 	}
 
-	public FundingViewTotal selectFundingViewTotal(int projectNo, Connection conn) {
+	public FundingViewTotal selectFundingViewTotal(int projectNo,int cMemberNo, Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		FundingViewTotal fvt = null;
-		String query ="select a.*,(select sum(quantity)as total from PAYMENT_INFO where project_no = a.project_no)as total,b.BUSINESS_NAME, c.reward_price from PROJECT_BASIC_INFO a\r\n" + 
-				"join BUSINESS b on a.BUSINESS_NO = b.BUSINESS_NO \r\n" + 
-				"join reward c on a.project_no = c.reward_no\r\n" + 
-				"where project_no=?";
+		String query ="select * from (select rownum as rnum, pb.*, (select count(*) from funding_like \r\n" + 
+				"where liked_project_no=pb.project_no) as liked_count, \r\n" + 
+				"decode((select count(*) from funding_like \r\n" + 
+				"where c_member_no=? and liked_project_no= pb.project_no),'1','like','no') as liked_check \r\n" + 
+				"from (select a.*,b.*,c.business_name,\r\n" + 
+				"(select sum(quantity)as total from PAYMENT_INFO where project_no = a.project_no)as total,\r\n" + 
+				"(select count(*) from PAYMENT_INFO where project_no = a.project_no)as cnt\r\n" + 
+				"from PROJECT_BASIC_INFO a join reward b on a.project_no = b.reward_no join business c on a.business_no=c.business_no)pb) where project_no=?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, projectNo);
+			pstmt.setInt(1, cMemberNo);
+			pstmt.setInt(2, projectNo);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				fvt = new FundingViewTotal();
@@ -275,6 +283,15 @@ public class fundingDao {
 				fvt.setBusinessName(rset.getString("business_name"));
 				fvt.setTotal(rset.getInt("total"));
 				fvt.setRewardPrice(rset.getInt("reward_price"));
+				fvt.setRewardTitle(rset.getString("reward_title"));
+				fvt.setRewardContent(rset.getString("reward_content"));
+				fvt.setShippingDate(rset.getString("shipping_date"));
+				fvt.setCancelPolicy(rset.getString("cancel_policy"));
+				fvt.setqEmail(rset.getString("q_email"));
+				fvt.setqPhone(rset.getString("q_phone"));
+				fvt.setCnt(rset.getInt("cnt"));
+				fvt.setLikeCount(rset.getInt("liked_count"));
+				fvt.setLikeCheck(rset.getString("liked_check"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -308,5 +325,212 @@ public class fundingDao {
 		}
 		return result;
 	}
+
+	public int insertFundingComment(Connection conn, FundingComment fc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into funding_comment values(fundcomm_SEQ.nextval,?,to_char(sysdate,'yyyy-mm-dd'),?,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fc.getCommentContent());
+			pstmt.setInt(2, fc.getCommentLevel());
+			pstmt.setInt(3, fc.getProjectRefNo());
+			pstmt.setString(4, (fc.getCommentRefNo()==0) ? null : String.valueOf(fc.getCommentRefNo()));
+			pstmt.setInt(5, fc.getCommentWriter());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int fundingCommentUpdate(Connection conn, int commentNo, String updateCommentContent) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update funding_comment set comment_content=? where comment_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, updateCommentContent);
+			pstmt.setInt(2, commentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int fundingCommentDelete(Connection conn, int commentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from funding_comment where comment_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, commentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<FundingCategory> selectFundingCategory(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<FundingCategory> fcList = new ArrayList<FundingCategory>();
+		String query = "select*from FUNDING_CATEGORY";
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				FundingCategory fc = new FundingCategory();
+				fc.setFundingCategory(rset.getString("funding_category"));
+				fcList.add(fc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return fcList;
+	}
+
+	public int checkFundingLike(Connection conn, int cMemberNo, int projectNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query = "select COUNT(*)as cnt from funding_like where c_member_no=? and liked_project_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			pstmt.setInt(2, projectNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return result;
+	}
+
+	public int updateFundingLike(Connection conn, int cMemberNo, int projectNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query ="insert into funding_like values(?,?,like_seq.nextval)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			pstmt.setInt(2, projectNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteFundingLike(Connection conn, int projectNo, int cMemberNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from funding_like where c_member_no = ? and Liked_project_no = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cMemberNo);
+			pstmt.setInt(2, projectNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<LikeCount> selectLikedMember(Connection conn, int projectNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<LikeCount> lcList = new ArrayList<LikeCount>();
+		String query ="select a.c_member_no from funding_like a where liked_project_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, projectNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				LikeCount lc = new LikeCount();
+				lc.setLikedMemberNo(rset.getInt("c_member_no"));
+				lcList.add(lc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return lcList;
+	}
+
+	public ArrayList<FundingListRecent> selectFundingListSearch(String keyWord, Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<FundingListRecent> list = new ArrayList<FundingListRecent>();
+		String query ="select nn.*,(select sum(quantity)as total from PAYMENT_INFO where project_no=nn.project_no)as total  \r\n" + 
+				"from (select rownum as rnum, n.* from(select a.*, b.reward_price,b.reward_title,b.reward_content from PROJECT_BASIC_INFO a  \r\n" + 
+				"join reward b on a.project_no = b.reward_no  order by project_no desc)n)nn where \r\n" + 
+				"project_title like ? or project_story like ? or reward_title like ? or reward_content like ?  order by 1";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyWord+"%");
+			pstmt.setString(2, "%"+keyWord+"%");
+			pstmt.setString(3, "%"+keyWord+"%");
+			pstmt.setString(4, "%"+keyWord+"%");
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				FundingListRecent flr = new FundingListRecent();
+				flr.setProjectNo(rset.getInt("project_no"));
+				flr.setBusinessNo(rset.getInt("business_no"));
+				flr.setProjectTitle(rset.getString("project_title"));
+				flr.setTargetPrice(rset.getInt("target_price"));
+				flr.setFilepath(rset.getString("filepath"));
+				flr.setEndDate(rset.getString("end_date"));
+				flr.setProjectStory(rset.getString("project_story"));
+				flr.setFundingCategory(rset.getString("funding_category"));
+				flr.setRewardPrice(rset.getInt("reward_price"));
+				flr.setTotal(rset.getInt("total"));
+				list.add(flr);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+	}
+
+
+	
 
 }

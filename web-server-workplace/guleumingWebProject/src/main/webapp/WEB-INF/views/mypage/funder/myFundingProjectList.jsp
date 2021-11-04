@@ -175,6 +175,8 @@
 				start = currCount;
 				currCount = currCount+perPost; 
 				
+				console.log(ffs);
+				
 				var html = "";
 				
 				console.log(start);
@@ -183,8 +185,7 @@
 				for(var i=0;i<ffs.length;i++){
 					var ff = ffs[i];
 					
-					fundedFundings.push(ff.funding.projectBasicInfo.filepath);
-					console.log(fundedFundings)
+					fundedFundings.push(ff);
 					
 					html += "<section class='project-box moving-top'>";
 					html += "<div class='project-profile'>"
@@ -207,12 +208,6 @@
 					console.log(ff.total);
 					console.log(ff);
 					
-					console.log("start")
-						console.log("Price1 : "+ff.funding.reward.rewardPrice)
-	console.log("total1 : "+ff.funding.total)
-	console.log("target : "+ff.funding.projectBasicInfo.targetPrice)
-					console.log(ff.funding.reward.rewardPrice*ff.funding.total/ff.funding.projectBasicInfo.targetPrice*100);
-					console.log("end")
 
 					html += "</div><div class='rate'>달성률 <span class='percent point'>"+Math.floor(ff.funding.reward.rewardPrice*ff.funding.total/ff.funding.projectBasicInfo.targetPrice*100)+"%</span></div>";
 					html +=	"<div class='target-price'>목표 금액 <span>"+ff.funding.projectBasicInfo.targetPrice+"</span>원</div>";	
