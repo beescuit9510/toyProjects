@@ -1,0 +1,219 @@
+@charset "UTF-8";
+
+
+    .container{
+        margin: 0 auto;
+    }
+    .mainBanner{
+       width: 1200px;
+        height: 400px;
+        overflow: hidden;
+    }
+    #bannerImg{
+        width: 3600px;
+     
+    }
+    #bannerImg img{
+        float: left;
+        width: 1200px;
+    }
+  	.text{
+  		float:left;
+  		margin-left:10px;
+  		font-weight:900;
+  	color: rgb(52, 152, 219);
+  	font-size: 16px; 
+    margin-top: 20px;  
+  	}
+    #goodsWrap{
+    margin: 0 auto;
+  	margin-top:50px;
+    width:1200px;
+    overflow:hidden;
+    }
+ 	#goodsWrap>select{
+ 	float:right;
+ 	border:none;
+ 	font-size:15px;
+ 	}
+ 	 #goodsTitle h1{
+    font-weight:900;
+    font-size
+    }    
+     .projectTitle {
+	    margin-top: 5px;
+	    /* font-weight: 900; */
+	    font-size: 20px;
+	    font-family: 'ns_700';
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    overflow: hidden;
+	}
+ 	.goodsList{
+	padding-top:45px;
+ 	box-sizing:border-box;
+ 	width:1200px;
+ 	margin: 0 auto;
+ 	}
+ 	.goods{
+	 	float: left;
+	    width: 390px;
+	    height: 360px;
+	    border: 1px solid #eee;
+	    overflow: hidden;
+	    box-sizing: border-box;
+	    border-radius: 5px;
+	    margin-right: 10px;
+	    margin-bottom: 10px;
+      transition: transform .35s;
+ 	}
+ 	.goodsList li:nth-child(3n){
+		margin-right:0;
+	}
+ 	.goods:hover{
+ 	 cursor: pointer;
+     transform: translate3d(0,-5px,0);
+  		box-shadow :2px 2px 5px rgb(0 0 0 / 15%);;
+ 	
+ 	}
+ 	.projectImg{
+ 		height: 250px;
+    	overflow: hidden;
+ 	}
+ 	.goods img{
+     height: 100%;
+     width:100%;
+ 	}
+ 
+ 	.right{
+ 	float: right;
+ 	 font-size: 16px; 
+     margin-top:20px;
+     color:rgb(126,126,126);
+ 	}
+ 	
+ 	 .right:nth-of-type(1){
+    margin-right:10px;
+    }
+    .right:nth-of-type(2){
+    margin-right:15px;
+    }
+    /* 추가 */
+    .projectInfo{
+    	padding: 10px 18px;
+	    width: 388px;
+	    overflow: hidden;
+    }
+    .projectCategory{
+    	font-size: 14px;
+    	color: #666;
+    }
+    .projectLine{
+    	margin-top : 5px;    
+    }
+    .projectPrice{
+    	color:#00B9CE;
+    	float:left;
+    }
+    .projectPeriod{
+    	float:right;
+    	color:#666;
+    }
+    .projectPercent{
+    	float:right;
+    	margin-right:10px;
+    }
+    /* 슬라이드 */
+.mySwiper{
+	height: 554px; 
+	overflow: hidden;
+}
+.swiper-slide a{
+	width:100%;
+	height:554px;
+	position: absolute;
+}
+.main_text{
+	left: 0;
+    right: 0;
+    overflow: hidden;
+    letter-spacing: -1.3px;
+    text-transform: uppercase;
+    text-align: left;
+    bottom: auto;
+    text-shadow: none;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1200px;
+    padding-top: 230px;
+}
+.main_text2{
+	margin-top: 16px;
+    font-size: 47px;
+    line-height: 57px;
+    font-family: 'ns_500';
+}
+.main_text3{
+	margin-top:20px;
+}
+.main_01{
+	background-image: url("/img/KimMinji/main_01.png");
+   	background-repeat: no-repeat;
+   	background-position: center center;
+   	background-size: cover;
+}
+.main_02{
+	background-image: url("/img/KimMinji/main_02.png");
+   	background-repeat: no-repeat;
+   	background-position: center center;
+   	background-size: cover;
+}
+.main_03{
+	background-image: url("/img/KimMinji/main_03.png");
+   	background-repeat: no-repeat;
+   	background-position: center center;
+   	background-size: cover;
+}
+.main_04{
+	background-image: url("/img/KimMinji/main_04.png");
+   	background-repeat: no-repeat;
+   	background-position: center center;
+   	background-size: cover;
+}
+
+#noticeWrap, #eventWrap{
+	margin:50px 0px;
+}
+.noticeList, .eventList{
+	margin:30px 0px;
+	border-top: 1px solid #eee;
+	border-bottom:1px solid #eee;
+}
+.noticeList li, .eventList li{
+	border-top: 1px solid #eee;
+	padding:15px 5px;
+}
+.noticeList li:first-child, .eventList li:first-child{
+	border-top:none;
+}
+.notice_date, .event_date{
+	margin-left:8px;
+	color:#666;
+	font-size: 14px;
+}
+.notice_point{
+	padding: 3px 12px;
+    background: #E8F9FB;
+    border-radius: 50px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+.event_point{
+	padding: 3px 12px;
+    background: #fbe8ef;
+    border-radius: 50px;
+    margin-right: 10px;
+    font-size: 14px;
+}

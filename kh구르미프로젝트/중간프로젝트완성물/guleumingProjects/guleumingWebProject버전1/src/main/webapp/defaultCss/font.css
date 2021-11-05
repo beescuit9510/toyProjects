@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "ns_100";
+  src: local("NotoSansKR"), url(/font/NotoSansKR-Thin.otf);
+}
+@font-face {
+  font-family: "ns_300";
+  src: local("NotoSansKR"), url(/font/NotoSansKR-Light.otf);
+}
+@font-face {
+  font-family: "ns_400";
+  src: local("NotoSansKR"), url(/font/NotoSansKR-Regular.otf);
+}
+@font-face {
+  font-family: "ns_500";
+  src: local("NotoSansKR"), url(/font/NotoSansKR-Medium.otf);
+}
+@font-face {
+  font-family: "ns_700";
+  src: local("NotoSansKR"), url(/font/NotoSansKR-Bold.otf);
+}
+@font-face {
+  font-family: "ns_900";
+  src: local("NotoSansKR"), url(/font/NotoSansKR-Black.otf);
+}
+@font-face {
+  font-family: "logo";
+  src: local("Cafe24Ssurround"), url(/font/Cafe24Ssurround.ttf);
+}

@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+.left-menu{
+	width:200px;
+	float:left;
+}
+.left-menu h1{
+	font-size:24px;
+	color:#00B9CE;
+	margin-bottom:3px;
+}
+.left-menu h4{
+	margin-bottom:20px;
+}
+.left_menu{
+	border-top: 2px solid #00B9CE;
+	padding-top:20px;
+	line-height:28px;
+}
+.projectContent{
+	width:970px;
+	float:left;
+	margin-left:30px;
+	margin-bottom:50px;
+}
+.projectFrm{
+	margin-bottom:25px;
+	float:left;
+	clear:both;
+	width:100%;
+}
+.projectFrm label {
+    padding: 0px 10px;
+    text-align: left;
+    border-left: 2px solid #00B9CE;
+    font-size: 18px;
+    height: 16px;
+    line-height: 12px;
+    font-family: "ns_400";
+    display: block;
+    margin-bottom: 8px;
+    float: left;
+}
+.projectFrm input, select{
+	margin-top:10px;
+}
+.comment{
+	clear:both;
+	float:left;
+	margin-bottom:8px;
+}
+.input_03, .input_04 {
+    outline: none;
+    border: none;
+    border-radius: 0;
+    display: block;
+    width: 100%;
+    height: 40px;
+    box-shadow: none;
+    background-color: #fff;
+    padding: 0 12px;
+    -webkit-appearance: none;
+    border: 1px solid #9f9f9f;
+    color: #292929;
+    float: left;
+    clear:both;
+}
+.input_04{
+	width:50%;
+	float:left;
+	display:inline-block;
+}
+.input_03:focus, .input_04:focus, .input_05:focus, .textarea_pro:focus{
+	border:1px solid #00B9CE;
+}
+.input_text{
+	float:left;
+	margin-left:8px;
+	line-height: 40px;
+}
+.input_05 {
+    outline: none;
+    border: none;
+    border-radius: 0;
+    display: block;
+    width: 35%;
+    height: 40px;
+    box-shadow: none;
+    background-color: #fff;
+    padding: 0 12px;
+    -webkit-appearance: none;
+    border: 1px solid #9f9f9f;
+    color: #292929;
+    float: left;
+    margin-right:10px;
+}
+.projectFrm select{
+	clear:both;
+	float:left;
+	width:180px;
+	height:40px;
+	border:none;
+	outline:none;
+	border:1px solid #9f9f9f;
+}
+
+.note-editor{
+    clear:both;
+}
+.textarea_pro {
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 150px;
+    border: 1px solid #9f9f9f;
+    padding: 12px;
+    resize: none;
+    overflow: ;
+}
+.pro_preview{
+	border:1px solid #eee;
+	border: 1px solid #eee;
+    margin-top: 20px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.pro_preview:hover{
+	border: 1px solid #00B9CE;
+}

@@ -1,0 +1,781 @@
+@charset "UTF-8";
+
+/* 카테고리 */
+.category ul{
+	width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.category ul li{
+    float: left;
+}
+.category>ul>li>a>img{
+	border-radius: 50px;
+	width:100px;
+}
+/* 기존 이미지 사용할때 
+.category span{
+    clear: both;
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+} */
+.category a{
+	border: 1px solid #eee;
+    padding: 10px 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+.on a{
+	border: 1px solid #00B9CE;
+    color: #00B9CE;
+}
+
+.on_img img{
+	border-width: 2px;
+    border-color: rgba(0,178,178,.99);
+}
+.on_img span{
+	color:red;
+}
+/* 검색 */
+.search{
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0 0 0;
+}
+.search_bar{
+    display: flex;
+    align-items: center;
+    border-bottom:2px solid #00B9CE;
+    transition: 0.5s;
+    padding: 5px;
+    width: 480px;
+}
+.search_bar input{
+    outline: none;
+    border: none;
+    width: 450px;
+}
+.search_bar img{
+    width: 30px;
+}
+.search_btn{
+	outline:none;
+	border:none;
+	background:none;
+	cursor: pointer;
+}
+/* 펀더등록 오른쪽 배치 */
+.float_right{
+    float: right;
+    margin-bottom: 30px;
+}
+/* funder list */
+.funder_list{
+    clear: both;
+/*     margin-top: 50px; */
+}
+.funder_listli{
+    padding: 25px;
+    border-radius: 5px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom:20px;
+}
+.list_left{
+	width: 758px;
+    float: left;
+    padding-right:25px;
+}
+.list_profileImg{
+	width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.list_pro_left{
+	display: flex;
+    align-items: center;
+}
+.list_profile_text{
+	margin-left:20px;
+}
+.list_profile_text>span{
+	float:left;
+	clear:both;
+}
+.list_cate_pro{
+	border: 1px solid #00B9CE;
+    padding: 3px 10px;
+    border-radius: 50px;
+}
+.list_pro_left span{
+	margin-bottom:8px;
+}
+.list_pro_left span:first-child{
+	display: flex;
+    align-items: baseline;
+}
+.list_pro_left span p{
+	float:left;
+}
+.list_opendate{
+	margin-right:10px;
+}
+.list_businessName{
+    margin-right:15px;
+    font-size : 22px;
+}
+.list_companyinfo{
+	width:100%;
+	height:100px;
+	overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+	margin: 20px 0;
+}
+.list_skileName{
+	display:flex;
+	align-items: center;
+}
+.list_skileName p{
+	border : 1px solid #eee;
+	border-radius: 3px;
+	padding: 3px 10px;
+	float:left;
+	margin-right:8px;
+}
+.list_skileName>a{
+	font-size:14px;
+	color:#666;
+}
+/* 리스트 오른쪽 */
+.list_right{
+	background: #f9f9f9;
+    padding: 20px;
+    width: 390px;
+    float: left;
+    height: 267px;
+}
+.list_proright{
+	padding: 10px 0px 20px 0px;
+}
+/* 펀더 등록  */
+.funder_add{
+	width: 100%;
+    /* display: flex;
+    justify-content: space-around; */
+}
+/* 프로필 왼쪽 부분 */
+.add_left{
+	width: 300px;
+    padding: 30px;
+    border-radius: 5px;
+    height: auto;
+    float: left;
+    margin-right: 15px;
+    max-height: 475px;
+}
+.profileTop{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.profileImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.profileImg img, .list_profileImg img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.profileName{
+    font-family: "ns_700";
+    font-size: 18px;
+}
+/* 프로필 하단 부분 */
+.profileBottom{
+    margin-top: 30px;
+}
+.profileText{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+.profileText p:first-child{
+    font-family: "ns_500";
+}
+.profilebtn{
+    font-size: 16px;
+    color:#333;
+    margin-bottom:10px;
+}
+/* 몇명이 관심?  */
+.like{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    height:55px;
+}
+.like_wr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+.like p{
+	font-size:16px;
+    color: #666;
+    margin-left: 8px;
+}
+.like_wr p{
+    color: #666;
+    margin-left: 8px;
+    font-size: 14px;
+}
+#like_total{
+	margin-right:3px;
+}
+.like_wr img{
+    width: 15px;
+}
+.margin_b2{
+	margin-bottom:30px;
+}
+/* 프로필 오른쪽  */
+.add_right{
+    width: 850px;
+    border-radius: 5px;
+    float: left;
+}
+.add_right2{
+    width: 850px;
+    float: left;
+    border:1px solid #eee;
+    border-top:none;
+    border-bottom: 2px solid #00B9CE;
+    margin-bottom:50px;
+}
+/* 테이블  */
+.table{
+    width: 100%;
+    padding: 70px 80px 20px 70px;
+    box-sizing: border-box;
+}
+.table2{
+    width: 100%;
+    box-sizing: border-box;
+}
+.table-active{
+    display: flex;
+    align-items: flex-start;
+}
+.table-active{
+    margin-bottom: 20px;
+}
+.table-active th{
+    padding: 0px 10px;
+    text-align: left;
+    border-left: 2px solid #00B9CE;
+    height: 12px;
+    line-height: 12px;
+    display: flex;
+    font-family: "ns_300";
+    width: 200px;
+}
+.table-active td{
+    flex-grow: 2;
+}
+.img-viewr{margin-right: 50px;}
+.profile_view{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    object-fit: cover;
+}
+.displayflex{
+    display: flex;
+}
+.check_ent{
+    margin-bottom: 10px;
+}
+.check_ent label{
+    width: 100px;
+    margin-left: 10px;
+}
+
+/* 체크박스 디자인  */
+input[name="funderCategory"]{
+    position: absolute;
+    left: -3000%;
+}
+input[name="funderCategory"]+label{
+    position: relative;
+}
+input[name="funderCategory"]+label:before{
+    content: "";
+    display: inline-block;
+    margin: 0 4px 0 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #a6a6a6;
+    position: relative;
+    top: 4px;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+input[name="funderCategory"]:checked+label:before{
+    background:#00B9CE;
+    border-color: #00B9CE;
+}
+input[name="funderCategory"]+label:after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    background: url('/img/Parksowon/check.png') no-repeat center;
+    width: 22px;
+    height: 22px;
+    background-size: 0 auto;
+    transition: all 0.5s 0.3s;
+}
+input[name="funderCategory"]:checked+label:after{
+    background-size: 12px auto;
+}
+
+/* input 추가  */
+.input_03{
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	display: block;
+    width: 100%;
+    height: 40px;
+    box-shadow: none;
+    background-color: #fff;
+    padding: 0 12px;
+    -webkit-appearance: none;
+    border: 1px solid #9f9f9f;
+    color: #292929;
+}
+.input_03:focus, .textarea_pro:focus{
+	border:1px solid #00B9CE;
+}
+.input_04{
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	display: inline-block;
+    width: 405px;
+    height: 40px;
+    box-shadow: none;
+    background-color: #fff;
+    padding: 0 12px;
+    -webkit-appearance: none;
+    border: 1px solid #9f9f9f;
+    color: #292929;
+    float: left;
+}
+.postcode{
+    float: left;
+    clear: both;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.postcode button{
+    float: left;
+    margin-left: 5px;
+    height: 40px;
+    font-size: 14px;
+}
+.textarea_pro{
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 150px;
+    border-radius: 3px;
+    border: 1px solid #9f9f9f;
+    padding: 12px;
+    resize: none;
+    overflow: ;
+}
+/* 태그  */
+.profile_tags input{
+    outline: none;
+    border: none;
+    width: 100%;
+    min-height: 29px;
+}
+.profile_tags{
+    width: 100%;
+    border: 1px solid #9f9f9f;
+    border-radius: 3px;
+    height: auto;
+    padding: 5px 12px;
+}
+.tag_list{width: 484px;}
+.tag_list li{
+    display: inline-block;
+    color: #666;
+    border: 1px solid #eee;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+.tag_list li .tag_item{
+    padding: 4px 8px;
+    background: #f9f9f9;
+    color: red;
+}
+.del-btn img{
+    width: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+.next_btn{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px 65px 50px 70px;
+}
+.next_btn button{
+    font-size: 14px;
+}
+/* 스킬 관련  */
+.skill_search{
+    overflow: hidden;
+    border: 1px solid #00B9CE;
+    background: url("/img/Parksowon/skill_search_on.png") no-repeat 10px center;
+    padding-left: 40px;
+}
+.profile_skill{
+	width: 100%;
+    height: auto;
+    background: #f9f9f9;
+    display:none;
+    margin-top:20px;
+}
+.skill_item{
+    padding: 15px;	
+	border : 1px solid #fff;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.skill_item h2{
+	flex-grow: 1;
+	font-size: 20px;
+}
+.skill_item select {
+	width: 100px;
+    padding: 4px;
+    outline: none;
+    border: none;
+    border: 1px solid #eee;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+.del_skill img{
+    width: 15px;
+    cursor: pointer;
+  }
+  
+/* funder view   */
+.view_title{
+	text-align:left;
+	font-size:22px;
+	margin-bottom:30px;
+	font-family: "ns_700";
+	display:block;
+}
+.view_title em{
+	font-size: 26px;
+	font-family: "ns_700";
+}
+.fundercontainer{
+    width: 850px;
+    float: left;
+}
+.tab_title{
+	display: flex;
+    align-items: flex-end;
+    border-bottom: 2px solid #00B9CE;
+}
+.tab_title li {
+    list-style: none;
+    float: left;
+    width: 150px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #eee;
+    transition: 0.5s;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom:none;
+    margin-right:5px;
+} 
+.tab_title li.on {
+    background-color: #00B9CE;
+    color: #fff;
+    height: 50px;
+    line-height: 30px;
+    border-color: #00b9ce;
+}  
+.tab_cont {
+    clear: both;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 70px 80px 40px 70px;
+    overflow: hidden;
+}  
+.tab_cont .tab_div {
+ 
+    text-align: center;
+}  
+.tab_cont .on {
+    display: block;
+}
+.text_align_l{
+   text-align: left;
+} 
+.total_count{
+	font-size: 16px;
+    color: #666;
+    font-weight: 200;
+}
+.view_dday{
+	font-size: 18px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    border: 2px solid #ff0071;
+    border-radius: 50px;
+    padding: 12px 5px;
+    background: rgba( 255, 255, 255, 0.8 );
+    font-family: 'ns_700';
+}
+/* funder view info */
+.table-active2{
+    width:100%;
+    margin-bottom: 20px;
+    clear: both;
+    float: left;
+}
+.table-active2:nth-child(2n){
+	margin-bottom:30px;
+}
+.table-active2 th{
+    padding: 0px 10px;
+    text-align: left;
+    border-left: 2px solid #00B9CE;
+    font-size: 18px;
+    height: 16px;
+    line-height: 12px;
+    font-family: "ns_300";
+    width: 200px;
+}
+
+.view_com_info{
+	background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    width: 698px;
+    height: auto;
+}
+
+.view_tag{
+	font-size: 14px;
+    color: #1547d0;
+    margin-right: 8px;
+    float: left;
+    line-height: 24px;
+}
+.skill_view_list{
+	display:flex;
+}
+.skill_view_list ul{
+	float:left;
+}
+.skill_view_list li {
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom:10px;
+}
+.skill_view_list ul:first-child li{
+	width:580px;
+	border:1px solid #eee;
+	border-right:none;
+	border-top-right-radius:0;
+	border-bottom-right-radius:0;
+	padding-left:27px;
+}
+.skill_view_list ul:last-child li{
+	background:#00B9CE;
+	border: 1px solid #00B9CE;
+	border-top-left-radius:0;
+	border-bottom-left-radius:0;
+}
+.skill_view_list ul:last-child li>p{
+	color:#fff;
+}
+.skill_view_list>ul>li:last-child{
+	margin-bottom:0;
+}
+.skill_view_name{
+	flex-grow:2;
+	font-size:18px;
+}
+.skill_view_level{
+	border-radius : 50px;
+	background:#f9f9f9;
+	padding:5px 15px;
+}
+
+/* funder navi */
+
+#pageNavi{
+	display: flex;
+    width: 420px;
+    margin: 40px auto 20px auto;
+    justify-content: center;
+}
+.page_item{
+	width:33px;
+	height:33px;
+	/* line-height:30px; */
+	padding:0px;
+	text-align:center;
+	margin: auto 5px;
+	float: left;
+	border: 3px solid transparent;
+}
+.pageination_funder > .active{
+	border: 3px solid #00B9CE;
+    border-radius: 100%;
+}
+
+/* 검색 결과 없을 때  */
+.nonebox{
+	width: 100%;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+.nonebox h3{
+	font-size:28px;
+}
+.nonebox img{
+	width: 600px;
+}
+
+/* 프로젝트 목록 */
+.funder_listli2{
+   	width: 48%;
+    overflow: hidden;
+    margin-bottom: 10px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.funder_list_img{
+	width:100%;
+	height:220px;
+	overflow: hidden;
+	position: relative;
+}
+.funder_list_img img{
+	height:100%;
+	width:100%;
+}
+.funder_list_text{
+	padding:20px;
+}
+
+.funder_list_title h1 {
+	font-size:18px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.funder_list_date{
+	margin: 0 auto;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    line-height: 35px;
+}
+.funder_list_date em{
+	margin-right:5px;
+}
+.start_date{
+	float:left;
+	margin-right:10px;
+}
+.end_date{
+	float:left;
+}
+/* 좋아요 부분  */
+.heart {
+    cursor: pointer;
+    height: 80px;
+    width: 80px;
+    outline:none;
+    border:none;
+    background:none;
+    background-image:url("/img/Parksowon/web_heart_animation.png");
+    background-position: left;
+    background-repeat:no-repeat;
+    background-size:2900%;
+  }
+  
+  .heart:hover {
+    background-position:right;
+  }
+  
+  .is_animating {
+    animation: heart-burst .8s steps(28) 1;
+  }
+  ._click{
+    background-position:right;
+  }
+  @keyframes heart-burst {
+    from {background-position:left;}
+    to { background-position:right;}
+  }
+/* view 에서의 좋아요 부분 */
+.heart2 {
+    cursor: pointer;
+    height: 23px;
+    width: 23px;
+    outline:none;
+    border:none;
+    background:none;
+    background-image:url("/img/Parksowon/heart_off.png");
+    background-size : 23px 23px;
+    background-repeat:no-repeat;
+    margin-right:5px;
+  } 
+.h_on{
+    background-image:url("/img/Parksowon/heart_on.png");
+}
+  .heart2:hover {
+    background-image:url("/img/Parksowon/heart_on.png");
+  }

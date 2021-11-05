@@ -1,0 +1,397 @@
+@charset "UTF-8";
+
+.rewardImg{
+            width: 750px;
+            float: left;
+}
+.shopping{
+	        width: 450px;
+            float: left;
+}
+    
+.comments{
+	list-style-type: none;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.recomments{
+	list-style-type: none;
+    background: #f9f9f9;
+    border-radius: 5px;
+    padding: 20px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    float: left;
+    width: 1182px;
+}
+.comm_info{
+	display: flex;
+    align-items: center;
+}
+.comm_date{
+	float:left;
+	color:#666;
+	font-size:12px;
+	margin-left:8px;
+}
+.comm_name{
+	float: left;
+    font-size: 16px;
+    font-family: 'ns_700';
+}
+.comm_cont{
+	float: left;
+    clear: both;
+    margin-top: 10px;
+    width: 100%;
+}
+.recoment{
+	display: none;	
+	justify-content: space-around;
+}
+.recoment>textarea{
+	width: 85%;
+	resize: none;
+}
+textarea.form-control{
+	height: 100%;
+    resize: none;
+    width: 980px;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #eee;
+}
+.recoment>div{
+	width:10%;
+}
+.replay-dasi {
+    width: 13px;
+    height: 73px;
+    margin-top: -25px;
+    margin-right: 5px;
+    border-bottom: 1px solid #eaebed;
+    border-left: 1px solid #eaebed;
+    float: left;
+}
+.inputCommentBox ul{
+	list-style-type: none;
+	padding : 10px;
+	display: flex;
+}
+.inputCommentBox textarea[name=commentContent]{
+	height:100%;
+	width:100%;
+	resize: none;
+}
+
+.inputCommentBox ul>li:first-child,.inputCommentBox ul>li:last-child {
+	width:15%;
+	text-align: center;
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+}
+.inputCommentBox ul>li:nth-child(2) {
+	width:70%;
+}
+.like{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    float: left;
+    clear: both;
+    width: 100%;
+}
+
+.like p, .like_wr p{
+    color: #666;
+    margin-left: 8px;
+    font-size: 14px;
+    
+}
+.margin_b{
+	margin-bottom:30px;
+}
+
+.date {
+    /*width: 50px;
+    height: 70px;*/
+    margin-left: 60px;
+    list-style: none;
+    float: left;
+    padding: 0;
+    /*border-radius: 10px;*/
+    box-shadow :0px 2px 0px 0px rgb(214, 212, 212);
+}
+.date li{
+    text-align: center;
+}
+.dateinfo{
+    overflow: hidden;
+    float: left;
+    clear: both;
+}
+.select_menu{
+ 	text-align: center;
+}
+.select_menu a{
+ 	cursor: pointer;
+    width: 100px;
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+}
+/* .select_menu a:hover{
+	text-decoration: underline;
+} */
+.pay{
+	margin: 0 auto;
+	text-align:center;
+}
+.shoppingbtn{
+	margin:20px 0px;
+}
+.commentsBtn{	
+	float: right;
+}
+.commentsBtn a{
+	padding: 3px 10px;
+    border: 1px solid #00B9CE;
+    border-radius: 5px;
+    color: #00B9CE;
+}
+
+.grayLong{
+	 color: gray;
+}
+.explain{
+	padding-left: 30px;
+}
+.rewardImg{
+ 	width: 600px;
+    height: 413px;
+    overflow: hidden;
+    margin-right: 50px;
+    padding-top: 13px;
+    box-sizing: border-box;
+}
+.rewardImg img{
+	width:100%;
+	height:100%;
+}
+/*.likebtn{
+	margin-top: 5px;
+	margin-bottom: 5px
+}*/
+.pay{
+	margin-top: 5px;
+	margin-bottom: 5px
+}
+.large{
+	font-size: 40px;
+	margin-right:8px;
+}
+.heart {
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    background-image:url("/img/Parksowon/web_heart_animation.png");
+    background-position: left;
+    background-repeat:no-repeat;
+    background-size:2900%;
+ }
+  
+ .heart:hover {
+    background-position:right;
+ }
+ .is_animating {
+    animation: heart-burst .8s steps(28) 1;
+ }
+ ._click{
+    background-position:right;
+ }
+ @keyframes heart-burst {
+    from {background-position:left;}
+    to { background-position:right;}
+ }
+ .heartReverse {
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    background-image:url("/img/Parksowon/web_heart_animation.png");
+    background-position: right;
+    background-repeat:no-repeat;
+    background-size:2900%;
+ }
+  
+ .heartReverse:hover {
+    background-position:left;
+}
+
+/* 20211104 추가 및 수정 */
+.p_title{
+	text-align:center;
+	border-top:1px solid #eee;
+	border-bottom:1px solid #eee;
+	padding :  30px 0px;
+}
+.sm_category{
+	font-size: 14px;
+    color: #00B9CE;
+    display: block;
+}
+.big_title{
+	clear: both;
+    font-size: 32px;
+    display: block;
+    margin-top: 5px;
+    font-family: 'ns_500';
+}
+.shopping_top{
+	display: flex;
+    align-items: flex-start;
+    margin-top:30px;
+}
+.recent{
+	font-family: 'ns_700';
+}
+.info_line{
+	width: 100%;
+    float: left;
+    clear: both;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: baseline;
+}
+.gray{
+	color:#666;
+	width:130px;
+	float:left;
+	display:block;
+}
+.pro_two{
+	color:#666;
+	float:left;
+	display:block;
+	font-sizt:14px;
+}
+.pro_point{
+	float:left;
+	display:block;
+	margin-right:8px;
+	font-size:22px;
+}
+.end_btn{
+	outline: none;
+    border: none;
+    width: 100%;
+    border: 1px solid rgb(255, 0, 113);
+    padding: 12px;
+    background: none;
+    font-size: 18px;
+    color: rgb(255, 0, 113);
+}
+.explain {
+    width: 100%;
+    /* border-radius: 6px; */
+    background-color: #fef1f1;
+    padding: 12px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -.3px;
+    text-align: center;
+}
+.select_menu{
+	float:left;
+	clear:both;
+	width:100%;
+	margin-top:50px;
+}
+.select{
+	margin: 0 auto;
+    width: 100%;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    display:flex;
+    justify-content: center;
+}
+.refund, .story{
+	float: left;
+    clear: both;
+    width: 100%;
+    height: auto;
+    padding: 30px;
+}
+.story{
+	text-align:center;
+}
+.comment{
+	float: left;
+    clear: both;
+    width: 100%;
+    padding-top: 30px;
+}
+.comment_notice{margin-bottom:50px;}
+.comment_notice h1, .refund_text h1{
+	font-size: 26px;
+    line-height: 36px;
+    font-family: 'ns_500';
+    color: #444;
+}
+.comment_notice h3{
+	font-size: 18px;
+    color: #00B9CE;
+    margin: 22px 0px 12px 0px;
+}
+.comment_notice p{
+	padding-left:20px;
+	margin-bottom:3px;
+	color:#666;
+}
+.comment_notice p:before {
+    content: "\2022";
+    color: #00B9CE;
+    font-weight: 700;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+.comm_pro{
+	padding: 3px 12px;
+    background: #00B9CE;
+    color:#fff;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+.refund_text{
+	margin-bottom:50px;
+}
+.project_date{
+	margin-top: 30px;
+    background: #f9f9f9;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+.project_date h3{
+	float:left;
+}
+.refund_title{
+	font-family: 'ns_700';
+	margin-right:10px;
+}
+.refund_date{
+	margin-right:20px;
+}
