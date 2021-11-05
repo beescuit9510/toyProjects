@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/css/LimHansol/selectQuantity.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>selectQuantity</title>
+<title>구르밍</title>
 <style>
 </style>
 </head>

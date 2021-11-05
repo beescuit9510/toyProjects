@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/css/Yunyoung/mypage.css">
-<title>Insert title here</title>
+<title>구르밍</title>
 </head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><head>
 <body>

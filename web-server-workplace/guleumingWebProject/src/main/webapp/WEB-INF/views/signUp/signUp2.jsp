@@ -17,7 +17,7 @@
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>구르밍</title>
 <link rel="stylesheet" href="/defaultCss/default.css">
 <!-- 폰트 CSS -->
 <link rel="stylesheet" href="/defaultCss/font.css">

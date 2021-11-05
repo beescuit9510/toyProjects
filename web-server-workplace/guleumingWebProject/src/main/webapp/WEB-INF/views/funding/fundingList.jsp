@@ -19,7 +19,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <meta charset="UTF-8">
-<title>펀딩페이지</title>
+<title>구르밍</title>
 </head>
 <style>
 .category ul{
@@ -85,16 +85,14 @@
 				</div>
 		</div>
 		
-	 
-   
-   		<div class="guide">
-   			<h3>진행중인 <em class="point">펀딩</em></h3>
-   		</div>
    		<div class="searchquantity"></div>
-		<div class="mainmenu">
+		<div>
+			<ul class="mainmenu">
+			
+			</ul>
 		</div>
 		<div class="buttonArea">
-		<button class="btn" currentCount="0" totalCount="${count }" value="1" id="more">펀딩 더보기</button>
+			<button class="btn" currentCount="0" totalCount="${count }" value="1" id="more">펀딩 더보기</button>
 		</div>
 	</div>  
 	<script>
@@ -109,11 +107,20 @@
 				for(var i=0;i<data.length;i++){
 					var f = data[i];
 					var html="";
-					html += " <ul class='fundingList'>";
-					html += " <li><a href='/fundingView?projectNo="+f.projectNo+"'><img src='/upload/project/"+f.filepath+"' height='300px'></a></li>";
-					html += " <li class='firstLi'><span class='projectTitle'>"+f.projectTitle+"</span></li>";
-					html += " <li class='secondLi'><span class='text'>"+f.totalPrice+"원펀딩중</span><span class='left d-day'>D-"+f.period+"남음</span><spna class='left'>"+f.percent+"%진행</span></li></ul>";
-					
+					html += " <li class='goods'>";
+					html += " <a href='/fundingView?projectNo="+f.projectNo+"'>";
+					html += "<div class='projectImg'>";
+					html += "<img src='/upload/project/"+f.filepath+"'>";
+					html += "</div>";
+					html += "<div class='projectInfo'>";
+					html += "<p class='projectCategory'>"+f.fundingCategory+"</p>"
+					html += " <p class='projectTitle'>"+f.projectTitle+"</p>";
+					html += "<div class='projectLine'>"
+					html += " <span class='projectPrice'>"+f.totalPrice+"원 펀딩</span>";
+					html += "<span class='projectPeriod'>D-"+f.period+"</span>";
+					html += "<spna class='projectPercent'>"+f.percent+"%</span>";
+					html += "</div>"
+					html += "</div></a></li>";
 					$(".mainmenu").append(html);
 				}
 				console.log(reqPage);
@@ -146,19 +153,26 @@
 				$(".searchquantity").empty();
 				var html="";
 				if(data.length > 0){
-					var html2 ="";
-					html2 += "<span><em class='point'>["+category+"]</em>의 상품을 보고계십니다.</h3></span>";
 					for(var i=0;i<data.length;i++){
 						var fc = data[i];
-							html += " <ul class='fundingList'>";
-							html += " <li><a href='/fundingView?projectNo="+fc.projectNo+"'><img src='/upload/project/"+fc.filepath+"' height='300px'></a></li>";
-							html += " <li class='firstLi'><span class='projectTitle'>"+fc.projectTitle+"</span></li>";
-							html += " <li class='secondLi'><span class='text'>"+fc.totalPrice+"원펀딩중</span><span class='left d-day'>D-"+fc.period+"남음</span><spna class='left'>"+fc.percent+"%진행</span></li></ul>";
+						html += " <li class='goods'>";
+						html += " <a href='/fundingView?projectNo="+fc.projectNo+"'>";
+						html += "<div class='projectImg'>";
+						html += "<img src='/upload/project/"+fc.filepath+"'>";
+						html += "</div>";
+						html += "<div class='projectInfo'>";
+						html += "<p class='projectCategory'>"+fc.fundingCategory+"</p>"
+						html += " <p class='projectTitle'>"+fc.projectTitle+"</p>";
+						html += "<div class='projectLine'>"
+						html += " <span class='projectPrice'>"+fc.totalPrice+"원 펀딩</span>";
+						html += "<span class='projectPeriod'>D-"+fc.period+"</span>";
+						html += "<spna class='projectPercent'>"+fc.percent+"%</span>";
+						html += "</div>"
+						html += "</div></a></li>";
 					} 
 					}else{
-						html += " <span class='nonebox'><img src='/img/Parksowon/search_img.png'><h3><em class='point'>["+category+"]</em>카테고리 의 상품이 아직 없습니다.</h3></span>";
+						html += " <span class='nonebox'><img src='/img/Parksowon/search_img.png'><h3><em class='point'>["+category+"]</em> 카테고리 의 상품이 아직 없습니다.</h3></span>";
 					}
-					$(".searchquantity").append(html2);
 					$(".mainmenu").append(html);
 					$("#more").css("display", "none");
 					$("#more").prop("disabled",true);
@@ -185,10 +199,20 @@
 					
 					for(var i=0;i<data.length;i++){
 						var fs = data[i];
-						html += " <ul class='fundingList'>";
-						html += " <li><a href='/fundingView?projectNo="+fs.projectNo+"'><img src='/upload/project/"+fs.filepath+"' height='300px'></a></li>";
-						html += " <li class='firstLi'><span class='projectTitle'>"+fs.projectTitle+"</span></li>";
-						html += " <li class='secondLi'><span class='text'>"+fs.totalPrice+"원펀딩중</span><span class='left d-day'>D-"+fs.period+"남음</span><spna class='left'>"+fs.percent+"%진행</span></li></ul>";
+						html += " <li class='goods'>";
+						html += " <a href='/fundingView?projectNo="+fs.projectNo+"'>";
+						html += "<div class='projectImg'>";
+						html += "<img src='/upload/project/"+fs.filepath+"'>";
+						html += "</div>";
+						html += "<div class='projectInfo'>";
+						html += "<p class='projectCategory'>"+fs.fundingCategory+"</p>"
+						html += " <p class='projectTitle'>"+fs.projectTitle+"</p>";
+						html += "<div class='projectLine'>"
+						html += " <span class='projectPrice'>"+fs.totalPrice+"원 펀딩</span>";
+						html += "<span class='projectPeriod'>D-"+fs.period+"</span>";
+						html += "<spna class='projectPercent'>"+fs.percent+"%</span>";
+						html += "</div>"
+						html += "</div></a></li>";
 					}
 				}else{
 					html += " <span class='nonebox'><img src='/img/Parksowon/search_img.png'><h3><em class='point'>["+keyWord+"]</em>의검색 결과가  없습니다.</h3></span>";

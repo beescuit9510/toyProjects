@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구르밍</title>
 <link rel="stylesheet" href="/css/LeeSeulgi/event/eventList.css">
 <style>
 fieldset{
@@ -135,6 +135,15 @@ select{
 	color: #00B9CE;
 	font-family: "logo";
 }
+.totalCounEqualsZero{
+	text-align:center;
+	font-size:20px;
+	color:#EAEBED ;
+	font-weight:600;
+	font-family:"logo";
+	margin-bottom: 100px;
+		
+}
 </style>
 </head>
 <body>
@@ -142,9 +151,14 @@ select{
    		<div class="container">
       		<fieldset>
 			<legend><a href="/eventList?reqPage=1" class="event-title">이벤트</a></legend>
-
+			
 			<div class="event-main">
 				<ul>
+					<c:if test="${list.size() eq 0}">
+						<div>
+							<p class="totalCounEqualsZero">게시글이 없습니다.<p>
+						</div>
+					</c:if>
 					<c:forEach items="${list }" var="e" varStatus="i">			<%--for문으로 이벤트 list가져오기  --%>
 						<li class="event-box">
 								<a href="/eventView?eventNo=${e.eventNo }">

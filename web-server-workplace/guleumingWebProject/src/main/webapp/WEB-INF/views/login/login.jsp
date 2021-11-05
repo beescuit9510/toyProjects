@@ -12,7 +12,7 @@
 <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구르밍</title>
 <style>
 .container {
 	margin: 0 auto;
@@ -29,7 +29,6 @@
     margin-top: 30px;
     color: white;
     font-weight: 900;
-    font-family: "logo";
     font-size: 20px;
 }
 </style>

@@ -106,7 +106,7 @@ public class EventService {
 	
 	public EventPageData searchEvent(int reqPage, String type, String keyword) {
 		Connection conn = JDBCTemplate.getConnection();
-		int numPerPage = 10;
+		int numPerPage = 5;
 		int end = reqPage*numPerPage;
 		int start = end - numPerPage + 1;
 		

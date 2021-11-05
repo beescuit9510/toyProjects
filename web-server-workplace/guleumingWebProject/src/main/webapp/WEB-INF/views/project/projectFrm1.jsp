@@ -8,7 +8,7 @@
 <head>
 	
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구르밍</title>
 <style>
 #uploadBtn{
 
@@ -31,7 +31,7 @@
 	<link rel="stylesheet" href="/css/KimMinji/project.css">
 
 	<div class="container">
-		<form action="/projectPreview" name="preview" method="post">
+		<form action="/projectPreview" name="preview" method="post" >
 			<input type="hidden" name="preProjTitle" >
 			<input type="hidden" name="preTarget">
 			<input type="hidden" name="preProjStory">
@@ -46,11 +46,11 @@
 				<li class="currentMenu">1.기본정보</li>
 				<li class="currentMenu">2.리워드</li>
 				<li class="currentMenu">3.부가정보</li>
-				<li id="preview" style="display:none;" class="pro_preview"><img src="/img/KimMinji/image.png">미리보기</li>
+				<li id="preview" style="display:none;" class="pro_preview"><img src="/img/KimMinji/image.png" id="previewImg">미리보기</li>
 			</ul>
 		</div>
 		
-		<form action="/projectFrm1" method="post" enctype="multipart/form-data">
+		<form action="/projectFrm1" method="post" enctype="multipart/form-data" onsubmit="return checkVal();">
 			<div class="projectContent">
 				<input type="hidden" name="shipDate">
 				<div class="projectFrm">
@@ -65,9 +65,10 @@
 				</div>
 				<div class="projectFrm">
 					<label >프로젝트의 진행기간을 선택해주세요</label><br>
+						</div>
 					  <input type="date" name="startDate" id="startDate" class="input_05">
 					 <input type="date"	name="endDate" id="endDate" class="input_05">
-				</div>
+			
 				<div class="projectFrm">
 					<label>제품 카테고리</label>
 					<select name="category">
@@ -82,12 +83,13 @@
 				 </div>
 				<div class="projectFrm">
 					<label for="uploadImg">프로젝트 대표이미지를 등록해주세요</label><br>
+					</div>
 					 <input type="file" id="uploadImg" name="uploadImg" style="display:none;">
 					 <button id="uploadBtn" ><img src="img/KimMinji/imageUpload.png"  accept=".jpg,.jpeg,.png,.git"></button>
-				</div>
+				
 				<div class="projectFrm">
 					<label for="summernote">프로젝트 스토리</label> 
-					<p class="comment" style="margin-bottom:20px;">제품의 스토리와 상세설명을 적어서 프로젝트를 소개해주세요</p>
+					<p class="comment" style="margin-bottom:20px;">제품의 스토리와 상세설명을 적어서 프로젝트를 소개해주세요 <span style="color:rgb(126,126,126);">( 사진첨부 x )</span></p>
 					<textarea  id="summernote" name="projStory"></textarea>
 				</div>
 				<input type="button" id="nextBtn1" id="nextBtn1" value="다음페이지" class="btn btn_100">
@@ -123,7 +125,7 @@
 			<div class="projectContent" style="display:none;">
 				<div class="projectFrm">
 					<label >거래은행</label> 
-					<select name="bank">
+					<select name="bank" id="bank">
 						<option selected>선택</option>
 						<option value="신한은행">신한은행</option>
 						<option value="국민은행">국민은행</option>
@@ -183,13 +185,23 @@
 		
 			$("#nextBtn1").click(function() {
 				var shipDate = $("#endDate").val();
+				if($("#projTitle").val() == ""|| $("#target").val()==""|| $("#startDate").val() =="" | $("#endDate").val() =="" || $("#uploadImg").val() == "" ||  $("textarea[name=projStory]").val() =="" ){
+					alert("빈칸없이 작성해주세요!");
+				}else{
 				$("input[name=shipDate]").val(shipDate);
 				selectOne(1);
+				
+				}
 		
 			});
 			$("#nextBtn2").click(function() {
-				selectOne(2)
-				$("#preview").css("display","block");
+				if($("#rePrice").val() == ""|| $("#reTitle").val()==""|| $("#reContent").val() =="" | $("#cancle").val() =="" || $("#qEmail").val() == "" ||  $("#qPhone").val() =="" ){
+					alert("빈칸없이 작성해주세요!");
+				}else{
+					selectOne(2)
+					$("#preview").css("display","block");
+				}
+				
 				
 			});
 			$("#preview").click(function() {		
@@ -209,7 +221,18 @@
 				$("[name=preview]").attr("target","preview")
 				$("[name=preview]").submit();
 			});
+			
+		
 	});
+	
+	function checkVal() {
+		if($("#bank").val()=="" || $("#accoNum").val() == "" || $("#makerName").val() == ""){
+			alert("빈칸없이 작성해주세요!");
+			return false;
+		}else{
+			return true;
+		}
+	}
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

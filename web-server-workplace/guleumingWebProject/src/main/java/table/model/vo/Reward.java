@@ -80,6 +80,9 @@ public class Reward {
 		this.shippingDate = shippingDate;
 	}
 
+	public String getCancelPolicyBr() {
+		return cancelPolicy.replaceAll("\r\n", "<br>");
+	}
 	public String getCancelPolicy() {
 		return cancelPolicy;
 	}

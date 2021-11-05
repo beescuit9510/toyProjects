@@ -177,7 +177,15 @@
 
 
 
-
+.reward-content{
+	    width:300px;
+        text-overflow: ellipsis;
+		white-space: nowrap;
+		word-wrap: normal;
+		overflow: hidden;
+		text-align:center;
+		margin:auto auto;
+}
 
 
 

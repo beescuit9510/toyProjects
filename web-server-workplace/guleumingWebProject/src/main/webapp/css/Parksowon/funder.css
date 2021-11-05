@@ -701,13 +701,18 @@ input[name="funderCategory"]:checked+label:after{
 	position: relative;
 }
 .funder_list_img img{
+	height:100%;
 	width:100%;
 }
 .funder_list_text{
 	padding:20px;
 }
+
 .funder_list_title h1 {
 	font-size:18px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .funder_list_date{
 	margin: 0 auto;

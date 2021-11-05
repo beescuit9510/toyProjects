@@ -17,127 +17,138 @@
 <link rel="stylesheet" href="/css/LimHansol/fundingView.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>funding</title>
+<title>구르밍</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <style>
 .reBtn{
 	outline: none;
-	background: #00B9CE;
-	color: #fff;
-	text-decoration: none;
-	cursor: pointer;
-	outline: none;
-	display: inline-block;;
-	width: 105px;
-	height: 35px;
-	font-size: 15px;
-	line-height: 35px;
-	border-radius: 3px;
-	text-align: center;
-	transition-duration: 0.5s;
-	border: 1px solid #00B9CE;
-	margin: 3px;
+    background: none;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    width: 55px;
+    height: 35px;
+    font-size: 15px;
+    padding: 3px 10px;
+    border: 1px solid #00B9CE;
+    border-radius: 5px;
+    color: #00B9CE;
+    margin-right: 2px;
+}
+.recBtn{
+	margin-right:0;
+	color: #ff0071;
+    border: 1px solid #ff0071;
 }
 </style>
 <body>
  <c:import url="/WEB-INF/views/common/header.jsp"></c:import>
- 	<div class="container">
+ 	<div class="container" style="margin-bottom:50px;">
 		<div class="p_title">
-				<span>${fvt.projectTitle }</span>
+				<span class="sm_category">${fvt.fundingCategory}</span>
+				<span class="big_title">${fvt.projectTitle }</span>
 		</div>
-		<hr>
+		<div class="shopping_top">
 			<div class="rewardImg">
 				<img  src="/upload/project/${fvt.filepath}" >
 			</div>
-		<div class="shopping">
-				<div class="reward">
-					<h2>리워드</h3>
-					<span class="bold">${fvt.rewardTitle }</span>
-				</div>
-				<div class="recent">
-					<span class="bold large">${fvt.totalPrice } </span>원 펀딩중
-				</div>
-				<div class="recent">
-					<span class="gray">리워드 금액</span><span class="bold">${fvt.rewardPrice }</span>원
-				</div>
-				<div class="target">
-					<span class="gray">달성률</span><span class="bold">${fvt.percent }%</span><span class="gray">목표금액 : ${fvt.targetPrice }원</span>
-				</div>
-				<div class="callender">
-					<span class="gray">남은기간</span><span class="bold">${fvt.period }일</span><span class="gray">마감일 : ${fvt.endDate } 종료</span>
-				</div>
-				<div class="Partici">
-					<span class="gray">참여자</span><span class="bold">${fvt.cnt }</span><span class="gray">명</span>
-				</div>
-				<div class="b_name">
-				<span class="gray">제작자</span><span class="bold">${fvt.businessName }</span>
-				</div>
-				<div class="like border_a">
-				<c:if test="${not empty sessionScope.member }">
+			<div class="shopping">			
+					<%-- <div class="reward">
+						<span class="bold">${fvt.rewardTitle }</span>
+					</div> --%>
+					<div class="recent info_line">
+						<span class="large">${fvt.totalPrice }원 </span> 펀딩 모집 중
+					</div>
+					<div class="recent info_line">
+						<span class="gray">리워드 금액</span><span class="pro_point">${fvt.rewardPrice }</span>원
+					</div>
+					<div class="target info_line">
+						<span class="gray">달성률</span><span class="pro_point">${fvt.percent }%</span><span class="pro_two">목표금액 : ${fvt.targetPrice }원</span>
+					</div>
+					<div class="callender info_line">
+						 <c:choose>
+			               <c:when test="${fvt.period ge 0 }">
+			                  <span class="gray">남은기간</span><span class="pro_point">${fvt.period }일</span><span class="pro_two">마감일 : ${fvt.endDate } 종료</span>
+			               </c:when>
+			               <c:when test="${fvt.period le 0 }">
+			                  <span class="gray">남은기간</span><span class="pro_point point_pk">마감된 펀딩</span><span class="gray">${fvt.endDate } 종료</span>
+			               </c:when>
+			            </c:choose>
+					</div>
+					<div class="Partici info_line">
+						<span class="gray">참여자</span><span class="pro_point">${fvt.cnt }</span><span class="pro_two">명</span>
+					</div>
+					<div class="b_name info_line">
+					<span class="gray">제작자</span><span class="pro_name">${fvt.businessName }</span>
+					</div>
+					<div class="like border_a">
+					<c:if test="${not empty sessionScope.member }">
+						<c:choose>
+							<c:when test="${fvt.likeCheck eq 'like' }">
+								<div class="heartReverse"  id="likeCancel"></div>
+	                        	<p><b>${sessionScope.member.cName }님을 포함한 ${fvt.likeCount}명이 관심</b>을 갖고 있습니다.</p>
+							</c:when>
+							<c:when test="${fvt.likeCheck eq 'no' }">
+								<div class="heart"  id="like"></div>
+	                        	<p><b>${fvt.likeCount}명이 관심</b>을 갖고 있습니다.</p>
+							</c:when>
+						</c:choose>
+					</c:if>	
+					<c:if test="${empty sessionScope.member }">
+								<div class="heart"  onclick="goLogin();"></div>
+	                        	<p><b>${fvt.likeCount}명이 관심</b>을 갖고 있습니다.</p>
+					</c:if>
+					</div>
+					<div class="dateinfo">
+						<ul class="date">
+							<li><img src="/img/LimHansol/fundingEndDay.jpg"></li>
+							<li><span>펀딩 종료일</span></li>
+							<li><span class="point">${fvt.endDate }</span></li>
+						</ul>
+						<ul class="date">
+							<li><img src="/img/LimHansol/paymentSchedule.jpg"></li>
+							<li><span>결제 예정일</span></li>
+							<li><span class="point">${fvt.payDateS }</span></li>
+						</ul>
+						<ul class="date">
+							<li><img src="/img/LimHansol/deliverySchedule.jpg"></li>
+							<li><span>발송 예정일</span></li>
+							<li><span class="point">${fvt.shippingDate }</span></li>
+						</ul>
+					</div>
+					<div class="pay">
 					<c:choose>
-						<c:when test="${fvt.likeCheck eq 'like' }">
-							<div class="heartReverse"  id="likeCancel"></div>
-                        	<p><b>${sessionScope.member.cName }님을 포함한 ${fvt.likeCount}명이 관심</b>을 갖고 있습니다.</p>
-						</c:when>
-						<c:when test="${fvt.likeCheck eq 'no' }">
-							<div class="heart"  id="like"></div>
-                        	<p><b>${fvt.likeCount}명이 관심</b>을 갖고 있습니다.</p>
-						</c:when>
-					</c:choose>
-				</c:if>	
-				<c:if test="${empty sessionScope.member }">
-							<div class="heart"  onclick="goLogin();"></div>
-                        	<p><b>${fvt.likeCount}명이 관심</b>을 갖고 있습니다.</p>
-				</c:if>
-				</div>
-				<div class="dateinfo">
-					<ul class="date">
-						<li><img src="/img/LimHansol/fundingEndDay.jpg"></li>
-						<li><span>펀딩 종료일</span></li>
-						<li><span class="point">${fvt.endDate }</span></li>
-					</ul>
-					<ul class="date">
-						<li><img src="/img/LimHansol/paymentSchedule.jpg"></li>
-						<li><span>결제 예정일</span></li>
-						<li><span class="point">${fvt.payDateS }</span></li>
-					</ul>
-					<ul class="date">
-						<li><img src="/img/LimHansol/deliverySchedule.jpg"></li>
-						<li><span>발송 예정일</span></li>
-						<li><span class="point">${fvt.shippingDate }</span></li>
-					</ul>
-				</div>
-				<div class="pay">
-				<c:choose>
-				<c:when test="${not empty sessionScope.member }">
-				<form method="post" action="/selectQuantity">
-					<input type="hidden" name="projectNo" value="${fvt.projectNo }">
-					<input type="hidden" name="cMemberNo" value="${sessionScope.member.cMemberNo }">
-					<button type ="submit" id="payment" class="shoppingbtn btn">펀딩하기</button>
-				</form>
-				</c:when>
-				<c:when test="${empty sessionScope.member }">
-					<c:if test="${fvt.period ge 0 }">
-						<button onclick="goLogin();" class="shoppingbtn btn">펀딩하기</button>
-					</c:if>
-					<c:if test="${fvt.period  le 0 }">
-						<button class="btn" onclick="endFunding();">마감된 펀딩 입니다</button>
-					</c:if>
-				</c:when>
-				</c:choose>	
-				</div>
-				<div class="explain">
-					<span class="grayLong">펀딩을 마치면 결제 예약 상태입니다. 종료일에 100% 이상이 달성되었을 경우에만 결제예정일에 결제가 됩니다</span>
-				</div>
+					<c:when test="${not empty sessionScope.member }">
+					<form method="post" action="/selectQuantity">
+						<input type="hidden" name="projectNo" value="${fvt.projectNo }">
+						<input type="hidden" name="cMemberNo" value="${sessionScope.member.cMemberNo }">
+						<button type ="submit" id="payment" class="shoppingbtn btn btn_100 btn_out btn_rx">펀딩하기</button>
+					</form>
+					</c:when>
+					<c:when test="${empty sessionScope.member }">
+						<c:if test="${fvt.period ge 0 }">
+							<button onclick="goLogin();" class="shoppingbtn btn btn_100 btn_out btn_rx">펀딩하기</button>
+						</c:if>
+						<c:if test="${fvt.period  le 0 }">
+							<button class="shoppingbtn end_btn" onclick="endFunding();">마감된 펀딩 입니다</button>
+						</c:if>
+					</c:when>
+					</c:choose>	
+					</div>
+					<div class="explain">
+						<span class="grayLong">펀딩을 마치면 결제 예약 상태입니다. 종료일에 100% 이상이 달성되었을 경우에만 결제예정일에 결제가 됩니다</span>
+					</div>
+			</div>
 		</div>
+		
 		<div class="content">
 		<div class="select_menu">
 		<div class="select">
-			<br><br>
-			<hr>
+
 			<a id="story" onclick="viewStory();">스토리</a><a id="comment" onclick="viewComment();">댓글</a><a id="refund" onclick="viewRefund();">환불규정안내</a>
-			<hr>
+
 			<c:if test="${showComment == true }">
 				<script>
 				$(document).ready(function(){
@@ -153,7 +164,14 @@
 				<span>${fvt.projectStory }</span>
 			</div>
 			<div class="comment" style="display:none">
-			<c:if test="${not empty sessionScope.member && sessionScope.member.cLevel eq 1 }">
+			<div class="comment_notice">
+				<h1>여러분의 한마디가<br>
+				진행자에게 큰 힘이 됩니다</h1>
+				<h3>댓글 작성 시 유의사항</h3>
+				<p>프로젝트와 관계없는 글, 광고성, 욕설, 비방, 도배 등의 글은 내부 검토 후 삭제됩니다.</p>
+				<p>펀딩 관련 문의 및 배송문의는 프로젝트 진행자에게 문의하시면 정확한 답변을 받을 수 있습니다.</p>
+			</div>
+			<c:if test="${not empty sessionScope.member && sessionScope.member.cLevel eq 2 }">
 			<div class="inputCommentBox">
 				<form action="/fundingCommentWrite" method="post">
 					<ul>
@@ -177,11 +195,11 @@
 				<c:forEach items="${commentList }" var="cl">
 				<c:if test="${cl.commentLevel == 1}">
 					<ul class="comments" id="comment${cl.commentNo }">
-						<li>
-							<p>${cl.cName }</p>
-							<p>${cl.writeDate }</p>
+						<li class="comm_info">
+							<p class="comm_name">${cl.cName }</p>
+							<p class="comm_date">${cl.writeDate }</p>
 						</li>
-						<li>
+						<li class="comm_cont">
 							<p>${cl.commentContentBr}</p>
 							<textarea name="updateCommentContent" class="form-control" style="display:none;">${cl.commentContent }</textarea>
 							<p class="commentsBtn">
@@ -211,29 +229,28 @@
 						</li>
 					</ul>
 				</c:if>	
-				<c:forEach items="${commentList }" var="cll">
+				<c:forEach items="${commentList }" var="cll">					
 					<c:if test="${cll.commentLevel eq 2 && cl.commentNo eq cll.commentRefNo }">
+						<div class="replay-dasi"></div>
 						<ul class="recomments" id="comment${cll.commentNo }">
-							<li>
-								<span>답글</span>
+							<li class="comm_info">
+								<p class="comm_pro">제작자</p>
+								<p class="comm_name">${cll.cName }</p>
+								<p class="comm_date">${cll.writeDate }</p>
 							</li>
-							<li>
-								<p>${cll.cName }</p>
-								<p>${cll.writeDate }</p>
-							</li>
-							<li>
+							<li class="comm_cont">
 								<p>${cll.commentContentBr }</p>
 								<textarea name="updateCommentContent" class="form-control" style="display:none;">${cll.commentContent }</textarea>
-								<p class="commentsBtn">
+								<div class="commentsBtn">
 									<c:if test="${not empty sessionScope.member}"> 
 										<c:if test="${sessionScope.member.cMemberNo eq cll.commentWriter }">
 										<a href="javascript:void(0)"
 										onclick="modifyComment(this,'${cll.commentNo }','${cll.projectRefNo }');">답글수정</a>
 										<a href="javascript:void(0)"
-										onclick="deleteComment(this,'${cll.commentNo }','${cll.projectRefNo }');">삭제</a>
+										onclick="deleteComment(this,'${cll.commentNo }','${cll.projectRefNo }');" style="color:#ff0071; border:1px solid #ff0071;">삭제</a>
 										</c:if>									
 									</c:if>									
-								</p>
+								</div>
 							</li>
 						</ul>
 					</c:if>
@@ -241,7 +258,18 @@
 			</c:forEach>			
 			</div>
 			<div class="refund" style="display:none">
-				<span>${fvt.cancelPolicy }</span>
+				<div class="refund_text">
+					<h1>프로젝트 진행 관련<br>안내사항 입니다.</h1>
+					<div class="project_date">
+						<h3 class="refund_title">펀딩 종료일</h3>
+						<h3 class="refund_date">${fvt.endDate }</h3>
+						<h3 class="refund_title">결제 예정일</h3>
+						<h3 class="refund_date">${fvt.payDateS }</h3>
+						<h3 class="refund_title">발송 예정일</h3>
+						<h3 class="refund_date">${fvt.shippingDate }</h3>
+					</div>
+				</div>
+				<span>${fvt.cancelPolicyBr }</span>
 			</div>
 		</div>
 	

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구르밍</title>
 <link rel="stylesheet" href="/css/LeeSeulgi/notice/noticeList.css">
 <style>
 .notice-box{
@@ -84,6 +84,15 @@
 	color: #00B9CE;
 	font-family: "logo";
 }
+.totalCounEqualsZero{
+	text-align:center;
+	font-size:20px;
+	color:#EAEBED ;
+	font-weight:600;
+	font-family:"logo";
+	margin-bottom: 100px;
+		
+}
 </style>
 </head>
 <body>
@@ -93,6 +102,11 @@
 			<legend><a href="/noticeList?reqPage=1" class="notice-title">공지사항</a></legend>
 			<div class="notice-main">
 				<ul>
+					<c:if test="${list.size() eq 0}">
+						<div>
+							<p class="totalCounEqualsZero">게시글이 없습니다.<p>
+						</div>
+					</c:if>
 					<c:forEach items="${list }" var="n" varStatus="i">			<%--for문으로 공지사항 list가져오기  --%>
 						<li class="notice-box">
 								<a href="/noticeView?noticeNo=${n.noticeNo }">

@@ -33,7 +33,7 @@
                         <li><a href="/eventList?reqPage=1">이벤트</a></li>
                     </ul>
                 </li>
-                <c:if test="${not empty sessionScope.member || sessionScope.member.cLevel eq 1 && sessionScope.membermcLevel eq 3 }">
+                <c:if test="${not empty sessionScope.member && sessionScope.member.cLevel eq 3 || sessionScope.member.cLevel eq 1}">
                 <li>
                     <a href="/projectFrm" class="nav_point a"><span>프로젝트 만들기</span></a>
                 </li>
@@ -121,8 +121,8 @@
 		    </nav>
 		</c:when>
     </c:choose>
-      <a href="#" class="top"><img src="/img/icon/top.png"></a>
     </c:if>  
+      <a href="#" class="top"><img src="/img/icon/top.png"></a>
 	<script>
 	  $("#nav_mypage").click(function() {
 	      $("#sidenav").css("right", "0");

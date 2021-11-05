@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/Yunyoung/mypage.css">
-<title>Insert title here</title>
+<title>구르밍</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>

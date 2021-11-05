@@ -140,6 +140,9 @@ public class FundingViewTotal {
 	public void setShippingDate(String shippingDate) {
 		this.shippingDate = shippingDate;
 	}
+	public String getCancelPolicyBr() {
+		return cancelPolicy.replaceAll("\r\n", "<br>");
+	}
 	public String getCancelPolicy() {
 		return cancelPolicy;
 	}

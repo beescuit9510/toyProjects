@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구르밍</title>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
