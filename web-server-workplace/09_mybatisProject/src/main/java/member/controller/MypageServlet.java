@@ -1,11 +1,15 @@
 package member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class MypageServlet
@@ -26,6 +30,16 @@ public class MypageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
+		Member member = new MemberService().selectOneMember(memberNo);
+		System.out.println(member);
+		
+		request.getSession(true).setAttribute("member", member);
+		
 		request.getRequestDispatcher("/WEB-INF/views/mypage.jsp").forward(request, response);
 	}
 

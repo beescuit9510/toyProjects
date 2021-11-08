@@ -39,5 +39,11 @@ public class MemberDao {
 		int r = session.update("member.updateMember",temptMember);
 		return r;
 	}
+	
+	public Member selectOneMember(SqlSession session, int memberNo) {
+		Member member = session.selectOne("member.selectOneMemberMymage",memberNo);		
+		return member;
+		
+	}
 
 }

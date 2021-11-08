@@ -5,42 +5,57 @@
   <cache-ref namespace="member"/>
  -->
   <select id="selectOneMember" parameterType="member" resultType="member">
-  	select
-  		member_no as memberNo,
-  		member_id as memberId,
-  		member_pw as memberPw,
-  		member_name as memberName,
-  		phone,
-  		address,
-  		member_level as memberLevel,
-  		enroll_date as enrollDate
-  	from member where member_id = #{memberId} and member_pw= #{memberPw}
+	select
+		member_no as memberNo,
+		member_id as memberId,
+		member_pw as memberPw,
+		member_name as memberName,
+		phone,
+		address,
+		member_level as memberLevel,
+		enroll_date as enrollDate
+	from member where member_id = #{memberId} and member_pw= #{memberPw}
   </select>
   <select id="selectAllMember" resultType="member">
-  	select
-  		member_no as memberNo,
-  		member_id as memberId,
-  		member_pw as memberPw,
-  		member_name as memberName,
-  		phone,
-  		address,
-  		member_level as memberLevel,
-  		enroll_date as enrollDate
-  	from member
+	select
+		member_no as memberNo,
+		member_id as memberId,
+		member_pw as memberPw,
+		member_name as memberName,
+		phone,
+		address,
+		member_level as memberLevel,
+		enroll_date as enrollDate
+	from member
 	</select> 
 	<insert id="insertMember" parameterType="member">
 		insert into member values(
-		member_seq.nextval,
-		#{memberId}, #{memberPw}, #{memberName}, #{phone}, #{address}, 
-		2, 
-		to_char(sysdate,'yyyy-mm-dd')
+			member_seq.nextval,
+			#{memberId}, #{memberPw}, #{memberName}, #{phone}, #{address}, 
+			2, 
+			to_char(sysdate,'yyyy-mm-dd')
 		)
 	</insert>
+	<select id="selectOneMemberMymage" parameterType="_int" resultType="member">
+		select
+			member_no as memberNo,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			phone,
+			address,
+			member_level as memberLevel,
+			enroll_date as enrollDate
+		from member where member_no = #{memberNo}
+	</select>
 	<delete id="deleteMember" parameterType="string">
 		delete from member where member_id = #{memberId}
 	</delete>
 	<update id="updateMember" parameterType="member">
-		update member set member_pw = #{memberPw}, phone = #{phone}, address = #{address}
-		where member_id = #{memberId}
+		update member set 
+			member_pw = #{memberPw}, 
+			phone = #{phone}, 
+			address = #{address}
+		where member_no = #{memberNo}
 	</update>
 </mapper>

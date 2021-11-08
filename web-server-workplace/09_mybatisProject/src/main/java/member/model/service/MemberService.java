@@ -97,4 +97,14 @@ public class MemberService {
 		return r;
 	}
 
+
+	public Member selectOneMember(int memberNo) {
+		SqlSession session = getSqlSession();
+		Member member = new MemberDao().selectOneMember(session, memberNo);
+		
+		session.close();
+
+		return member;
+	}
+
 }
