@@ -58,4 +58,82 @@
 			address = #{address}
 		where member_no = #{memberNo}
 	</update>
+	<select id="searchId" parameterType="hashmap" resultType="string">
+		select member_id as memberId 
+		from member where member_name = #{memberName} and phone = #{phone}
+	</select>
+	<select id="searchPw" parameterType="member.model.vo.PwSearchVO" resultType="string">
+		select member_pw as memberPw
+		from member where member_id = #{memberId} and phone = #{phone}
+	</select>
+	<select id="ifTest" parameterType="map" resultType="member">
+		  select
+		  	member_id as memberId
+		  	<if test="ckName != null and ckName.equals('on')">
+		  		, member_name as memberName
+		  	</if>
+		  	<if test="ckPhone != null and ckPhone.equals('on')">
+		  		, phone
+		  	</if>
+		  	<if test="ckAddress != null">
+		  		, address
+		  	</if>
+		  	from member
+	</select>
+	<select id="chooseTest" parameterType="map" resultType="member">
+		select 
+			member_no as memberNo,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			phone,
+			address,
+			member_level as memberLevel,
+			enroll_date as enrollDate
+		from member
+		<choose>
+			<when test="type.equals('name')">
+				where member_name like '%'||'${keyword }'||'%'
+			</when>
+			<when test="type.equals('id')">
+				where member_id like '%'||'${keyword }'||'%'
+			</when>
+		</choose>
+	</select>
+	<select id="trimTest" parameterType="map" resultType="member">
+		select 
+			member_no as memberNo,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			phone,
+			address,
+			member_level as memberLevel,
+			enroll_date as enrollDate
+		from member
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="!memberName.equals('')">
+				member_name like '%'||#{memberName }||'%'
+			</if>
+			<if test="!address.equals('')">
+				and address like '%'||#{address }||'%'
+			</if>
+			
+		</trim>
+	</select>
+	<select id="foreachTest" parameterType="map" resultType="member">
+		select 
+			member_no as memberNo,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			phone,
+			address,
+			member_level as memberLevel,
+			enroll_date as enrollDate
+		from member where member_id in
+		<foreach collection="array" item="memberId" open="(" close=")" separator=",">
+			#{memberId}
+		</foreach>
+	</select>
 </mapper>

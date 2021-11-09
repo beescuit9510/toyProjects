@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="notice">
+<!-- 
+ <cache-ref namespace=""/>
+ --> 
+	<select id="selectList" parameterType="map" resultType="notice">
+		select * 
+		from
+		(select 
+			rownum as rnum, 
+			n.*
+		from
+		(select
+			notice_no as noticeNo,
+			notice_title as noticeTitle,
+			notice_writer as noticeWriter,
+			read_count as readCount,
+			reg_date as regDate,
+			filename
+		from notice order by notice_no desc) n)
+		where rnum between #{start} and #{end}
+	</select> 
+	<select id="totalCount" resultType="_int">
+		select count(*) from notice
+	</select>
+</mapper>

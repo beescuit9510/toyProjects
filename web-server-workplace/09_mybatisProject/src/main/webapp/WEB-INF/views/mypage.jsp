@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mypage</title>
+<title>my page</title>
 </head>
 <body>
 	<h1>마이페이지</h1>
