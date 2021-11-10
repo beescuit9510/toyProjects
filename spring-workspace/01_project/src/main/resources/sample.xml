@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- 객체 생성 -->
+	<!-- 
+		SamsungTV samsung = new SamsungTV();
+	 -->
+	 <!-- 
+	<bean id="samsung" class="kr.or.tv.model.vo.SamsungTV"></bean>
+	  -->
+	
+	<!-- 객체 생성하여 데이터 넣기1(setter 사용하느 방식) -->
+	<!-- 
+		Member m1 = new Member();
+		m1.setName('변덕');
+		m1.setAge(10);
+		m1.setAddr('서울');
+	 -->
+	 <bean id="m1" class="kr.or.member.model.vo.Member">
+	 	<property name="name" value="변덕"></property>
+	 	<property name="age" >
+	 		<value type="java.lang.Integer">10</value>
+	 	</property>
+	 	<property name="addr" value="서울"></property>
+	 </bean>
+	 <!-- 객체 생성하여 데이터 넣기2(생성자 사용하느 방식) -->
+	 <!-- 
+	 	Member m2 = new Member('변덕2'10,'서울');
+	  -->	 
+	 <bean id="m2" class="kr.or.member.model.vo.Member">
+		<constructor-arg value="변덕2"/>
+		<constructor-arg>
+			<value type="java.lang.Integer">10</value>
+		</constructor-arg>
+		<constructor-arg value="서울"/>
+	 </bean>
+	<!-- 객체 생성하여 데이터 넣기3(메소드 사용하느 방식) -->
+	 <!-- 
+	 	MemberMgr mm = new MemberMgr();
+	 	mm.set(m1)
+	  -->	
+	  <bean id="mm" class="kr.or.member.model.vo.MemberMgr">
+	  	<property name="m" ref="m1"></property>
+	  </bean>
+	  <!-- TestData 객체 2개 생성
+	  <bean id="data1" class="kr.or.member.model.vo.TestData">
+	 	<property name="data" >
+	 		<value type="java.lang.Integer">10</value>
+	 	</property>	  	
+	  </bean>
+	  <bean id="data2" class="kr.or.member.model.vo.TestData" scope="prototype">
+	  	<property name="data">
+	  		<value type="java.lang.Integer">100</value>
+	  	</property>
+	  </bean>
+	   -->
+</beans>
