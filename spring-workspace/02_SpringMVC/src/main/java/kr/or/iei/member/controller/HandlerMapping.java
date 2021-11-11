@@ -12,8 +12,8 @@ public class HandlerMapping {
 		mappings.put("/login.do", new LoginController());
 	}
 	
-	public Controller getContoller(String url) {
-		return mappings.get(url);
+	public Controller getContoller(String uri) {
+		return mappings.get(uri);
 	}
 	
 
