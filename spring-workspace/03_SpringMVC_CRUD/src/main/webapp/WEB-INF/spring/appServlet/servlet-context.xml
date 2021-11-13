@@ -25,6 +25,9 @@
 		
 	<!-- scan 범위가 kr.or.member 이 들어간 모든 package -->
 	<context:component-scan base-package="kr.or.member" />
+
+	<!-- scan 범위가 kr.or.board 이 들어간 모든 package -->
+	<context:component-scan base-package="kr.or.board" />
 	
 	
 	<!-- DB 접속 정보를 저장하는 datasource 생성 -->
@@ -38,6 +41,12 @@
 	<!-- JDBC 객체 생성 -->
 	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<beans:property name="dataSource" ref="dataSource" />	
+	</beans:bean>
+	
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 10메가 환산 -> 10485760 -->		
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
 		
 </beans:beans>

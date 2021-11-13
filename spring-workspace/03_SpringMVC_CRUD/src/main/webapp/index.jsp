@@ -27,8 +27,10 @@
 		</c:when>
 		<c:otherwise>
 			<h2>[${sessionScope.m.memberName }] 님 환영합니다.</h2>
-				<a href="/logout.do">로그아웃</a>
+				<a href="/logout.do">로그아웃</a><br/>
 				<a href="/mypage.do?memerId=${sessionScope.m.memberId }">마이페이지</a><br/>
+				<a href="/allMember.do">전체 회원 조회</a><br/>
+				<a href="/boardList.do">게시판 목록</a><br/>
 		</c:otherwise>
 	</c:choose>
 </body>

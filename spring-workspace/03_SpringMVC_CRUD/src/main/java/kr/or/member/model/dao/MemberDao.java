@@ -1,5 +1,6 @@
 package kr.or.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,12 @@ public class MemberDao {
 		}else {
 			return (Member)list.get(0);
 		}
+	}
+
+	public ArrayList<Member> selecetAllMember() {
+		String query = "select * from member";
+		List list = jdbcTemplate.query(query, new MemberRowMapper());		
+		return (ArrayList<Member>)list;
 	}
 
 }
