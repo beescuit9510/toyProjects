@@ -29,8 +29,8 @@
 			data:{memberId:memberId},
 			method:"post",
 			success:function(data){
-				$("#idChk").html(data==1?"사용 가능한 아이디입니다.":"사용 불가능한 아이디입니다.");					
-				$("#idChk").css("color",data==1?"blue":"red");
+				$("#idChk").html(data==0?"사용 가능한 아이디입니다.":"사용 불가능한 아이디입니다.");					
+				$("#idChk").css("color",data==0?"blue":"red");
 				
 			}
 		})

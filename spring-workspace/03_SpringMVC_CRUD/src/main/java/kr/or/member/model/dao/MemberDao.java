@@ -75,4 +75,16 @@ public class MemberDao {
 		return (ArrayList<Member>)list;
 	}
 
+//	public Member selecetOneMember(String memberId) {
+//		String query ="select * from member where member_id = ?";
+//
+//		List list = jdbcTemplate.query(query,new Object[]{memberId}, new MemberRowMapper());
+//		
+//		if(list.isEmpty()) {
+//			return null;
+//		}else {
+//			return (Member)list.get(0);
+//		}
+//	}
+
 }

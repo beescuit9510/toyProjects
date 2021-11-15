@@ -44,4 +44,9 @@ public class MemberService {
 		return list;
 	}
 
+	public Member selectOneMember(String memberId) {
+		Member m = dao.mypage(memberId);
+		return m;
+	}
+
 }

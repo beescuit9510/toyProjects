@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,12 @@
 		<tr>
 			<th>작성글</th>
 			<td>${board.boardContent }</td>
+		</tr>
+		<tr>
+			<th>첨부파일</th>
+			<td><c:forEach items="${board.list }" var="f">
+				<a href="boardFileDownload?fileNo=${f.fileNo }">${f.filename }</a>
+			</c:forEach></td>
 		</tr>
 	</table>
 	<a href="/">메인으로</a>

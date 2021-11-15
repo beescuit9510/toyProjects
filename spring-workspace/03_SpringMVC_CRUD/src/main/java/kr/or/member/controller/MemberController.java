@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Member;
@@ -134,6 +137,30 @@ public class MemberController {
 		return "member/allMember";
 		
 	}
+	
+	@ResponseBody //페이지 이동이 아닌
+	@RequestMapping(value="/idCheck.do")
+	public String idCheck(String memberId) {
+		Member m = service.selectOneMember(memberId);
 		
+		if(m == null) {
+			return "1"; // /WEB-INF/views/1.jsp
+		}else {
+			return "0"; // /WEB-INF/views/0.jsp
+		}
+		
+	}
+	
+	@RequestMapping(value="/allMemberAjax.do")
+	public String allMemberAjax() {
+		return "member/allMemberAjax";
+	}
+		
+	@ResponseBody
+	@RequestMapping(value="/ajaxAllMember.do",produces = "application/json;charset=utf-8")
+	public String ajaxAllMember() {
+		ArrayList<Member> list = service.selectAllMember();
+		return new Gson().toJson(list);
+	}
 	
 }

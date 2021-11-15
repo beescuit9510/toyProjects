@@ -9,11 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Board {
-	private int boardNo;
-	private String boardTitle;
-	private String boardContent;
-	private String boardWriter;
-	private String boardDate;
-	private ArrayList<FileVO> list;
+public class BoardWithFile {
+	Board board;
+	ArrayList<FileVO> fileVOs;
+
 }

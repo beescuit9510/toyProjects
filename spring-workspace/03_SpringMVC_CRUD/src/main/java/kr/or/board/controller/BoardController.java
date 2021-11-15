@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.board.model.service.BoardService;
 import kr.or.board.model.vo.Board;
+import kr.or.board.model.vo.BoardWithFile;
 import kr.or.board.model.vo.FileVO;
 
 @Controller
@@ -104,9 +106,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/boardWrite2.do")
-	public String boardWrite2(Board b, MultipartFile[] files, HttpServletRequest request){
+	public String boardWrite2(Board b, MultipartFile[] files, HttpServletRequest request, Model model){
 		//파일목록을 저장할 List
 		ArrayList<FileVO> list = new ArrayList<>();
+		
+		Stream.of(files).forEach(System.out::println);
 		
 		//MultipartFile[] 배열은 파일을 첨부하지 않더라도 무조건 길이가 1인 배열
 		//배열의 첫번재 파일이 비어있는지 체크하는 방식으로 파일 첨부 여부 확인
@@ -182,12 +186,33 @@ public class BoardController {
 			
 		}
 		
-		System.out.println(list);
+		int result = service.insertBoard2(b,list);
 		
-		return "redirect:/";
+		if(result == -1 || result != list.size()) {
+			model.addAttribute("msg","작성 실패");			
+		}else {
+			model.addAttribute("msg","작성 성공");
+		}
+		model.addAttribute("loc","/");
+		
+		return "common/msg";
 		
 	}
 	
+	@RequestMapping(value="/boardView1.do")
+	public String boardView2(int boardNo, Model model) {
+		//boardNo를 이용하여 조회한 board객체, ArrayList<FileVO>
+		
+		//contoller는 service 한번만 호출
+		//service에서 필요할때 dao 여러번 호출
+		//데이터는 하나로 묶어서 리턴
+				
+		Board board = service.selectBoard1(boardNo);
+		
+		model.addAttribute("board",board);
+		
+		return "board/boardView";
+	}
 	
 
 	

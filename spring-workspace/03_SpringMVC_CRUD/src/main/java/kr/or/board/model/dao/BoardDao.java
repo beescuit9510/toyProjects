@@ -5,11 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import kr.or.board.model.vo.Board;
 import kr.or.board.model.vo.BoardRowMapper;
+import kr.or.board.model.vo.FileVO;
+import kr.or.board.model.vo.FileVORowMapper;
 
 @Repository
 public class BoardDao {
@@ -54,6 +55,25 @@ public class BoardDao {
 			return (Board)list.get(0);
 		}
 		
+	}
+
+	public int selectBoardNo() {
+		String query = "select max(board_no) from board";
+		int boardNo = jdbcTemplate.queryForObject(query, int.class);
+		return boardNo;
+	}
+
+	public int insertFile(FileVO fv) {
+		String query = "insert into file_tbl values(file_seq.nextval,?,?,?)";
+		Object[] params = {fv.getBoardNo(),fv.getFilename(),fv.getFilepath()};
+		int result = jdbcTemplate.update(query,params);
+		return result;
+	}
+
+	public ArrayList<FileVO> selectFileVO(int boardNo) {
+		String query = "select * from file_tbl where board_no = ?";
+		List list = jdbcTemplate.query(query, new Object[] {boardNo}, new FileVORowMapper());
+		return (ArrayList<FileVO>)list;
 	}
 
 }
