@@ -73,10 +73,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/mypage.do")
-	public String mypage(String memberId, HttpServletRequest request,Model model) {
-		Member m = service.mypage(memberId);
-		request.getSession().setAttribute("m", m);
-		model.addAttribute("m", m);
+	public String mypage(HttpSession session) {
+		Member member = (Member)session.getAttribute("m");
+		
+		Member m = service.mypage(member.getMemberId());
+		
+		session.setAttribute("m", m);
 		
 		return "member/mypage";
 	}
