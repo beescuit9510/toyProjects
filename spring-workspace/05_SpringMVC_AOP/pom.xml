@@ -15,8 +15,10 @@
 	</properties>
 	<dependencies>
 	
+	
 		<!-- AOP 라이브러리 관련 -->
-		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver 
+		-->
 		<dependency>
 		    <groupId>org.aspectj</groupId>
 		    <artifactId>aspectjweaver</artifactId>

@@ -20,8 +20,14 @@ public class MemberService {
 		super();
 	}
 
-	public Member selectOneMember(Member member) {
+	public Member selectOneMember(Member member) throws IllegalArgumentException {
 		System.out.println("로그인 서비스 시작");
+//		System.out.println("memberPw :"+member.getMemberPw());
+
+		if(member.getMemberId().isEmpty() || member.getMemberPw().isEmpty()) {
+			throw new IllegalArgumentException("아이디 또는 패스워드를 입력해야합니다.");
+		}
+
 		Member m = dao.selecetOneMember(member);
 		System.out.println("로그인 서비스 끝");
 		return m;

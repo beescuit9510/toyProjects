@@ -45,7 +45,14 @@ public class MemberController {
 	
 	@RequestMapping(value="/login.do")
 	public String login(Member member, HttpSession session, Model model) {
-		System.out.println("로그인 비지니스 로직 수행 전(컨트룰러 시작)");
+
+		System.out.println("로그인 비지니스 로직 수행 전");
+		
+		System.out.println("사용자 입력 비밀번호 :"+member.getMemberPw());
+
+		Member m = service.selectOneMember(member);
+		
+		System.out.println("로그인 비지니스 로직 수행 후");
 		
 //	public String login(HttpServletRequest request) {
 //		String memberId = request.getParameter("memberId");
@@ -57,7 +64,7 @@ public class MemberController {
 		//Model -> request 영역에 데이터를 등록하기위한 객체
 		//request.setAttribute('key',value) -> model.addAttribute('key',value);
 		
-		Member m = service.selectOneMember(member);
+
 		
 		System.out.println(member);
 		System.out.println(m);
@@ -68,7 +75,6 @@ public class MemberController {
 		}
 		model.addAttribute("msg","로그인 실패");
 		
-		System.out.println("로그인 비지니스 로직 수행 후(컨트룰러 끝)");
 		
 		return "redirect:/";
 //		return "common/msg";

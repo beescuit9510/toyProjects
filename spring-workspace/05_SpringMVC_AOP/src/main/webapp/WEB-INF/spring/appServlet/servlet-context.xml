@@ -53,15 +53,39 @@
 
 	<beans:bean id="log" class="kr.or.common.LogTest1" />
 	<beans:bean id="log2" class="kr.or.common.LogTest2" />
+	<beans:bean id="beforeTest" class="kr.or.common.BeforeAdvice"/>
+	<beans:bean id="ar" class="kr.or.common.AfterReturningAdvice"/>
+	<beans:bean id="at" class="kr.or.common.AfterThrowingAdvice"/>
+	<beans:bean id="aa" class="kr.or.common.AfterAdvice"/>
+	<beans:bean id="around" class="kr.or.common.AroundAdvice"/>
 	
 	<aop:config>
-		<aop:pointcut expression="execution(int kr.or.member.model.service..*Service.*(..))" id="testPointcut"/>
+		<aop:pointcut expression="execution(* kr.or.member.model.service..*Service.selectOneMember(kr.or.member.model.vo.Member))" 
+		id="loginPointcut"/>
+		<aop:pointcut expression="execution(* kr.or.member.model.service..*Service.*(..))" id="testPointcut"/>
 		
-		<aop:aspect ref="log2">
-			<aop:before method="printLog" pointcut-ref="testPointcut"/>
+		<!-- 
+		<aop:aspect ref="beforeTest">
+			<aop:before method="beforeTest" pointcut-ref="testPointcut"/>
+		</aop:aspect>
+		 -->		
+
+		<aop:aspect ref="ar">
+			<aop:after-returning method="afterReturningAdvice" pointcut-ref="loginPointcut" returning="returnObj"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="at">
+			<aop:after-throwing method="afterThrowing" pointcut-ref="loginPointcut" throwing="exceptObj"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="aa">
+			<aop:after method="after" pointcut-ref="loginPointcut"/>
+		</aop:aspect>
+	
+	
+		<aop:aspect ref="around">
+			<aop:around method="around" pointcut-ref="testPointcut"/>
 		</aop:aspect>
 	</aop:config>
-	
-	
 		
 </beans:beans>
