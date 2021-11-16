@@ -28,21 +28,30 @@ public class MemberController {
 		System.out.println(service);
 	}
 	
-//	@RequestMapping(value="/test1.do")
-//	public String test1() {
-//		System.out.println("/test1.do 호출");
-//		System.out.println(service);
-//		return "test/test1";
-//	}
-//
-//	@RequestMapping(value="/test2.do")
-//	public String test2() {
-//		System.out.println("/test2.do 호출");
-//		System.out.println(service);
-//		return "test/test2";
-//	}
-//	
-	
+	@RequestMapping(value="/login2.do")
+	public String login2(String memberId, String memberPw, HttpSession session, Model model) {
+		
+		System.out.println("로그인 비지니스 로직 수행 전");
+		
+		Member m = service.login2(memberId,memberPw);
+		
+		System.out.println("로그인 비지니스 로직 수행 후");
+		
+
+		if( m != null) {
+			session.setAttribute("m", m);
+			model.addAttribute("msg","로그인 성공");
+		}else {
+			model.addAttribute("msg","로그인 실패");			
+		}
+		model.addAttribute("loc","/");
+		
+		
+		return "common/msg";
+
+		
+	}
+
 	@RequestMapping(value="/login.do")
 	public String login(Member member, HttpSession session, Model model) {
 
@@ -54,30 +63,20 @@ public class MemberController {
 		
 		System.out.println("로그인 비지니스 로직 수행 후");
 		
-//	public String login(HttpServletRequest request) {
-//		String memberId = request.getParameter("memberId");
-//		String memberPw = request.getParameter("memberPw");
-//		System.out.println("memberId : " +member.getMemberId());
-//		System.out.println("memberPw : " +member.getMemberPw());
-
-		
 		//Model -> request 영역에 데이터를 등록하기위한 객체
 		//request.setAttribute('key',value) -> model.addAttribute('key',value);
 		
 
-		
-		System.out.println(member);
-		System.out.println(m);
-				
 		if( m != null) {
 			session.setAttribute("m", m);
 			model.addAttribute("msg","로그인 성공");
+		}else {
+			
+			model.addAttribute("msg","로그인 실패");
 		}
-		model.addAttribute("msg","로그인 실패");
+		model.addAttribute("loc","/");
 		
-		
-		return "redirect:/";
-//		return "common/msg";
+		return "common/msg";
 	};
 	
 	@RequestMapping(value="/joinFrm.do")
@@ -124,7 +123,7 @@ public class MemberController {
 	@RequestMapping(value="/updateMember.do")
 	public String updateMember(Member m, Model model) {
 		
-		int result = service.updateMember(m);
+		int result = service.memberUpdate(m);
 		
 		if(result > 0) {
 			model.addAttribute("msg","정보 변경 성공");
@@ -171,5 +170,38 @@ public class MemberController {
 		ArrayList<Member> list = service.selectAllMember();
 		return new Gson().toJson(list);
 	}
+	
+	@RequestMapping(value="/updatePwFrm.do")
+	public String updatePwFrm(){
+		return "member/updatePwFrm";
+	}
+
+	@RequestMapping(value="/updatePw.do")
+	public String updatePw(Member m,Model model){
+		
+		int result = service.updatePw(m);
+
+		if(result > 0){
+			model.addAttribute("msg","수정 성공");
+		}else {
+			model.addAttribute("msg","수정 실패");
+		}
+		model.addAttribute("loc","/");
+		
+		return "common/msg";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/checkPw.do")
+	public String checkPw(Member m,Model model){
+		Member mToReturn = service.checkPw(m);
+		if(mToReturn != null) {
+			return "1";			
+		}else {
+			return "0";			
+			
+		}
+	}
+	
 	
 }

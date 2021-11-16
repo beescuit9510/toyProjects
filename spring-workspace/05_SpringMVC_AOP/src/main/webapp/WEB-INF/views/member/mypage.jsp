@@ -11,7 +11,6 @@
 	<form action="/updateMember.do" method="post">
 		<fieldset>
 			아이디 : <input type="text" name="memberId" value="${m.memberId }" readonly/><br/>
-			비밀번호 : <input type="password" name="memberPw" value="${m.memberPw }" /><br/>
 			이름 : <input type="text" name="memberName" value="${m.memberName }" readonly/><br/>
 			주소 : <input type="text" name="address" value="${m.address }" /><br/>
 			가입일 : <input type="text" name="enrollDate" value="${m.enrollDate }" readonly/><br/>

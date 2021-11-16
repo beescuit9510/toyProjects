@@ -23,14 +23,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.or.iei" />
-		
-	<!-- scan 범위가 kr.or.member 이 들어간 모든 package -->
-	<context:component-scan base-package="kr.or.member" />
-
-	<!-- scan 범위가 kr.or.board 이 들어간 모든 package -->
-	<context:component-scan base-package="kr.or.board" />
-	
 	
 	<!-- DB 접속 정보를 저장하는 datasource 생성 -->
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -51,6 +43,8 @@
 		<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
 
+
+<!-- 
 	<beans:bean id="log" class="kr.or.common.LogTest1" />
 	<beans:bean id="log2" class="kr.or.common.LogTest2" />
 	<beans:bean id="beforeTest" class="kr.or.common.BeforeAdvice"/>
@@ -58,18 +52,21 @@
 	<beans:bean id="at" class="kr.or.common.AfterThrowingAdvice"/>
 	<beans:bean id="aa" class="kr.or.common.AfterAdvice"/>
 	<beans:bean id="around" class="kr.or.common.AroundAdvice"/>
-	
+ -->
+
+<!-- 
 	<aop:config>
 		<aop:pointcut expression="execution(* kr.or.member.model.service..*Service.selectOneMember(kr.or.member.model.vo.Member))" 
 		id="loginPointcut"/>
 		<aop:pointcut expression="execution(* kr.or.member.model.service..*Service.*(..))" id="testPointcut"/>
+ -->	
 		
 		<!-- 
 		<aop:aspect ref="beforeTest">
 			<aop:before method="beforeTest" pointcut-ref="testPointcut"/>
 		</aop:aspect>
 		 -->		
-
+<!-- 
 		<aop:aspect ref="ar">
 			<aop:after-returning method="afterReturningAdvice" pointcut-ref="loginPointcut" returning="returnObj"/>
 		</aop:aspect>
@@ -87,5 +84,20 @@
 			<aop:around method="around" pointcut-ref="testPointcut"/>
 		</aop:aspect>
 	</aop:config>
+ -->
+ 
+ 	<!-- AOP 어노테이션 방식 사용 선언  -->
+ 	<aop:aspectj-autoproxy/>
+ 	
+	<context:component-scan base-package="kr.or.iei" />
+		
+	<!-- scan 범위가 kr.or.member 이 들어간 모든 package -->
+	<context:component-scan base-package="kr.or.member" />
+
+	<!-- scan 범위가 kr.or.board 이 들어간 모든 package -->
+	<context:component-scan base-package="kr.or.board" />
+
+	<context:component-scan base-package="kr.or.common" />
+ 	
 		
 </beans:beans>
