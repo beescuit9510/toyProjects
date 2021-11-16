@@ -8,7 +8,8 @@ import java.sql.Statement;
 
 public class JDBCTemplate {
 
-	static final String URL = "jdbc:oracle:thin:@1.220.236.74:15214:xe";
+//	static final String URL = "jdbc:oracle:thin:@1.220.236.74:15214:xe";
+	static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	static final String USER = "gorumi";
 	static final String PW = "1234";
 	static final String DRIVER = "oracle.jdbc.driver.OracleDriver";

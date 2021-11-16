@@ -1,5 +1,5 @@
 문제 상황:
-박소원 팀원님께 프로젝트 폴더(guleumingWebProject)전달
+프로젝트 폴더(guleumingWebProject)전달했는데
 jre System Library를 찾을수 없음.
 접속할때마다 404가 에러가남.
 
