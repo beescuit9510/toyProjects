@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 트랜잭션 관리용 객체 생성======== -->
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+	</beans:bean>
+	
+	<!-- 트랜잭션 어노테이션 사용을 위한 선언 -->
+	<tx:annotation-driven/>
+	
+	<!-- DB 접속 정보를 저장하는 datasource 생성 -->
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<beans:property name="url" value="jdbc:oracle:thin:@127.0.01:1521:xe"/>		
+		<beans:property name="username" value="spring"/>
+		<beans:property name="password" value="1234"/>		
+	</beans:bean>
+	
+	
+	
+	<!-- Mybatis 사용 객체 생성 -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="mapperLocations" value="classpath:/mapper/**/*SQL.xml"/>
+		<beans:property name="configLocation" value="classpath:/mybatis-config.xml"/>
+	</beans:bean>
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSession"/>
+	</beans:bean>
+	<!--  마이바티스 사용전 window->preference->xml->xml catalog 등록 2개 해줘야함. mapper config -->
+	
+	<!-- JDBC 객체 생성 -->
+	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<beans:property name="dataSource" ref="dataSource" />	
+	</beans:bean>
+	
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 10메가 환산 -> 10485760 -->		
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+
+
+<!-- 
+	<beans:bean id="log" class="kr.or.common.LogTest1" />
+	<beans:bean id="log2" class="kr.or.common.LogTest2" />
+	<beans:bean id="beforeTest" class="kr.or.common.BeforeAdvice"/>
+	<beans:bean id="ar" class="kr.or.common.AfterReturningAdvice"/>
+	<beans:bean id="at" class="kr.or.common.AfterThrowingAdvice"/>
+	<beans:bean id="aa" class="kr.or.common.AfterAdvice"/>
+	<beans:bean id="around" class="kr.or.common.AroundAdvice"/>
+ -->
+
+<!-- 
+	<aop:config>
+		<aop:pointcut expression="execution(* kr.or.member.model.service..*Service.selectOneMember(kr.or.member.model.vo.Member))" 
+		id="loginPointcut"/>
+		<aop:pointcut expression="execution(* kr.or.member.model.service..*Service.*(..))" id="testPointcut"/>
+ -->	
+		
+		<!-- 
+		<aop:aspect ref="beforeTest">
+			<aop:before method="beforeTest" pointcut-ref="testPointcut"/>
+		</aop:aspect>
+		 -->		
+<!-- 
+		<aop:aspect ref="ar">
+			<aop:after-returning method="afterReturningAdvice" pointcut-ref="loginPointcut" returning="returnObj"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="at">
+			<aop:after-throwing method="afterThrowing" pointcut-ref="loginPointcut" throwing="exceptObj"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="aa">
+			<aop:after method="after" pointcut-ref="loginPointcut"/>
+		</aop:aspect>
+	
+	
+		<aop:aspect ref="around">
+			<aop:around method="around" pointcut-ref="testPointcut"/>
+		</aop:aspect>
+	</aop:config>
+ -->
+ 
+ 	<!-- AOP 어노테이션 방식 사용 선언  -->
+ 	<aop:aspectj-autoproxy/>
+ 	
+	<context:component-scan base-package="kr.or.iei" />
+		
+	<!-- scan 범위가 kr.or.member 이 들어간 모든 package -->
+	<context:component-scan base-package="kr.or.member" />
+
+	<!-- scan 범위가 kr.or.board 이 들어간 모든 package -->
+	<context:component-scan base-package="kr.or.board" />
+
+	<context:component-scan base-package="kr.or.common" />
+ 	
+		
+</beans:beans>

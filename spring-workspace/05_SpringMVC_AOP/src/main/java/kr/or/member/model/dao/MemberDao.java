@@ -107,6 +107,13 @@ public class MemberDao {
 	}
 
 
+	public int pwChangeMember(Member m) {
+		String query ="update member set member_pw = ? where member_id = ?";
+		int result = jdbcTemplate.update(query,new Object[] {m.getMemberPw(), m.getMemberId()});
+		return result;
+	}
+
+
 //	public Member selecetOneMember(String memberId) {
 //		String query ="select * from member where member_id = ?";
 //

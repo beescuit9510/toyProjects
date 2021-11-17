@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org//dtd/mybatis-3-mapper.dtd" >
+<mapper  namespace="member">
+	<select id="selectOneMember" parameterType="m" resultType="m">
+		select 
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			address,
+			enrollDate as enroll_date
+		from member
+		where member_id = #{memberId} and member_pw = #{memberPw}
+	</select>
+</mapper>
