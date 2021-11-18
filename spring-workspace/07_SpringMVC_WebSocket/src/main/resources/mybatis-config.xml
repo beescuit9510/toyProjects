@@ -8,5 +8,6 @@
          <typeAlias alias="b" type="kr.or.board.model.vo.Board" />
          <typeAlias alias="f" type="kr.or.board.model.vo.FileVO" />
          <typeAlias alias="m" type="kr.or.member.model.vo.Member" />
+         <typeAlias alias="dm" type="kr.or.dm.model.vo.DirectMessage" />
 	</typeAliases>	
 </configuration>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org//dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+<!-- 
+  <cache-ref namespace=""/>
+ -->
+ <select id="boardList" resultType="b">
+ 	<![CDATA[
+ 	select 
+	 	board_no as boardNo,
+	 	board_title as boardTitle,
+	 	board_writer as boardContent,
+	 	board_content as boardContent,
+	 	board_date as boardDate
+ 	from board
+ 	]]>
+ </select>
+ <insert id="insertBoard" parameterType="b">
+ 	insert into
+ 	board values(
+ 		board_seq.nextval,
+ 		#{boardTitle},
+ 		#{boardContent},
+ 		#{boardWriter},
+ 		to_char(sysdate,'yyyy-mm-dd')
+ 	)
+ 	<selectKey resultType="_int" order="AFTER" keyProperty="boardNo">
+ 		select max(board_no) from board
+ 	</selectKey>
+ </insert>
+ <select id="getBoardNo" resultType="_int">
+ 	select max(board_no) from board
+ </select>
+ <insert id="insertFile" parameterType="f">
+ 	insert into file_tbl
+ 	values(
+ 		file_seq.nextval,
+ 		#{boardNo},
+ 		#{filename},
+ 		#{filepath}
+ 	) 	
+ </insert>
+ <select id="selectOneBoard" parameterType="_int" resultMap="board">
+ 	select *
+ 	from board where board_no = #{boardNo}
+ </select>
+ <select id="selectFilelist" resultType="f" parameterType="_int">
+ 	select
+	 	board_no as boardNo,
+	 	file_no as fileNo,
+	 	filepath,
+	 	filename
+	 from file_tbl
+	 where board_no = #{boardNo}
+ </select>
+ <!-- 조회를 많이해서 성능이 좋지 않음
+ 글번호 제목 파일이름 파일패스
+ 1   title  file1 file1
+ 1   title  file2 file2
+ 1   title  file3 file3
+ 1   title  file4 file4
+ 1   title  file5 file5
+ 이런식으로 1번 조회를 5번 조회하게 됨.
+  -->
+ <resultMap type="b" id="board">
+ 	<result column="board_no" property="boardNo"/>
+ 	<result column="board_title" property="boardTitle"/>
+ 	<result column="board_content" property="boardContent"/>
+ 	<result column="board_writer" property="boardWriter"/>
+ 	<result column="board_date" property="boardDate"/>
+ 	<collection property="list"
+ 				column="boardNo"
+ 				javaType="java.util.ArrayList"
+ 				ofType="f"
+ 				select="selectFileList"
+ 	/>
+ </resultMap>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org//dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="direct">
+<select id="selectDmList" parameterType="string" resultType="dm">
+	select
+	dm_no as dmNo,
+	sender,
+	receiver,
+	dm_content as dmContent,
+	to_char(dm_time, 'mm-dd hh24:mi:ss') as dmTime,
+	read_status as readStatus
+	from dm 
+	where receiver = #{memberId} or sender = #{memberId}
+	order by 1 desc
+</select>
+</mapper>
