@@ -7,8 +7,75 @@
 			member_pw as memberPw,
 			member_name as memberName,
 			address,
-			enrollDate as enroll_date
+			enroll_date as enrollDate
 		from member
 		where member_id = #{memberId} and member_pw = #{memberPw}
 	</select>
+	<insert id="insertMember" parameterType="m">
+		insert into member values(
+			#{memberId},
+			#{memberPw},
+			#{memberName},
+			#{address},
+			to_char(sysdate, 'yyyy-mm-dd')
+			)
+	</insert>
+	<update  id="updateMember" parameterType="m">
+		update member set address = #{address} where member_id = #{memberId}
+	</update>
+	<select  id="mypage" parameterType="string" resultType="m" >
+		select 			
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			address,
+			enroll_date as enrollDate
+		 from member where member_id = #{memberId}
+	</select>
+	<select id="selectAllMember" resultType="m">
+		select 
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			address,
+			enroll_date as enrollDate
+		from member
+	</select>
+	<update  id="updatePw" parameterType="m">
+		update member set member_pw = #{memberPw} where member_id = #{memberId}
+	</update>
+	<select id="checkPw" parameterType="m" resultType="m">
+		select 
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			address,
+			enroll_date as enrollDate
+		from member
+		where member_id = #{memberId} and member_pw = #{memberPw}
+	</select>
+	<update  id="pwChangeMemer" parameterType="m">
+		update member set member_pw = #{memberPw} where member_id = #{memberId}
+	</update>
+	<select id="selectOneMemberById" parameterType="string" resultType="m">
+		select 
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			address,
+			enroll_date as enrollDate
+		from member
+		where member_id = #{memberId}
+	</select>
+	<select id="login2" parameterType="m" resultType="m">
+		select 
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			address,
+			enroll_date as enrollDate
+		from member
+		where member_id = #{memberId} and member_pw = #{memberPw}
+	</select>
+	
 </mapper>

@@ -12,6 +12,7 @@ public class SHA256Enc {
 		MessageDigest mDigest = MessageDigest.getInstance("SHA-256");//암호화 알고리즘 중 SHA-256사용
 		
 		//매개변수로 받은 값을 byte배열로 변환해서 mDigest객체에 저장(SHA-256으로 변환 완료)
+		System.out.println(data);
 		mDigest.update(data.getBytes());
 		
 		//SHA-256으로 변환된 데이터를 byte[]로 꺼냄

@@ -119,9 +119,12 @@
  	
  	<!-- 웹소캣 전체채팅 객체 생성 -->
  	<beans:bean id="allMemberChat" class="kr.or.member.model.service.AllMemberChat"/> 	
+ 	<!-- 쪽지알람용 객체 생성 -->
+ 	<beans:bean id="alarm" class="kr.or.common.Alarm"/>
  	<!-- 웹소캣 설정 -->
  	<websocket:handlers>
  		<websocket:mapping handler="allMemberChat" path="/chat.do"/>
+ 		<websocket:mapping handler="alarm" path="/alarm.do"/>
  	</websocket:handlers>
  	
  	
@@ -133,8 +136,10 @@
 	<!-- scan 범위가 kr.or.board 이 들어간 모든 package -->
 	<context:component-scan base-package="kr.or.board" />
 
-	<context:component-scan base-package="kr.or.common" />
 	<context:component-scan base-package="kr.or.dm" />
  	
+	<context:component-scan base-package="kr.or.common.PasswordEncAdvice" />
+	<context:component-scan base-package="kr.or.common" />
+	<context:component-scan base-package="kr.or.common.SHA256Enc" />
 		
 </beans:beans>

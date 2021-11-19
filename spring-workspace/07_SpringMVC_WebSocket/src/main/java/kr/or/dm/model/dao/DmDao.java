@@ -18,4 +18,12 @@ public class DmDao {
 		List<DirectMessage> list = sqlSession.selectList("direct.selectDmList", memberId);
 		return (ArrayList<DirectMessage>)list;
 	}
+
+	public int insertDm(DirectMessage dm) {
+		return sqlSession.insert("direct.insertDm", dm);
+	}
+
+	public int dmCount(String memberId) {
+		return sqlSession.selectOne("direct.dmCount",memberId);
+	}
 }

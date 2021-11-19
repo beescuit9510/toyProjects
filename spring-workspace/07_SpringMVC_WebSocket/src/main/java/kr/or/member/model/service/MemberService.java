@@ -16,20 +16,14 @@ public class MemberService {
 	@Autowired
 	private MemberDao dao;
 	
-	
-	public MemberService() {
-//		System.out.println("MemberService 객체 생성");
-		super();
-	}
-	
-	public Member login2(String memberId, String memberPw) {
-		System.out.println(memberId);
-		System.out.println(memberPw);
-		Member m = dao.login2(memberId,memberPw);
-		System.out.println(memberId);
-		System.out.println(memberPw);
-		return null;
-	}
+//	public Member login2(String memberId, String memberPw) {
+//		System.out.println(memberId);
+//		System.out.println(memberPw);
+//		Member m = dao.login2(memberId,memberPw);
+//		System.out.println(memberId);
+//		System.out.println(memberPw);
+//		return null;
+//	}
 
 
 	public Member selectOneMember(Member member) throws IllegalArgumentException {

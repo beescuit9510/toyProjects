@@ -19,36 +19,30 @@ import kr.or.member.model.vo.PwChangeVO;
 @Controller
 public class MemberController {
 
-	@Autowired // 스프링이 서버 시작시 자동으로 생성한 객체 중 아래 변수와 일치하는 데이터 타입의 객체를 찾아서 변수에 저장
 	// 의존성 주입
+	@Autowired // 스프링이 서버 시작시 자동으로 생성한 객체 중 아래 변수와 일치하는 데이터 타입의 객체를 찾아서 변수에 저장
 	private MemberService service;
 
-	public MemberController() {
-		super();
-		System.out.println("MemberController 객체 생성 완료");
-		System.out.println(service);
-	}
-
-	@RequestMapping(value = "/login2.do")
-	public String login2(String memberId, String memberPw, HttpSession session, Model model) {
-
-		System.out.println("로그인 비지니스 로직 수행 전");
-
-		Member m = service.login2(memberId, memberPw);
-
-		System.out.println("로그인 비지니스 로직 수행 후");
-
-		if (m != null) {
-			session.setAttribute("m", m);
-			model.addAttribute("msg", "로그인 성공");
-		} else {
-			model.addAttribute("msg", "로그인 실패");
-		}
-		model.addAttribute("loc", "/");
-
-		return "common/msg";
-
-	}
+//	@RequestMapping(value = "/login2.do")
+//	public String login2(String memberId, String memberPw, HttpSession session, Model model) {
+//
+//		System.out.println("로그인 비지니스 로직 수행 전");
+//
+//		Member m = service.login2(memberId, memberPw);
+//
+//		System.out.println("로그인 비지니스 로직 수행 후");
+//
+//		if (m != null) {
+//			session.setAttribute("m", m);
+//			model.addAttribute("msg", "로그인 성공");
+//		} else {
+//			model.addAttribute("msg", "로그인 실패");
+//		}
+//		model.addAttribute("loc", "/");
+//
+//		return "common/msg";
+//
+//	}
 
 	@RequestMapping(value = "/login.do")
 	public String login(Member member, HttpSession session, Model model) {

@@ -21,6 +21,13 @@ public class PasswordEncAdvice {
 	@Pointcut(value="execution(* kr.or.member.model.service..*Service.*Pw(kr.or.member.model.vo.Member))")
 	public void encPointcut2() {}
 	
+//	@Pointcut(value="execution(kr.or.member.model.vo.Member kr.or.member.model.service..*Service.*(kr.or.member.model.vo.Member))")
+//	public void encPointcutPW1() {}
+//	@Pointcut(value="execution(int kr.or.member.model.service..*Service.*(kr.or.member.model.vo.Member))")
+//	public void encPointcutPW2() {}
+//	@Pointcut(value="execution(* kr.or.member.model.service..*Service.*ENC(..))")
+
+	
 	@Before(value="encPointcut()")
 	public void pwEnc(JoinPoint jp) throws Exception{
 		String methodName = jp.getSignature().getName();
@@ -29,7 +36,6 @@ public class PasswordEncAdvice {
 		String pw = m.getMemberPw();
 		String encodedPw = enc.encData(pw);
 		m.setMemberPw(encodedPw);
-
 		System.out.println("메서드 : "+methodName);
 		System.out.println("암호화 전 비밀번호 :"+pw);
 		System.out.println("암호화 후 비밀번호 :"+encodedPw);
@@ -47,7 +53,7 @@ public class PasswordEncAdvice {
 		
 	}
 	
-	@Pointcut(value="execution(* kr.or.member.model.service..*Service.changePw(..))")
+	@Pointcut(value="execution(int kr.or.member.model.service..*Service.changePw(..))")
 	public void changePwPointcut() {}
 	
 	@Before(value="changePwPointcut()")
