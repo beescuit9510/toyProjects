@@ -29,7 +29,8 @@ public class ScheduledTest {
 		System.out.println("5초마다 자동으로 출력!");
 	}
 	
-//	@Scheduled(cron="5 * * * * *")
+	@Scheduled(cron="0/5 * * * * *")
+	
 	public void test2() {
 		System.out.println("크론식으로 호출");
 	}

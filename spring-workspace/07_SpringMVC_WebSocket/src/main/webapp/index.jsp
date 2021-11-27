@@ -8,6 +8,8 @@
 <title>SpringMVC_WebSocket 프로젝트</title>
 </head>
 <body>
+
+<a href="/a.do">aaaa</a>
 	<h2>SpringMVC_WebSocket 프로젝트</h2>
 	<hr/>
 	<a href="/test1.do">test1</a><br/>

@@ -141,5 +141,8 @@
 	<context:component-scan base-package="kr.or.common.PasswordEncAdvice" />
 	<context:component-scan base-package="kr.or.common" />
 	<context:component-scan base-package="kr.or.common.SHA256Enc" />
+
+
+	<context:component-scan base-package="kh.ncs.user.model" />
 		
 </beans:beans>
